@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'
 
-function nav() {
+function Navbar () {
     return (
         <div>
             <Link href='/'>
@@ -24,4 +24,4 @@ function nav() {
     );
 }
 
-export default nav;
+export default Navbar;

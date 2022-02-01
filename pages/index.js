@@ -3,8 +3,7 @@ import profilepic from "./../public/ankitzm.png"
 
 export default function Home() {
   return (
-
-      <div className="container px-6 py-4 lg:flex lg:h-128 lg:py-16 bg-yellow-400 items-center border-4 border-red-800">
+    <>
         <div className="flex flex-col items-center w-full lg:flex-row lg:w-1/2">
           <div className="max-w-lg">
             <h1 className="text-xl tracking-wide text-gray-800 lg:text-4xl">Set your mdTitle</h1>
@@ -24,8 +23,6 @@ export default function Home() {
             src={profilepic}
             alt="profile pic" />
       </div>
-      
-      </div>
-
+    </>
   )
 }

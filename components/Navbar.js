@@ -6,22 +6,22 @@ function Navbar() {
         {
             "name" : "home",
             "link" : "/",
-            "selected" : "false"
+            "selected" : false
         },
         {
             "name": "project",
             "link": "project",
-            "selected": "false"
+            "selected": false
         },
         {
             "name": "experience",
             "link": "experience",
-            "selected": "false"
+            "selected": false
         },
         {
             "name": "resume",
             "link": "resume",
-            "selected": "false"
+            "selected": false
         },
     ]
 

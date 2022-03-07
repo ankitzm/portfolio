@@ -4,16 +4,17 @@ import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
     return (
-        <div className="bg-blue-200 h-screen flex flex-col justify-center items-center">
+        <div className="relative h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-400 via-blue-400 to-violet-400">
             <div className='fixed top-4'>
                 <Navbar />
             </div>
 
-            <div className="container px-6 py-4 lg:flex lg:h-128 lg:py-16 bg-yellow-400 items-center border-4 border-red-800">
+            <div className="container h-5/6 p-10 sm:p-16 items-center overflow-auto 
+                bg-white shadow-lg sm:rounded-3xl bg-clip-padding bg-opacity-40">
                 {children}
             </div>
 
-            <div className='fixed bottom-4'>
+            <div className="fixed pin z-1 overflow-auto bg-smoke-light">
                 <Footer />
             </div>
         </div>

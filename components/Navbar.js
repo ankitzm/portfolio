@@ -1,36 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link'
 
 function Navbar() {
+    const [selected, setSelcted] = useState(false)
     const NavLink = [
         {
             "name" : "home",
             "link" : "/",
-            "selected" : false
+            "state": selected
         },
         {
             "name": "project",
             "link": "project",
-            "selected": false
+            "state": selected
         },
         {
             "name": "experience",
             "link": "experience",
-            "selected": false
+            "state": selected
         },
         {
             "name": "resume",
             "link": "resume",
-            "selected": false
+            "state": selected
         },
     ]
 
     return (
-        <div className='container flex border-4'>
+        <div className='flex bg-white shadow-lg sm:rounded-l bg-clip-padding bg-opacity-50'>
             {
-                NavLink.map(function(item) {
+                NavLink.map(item => {
                     return (
-                        <div key={item.name} className='mx-4'>
+                        <div key={item.name} className="px-2 border">
                             <Link href={item.link}>
                                 {item.name}
                             </Link>

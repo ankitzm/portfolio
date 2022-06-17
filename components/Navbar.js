@@ -1,39 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 
 function Navbar() {
-    const [selected, setSelcted] = useState(false)
     const NavLink = [
         {
-            "name" : "home",
-            "link" : "/",
-            "state": selected
+            "name": "home",
+            "link": "/",
         },
         {
             "name": "project",
-            "link": "project",
-            "state": selected
+            "link": "/project",
         },
         {
             "name": "experience",
-            "link": "experience",
-            "state": selected
+            "link": "/experience",
         },
         {
             "name": "resume",
-            "link": "resume",
-            "state": selected
+            "link": "/resume",
         },
     ]
 
+    const router = useRouter()
+
     return (
-        <div className='flex bg-white shadow-lg sm:rounded-l bg-clip-padding bg-opacity-50'>
+        <div className='flex sm:rounded-l bg-clip-padding bg-opacity-50'>
             {
                 NavLink.map(item => {
                     return (
-                        <div key={item.name} className="px-2 border">
-                            <Link href={item.link}>
-                                {item.name}
+                        <div key={item.name} className="mx-0 sm:mx-2 font-bold text-xs sm:text-base hover:bg-opacity-20 hover:bg-slate-100 hover:rounded-lg" style={{ "font-family": 'Major Mono Display' }}>
+                            <Link href={item.link} passHref>
+                                <div className={`py-1 px-2 sm:py-2 sm:px-4 ${router.asPath == item.link ? "bg-opacity-20 bg-slate-100 rounded-lg" : ""}`}>
+                                    {item.name}
+                                </div>
                             </Link>
                         </div>
                     )

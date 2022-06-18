@@ -13,13 +13,9 @@ function Navbar() {
             "link": "/project",
         },
         {
-            "name": "experience",
+            "name": "work",
             "link": "/experience",
-        },
-        {
-            "name": "resume",
-            "link": "/resume",
-        },
+        }
     ]
 
     const router = useRouter()
@@ -29,7 +25,7 @@ function Navbar() {
             {
                 NavLink.map(item => {
                     return (
-                        <div key={item.name} className="mx-0 sm:mx-2 font-bold text-xs sm:text-base hover:bg-opacity-20 hover:bg-slate-100 hover:rounded-lg" style={{ "font-family": 'Major Mono Display' }}>
+                        <div key={item.name} className="mx-2 font-bold text-xs sm:text-base lg:text-lg hover:bg-opacity-20 hover:bg-slate-100 hover:rounded-lg" style={{ "font-family": 'Major Mono Display' }}>
                             <Link href={item.link} passHref>
                                 <div className={`py-1 px-2 sm:py-2 sm:px-4 ${router.asPath == item.link ? "bg-opacity-20 bg-slate-100 rounded-lg" : ""}`}>
                                     {item.name}

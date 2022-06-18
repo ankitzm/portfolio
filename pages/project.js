@@ -9,7 +9,7 @@ function project() {
         <div className='flex flex-wrap gap-8 lg:gap-20 lg:mx-10 justify-center'>
             {
                 projectList.map(project => {
-                    return <ProjectCard name={project.name} description={project.description} link={project.link} key={project.name} />
+                    return <ProjectCard name={project.name} description={project.description} image={project.image} links={project.links} key={project.name} />
                 })
             }
         </div>

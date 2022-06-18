@@ -8,7 +8,7 @@ function projectCard({ name, description, image, links }) {
             <div className="rounded-lg shadow-lg bg-white max-w-sm w-60 sm:w-52 md:w-72 relative">
 
                 <Image
-                    alt='Mountains'
+                    alt='Project Image'
                     src={image}
                     width={600}
                     height={360}

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import profilepic from "./../public/ankitzm.png"
+import loader from "./../public/loader.png"
 import Data from "./../data/data.json"
 import { github, medium, linkedin, twitter } from "./../public/icon"
 
@@ -38,9 +39,11 @@ export default function Home() {
         <Image
           className="w-full max-w-2xl rounded-full lg:h-full"
           src={profilepic}
+          width={400}
+          height={400}
           alt="profile pic"
           placeholder='blur'
-          blurDataURL="https://imgur.com/a/C3C3TwX"
+          blurDataURL={loader}
         />
       </div>
     </div>

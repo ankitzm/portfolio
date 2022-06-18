@@ -9,10 +9,9 @@ function projectCard({ name, description, image, links }) {
 
                 <Image
                     alt='Project Image'
-                    src={image}
+                    src={`/project_image/${image}`}
                     width={600}
                     height={360}
-
                 />
 
                 <div className="p-6">

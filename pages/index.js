@@ -40,7 +40,7 @@ export default function Home() {
           src={profilepic}
           alt="profile pic"
           placeholder='blur'
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0TAMAAO4AqSRGOzoAAAAASUVORK5CYII="
+          blurDataURL="https://imgur.com/a/C3C3TwX"
         />
       </div>
     </div>

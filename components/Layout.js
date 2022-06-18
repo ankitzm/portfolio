@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
     return (
-        <div className="relative h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-400 via-blue-400 to-violet-400">
+        <div className="relative h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-400 via-blue-400 to-violet-400" style={{ "font-family": 'Andika' }}>
             <div className='top-2 mb-6 sm:mb-4'>
                 <Navbar />
             </div>

@@ -16,7 +16,7 @@ export default function Home() {
         <p className="mt-4 text-gray-600 text-lg lg:text-xl">
           {About}
         </p>
-        <div className="mt-6 text-lg lg:text-xl">
+        <div className="mt-6 text-lg lg:text-xl font-bold">
           Stalk me ↴
           <div className='flex gap-4 ml-4 mt-2 opacity-85'>
             <a href="https://twitter.com/ankitzm" target="_blank" rel='noreferrer'>

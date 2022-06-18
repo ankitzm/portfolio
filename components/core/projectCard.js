@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { linkIcon, github } from "./../../public/icon"
+import { linkIcon, github } from "/public/icon"
 
 function projectCard({ name, description, image, links }) {
     return (
@@ -12,6 +12,7 @@ function projectCard({ name, description, image, links }) {
                     src={`/project_image/${image}`}
                     width={600}
                     height={360}
+                    placeholder="blur"
                 />
 
                 <div className="p-6">

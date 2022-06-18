@@ -38,7 +38,9 @@ export default function Home() {
         <Image
           className="w-full max-w-2xl rounded-full lg:h-full"
           src={profilepic}
-          alt="profile pic" />
+          alt="profile pic"
+          placeholder="blur"
+        />
       </div>
     </div>
   )

@@ -12,7 +12,8 @@ function projectCard({ name, description, image, links }) {
                     src={`/project_image/${image}`}
                     width={600}
                     height={360}
-                    placeholder="blur"
+                    placeholder='blur'
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0TAMAAO4AqSRGOzoAAAAASUVORK5CYII="
                 />
 
                 <div className="p-6">

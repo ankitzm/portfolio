@@ -39,7 +39,8 @@ export default function Home() {
           className="w-full max-w-2xl rounded-full lg:h-full"
           src={profilepic}
           alt="profile pic"
-          placeholder="blur"
+          placeholder='blur'
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN0TAMAAO4AqSRGOzoAAAAASUVORK5CYII="
         />
       </div>
     </div>

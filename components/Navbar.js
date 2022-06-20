@@ -9,7 +9,7 @@ function Navbar() {
             "link": "/",
         },
         {
-            "name": "project",
+            "name": "projects",
             "link": "/project",
         },
         {

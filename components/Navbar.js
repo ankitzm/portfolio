@@ -25,7 +25,7 @@ function Navbar() {
             {
                 NavLink.map(item => {
                     return (
-                        <div key={item.name} className="mx-2 font-bold text-xs sm:text-base lg:text-lg hover:bg-opacity-20 hover:bg-slate-100 hover:rounded-lg cursor-pointer" style={{ "font-family": 'Major Mono Display' }}>
+                        <div key={item.name} className="mx-2 font-bold text-xs sm:text-base lg:text-lg hover:bg-opacity-20 hover:bg-slate-100 hover:rounded-lg cursor-pointer" style={{ "fontFamily": 'Major Mono Display' }}>
                             <Link href={item.link} passHref>
                                 <div className={`py-1 px-2 sm:py-2 sm:px-4 ${router.asPath == item.link ? "bg-opacity-20 bg-slate-100 rounded-lg" : ""}`}>
                                     {item.name}

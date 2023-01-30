@@ -9,6 +9,15 @@
 	},
 	"project": [
 		{
+			"name": "Safe eploy",
+			"description": "An NPM package to deploy locally built Smart Contract from browser using Metamask wallet on a locally served webpage(on localhost with no external dependencies). No need of plug the private-key into the development environment.",
+			"image": "safe-deploy.png",
+			"links": {
+				"github": "https://github.com/ankitzm/safe-deploy",
+				"website": "https://www.npmjs.com/package/safe-deploy"
+			}
+		},
+		{
 			"name": "Open Funds",
 			"description": "An open collective alternative built on NEAR blockchain. It helps users to collect donation for their projects to continue work on them. The project data and user data is stored on Near blockchain.",
 			"image": "open-funds.png",

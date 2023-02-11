@@ -9,7 +9,7 @@
 	},
 	"project": [
 		{
-			"name": "Safe eploy",
+			"name": "Safe Deploy",
 			"description": "An NPM package to deploy locally built Smart Contract from browser using Metamask wallet on a locally served webpage(on localhost with no external dependencies). No need of plug the private-key into the development environment.",
 			"image": "safe-deploy.png",
 			"links": {

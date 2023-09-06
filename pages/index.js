@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import profilepic from "./../public/ankitzm.png"
+import profilepic from "./../public/ankitzm.jpg"
 import loader from "./../public/loader.png"
 import Data from "./../data/data.json"
 import { github, medium, linkedin, twitter } from "./../public/icon"

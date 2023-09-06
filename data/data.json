@@ -65,9 +65,19 @@
 	],
 	"experience": [
 		{
+			"title": "ThirdFi",
+			"role": "DevRel/Advocate",
+			"duration": "Feb 2023 - Aug 2023",
+			"description": [
+				"Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
+				"Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
+				"Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+			]
+		},
+		{
 			"title": "BlockTrain",
 			"role": "Content Creator",
-			"duration": "May 2022 - Present",
+			"duration": "May 2022 - November 2022",
 			"description": [
 				"Writing blogs everyday on [Medium](https://medium.com/@0xblocktrain) and [Hashnode](https://blocktrain.hashnode.dev/).",
 				"Teaching blockchain concepts through videos on BlockTrain’s [YouTube](https://www.youtube.com/c/Blocktrain).",

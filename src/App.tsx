@@ -1,18 +1,22 @@
-import { useState } from 'react'
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Experience from "./pages/experience";
+import Home from "./pages/home";
+import Projects from "./pages/projects";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        hellow
+      <div className="absolute top-2 left-4 sm:top-4 sm:left-8 ">
+        <Navbar />
       </div>
-      <h1>Vite + React</h1>
-      
-      <p className="text-blue-500">
-        let's build again
-      </p>
+      <div className='bg-indigo-50 flex flex-col min-h-screen justify-center items-center scroll-smooth border-4 border-blue-700'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+        </Routes>
+      </div>
     </>
   )
 }

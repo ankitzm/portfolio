@@ -31,11 +31,11 @@ function Navbar() {
     const activeClass = 'bg-purple-400'
 
     return (
-        <ul>
+        <ul className="">
             {
                 navButtons.map(e =>
                     <Link to={e.page.toLowerCase()}>
-                        <li key={e.name} className={`flex items-center gap-2 bg-indigo-400 py-2 px-4 m-2 rounded-md w-fit text-lg ${currentPath == e.page ? activeClass : ""} `}>
+                        <li key={e.name} className={`flex items-center gap-2 bg-indigo-400 rounded-md w-fit text-base sm:text-lg py-2 px-4 m-2 ${currentPath == e.page ? activeClass : ""} `}>
                             {<e.icon />} {e.name.toLowerCase()}
                         </li>
                     </Link>

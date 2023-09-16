@@ -3,6 +3,32 @@
 @tailwind utilities;
 
 html {
-    scroll-behavior: smooth;
-    word-break: break-word;
-  }
+  scroll-behavior: smooth;
+  word-break: break-word;
+  font-family: sans
+}
+
+/* width */
+::-webkit-scrollbar {
+  /* width: 50px; */
+  height: 10px;
+  background: transparent;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0);
+  width: 50%;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+    background-color: sky;
+    outline: 1px solid slategrey;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

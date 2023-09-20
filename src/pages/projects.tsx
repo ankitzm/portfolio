@@ -1,39 +1,45 @@
 import { ProjectCard } from "../components/ProjectCard"
-import nameIt from "./../assets/projects/open-funds.png"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import projects from "./../data/projects.json"
 
 export default function Projects() {
+  const screenWidth: number = 880
+  AOS.init({
+    easing: "ease-in-out-sine",
+    delay: 200,
+    offset: 150
+  });
+
   return (
-    <div className="flex flex-ProjectCardl gap-10 justify-center items-center border-2 border-blue-400 min-h-screen w-full overflow-hidden">
-      projects
+    <div className="flex flex-col gap-10 justify-center items-center m-30 min-h-screen w-full">
+      <>
+        {
+          screenWidth < 764 ? (
+            <div className="w-full bg-slate-700">
+              <div className="grid grid-flow-col gap-4 overflow-x-scroll pl-60 pb-6">
+                {projects.map(project => (
+                  <ProjectCard name={project.name} animation="fade-left" projectImage={project.image} description={project.description} tags={["node"]} />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="flex justify-center gap-20 my-40 scroll-smooth">
+              <div className=" flex flex-col gap-20">
+                {projects.slice(0, projects.length / 2).map(project => (
+                  <ProjectCard name={project.name} animation="fade-right" projectImage={project.image} description={project.description} tags={["frontend", "express"]} />
+                ))}
+              </div>
 
-
-      <div className="w-full bg-slate-700">
-
-        <div className="grid grid-flow-col gap-4 overflow-x-scroll pl-60 pb-6">
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          <ProjectCard name="project" projectImage={nameIt} description="Lorem ipsum dolor sit amet, ProjectCardnsectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil." tags={["a", "b"]} />
-          {/* <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard /> */}
-        </div>
-      </div>
-    </div >
+              <div className="flex flex-col gap-20">
+                {projects.slice(projects.length / 2, projects.length).map(project => (
+                  <ProjectCard name={project.name} animation="fade-left" projectImage={project.image} description={project.description} tags={["something", "abc"]} />
+                ))}
+              </div>
+            </div>
+          )
+        }
+      </>
+    </div>
   )
 }

@@ -61,14 +61,5 @@
             "github": "https://github.com/Suvraneel/NFT-Emporium",
             "website": "https://suvraneel.github.io/NFT-Emporium/"
         }
-    },
-    {
-        "name": "Open Funds",
-        "description": "An open collective alternative built on NEAR blockchain. It helps users to collect donation for their projects to continue work on them. The project data and user data is stored on Near blockchain.",
-        "image": "openFunds",
-        "links": {
-            "github": "https://github.com/ankitzm/near-funding-frontend",
-            "website": "https://open-funds.vercel.app/"
-        }
     }
 ]

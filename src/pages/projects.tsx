@@ -1,28 +1,27 @@
+import { useRef, useEffect } from 'react';
 import { ProjectCard } from "../components/ProjectCard"
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import projects from "./../data/projects.json"
+import "./../styles/timelineScroll.css"
 
 export default function Projects() {
-  AOS.init({
-    easing: "ease-in-out-sine",
-    delay: 200,
-    offset: 150
-  });
+  const totalProjects = projects.length
 
   return (
-    <div className="flex flex-col gap-10 justify-center items-center m-30 min-h-screen w-full">
-      <div className="flex justify-center gap-20 my-40 scroll-smooth">
+    <div className="flex justify-center items-center m-30 min-h-screen w-full">
+      {/* {projects.slice(0, totalProjects).map(project => (
+        <ProjectCard name={project.name} projectImage={project.image} description={project.description} tags={["frontend", "express"]} key={project.name} />
+      ))} */}
 
-        <div className=" flex flex-col gap-20">
-          {projects.slice(0, projects.length / 2).map(project => (
-            <ProjectCard name={project.name} animation="fade-right" projectImage={project.image} description={project.description} tags={["frontend", "express"]} />
+
+      <div className="columns" id="columns">
+        <div className="column column-reverse">
+          {projects.slice(0, totalProjects/2).map(project => (
+            <ProjectCard name={project.name} projectImage={project.image} description={project.description} tags={["frontend", "express"]} key={project.name} />
           ))}
         </div>
-
-        <div className="flex flex-col gap-20">
-          {projects.slice(projects.length / 2, projects.length).map(project => (
-            <ProjectCard name={project.name} animation="fade-left" projectImage={project.image} description={project.description} tags={["something", "abc"]} />
+        <div className="column">
+          {projects.slice(totalProjects/2, totalProjects).map(project => (
+            <ProjectCard name={project.name} projectImage={project.image} description={project.description} tags={["frontend", "express"]} key={project.name} />
           ))}
         </div>
       </div>

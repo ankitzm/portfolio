@@ -6,11 +6,20 @@ import { motion, useInView } from "framer-motion"
 
 function Home() {
   return (
-    <div>
-      home page
+    <div className="w-full">
 
-      <div className="text-3xl font-bold border border-red-300 h-screen">
-        Hey, I am ANKIT SINGH
+      <div className="h-screen flex flex-col justify-center gap-6">
+        <AnimatedText
+          once
+          className="text-6xl font-bold border border-red-300 text-center"
+          text="Hey,"
+          el="h1" />
+
+        <AnimatedText
+          once
+          className="text-8xl font-bold border border-red-300 text-center"
+          text="I am ANKIT SINGH"
+          el="h1" />
       </div>
 
       {/* <Carousel /> */}
@@ -53,7 +62,7 @@ export function AnimatedText({
       transition={{ staggerChildren: 0.1 }}
     >
       {text.split(' ').map((word) => (
-        <span className="block">
+        <span className="inline-block">
           {
             word.split('').map((ch) => (
               <motion.span
@@ -78,15 +87,16 @@ export function AnimatedText({
 const defaultAnimation = {
   hidden: {
     opacity: 0,
-    x: 50,
-    rotate: "180deg"
+    y: 50,
+    rotate: "20deg"
   },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
       duration: 1
     },
+    // Animation: {},
     rotate: "0deg"
   }
 }

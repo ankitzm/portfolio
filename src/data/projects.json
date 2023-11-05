@@ -2,7 +2,7 @@
     {
         "name": "Safe Deploy",
         "description": "An NPM package to deploy locally built Smart Contract from browser using Metamask wallet on a locally served webpage(on localhost with no external dependencies). No need of plug the private-key into the development environment.",
-        "image": "safeDeploy",
+        "image": "safe-deploy.png",
         "links": {
             "github": "https://github.com/ankitzm/safe-deploy",
             "website": "https://www.npmjs.com/package/safe-deploy"
@@ -11,7 +11,7 @@
     {
         "name": "Open Funds",
         "description": "An open collective alternative built on NEAR blockchain. It helps users to collect donation for their projects to continue work on them. The project data and user data is stored on Near blockchain.",
-        "image": "openFunds",
+        "image": "open-funds.png",
         "links": {
             "github": "https://github.com/ankitzm/near-funding-frontend",
             "website": "https://open-funds.vercel.app/"
@@ -20,7 +20,7 @@
     {
         "name": "Type It All",
         "description": "It's a typing speed checking web-app with a simple one minute test. I have integrated an API for fetching random paragraph for the test. Post test completion, the user can share their typing speed(WPM) on Twitter",
-        "image": "typeItAll",
+        "image": "type-it-all.png",
         "links": {
             "github": "https://github.com/ankitzm/type-it-all",
             "website": "http://type-it-all.vercel.app/"
@@ -38,7 +38,7 @@
     {
         "name": "Solana Wedding",
         "description": "This is a blockchian based wedding registry platform which uses Solana Blockchain under the hood. It uses DEVNET which uses fake SOL for transaction. It sends minimum data to blockchian, making it cocst effective.",
-        "image": "solanaWedding",
+        "image": "solana-wedding.png",
         "links": {
             "github": "https://github.com/ankitzm/solana-wedding",
             "website": "https://solana-wedding.vercel.app/"
@@ -47,7 +47,7 @@
     {
         "name": "NFT Emporium",
         "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
-        "image": "nftEmporium",
+        "image": "nft-emporium.png",
         "links": {
             "github": "https://github.com/Suvraneel/NFT-Emporium",
             "website": "https://suvraneel.github.io/NFT-Emporium/"
@@ -56,7 +56,16 @@
     {
         "name": "NASA App(Frontend)",
         "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
-        "image": "nameIt",
+        "image": "name-it.png",
+        "links": {
+            "github": "https://github.com/Suvraneel/NFT-Emporium",
+            "website": "https://suvraneel.github.io/NFT-Emporium/"
+        }
+    },
+    {
+        "name": "extra (Frontend)",
+        "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
+        "image": "open-funds.png",
         "links": {
             "github": "https://github.com/Suvraneel/NFT-Emporium",
             "website": "https://suvraneel.github.io/NFT-Emporium/"

@@ -18,6 +18,9 @@ export default {
       spacing: {
         '128': '32rem',
         '9/10': '90%'
+      },
+      colors: {
+        mainBG: '#c4d5c6'
       }
     },
   },

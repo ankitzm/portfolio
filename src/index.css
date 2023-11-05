@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   scroll-behavior: smooth;
   word-break: break-word;
   font-family: sans
-}
+} */
 
 /* width */
 ::-webkit-scrollbar {

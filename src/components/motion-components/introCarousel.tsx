@@ -1,27 +1,8 @@
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
 
-const Carousel = () => {
-  return (
-    <div className="bg-neutral-800 w-screen">
-      <div className="flex h-48 items-center justify-center">
-        <span className="font-semibold uppercase text-neutral-500">
-          Scroll down
-        </span>
-          </div>
-          start
-          <HorizontalScrollCarousel />
-          end
-      <div className="flex h-48 items-center justify-center">
-        <span className="font-semibold uppercase text-neutral-500">
-          Scroll up
-        </span>
-      </div>
-    </div>
-  );
-};
 
-const HorizontalScrollCarousel = () => {
+const IntroCarousel = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -46,7 +27,7 @@ const Card = ({ card }: { card: CardType }) => {
   return (
     <div
       key={card.id}
-      className="group relative h-[450px] w-[450px] overflow-hidden bg-neutral-200"
+      className="group relative h-[400px] w-[400px] overflow-hidden rounded-xl bg-white opacity-90"
     >
       <div
         style={{
@@ -54,10 +35,10 @@ const Card = ({ card }: { card: CardType }) => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110"
+        className="absolute inset-0 z-0 transition-transform duration-300"
       ></div>
       <div className="absolute inset-0 z-10 grid place-content-center">
-        <p className="bg-gradient-to-br from-white/20 to-white/0 p-8 text-6xl font-black uppercase text-white backdrop-blur-lg">
+        <p className="p-8 text-6xl font-black uppercase text-white">
           {card.title}
         </p>
       </div>
@@ -65,7 +46,8 @@ const Card = ({ card }: { card: CardType }) => {
   );
 };
 
-export default Carousel;
+export default IntroCarousel;
+
 
 type CardType = {
   url: string;
@@ -75,38 +57,38 @@ type CardType = {
 
 const cards: CardType[] = [
   {
-    url: "/imgs/abstract/1.jpg",
-    title: "Title 1",
+    url: "/main-blob.svg",
+    title: "I",
     id: 1,
   },
   {
-    url: "/imgs/abstract/2.jpg",
-    title: "Title 2",
+    url: "/main-blob.svg",
+    title: "learn",
     id: 2,
   },
   {
-    url: "/imgs/abstract/3.jpg",
-    title: "Title 3",
+    url: "/main-blob.svg",
+    title: "and",
     id: 3,
   },
   {
-    url: "/imgs/abstract/4.jpg",
-    title: "Title 4",
+    url: "/main-blob.svg",
+    title: "build",
     id: 4,
   },
   {
-    url: "/imgs/abstract/5.jpg",
-    title: "Title 5",
+    url: "/main-blob.svg",
+    title: "cool",
     id: 5,
   },
   {
-    url: "/imgs/abstract/6.jpg",
-    title: "Title 6",
+    url: "/main-blob.svg",
+    title: "stuff",
     id: 6,
   },
   {
-    url: "/imgs/abstract/7.jpg",
-    title: "Title 7",
+    url: "/main-blob.svg",
+    title: ": )",
     id: 7,
   },
 ];

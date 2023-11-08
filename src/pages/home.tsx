@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 // import { useRef } from "react";
 // import { useTransform, useScroll, motion } from "framer-motion";
-// import Carousel from "../components/motion-components/horizontalScrollCarousel";
+import IntroCarousel from "../components/motion-components/introCarousel";
 
 function Home() {
   return (
@@ -22,10 +22,10 @@ function Home() {
           el="h1" />
       </div>
 
-      {/* <Carousel /> */}
+      <IntroCarousel />
       hey
+    <div className="h-screen">din</div>
       {/* <TrippyScroll /> */}
-      <AnimatedText once text="heyidgnjdodigmdngindigidogndmoinidnvinidnv itkvdnjnjnnvdjvkd's ankidlvnlkdnvlkdnvlnt" className="bg-yellow-200 m-10" el="h2" />
 
 
 
@@ -92,6 +92,7 @@ const defaultAnimation = {
   },
   visible: {
     opacity: 1,
+
     y: 0,
     transition: {
       duration: 1

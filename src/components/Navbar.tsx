@@ -31,7 +31,7 @@ function Navbar() {
     const activeClass = 'bg-purple-400'
 
     return (
-        <ul className="">
+        <ul className="z-10 fixed">
             {
                 navButtons.map(e =>
                     <Link to={e.page.toLowerCase()}>

@@ -7,10 +7,6 @@ function Projects() {
 
   return (
     <div className="flex justify-center items-center m-30 min-h-screen w-full">
-      {/* {projects.slice(0, totalProjects).map(project => (
-        <ProjectCard name={project.name} projectImage={project.image} description={project.description} tags={["frontend", "express"]} key={project.name} />
-      ))} */}
-
 
       <div className="columns" id="columns">
         <div className="column column-reverse">

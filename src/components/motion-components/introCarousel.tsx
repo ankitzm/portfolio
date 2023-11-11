@@ -8,7 +8,7 @@ const IntroCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-50%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-100%"]);
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-neutral-900">

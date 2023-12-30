@@ -1,26 +1,78 @@
 [
     {
-        "name": "experience 1",
-        "color": "blue"
+        "color": "purple",
+        "company": "ThirdFi",
+        "role": "Developer Advocate/Developer",
+        "date": "April '23 - August '23",
+        "description": [
+            "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
+            "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
+            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+        ],
+        "skills": [
+            "nodejs",
+            "postman",
+            "javascript",
+            "typescript",
+            "API's",
+            "WebSocket",
+            "Webhooks",
+            "Documentations",
+            "Chrome Extention"
+        ]
     },
     {
-        "name": "experience 2",
-        "color": "red"
+        "color": "blue",
+        "company": "ThirdFi",
+        "role": "developer",
+        "date": "April '23 - August '23",
+        "description": [
+            "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
+            "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
+            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+        ],
+        "skills": [
+            "nodejs",
+            "postman",
+            "javascript",
+            "abc",
+            ": )"
+        ]
     },
     {
-        "name": "experience 3",
-        "color": "green"
+        "color": "red",
+        "company": "ThirdFi",
+        "role": "developer",
+        "date": "April '23 - August '23",
+        "description": [
+            "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
+            "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
+            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+        ],
+        "skills": [
+            "nodejs",
+            "postman",
+            "javascript",
+            "abc",
+            "sss"
+        ]
     },
     {
-        "name": "experience 4",
-        "color": "yellow"
-    },
-    {
-        "name": "experience 5",
-        "color": "violet"
-    },
-    {
-        "name": "experience 6",
-        "color": "slate"
+        "color": "rose",
+        "company": "ThirdFi",
+        "role": "developer",
+        "date": "April '23 - August '23",
+        "description": [
+            "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
+            "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
+            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+        ],
+        "skills": [
+            "nodejs",
+            "postman",
+            "javascript",
+            "abc",
+            "sss"
+        ]
     }
 ]

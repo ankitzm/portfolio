@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { motion, useScroll } from "framer-motion"
+import { useScroll } from "framer-motion"
 import Lenis from "@studio-freight/lenis";
 import ExperienceCard from "../components/ExperienceCard";
 import experienceData from "./../data/experience.json"
@@ -25,9 +25,9 @@ function Experience() {
   })
 
   return (
-    <div ref={container}>
+    <div ref={container} className="bg-lime-50 w-full">
       {
-        experienceData.map((experience, index) => {
+        experienceData.map((data, index) => {
           // the initial scaling part - [start(variable), end]
           const range = [index / experienceData.length, 1]
 
@@ -35,7 +35,7 @@ function Experience() {
           const targetScale = 1 - (experienceData.length - index) * 0.02
 
           return (
-            <ExperienceCard key={index} index={index} {...experience} progress={scrollYProgress} range={range} targetScale={targetScale} />
+            <ExperienceCard key={index} index={index} progress={scrollYProgress} range={range} targetScale={targetScale} {...data} />
           )
         })
       }

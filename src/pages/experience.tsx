@@ -1,22 +1,9 @@
 import { useRef } from "react"
 import { useScroll } from "framer-motion"
-import Lenis from "@studio-freight/lenis";
 import ExperienceCard from "../components/ExperienceCard";
 import experienceData from "./../data/experience.json"
 
 function Experience() {
-  const lenis = new Lenis()
-
-  // smooth scroll
-  lenis.on('scroll', (e: any) => {
-    console.log(e)
-  })
-
-  function raf(time: any) {
-    lenis.raf(time)
-    requestAnimationFrame(raf)
-  }
-  requestAnimationFrame(raf)
 
   const container = useRef(null)
   const { scrollYProgress } = useScroll({

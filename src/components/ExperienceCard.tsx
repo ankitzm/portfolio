@@ -1,5 +1,7 @@
 import Markdown from 'react-markdown';
-import { useTransform, motion } from 'framer-motion';
+import { useTransform, motion, MotionValue } from 'framer-motion';
+
+import tailwindColors from 'tailwindcss/colors';
 
 interface MyComponentProps {
     index: number;
@@ -7,31 +9,27 @@ interface MyComponentProps {
     company: string;
     role: string;
     date: string;
-    description: string;
+    description: Array<string>;
     skills: Array<string>;
-    progress: unknown;
+    progress: MotionValue<number>;
     range: Array<number>;
     targetScale: number;
 }
 
 const ExperienceCard: React.FC<MyComponentProps> =
     ({ index, color, company, role, date, description, skills, progress, range, targetScale }) => {
+        // Tailwind Color List
+        // console.log(Object.keys(tailwindColors));
 
-        const colorClasses = {
-            red: 'bg-red-400',
-            blue: 'bg-blue-400',
-            green: `bg-green-400`,
-            violet: 'bg-violet-400',
-            purple: 'bg-purple-400',
-            slate: 'bg-slate-400'
-            // Add more colors as needed ...
-        };
-        const backgroundColor = colorClasses[color] || 'bg-gray-300';
+        const backgroundColor = Object.keys(tailwindColors).includes(color.toLocaleLowerCase()) ? `bg-${color}-400` : 'bg-slate-400'
 
         const scale = useTransform(progress, range, [1, targetScale])
 
-        // opens link in new tab + underline & bold them
-        const LinkRenderer: React.FC<{ href: string }> = ({ href, children }) => (
+        // opens link in new tab + underline & bold the links
+        const LinkRenderer: React.FC<React.AnchorHTMLAttributes<HTMLAnchorElement>> = ({
+            href,
+            children,
+        }) => (
             <a href={href} target="_blank" rel="noopener noreferrer">
                 <strong><u>{children}</u></strong>
             </a>
@@ -43,13 +41,13 @@ const ExperienceCard: React.FC<MyComponentProps> =
 
         return (
             <motion.div
-                className='h-screen flex items-center justify-center sticky'
+                className='min-h-screen flex items-center justify-center sticky sm:mb-20'
                 style={{
                     top: `calc(-10vh + ${index * 20}px)`,
                     scale
                 }}
             >
-                <div className={`relative block overflow-hidden p-4 sm:p-6 lg:p-8 rounded-2xl w-[95vh] sm:w-[600px] md:w-[750px] lg:w-[1000px] h-screen sm:h-[550px] text-xl border-8 border-black border-opacity-5 ${backgroundColor} bg-opacity-80 backdrop-blur-xl`} >
+                <div className={`flex flex-col justify-center relative p-4 sm:p-6 lg:p-8 rounded-2xl w-[95vh] sm:min-w-[600px] md:w-[750px] lg:w-[1000px] h-screen sm:min-h-[600px] md:h-[550px] text-xl border-8 border-black border-opacity-5 ${backgroundColor} bg-opacity-[95]`} >
                     <div className="gap-2 sm:gap-6">
                         <h3 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900">
                             {company}
@@ -59,7 +57,7 @@ const ExperienceCard: React.FC<MyComponentProps> =
                         </p>
                     </div>
 
-                    <ul className="list-disc text-base sm:text-xl w-[90%] text-gray-600 selection:mt-6 sm:mt-8">
+                    <ul className="list-disc text-base sm:text-xl text-gray-600 selection:mt-6 sm:mt-8">
                         {description.map((item: string | null | undefined) => {
                             return (
                                 <li className='m-4'>
@@ -69,18 +67,18 @@ const ExperienceCard: React.FC<MyComponentProps> =
                         })}
                     </ul>
 
-                    <div className="mt-14 gap-4 sm:gap-6">
-                        <div className="font-bold text-gray-600">Worked With :</div>
+                    <div className="mt-10 gap-4 sm:gap-6">
+                        <div className="font-bold text-gray-600">Worked With/On :</div>
                         <div>
                             {skills.map((tab: string) => {
                                 return (
-                                    <p className='bg-white bg-opacity-30 backdrop-blur-3xl m-2 inline-block p-2 rounded-lg'>{tab}</p>
+                                    <p className='bg-white bg-opacity-30 backdrop-blur-3xl m-2 inline-block p-2 rounded-lg text-base sm:text-xl'>{tab}</p>
                                 )
                             })}
                         </div>
                     </div>
 
-                    <div className="absolute bottom-0 right-20 bg-white bg-opacity-30 backdrop-blur-xl p-4 sm-p-6 text-gray-700 italic rounded-t-xl">
+                    <div className="absolute top-0 right-0 bg-white bg-opacity-30 backdrop-blur-xl p-4 sm-p-6 text-gray-700 italic rounded-tr-xl rounded-bl-xl">
                         {date}
                     </div>
                 </div>

@@ -31,12 +31,12 @@ function Navbar() {
     const activeClass = 'bg-purple-400'
 
     return (
-        <ul className="z-10 fixed">
+        <ul className="z-50 fixed">
             {
-                navButtons.map(e =>
-                    <Link to={e.page.toLowerCase()}>
-                        <li key={e.name} className={`flex items-center gap-2 bg-indigo-400 rounded-md w-fit text-base sm:text-lg py-2 px-4 m-2 ${currentPath == e.page ? activeClass : ""} `}>
-                            {<e.icon />} {e.name.toLowerCase()}
+                navButtons.map((item, index) =>
+                    <Link key={index} to={item.page.toLowerCase()}>
+                        <li key={index} className={`flex items-center gap-2 bg-indigo-400 rounded-md w-fit text-base sm:text-lg py-2 px-4 m-2 ${currentPath == item.page ? activeClass : ""} `}>
+                            {<item.icon />} {item.name.toLowerCase()}
                         </li>
                     </Link>
                 )

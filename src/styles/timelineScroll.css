@@ -1,60 +1,70 @@
-/* Three column layout */
 .columns {
-	display: grid;
-	grid-template-columns: repeat(2, 4fr);
-    gap: 40px;
-    /* border: 1px solid black; */
-    width: auto;
+	display: flex;
+	flex-direction: column;
+	width: auto;
 	place-items: center;
 	align-items: center;
+	margin: 20px 0 20px 0;
+	gap: 40px;
 }
 
 .column {
 	display: flex;
 	flex-direction: column;
-    gap: 40px;
-    /* padding:20px; */
-    padding-top: 50px;
-    padding-bottom: 50px;
-	/* border: 1px solid green; */
-	overflow-y: visible;	
+	overflow-y: visible;
+	gap: 40px;
 }
 
+/* two column reverse scroll */
+@media only screen and (min-width: 700px) {
+	.columns {
+		display: grid;
+		grid-template-columns: repeat(2, 4fr);
+		overflow-y: hidden;
+		margin: 0;
+	}
 
+	/* .column {
+		margin-top: 50px;
+		margin-bottom: 50px;
+	} */
 
-/* Shift entire column up, but not so much that it goes out of view */
-.column-reverse {
-	transform: translateY(calc(-100% + 100vh));
-    padding-top:20px;
-    padding-bottom: 20px
-}
-
-
-/* As we're about to shift content out of .columns, we need it to hide its overflow */
-.columns {
-	overflow-y: hidden;
-}
-
-/* Flip item order in reversed columns */
-.column-reverse {
-	flex-direction: column-reverse;
-}
-
-/* Set up Animation */
-@keyframes adjust-position {
-	/* Start position: shift entire column up, but not so that it goes out of view */
-	from {
+	/* Shift entire column up, but not so much that it goes out of view */
+	.column-reverse {
 		transform: translateY(calc(-100% + 100vh));
+		padding-top: 60px;
+		padding-bottom: 60px;
+		/* Hookouranimationwiththetimelinetoourcolumns*/
+		animation: adjust-position linear forwards;
+		animation-timeline: scroll(root block);
+		/*Flipitemorderinreversedcolumns*/
+		flex-direction: column-reverse;
+		-webkit-transform: translateY(calc(-100% + 100vh));
+		-moz-transform: translateY(calc(-100% + 100vh));
+		-ms-transform: translateY(calc(-100% + 100vh));
+		-o-transform: translateY(calc(-100% + 100vh));
 	}
 
-	/* End position: shift entire column down, but not so that it goes out of view */
-	to {
-		transform: translateY(calc(100% - 100vh));
-	}
-}
 
-/* Hook our animation with the timeline to our columns */
-.column-reverse {
-	animation: adjust-position linear forwards;
-	animation-timeline: scroll(root block);
+	/* Set up Animation */
+	@keyframes adjust-position {
+
+		/* Start position: shift entire column up, but not so that it goes out of view */
+		from {
+			transform: translateY(calc(-100% + 100vh));
+			-webkit-transform: translateY(calc(-100% + 100vh));
+			-moz-transform: translateY(calc(-100% + 100vh));
+			-ms-transform: translateY(calc(-100% + 100vh));
+			-o-transform: translateY(calc(-100% + 100vh));
+		}
+
+		/* End position: shift entire column down, but not so that it goes out of view */
+		to {
+			transform: translateY(calc(100% - 100vh));
+			-webkit-transform: translateY(calc(100% - 100vh));
+			-moz-transform: translateY(calc(100% - 100vh));
+			-ms-transform: translateY(calc(100% - 100vh));
+			-o-transform: translateY(calc(100% - 100vh));
+		}
+	}
 }

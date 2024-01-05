@@ -17,7 +17,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-markdown": "^9.0.1",
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.15.0",
+    "tailwindcss-patterns": "^0.1.2"
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",

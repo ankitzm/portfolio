@@ -6,7 +6,7 @@ function Projects() {
   const totalProjects = projects.length
 
   return (
-    <div className="flex justify-center items-center m-30 min-h-screen w-full">
+    <div className="flex justify-center items-center m-30 min-h-screen w-full pattern-texture-orange-600/90 pattern-texture-scale-120 bg-fixed">
 
       <div className="columns" id="columns">
         <div className="column column-reverse">

@@ -20,7 +20,7 @@ function App() {
   const lenis = new Lenis()
 
   lenis.on('scroll', (e: Event) => {
-    console.log(e)
+    // console.log("hey", e)
   })
 
   function raf(time: any) {
@@ -35,7 +35,7 @@ function App() {
       <div className="absolute top-2 left-2 sm:top-4 sm:left-8 ">
         <Navbar />
       </div>
-      <div className='bg-mainBG flex flex-col min-h-screen w-full justify-center items-center scroll-smooth'>
+      <div className='bg-pastelRed flex flex-col min-h-screen w-full justify-center items-center scroll-smooth'>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route index element={transition(Home)} />

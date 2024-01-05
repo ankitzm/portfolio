@@ -13,7 +13,7 @@ function Home() {
   return (
     <div className="w-full">
 
-      <div className="h-screen flex flex-col justify-center gap-6 bg-green-300 relative z-10">
+      <div className="h-screen flex flex-col items-start justify-center gap-6 z-10 font-semibold lg:pl-96 pattern-topography-orange-600/30 pattern-topography-scale-150 text-5xl font-titillium">
         <AnimatedText
           once
           className="text-2xl sm:text-4xl md:text-6xl font-bold text-center"
@@ -48,14 +48,14 @@ function Home() {
         </motion.div>
       </div>
 
-      <div className="p-10 mt-[-200vh] h-[200vh] overflow-clip">
+      <div className="p-10 mt-[-200vh] h-[200vh] overflow-clip bg-green-300">
         <motion.span
           style={{ x: imageXCalc }} className="bg-slate-500 w-[70%] aspect-video rounded-2xl block mx-auto sticky top-1/3 font-bold text-xl sm:text-3xl text-slate-300 text-center p-10">
           something over here ...
         </motion.span>
       </div>
 
-      <div className="h-screen flex flex-col justify-center items-center text-2xl sm:text-4xl gap-6 font-bold">
+      <div className="h-screen flex flex-col justify-center items-center text-2xl sm:text-4xl gap-6 font-bold bg-green-300">
         Framer Motion is really cool  ❤️
       </div>
 

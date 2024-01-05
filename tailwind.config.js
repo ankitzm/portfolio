@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -20,9 +21,14 @@ export default {
         '9/10': '90%'
       },
       colors: {
-        mainBG: '#c4d5c6'
-      }
+        mainBG: '#EEF1FF',
+        pastelRed: '#B81B4D',
+        pastelOrange: '#FF6721',
+        myBlue: '#694CD4'
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-patterns')
+  ],
 }

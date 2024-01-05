@@ -12,9 +12,9 @@ interface ItemProps {
 export function ProjectCard(props: ItemProps) {
 
     return (
-        <div className="rounded-2xl w-80 md:w-96 lg:w-128 h-128 sm:h-min p-2 bg-green-600 bg-opacity-60">
+        <div className="rounded-2xl w-80 md:w-96 lg:w-128 h-128 sm:h-min p-2 isolate bg-white/20 backdrop-blur-lg shadow-xl ring-1 ring-black/5">
             <img className="w-full aspect-video rounded-2xl" src={`projects/${props.projectImage}`} alt="project image" loading="lazy" />
-            <div className="px-6 py-4 text-black text-xl md:text-2xl">
+            <div className="px-6 py-4 text-xl md:text-2xl">
                 <div className="font-bold mb-2 flex justify-between">
                     <span>{props.name}</span>
                     <span className="flex gap-4 opacity-70">
@@ -26,12 +26,12 @@ export function ProjectCard(props: ItemProps) {
                         </a>
                     </span>
                 </div>
-                <p className="text-gray-700 text-base md:text-xl">
+                <p className="text-base md:text-xl text-opacity-90">
                     {props.description}
                 </p>
                 <div className="pt-4 pb-2">
                     {props.tags.map((e: string) => (
-                        <span key={e} className="inline-block bg-green-600 bg-opacity-30 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{e}</span>
+                        <span key={e} className="inline-block bg-white bg-opacity-20 backdrop-blur-md rounded-md px-3 py-1 text-sm font-semibold text-opacity-80 mr-2 mt-2">{e}</span>
                     ))}
                 </div>
             </div>

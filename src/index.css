@@ -36,15 +36,15 @@
 
 .hero-bg {
 	background: linear-gradient(to bottom,
-			theme("colors.slate.700") 100px,
-			transparent 100px,
-			transparent 90%,
-			theme("colors.slate.700") 90%),
+			theme("colors.slate.700") 60px,
+			transparent 60px,
+			transparent calc(100vh - 20px),
+			theme("colors.slate.700") calc(100vh - 20px)),
 		linear-gradient(to right,
-			theme("colors.slate.700") 90px,
-			transparent 90px,
-			transparent calc(100vw - 80px),
-			theme("colors.slate.700") calc(100% - 80px))
+			theme("colors.slate.700") 60px,
+			transparent 60px,
+			transparent calc(100vw - 60px),
+			theme("colors.slate.700") calc(100% - 60px));
 }
 
 .window-mask {
@@ -56,33 +56,32 @@
 }
 
 /* responsiveness */
-
-@media only screen and (max-width: 640px) {
-	.window-mask {
-		mask-size: auto, 200px auto;
-	}
-
-	.hero-bg {
-		background: linear-gradient(to bottom,
-				theme("colors.slate.700") 50px,
-				transparent 50px,
-				transparent 95%,
-				theme("colors.slate.700") 95%),
-			linear-gradient(to right,
-				theme("colors.slate.700") 10px,
-				transparent 10px,
-				transparent calc(100vw - 10px),
-				theme("colors.slate.700") calc(100% - 10px))
-	}
-}
-
-@media only screen and (max-width: 760px) {
+/* @media only screen and (max-width: 760px) {
 	.hero-bg {
 		background: linear-gradient(to bottom,
 				theme("colors.slate.700") 50px,
 				transparent 50px,
 				transparent 100%,
 				theme("colors.slate.700") 100%),
+			linear-gradient(to right,
+				theme("colors.slate.700") 10px,
+				transparent 10px,
+				transparent calc(100vw - 80px),
+				theme("colors.slate.700") calc(100% - 80px));
+	}
+} */
+
+@media only screen and (max-width: 639px) {
+	.window-mask {
+		mask-size: auto, 200px auto;
+	}
+
+	.hero-bg {
+		background: linear-gradient(to bottom,
+				theme("colors.slate.700") 100px,
+				transparent 100px,
+				transparent 90%,
+				theme("colors.slate.700") 90%),
 			linear-gradient(to right,
 				theme("colors.slate.700") 10px,
 				transparent 10px,

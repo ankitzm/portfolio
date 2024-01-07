@@ -11,7 +11,7 @@ function Projects() {
       <div className="columns" id="columns">
         <div className="column column-reverse">
           {projects.slice(0, totalProjects / 2).map((project, index) => (
-            <ProjectCard key={index} name={project.name} projectImage={project.image} description={project.description} tags={project.tag} links={project.links} />
+            <ProjectCard key={index} name={project.name} projectImage={project.image} description={project.description} tags={project.tags} links={project.links} />
           ))}
 
           {/* edge case(ui issue) - if number of projects are odd */}
@@ -27,7 +27,7 @@ function Projects() {
         </div>
         <div className="column">
           {projects.slice(totalProjects / 2, totalProjects).map((project, index) => (
-            <ProjectCard key={index} name={project.name} projectImage={project.image} description={project.description} tags={project.tag} links={project.links} />
+            <ProjectCard key={index} name={project.name} projectImage={project.image} description={project.description} tags={project.tags} links={project.links} />
           ))}
         </div>
       </div>

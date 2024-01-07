@@ -6,7 +6,14 @@
         "links": {
             "github": "https://github.com/ankitzm/safe-deploy",
             "website": "https://www.npmjs.com/package/safe-deploy"
-        }
+        },
+        "tags": [
+            "Web3",
+            "NodeJS",
+            "ExpressJS",
+            "Hardhat",
+            "Solidity"
+        ]
     },
     {
         "name": "Open Funds",
@@ -15,7 +22,14 @@
         "links": {
             "github": "https://github.com/ankitzm/near-funding-frontend",
             "website": "https://open-funds.vercel.app/"
-        }
+        },
+        "tags": [
+            "Web3",
+            "ReactJS",
+            "TailwindCSS",
+            "NEAR Blockchain",
+            "JSON-RPC"
+        ]
     },
     {
         "name": "Type It All",
@@ -24,7 +38,15 @@
         "links": {
             "github": "https://github.com/ankitzm/type-it-all",
             "website": "http://type-it-all.vercel.app/"
-        }
+        },
+        "tags": [
+            "Frontend",
+            "ReactJS",
+            "TailwindCSS",
+            "NPM Packages",
+            "API's",
+            "Twitter/Facebook share"
+        ]
     },
     {
         "name": "Name It",
@@ -33,7 +55,12 @@
         "links": {
             "github": "https://github.com/ankitzm/nameit",
             "website": "https://nameit.vercel.app/"
-        }
+        },
+        "tags": [
+            "ReactJS",
+            "Google Domain",
+            "Text Searching"
+        ]
     },
     {
         "name": "Solana Wedding",
@@ -42,7 +69,15 @@
         "links": {
             "github": "https://github.com/ankitzm/solana-wedding",
             "website": "https://solana-wedding.vercel.app/"
-        }
+        },
+        "tags": [
+            "Web3",
+            "Frontend",
+            "ReactJS",
+            "Rust",
+            "TailwindCSS",
+            "NPM Packages"
+        ]
     },
     {
         "name": "NFT Emporium",
@@ -51,24 +86,28 @@
         "links": {
             "github": "https://github.com/Suvraneel/NFT-Emporium",
             "website": "https://suvraneel.github.io/NFT-Emporium/"
-        }
+        },
+        "tags": [
+            "Web3",
+            "Chainlink",
+            "NextJS",
+            "Frontend",
+            "NFT"
+        ]
     },
     {
         "name": "NASA App(Frontend)",
         "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
         "image": "name-it.png",
         "links": {
-            "github": "https://github.com/Suvraneel/NFT-Emporium",
-            "website": "https://suvraneel.github.io/NFT-Emporium/"
-        }
-    },
-    {
-        "name": "extra (Frontend)",
-        "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
-        "image": "open-funds.png",
-        "links": {
-            "github": "https://github.com/Suvraneel/NFT-Emporium",
-            "website": "https://suvraneel.github.io/NFT-Emporium/"
-        }
+            "github": "https://github.com/ankitzm/nasa-api-frontend",
+            "website": "nasa-api-frontend.vercel.app"
+        },
+        "tags": [
+            "Frontend",
+            "NextJS",
+            "TailwindCSS",
+            "Nasa API"
+        ]
     }
 ]

@@ -19,10 +19,7 @@ function App() {
   // smooth scroll
   const lenis = new Lenis()
 
-  lenis.on('scroll', (e: Event) => {
-    // console.log("hey", e)
-  })
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function raf(time: any) {
     lenis.raf(time)
     requestAnimationFrame(raf)

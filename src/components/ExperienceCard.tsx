@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react';
 import Markdown from 'react-markdown';
 import { useTransform, motion, MotionValue } from 'framer-motion';
 
@@ -16,6 +17,10 @@ interface MyComponentProps {
     targetScale: number;
 }
 
+interface LinkComponentProps {
+    text?: string | ReactNode;
+}
+
 const ExperienceCard: React.FC<MyComponentProps> =
     ({ index, color, company, role, date, description, skills, progress, range, targetScale }) => {
         // Tailwind Color List
@@ -25,19 +30,13 @@ const ExperienceCard: React.FC<MyComponentProps> =
 
         const scale = useTransform(progress, range, [1, targetScale])
 
-        // opens link in new tab + underline & bold the links
-        const LinkRenderer: React.FC<React.AnchorHTMLAttributes<HTMLAnchorElement>> = ({
-            href,
-            children,
-        }) => (
-            <a href={href} target="_blank" rel="noopener noreferrer">
-                <strong><u>{children}</u></strong>
-            </a>
-        );
+        // custom anchor tag
+        const LinkComponent: React.FC<LinkComponentProps> = ({ text, ...props }) => {
+            return (
+                <a target='_blank' className='underline font-semibold' {...props}>{text}</a>
+            )
+        }
 
-        const linkComponents = {
-            a: LinkRenderer,
-        };
 
         return (
             <motion.div
@@ -61,7 +60,11 @@ const ExperienceCard: React.FC<MyComponentProps> =
                         {description.map((item: string | null | undefined) => {
                             return (
                                 <li className='m-4'>
-                                    <Markdown components={linkComponents}>{item}</Markdown>
+                                    <Markdown components={{
+                                        a(props) {
+                                            return <LinkComponent text={props.children} {...props} />
+                                        }
+                                    }}>{item}</Markdown>
                                 </li>
                             )
                         })}

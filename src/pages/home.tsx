@@ -1,6 +1,6 @@
-import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion"
-import { AnimatedText } from "../components/motion-components/AnimatedText";
 import { useRef } from "react";
+import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion"
+import { FaGithub, FaTwitter, FaLinkedin, FaBlogger } from "react-icons/fa";
 
 function Home() {
   const ref = useRef(null)
@@ -13,18 +13,46 @@ function Home() {
   return (
     <div className="w-full">
 
-      <div className="h-screen flex flex-col items-start justify-center gap-6 z-10 font-semibold lg:pl-96 pattern-topography-orange-600/30 pattern-topography-scale-150 text-5xl font-titillium">
-        <AnimatedText
-          once
-          className="text-2xl sm:text-4xl md:text-6xl font-bold text-center"
-          text="Hey,"
-          el="h1" />
+      <div className="h-screen flex flex-col justify-center items-center pattern-falling-triangles-orange-600/20 pattern-falling-triangles-scale-150 font-poppins text-xl sm:text-2xl md:text-3xl pl-4">
+        <span>
+          Hey I am,
+        </span>
+        <div className="flex flex-col sm:flex-row text-6xl sm:text-8xl md:10xl lg:text-20xl gap-2 sm:gap-8 font-righteous mt-2">
+          <span>ANKIT</span>
+          <span>SINGH</span>
+        </div>
+        <div className="flex flex-col mx-2 md:mx-4 mt-4 gap-2">
+          <span>➡ Final year Computer Science Engineering student. </span>
+          <span>➡ A Curious developer, diving into different stuff and exploring. </span>
+          <span>➡ I am in love with Design, Frontend and Blockchain development. </span>
+        </div>
 
-        <AnimatedText
-          once
-          className="text-4xl sm:text-6xl md:text-8xl font-bold text-center"
-          text="i am ankit singh"
-          el="h1" />
+        <div className="absolute bg-neutral-950 flex bottom-20 rounded-lg gap-3 p-3">
+          <a href="https://twitter.com/ankitzm"
+            target="_blank" rel='noreferrer'
+            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
+          >
+            <FaGithub size={35} />
+          </a>
+          <a href="https://www.linkedin.com/in/ankitzm"
+            target="_blank" rel='noreferrer'
+            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
+          >
+            <FaLinkedin size={35} />
+          </a>
+          <a href="https://github.com/ankitzm"
+            target="_blank" rel='noreferrer'
+            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
+          >
+            <FaTwitter size={35} />
+          </a>
+          <a href="https://hashnode.com/@ankitzm"
+            target="_blank" rel='noreferrer'
+            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
+          >
+            <FaBlogger size={35} />
+          </a>
+        </div>
       </div>
 
       <div ref={ref} className="relative h-[200vh] z-10 overflow-clip">
@@ -49,14 +77,28 @@ function Home() {
         </motion.div>
       </div>
 
-      <div className="p-10 mt-[-200vh] h-[200vh] overflow-clip bg-green-300">
+      <div className="p-4 sm:p-10 mt-[-200vh] h-[200vh] overflow-clip bg-pastelOrange">
         <motion.span
-          style={{ x: imageXCalc }} className="bg-slate-500 w-[70%] aspect-video rounded-2xl block mx-auto sticky top-1/3 font-bold text-xl sm:text-3xl text-slate-300 text-center p-10">
-          something over here ...
+          style={{ x: imageXCalc }}
+          className="bg-neutral-800 w-[90vw] sm:w-[80%] rounded-3xl grid content-center mx-auto sticky top-1/3 font-bold py-10 pr-10 text-pastelOrange gap-4 text-right font-casteRock pattern-architect-orange-600/20">
+          <>
+            <span className="text-3xl sm:text-4xl">I Create</span>
+            <div className="flex flex-col text-6xl sm:text-8xl md:text-11xl lg:text-14xl gap-4">
+              <span>
+                WEBSITES
+              </span>
+              <span>
+                DAPPS
+              </span>
+              <span>
+                BlOGS
+              </span>
+            </div>
+          </>
         </motion.span>
       </div>
 
-      <div className="h-screen flex flex-col justify-center items-center text-2xl sm:text-4xl gap-6 font-bold bg-green-300">
+      <div className="h-screen flex flex-col justify-center items-center text-2xl border-2 sm:text-4xl gap-6 font-bold bg-pastelOrange">
         Framer Motion is really cool  ❤️
       </div>
 

@@ -1,13 +1,15 @@
 [
     {
-        "color": "purple",
+        "color": "orange",
         "company": "ThirdFi",
         "role": "Developer Advocate/Developer",
         "date": "April '23 - August '23",
         "description": [
             "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
             "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
-            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord.",
+            "Contributed to the successful launch of DEX (DerpDEX) on zkSync and Base chain.",
+            "Developed comprehensive Getting Started, Protocol, and Product Docs for DerpDEX with Gitbook."
         ],
         "skills": [
             "nodejs",
@@ -23,56 +25,58 @@
     },
     {
         "color": "blue",
-        "company": "ThirdFi",
-        "role": "developer",
-        "date": "April '23 - August '23",
+        "company": "BlockTrain",
+        "role": "Content Creator",
+        "date": "May '22 - Nov '22",
         "description": [
-            "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
-            "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
-            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+            "Writing blogs everyday on [Medium](https://medium.com/@0xblocktrain) and [Hashnode](https://blocktrain.hashnode.dev/).",
+            "Teaching blockchain concepts through videos on BlockTrain’s [YouTube](https://www.youtube.com/c/Blocktrain).",
+            "Hosting meetups in colleges in India.",
+            "Building projects with BlockTrain’s for workshops."
         ],
         "skills": [
-            "nodejs",
-            "postman",
+            "writings",
             "javascript",
-            "abc",
+            "communication",
+            "blockchain",
             ": )"
         ]
     },
     {
-        "color": "red",
-        "company": "ThirdFi",
-        "role": "developer",
-        "date": "April '23 - August '23",
+        "color": "purple",
+        "company": "API Hacks Hackathon",
+        "role": "Organizer",
+        "date": "September '21 - October '21 ",
         "description": [
-            "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
-            "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
-            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+            "Have organized API HACKS 2 that helped a lot of beginners to get into development.",
+            "It was all about development, growth and API's.",
+            "Managed to do workshops on Tech Phantom's Youtube and bring value to all the hackers."
         ],
         "skills": [
-            "nodejs",
             "postman",
             "javascript",
-            "abc",
-            "sss"
+            "Workshops",
+            "Event Management"
         ]
     },
     {
-        "color": "rose",
-        "company": "ThirdFi",
-        "role": "developer",
-        "date": "April '23 - August '23",
+        "color": "green",
+        "company": "PrepBytes",
+        "role": "Community",
+        "date": "Aug '21 - February '22",
         "description": [
-            "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
-            "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) blogs on Blockchain topics and API usage.",
-            "Delivered web3 workshop on multiple Discord servers including one on LearnWeb3 discord."
+            "Increased engagement on Prepbyte’s coding challenges and workshops.",
+            "Have collaborated with a student community to leverage students with coding and development.",
+            "Hosted a successful coding contest with 700+ registrations.",
+            "Engaged with community members and helped them upgrade their skills."
         ],
         "skills": [
-            "nodejs",
-            "postman",
+            "communication",
+            "coding",
             "javascript",
-            "abc",
-            "sss"
+            "C++",
+            "community",
+            "coding competitions"
         ]
     }
 ]

@@ -26,6 +26,19 @@ export default {
         pastelOrange: '#FF6721',
         myBlue: '#694CD4'
       },
+      fontFamily: {
+        righteous: "Righteous, sans-serif",
+        poppins: "Poppins, sans-serif",
+        casteRock: "castle-rock, sans-serif"
+      },
+      fontSize: {
+        '8xl': '4rem',
+        '10xl': '5rem',
+        '11xl': '5.5rem',
+        '12xl': '6rem',
+        '14xl': '7rem',
+        '20xl': '10rem',
+      },
     },
   },
   plugins: [

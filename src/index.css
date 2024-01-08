@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'castle-rock';
+	src: url("assets/fonts/castlerocks.otf");
+}
+
 /* html {
   scroll-behavior: smooth;
   word-break: break-word;

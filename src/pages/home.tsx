@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion"
-import { FaGithub, FaTwitter, FaLinkedin, FaBlogger } from "react-icons/fa";
+import TechIcon from "../components/TechIcon";
+import { FaReact } from "react-icons/fa";
+import SocialComponent from "../components/SocialComponent";
 
 function Home() {
   const ref = useRef(null)
@@ -27,32 +29,7 @@ function Home() {
           <span>➡ I am in love with Design, Frontend and Blockchain development. </span>
         </div>
 
-        <div className="absolute bg-neutral-950 flex bottom-20 rounded-lg gap-3 p-3">
-          <a href="https://twitter.com/ankitzm"
-            target="_blank" rel='noreferrer'
-            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
-          >
-            <FaGithub size={35} />
-          </a>
-          <a href="https://www.linkedin.com/in/ankitzm"
-            target="_blank" rel='noreferrer'
-            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
-          >
-            <FaLinkedin size={35} />
-          </a>
-          <a href="https://github.com/ankitzm"
-            target="_blank" rel='noreferrer'
-            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
-          >
-            <FaTwitter size={35} />
-          </a>
-          <a href="https://hashnode.com/@ankitzm"
-            target="_blank" rel='noreferrer'
-            className="bg-white backdrop-blur-md bg-opacity-40 hover:bg-opacity-50 rounded-md p-2"
-          >
-            <FaBlogger size={35} />
-          </a>
-        </div>
+        <SocialComponent />
       </div>
 
       <div ref={ref} className="relative h-[200vh] z-10 overflow-clip">

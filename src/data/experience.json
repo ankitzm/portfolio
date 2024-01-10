@@ -1,8 +1,8 @@
 [
     {
-        "color": "orange",
+        "color": "purple",
         "company": "ThirdFi",
-        "role": "Developer Advocate/Developer",
+        "role": "Dev. Advocate/Developer",
         "date": "April '23 - August '23",
         "description": [
             "Created [Product](https://docs.thirdfi.org/product/overview) and [API Documentations](https://thirdfi.readme.io/reference/introduction) for ThirdFi and created Sample apps.",
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "color": "blue",
+        "color": "orange",
         "company": "BlockTrain",
         "role": "Content Creator",
         "date": "May '22 - Nov '22",
@@ -43,7 +43,7 @@
         ]
     },
     {
-        "color": "purple",
+        "color": "green",
         "company": "API Hacks Hackathon",
         "role": "Organizer",
         "date": "September '21 - October '21 ",
@@ -55,12 +55,13 @@
         "skills": [
             "postman",
             "javascript",
-            "Workshops",
-            "Event Management"
+            "workshops",
+            "Event Management",
+            "hackathon"
         ]
     },
     {
-        "color": "green",
+        "color": "red",
         "company": "PrepBytes",
         "role": "Community",
         "date": "Aug '21 - February '22",
@@ -74,6 +75,7 @@
             "communication",
             "coding",
             "javascript",
+            "workshops",
             "C++",
             "community",
             "coding competitions"

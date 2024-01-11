@@ -30,7 +30,7 @@ function Navbar() {
     const activeClass = 'bg-opacity-95'
 
     return (
-        <ul className="z-50 fixed flex sm:flex-col font-medium">
+        <ul className="z-50 fixed flex md:flex-col font-medium">
             {
                 navButtons.map((item, index) =>
                     <Link key={index} to={item.page.toLowerCase()}>

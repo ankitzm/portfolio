@@ -52,7 +52,7 @@ function Home() {
         </motion.div>
       </div>
 
-      <div className="p-4 sm:p-10 mt-[-200vh] h-[200vh] overflow-clip bg-pastelOrange">
+      <div className="p-4 sm:p-10 mt-[-200vh] h-[200vh] overflow-clip bg-pastelOrange bg-opacity-80">
         <motion.span
           style={{ x: imageXCalc }}
           className="bg-neutral-800 w-[95vw] sm:w-[80%] rounded-3xl grid content-center mx-auto sticky top-1/3 font-bold py-10 pr-6 sm:pr-10 text-pastelOrange gap-4 text-right font-casteRock pattern-architect-orange-600/20">

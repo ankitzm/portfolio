@@ -55,7 +55,7 @@ function MyTools() {
     ]
 
     return (
-        <div className="min-h-screen flex flex-col items-center w-full px-40 gap-6 pt-10 font-semibold bg-pastelOrange text-neutral-800">
+        <div className="min-h-screen flex flex-col items-center w-full px-40 gap-6 pt-10 font-semibold bg-pastelOrange bg-opacity-80 text-neutral-800">
             <span className="text-xl sm:text-2xl md:text-4xl w-max font-poppins">
                 Technologies I mostly work with :
             </span>

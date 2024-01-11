@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion"
-import TechIcon from "../components/TechIcon";
-import { FaReact } from "react-icons/fa";
 import SocialComponent from "../components/SocialComponent";
+import MyTools from "../components/MyTools";
 
 function Home() {
   const ref = useRef(null)
@@ -40,10 +39,9 @@ function Home() {
         >
           <div className="flex flex-col md:flex-row md:h-screen w-full justify-center rounded-3xl z-10 bg-transparent">
             <div className="grid place-items-center h-[30vh] md:h-full bg-slate-400 w-full md:w-1/2 rounded-t-2xl md:rounded-t-none md:rounded-l-3xl font-extrabold text-2xl md:text-4xl lg:text-6xl text-slate-800 spacing">
-              Peek through <br />
-              this 'window' <br />
-              to see what <br />
-              I have done so far !!
+              Peek through this <br />
+              'window' to see what <br />
+              I have been doing/learning !!
             </div>
             <div className="window-mask grid place-items-center h-full bg-white py-16 w-full rounded-b-xl md:rounded-b-none md:rounded-r-3xl md:w-1/2 min-w-[300px]">
               {/* window */}
@@ -57,7 +55,7 @@ function Home() {
       <div className="p-4 sm:p-10 mt-[-200vh] h-[200vh] overflow-clip bg-pastelOrange">
         <motion.span
           style={{ x: imageXCalc }}
-          className="bg-neutral-800 w-[90vw] sm:w-[80%] rounded-3xl grid content-center mx-auto sticky top-1/3 font-bold py-10 pr-10 text-pastelOrange gap-4 text-right font-casteRock pattern-architect-orange-600/20">
+          className="bg-neutral-800 w-[95vw] sm:w-[80%] rounded-3xl grid content-center mx-auto sticky top-1/3 font-bold py-10 pr-6 sm:pr-10 text-pastelOrange gap-4 text-right font-casteRock pattern-architect-orange-600/20">
           <>
             <span className="text-3xl sm:text-4xl">I Create</span>
             <div className="flex flex-col text-6xl sm:text-8xl md:text-11xl lg:text-14xl gap-4">
@@ -75,9 +73,8 @@ function Home() {
         </motion.span>
       </div>
 
-      <div className="h-screen flex flex-col justify-center items-center text-2xl border-2 sm:text-4xl gap-6 font-bold bg-pastelOrange">
-        Framer Motion is really cool  ❤️
-      </div>
+      {/* Tech Stack/Tools */}
+      <MyTools />
 
     </div>
   )

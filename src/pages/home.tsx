@@ -18,7 +18,7 @@ function Home() {
         <span>
           Hey I am,
         </span>
-        <div className="flex flex-col sm:flex-row text-6xl sm:text-8xl md:10xl lg:text-20xl gap-2 sm:gap-8 font-righteous mt-2">
+        <div className="flex flex-col sm:flex-row text-6xl sm:text-8xl md:10xl lg:text-20xl gap-2 sm:gap-8 font-sans font-bold mt-2">
           <span>ANKIT</span>
           <span>SINGH</span>
         </div>

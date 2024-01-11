@@ -37,7 +37,7 @@
         "image": "type-it-all.png",
         "links": {
             "github": "https://github.com/ankitzm/type-it-all",
-            "website": "http://type-it-all.vercel.app/"
+            "website": "https://type-it-all.vercel.app/"
         },
         "tags": [
             "Frontend",
@@ -97,11 +97,11 @@
     },
     {
         "name": "NASA App(Frontend)",
-        "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
-        "image": "name-it.png",
+        "description": "This project NASA API and fetches picture of the day in a weekly manner. It uses lazy loading of images and custom fetch to request data from API in small chunks.",
+        "image": "nasa.png",
         "links": {
             "github": "https://github.com/ankitzm/nasa-api-frontend",
-            "website": "nasa-api-frontend.vercel.app"
+            "website": "https://nasa-api-frontend.vercel.app"
         },
         "tags": [
             "Frontend",

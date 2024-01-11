@@ -12,7 +12,7 @@ interface ItemProps {
 export function ProjectCard(props: ItemProps) {
 
     return (
-        <div className="rounded-2xl w-80 md:w-96 lg:w-128 h-128 sm:h-min p-2 isolate bg-white/20 backdrop-blur-lg shadow-xl ring-1 ring-black/5">
+        <div className="rounded-2xl w-80 md:w-96 lg:w-128 h-fit sm:h-min p-2 isolate bg-white/20 backdrop-blur-sm shadow-xl ring-1 ring-black/5">
             <img className="w-full aspect-video rounded-2xl" src={`projects/${props.projectImage}`} alt="project image" loading="lazy" />
             <div className="px-6 py-4 text-xl md:text-2xl">
                 <div className="font-bold mb-2 flex justify-between">

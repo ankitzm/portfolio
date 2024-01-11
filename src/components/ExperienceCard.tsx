@@ -19,6 +19,8 @@ interface LinkComponentProps {
     text?: string | ReactNode;
 }
 
+const tailwindColors = ['bg-purple-300', 'bg-orange-300', 'bg-blue-300', 'bg-red-300']
+
 const ExperienceCard: React.FC<MyComponentProps> =
     ({ index, color, company, role, date, description, skills, progress, range, targetScale }) => {
     
@@ -34,13 +36,13 @@ const ExperienceCard: React.FC<MyComponentProps> =
 
         return (
             <motion.div
-                className='min-h-screen flex items-center justify-center sticky sm:mb-20'
+                className='min-h-screen flex items-center justify-center sticky'
                 style={{
                     top: `calc(-10vh + ${index * 20}px)`,
                     scale
                 }}
             >
-                <div className={`flex flex-col justify-center relative p-4 sm:p-6 lg:p-8 rounded-2xl w-[95vh] sm:min-w-[600px] md:w-[750px] lg:w-[1000px] h-screen sm:min-h-[600px] md:h-[550px] text-xl border-8 border-black border-opacity-5 bg-${color}-300`} >
+                <div className={`flex flex-col justify-center relative p-4 sm:p-6 lg:p-8 rounded-2xl w-[95vh] sm:min-w-[600px] md:w-[750px] lg:w-[1000px] h-screen sm:h-[700px] md:h-[680px] text-xl border-8 border-black ${tailwindColors[index]} border-opacity-5`} >
                     <div className="gap-2 sm:gap-6">
                         <h3 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900">
                             {company}

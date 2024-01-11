@@ -12,7 +12,7 @@ function Experience() {
   })
 
   return (
-    <div ref={container} className="w-full pattern-topography-neutral-800/10 pattern-topography-scale-150 bg-fixed">
+    <div ref={container} className="w-full pattern-topography-neutral-800/10 pattern-topography-scale-150 bg-fixed pt-16 sm:py-0">
       {
         experienceData.map((data, index) => {
           // the initial scaling part - [start(variable), end]

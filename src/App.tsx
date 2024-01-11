@@ -13,7 +13,9 @@ function App() {
 
   useEffect(() => {
     // Reset the scroll position to top when the pathname changes (component unmounts)
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 1000);
   }, [location.pathname]);
 
   // smooth scroll

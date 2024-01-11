@@ -4,7 +4,7 @@ import { useTransform, motion, MotionValue } from 'framer-motion';
 
 interface MyComponentProps {
     index: number;
-    color: string;
+    // color: string;
     company: string;
     role: string;
     date: string;
@@ -22,7 +22,7 @@ interface LinkComponentProps {
 const tailwindColors = ['bg-purple-300', 'bg-orange-300', 'bg-blue-300', 'bg-red-300']
 
 const ExperienceCard: React.FC<MyComponentProps> =
-    ({ index, color, company, role, date, description, skills, progress, range, targetScale }) => {
+    ({ index, company, role, date, description, skills, progress, range, targetScale }) => {
     
         const scale = useTransform(progress, range, [1, targetScale])
 

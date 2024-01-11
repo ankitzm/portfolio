@@ -80,9 +80,9 @@ function MyTools() {
                                 <span className="text-lg sm:text-2xl">{items.heading}</span>
                                 <ul className="text-base md:text-lg text-opacity-80">
                                     {
-                                        items.tool.map(i => {
+                                        items.tool.map((x, index) => {
                                             return (
-                                                <li>{i}</li>
+                                                <li key={index}>{x}</li>
                                             )
                                         })
                                     }

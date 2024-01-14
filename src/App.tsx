@@ -6,8 +6,10 @@ import Home from "./pages/home";
 import Projects from "./pages/projects";
 import { AnimatePresence } from "framer-motion";
 import transition from "./components/motion-components/pageTransition";
+import { inject } from '@vercel/analytics';
 
 function App() {
+  inject();
   const location = useLocation()
 
   useEffect(() => {

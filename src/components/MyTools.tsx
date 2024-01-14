@@ -76,7 +76,7 @@ function MyTools() {
                 {
                     tools.map((items, index) => {
                         return (
-                            <div key={index} className="border border-dashed border-neutral-800 w-auto rounded-xl p-4 pattern-bank-note-neutral-800/5">
+                            <div key={index} className="hover:bg-slate-50/5 border border-dashed border-neutral-800 w-auto rounded-xl p-4 pattern-bank-note-neutral-800/5">
                                 <span className="text-lg sm:text-2xl">{items.heading}</span>
                                 <ul className="text-base md:text-lg text-opacity-80">
                                     {

@@ -6,6 +6,7 @@
 	align-items: center;
 	margin: 20px 0 20px 0;
 	gap: 40px;
+	/* scroll-behavior: smooth; */
 }
 
 .column {
@@ -13,6 +14,7 @@
 	flex-direction: column;
 	overflow-y: visible;
 	gap: 40px;
+	scroll-behavior: smooth;
 }
 
 /* two column reverse scroll */

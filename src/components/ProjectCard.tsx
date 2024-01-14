@@ -9,11 +9,41 @@ interface ItemProps {
     tags: Array<string>
 }
 
+interface ImgProps {
+    src: string;
+    fallback: string;
+    className: string;
+    type: string;
+    alt: string;
+}
+
+const ImgWithFallback = ({
+    src,
+    fallback,
+    className,
+    type,
+    alt,
+    ...delegated
+}: ImgProps) => {
+    return (
+        <picture>
+            <source srcSet={src} type={type} className={className} />
+            <img src={fallback} {...delegated} className={className} alt={alt} loading="lazy" />
+        </picture>
+    );
+};
+
 export function ProjectCard(props: ItemProps) {
 
     return (
         <div className="rounded-2xl w-80 md:w-96 lg:w-128 h-fit sm:h-min p-2 isolate bg-white/20 backdrop-blur-sm shadow-xl ring-1 ring-black/5">
-            <img className="w-full aspect-video rounded-2xl" src={`projects/${props.projectImage}`} alt="project image" loading="lazy" />
+            <ImgWithFallback
+                src={`projects/webp/${props.projectImage}.webp`}
+                fallback={`projects/png/${props.projectImage}.png`}
+                className="w-full aspect-video rounded-2xl"
+                alt="project image"
+                type="image/webp"
+            />
             <div className="px-6 py-4 text-xl md:text-2xl">
                 <div className="font-bold mb-2 flex justify-between">
                     <span>{props.name}</span>

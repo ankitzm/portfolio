@@ -30,18 +30,18 @@ function Navbar() {
     const activeClass = 'bg-opacity-100'
 
     return (
-        <div className="z-50 fixed flex md:flex-col font-semibold text-base sm:text-lg lg:text-xl">
+        <div className="z-50 fixed flex flex-wrap md:flex-col font-medium sm:font-semibold text-sm sm:text-lg lg:text-xl">
             {
                 navButtons.map((item, index) =>
                     <Link key={index} to={item.page.toLowerCase()}>
-                        <span key={index} className={`flex items-center gap-2 rounded-md w-fit py-1 px-3 sm:py-2 sm:px-4 m-2 ${currentPath == item.page ? activeClass : "bg-opacity-75"} bg-slate-200 border-2 border-dotted border-neutral-800 backdrop-blur-xl`}>
+                        <span key={index} className={`flex items-center gap-2 rounded-md w-fit py-1 px-3 sm:py-2 sm:px-4 m-1 sm:m-2 ${currentPath == item.page ? activeClass : "bg-opacity-75"} bg-slate-200 border-2 border-dotted border-neutral-800 backdrop-blur-xl`}>
                             {<item.icon />} {item.name.toLowerCase()}
                         </span>
                     </Link>
                 )
             }
 
-            
+
         </div>
     )
 }

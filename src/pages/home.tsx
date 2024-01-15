@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { RiContactsLine } from "react-icons/ri";
 import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion"
 import MyTools from "../components/MyTools";
+import SocialComponent from "../components/SocialComponent";
 
 function Home() {
   const ref = useRef(null)
@@ -19,7 +20,7 @@ function Home() {
         <span>
           Hey I am,
         </span>
-        <div className="flex flex-col sm:flex-row text-6xl sm:text-8xl md:10xl lg:text-20xl gap-2 sm:gap-8 font-bold mt-2">
+        <div className="flex flex-row text-5xl sm:text-8xl md:10xl lg:text-20xl gap-2 sm:gap-8 font-bold mt-2">
           <span>ANKIT</span>
           <span>SINGH</span>
         </div>
@@ -37,6 +38,8 @@ function Home() {
             </button>
           </Link>
         </div>
+
+        <SocialComponent />
       </div>
 
       <div ref={ref} className="relative h-[200vh] z-10 overflow-clip">
@@ -63,10 +66,10 @@ function Home() {
       <div className="p-4 sm:p-10 mt-[-200vh] h-[200vh] overflow-clip bg-pastelOrange bg-opacity-80">
         <motion.span
           style={{ x: imageXCalc }}
-          className="bg-neutral-800 w-[95vw] sm:w-[80%] rounded-3xl grid content-center mx-auto sticky top-1/3 font-bold py-10 pr-6 sm:pr-10 text-pastelOrange gap-4 text-right font-casteRock pattern-architect-orange-600/20">
+          className="bg-neutral-800 w-[98vw] sm:w-[80%] rounded-3xl grid content-center mx-auto sticky top-1/3 font-bold py-10 pr-2 sm:pr-10 text-pastelOrange gap-4 text-right font-casteRock pattern-architect-orange-600/20">
           <>
             <span className="text-3xl sm:text-4xl">I Create</span>
-            <div className="flex flex-col text-6xl sm:text-8xl md:text-11xl lg:text-14xl gap-4">
+            <div className="flex flex-col text-5xl sm:text-8xl md:text-11xl lg:text-14xl gap-4">
               <span>
                 WEBSITES
               </span>

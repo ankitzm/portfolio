@@ -7,6 +7,8 @@ import Projects from "./pages/projects";
 import { AnimatePresence } from "framer-motion";
 import transition from "./components/motion-components/pageTransition";
 import { inject } from '@vercel/analytics';
+import Contact from "./pages/contact";
+
 
 function App() {
   inject();
@@ -30,6 +32,7 @@ function App() {
             <Route index element={transition(Home)} />
             <Route path="/projects" element={transition(Projects)} />
             <Route path="/experience" element={transition(Experience)} />
+            <Route path="/contact" element={transition(Contact)} />
           </Routes>
         </AnimatePresence>
       </div>

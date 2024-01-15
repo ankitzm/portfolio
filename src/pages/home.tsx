@@ -1,6 +1,7 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { RiContactsLine } from "react-icons/ri";
 import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion"
-import SocialComponent from "../components/SocialComponent";
 import MyTools from "../components/MyTools";
 
 function Home() {
@@ -18,17 +19,24 @@ function Home() {
         <span>
           Hey I am,
         </span>
-        <div className="flex flex-col sm:flex-row text-6xl sm:text-8xl md:10xl lg:text-20xl gap-2 sm:gap-8 font-sans font-bold mt-2">
+        <div className="flex flex-col sm:flex-row text-6xl sm:text-8xl md:10xl lg:text-20xl gap-2 sm:gap-8 font-bold mt-2">
           <span>ANKIT</span>
           <span>SINGH</span>
         </div>
-        <div className="flex flex-col mx-2 md:mx-4 mt-4 gap-2">
-          <span>➡ Final year Computer Science Engineering student. </span>
-          <span>➡ A Curious developer, diving into different stuff and exploring. </span>
-          <span>➡ I am in love with Design, Frontend and Blockchain development. </span>
+        <div className="flex flex-col mx-2 md:mx-4 mt-4 gap-2 opacity-70">
+          <span>➡ I enjoy bringing ideas to browser, crafting beautiful websites </span>
+          <span>➡ Loves Design, Frontend and Blockchain development </span>
+          <span>➡ Built NPM Package and Chrome Extension in the past</span>
         </div>
 
-        <SocialComponent />
+        {/* contact me */}
+        <div className="absolute bottom-10 sm:bottom-20">
+          <Link to='/contact'>
+            <button className="text-pastelOrange text-opacity-90 hover:text-opacity-100 shadow-2xl text-base sm:text-lg md:text-2xl font-bold bg-neutral-900 rounded-xl p-2 sm:p-4 md:p-6 flex items-center gap-2">
+              Contact ME <RiContactsLine />
+            </button>
+          </Link>
+        </div>
       </div>
 
       <div ref={ref} className="relative h-[200vh] z-10 overflow-clip">

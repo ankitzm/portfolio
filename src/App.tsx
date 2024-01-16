@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <div className="absolute top-2 left-2 sm:top-4 sm:left-8 ">
+      <div className="absolute">
         <Navbar />
       </div>
       <div className='bg-pastelRed flex flex-col min-h-screen w-full justify-center items-center'>

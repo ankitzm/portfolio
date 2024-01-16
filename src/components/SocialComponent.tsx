@@ -1,7 +1,7 @@
 import { FaGithub, FaTwitter, FaLinkedin, FaBlogger } from "react-icons/fa";
 
 function SocialComponent() {
-    const iconSize: number = window.innerWidth > 425 ? (window.innerWidth > 768 ? 35 : 25) : 20
+    const iconSize: number = window.innerWidth > 425 ? (window.innerWidth > 768 ? 30 : 22) : 18
 
     return (
         <div className="absolute bg-neutral-900 grid top-16 lg:top-auto right-0 rounded-l-lg gap-2 sm:gap-3 p-2 sm:p-3">

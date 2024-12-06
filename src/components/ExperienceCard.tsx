@@ -19,7 +19,7 @@ interface LinkComponentProps {
     text?: string | ReactNode;
 }
 
-const tailwindColors = ['bg-purple-300', 'bg-orange-300', 'bg-blue-300', 'bg-red-300']
+const tailwindColors = ['bg-sky-300', 'bg-purple-300', 'bg-orange-300', 'bg-blue-300', 'bg-red-300']
 
 const ExperienceCard: React.FC<MyComponentProps> =
     ({ index, company, role, date, description, skills, progress, range, targetScale }) => {

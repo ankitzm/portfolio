@@ -1,5 +1,30 @@
 [
     {
+        "color": "red",
+        "company": "Router Protocol",
+        "role": "Full Stack Developer",
+        "date": "April '24 - Present",
+        "description": [
+            "Working on the frontend side of Nitro Bridge.",
+            "Handles Points backend for the Nitro Transaction rewards.",
+            "Building a wallet connection library with my peers, will share more later.",
+            "... and many more things."
+        ],
+        "skills": [
+            "nodejs",
+            "Wallets",
+            "web3 ux",
+            "postman",
+            "javascript",
+            "typescript",
+            "API's",
+            "optimizations",
+            "React/Nextjs",
+            "tailwind",
+            "nejstjs"
+        ]
+    },
+    {
         "color": "purple",
         "company": "ThirdFi",
         "role": "Dev. Advocate/Developer",

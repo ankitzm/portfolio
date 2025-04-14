@@ -3,26 +3,23 @@
         "color": "red",
         "company": "Router Protocol",
         "role": "Full Stack Developer",
-        "date": "April '24 - Present",
+        "date": "April '24 - March '25",
         "description": [
-            "Working on the frontend side of Nitro Bridge.",
-            "Handles Points backend for the Nitro Transaction rewards.",
-            "Building a wallet connection library with my peers, will share more later.",
-            "... and many more things."
+            "Developed [Router Nitro v2](https://routernitro.com/swap), improving the cross-chain swap UX.",
+            "Implemented modular architecture with reusable components, reducing code redundancy and enabling faster integration of new blockchain networks.",
+            "Built the [CEX withdrawal](https://x.com/routerprotocol/status/1904176702873633007) feature end-to-end, attracting 60+ users on launch day and enabling direct bridging across 30+ blockchain networks.",
+            "Managed and upgraded rewards backend using NestJS and PostgreSQL with optimized batch operations, safe access to API's and improving query performance by about 40%.",
+            "Collaborated with the team to develop [Tangled SDK](https://www.npmjs.com/package/@tangled3/react) to abstract multichain complexity with clean APIs, reducing integration time and improving developer experience. Supporting EVM, Solana, Sui, Cosmos, AlephZero, Tron, Router Chain and Injective"
         ],
         "skills": [
-            "nodejs",
-            "Wallets",
-            "web3 ux",
-            "postman",
-            "javascript",
-            "typescript",
-            "API's",
-            "optimizations",
+            "Nodejs/Nestjs",
             "React/Nextjs",
-            "tailwind",
-            "nejstjs"
+            "Wallets",
+            "Web3 ux",
+            "Postgres/Mongo DB",
+            "optimizations"
         ]
+
     },
     {
         "color": "purple",

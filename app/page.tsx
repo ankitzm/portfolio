@@ -37,7 +37,7 @@ export default function Home() {
         <source src="/video-bg.webm" type="video/webm" />
       </video>
 
-      <div className="fixed bottom-4 right-4 text-sm sm:text-base font-mono tracking-wider px-3 py-1 rounded-md bg-black/40 text-icterine backdrop-blur-md">
+      <div className="fixed bottom-0 right-0 text-sm sm:text-base font-mono tracking-wider w-40 text-center py-2 rounded-md rounded-tl-2xl bg-black/40 text-icterine backdrop-blur-md">
         {progress}% {progress < 100 ? "loading" : "loaded"}
       </div>
     </div>

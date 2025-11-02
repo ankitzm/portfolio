@@ -5,9 +5,9 @@
     "role": "Freelancing",
     "date": "October '25 - Present",
     "description": [
-      "Building websites and full-stack apps for clients using Next.js and Vue.js",
+      "Building websites and full-stack apps for clients using Next.js, Vue.js and Nestjs.",
       "Desiged dashboards, landing pages, and tools with clean UI/UX.",
-      "Learning Rust, automation, and better frontend architecture."
+      "Learning Rust, automation, and better frontend architecture and scalability."
     ],
     "skills": [
       "Next.js",
@@ -37,7 +37,8 @@
       "Node.js",
       "Express",
       "ThirdFi API",
-      "Thirdweb"
+      "Thirdweb",
+      "NestJS"
     ]
   },
     {

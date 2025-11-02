@@ -65,7 +65,7 @@ export default function ExpandedProjectCard({
     >
       <motion.div
         layoutId={layoutId}
-        className="max-w-[900px] w-full h-fit max-h-full border-2 border-background-base/20 bg-background rounded-2xl p-8 overflow-y-auto relative"
+        className="max-w-[900px] w-full h-fit max-h-full border-4 border-background-base/20 bg-background rounded-2xl p-8 overflow-y-auto relative"
         onClick={handleContentClick}
         transition={{
           type: "spring",

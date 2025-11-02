@@ -26,9 +26,13 @@ export default function ExpandedProjectCard({
   onClose,
 }: ExpandedProjectCardProps) {
   const [mounted, setMounted] = useState(false);
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    // Target the content area instead of document.body
+    const contentArea = document.getElementById('content-area');
+    setPortalTarget(contentArea);
   }, []);
 
   const handleCloseClick = (e: React.MouseEvent) => {
@@ -48,7 +52,7 @@ export default function ExpandedProjectCard({
     e.stopPropagation();
   };
 
-  if (!mounted) return null;
+  if (!mounted || !portalTarget) return null;
 
   return createPortal(
     <motion.div
@@ -56,7 +60,7 @@ export default function ExpandedProjectCard({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 backdrop-blur-xs flex items-center justify-center p-6 md:p-12 z-20"
+      className="absolute inset-0 backdrop-blur-xs flex items-center justify-center p-6 md:p-12 z-20"
       onClick={handleBackdropClick}
     >
       <motion.div
@@ -159,7 +163,7 @@ export default function ExpandedProjectCard({
         </div>
       </motion.div>
     </motion.div>,
-    document.body
+    portalTarget
   );
 }
 

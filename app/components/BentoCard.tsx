@@ -2,41 +2,48 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { memo } from 'react';
 
 interface BentoCardProps {
   title: string;
   description: string;
   image: string;
-  type: 'simple' | 'integrated' | 'featured';
+  pattern: 'pattern1' | 'pattern2a' | 'pattern2b' | 'pattern3a' | 'pattern3b';
+  aspect: string;
   index: number;
 }
 
-export default function BentoCard({ title, description, image, type, index }: BentoCardProps) {
-  // Dynamic span classes based on type
-  const spanClasses = {
-    simple: 'col-span-1 row-span-1',
-    integrated: 'md:col-span-2 col-span-1 row-span-1',
-    featured: 'md:col-span-2 md:row-span-2 col-span-1 row-span-1',
+function BentoCard({ title, description, image, pattern, aspect, index }: BentoCardProps) {
+  // Convert aspect ratio string to CSS aspect-ratio value
+  const getAspectRatio = (aspectStr: string) => {
+    const [width, height] = aspectStr.split(':').map(Number);
+    return `${width} / ${height}`;
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      whileHover={{ 
-        scale: 1.02,
-        transition: { duration: 0.2 }
-      }}
-      className={`
-        ${spanClasses[type]}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.02, 1) }}
+      // whileHover={{ 
+      //   scale: 1.02,
+      //   transition: { duration: 0.2 }
+      // }}
+      className="
         group relative overflow-hidden rounded-2xl
         bg-gradient-to-br from-gray-900 to-gray-800
         border border-gray-700/50
         hover:border-gray-600
         transition-all duration-300
         cursor-pointer
-      `}
+        w-full
+      "
+      style={{
+        aspectRatio: getAspectRatio(aspect),
+        // Performance optimization
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+      }}
     >
       {/* Image Container */}
       <div className="absolute inset-0 overflow-hidden">
@@ -45,7 +52,9 @@ export default function BentoCard({ title, description, image, type, index }: Be
           alt={title}
           fill
           className="object-cover opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500"
-          sizes="(max-width: 768px) 50vw, 25vw"
+          sizes="(max-width: 768px) 280px, 340px"
+          loading="lazy"
+          quality={75}
         />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
@@ -66,10 +75,10 @@ export default function BentoCard({ title, description, image, type, index }: Be
           </p>
         </motion.div>
 
-        {/* Type Badge */}
+        {/* Pattern Badge */}
         <div className="absolute top-4 right-4">
           <span className="px-3 py-1 text-xs font-medium rounded-full bg-white/10 backdrop-blur-sm text-white border border-white/20">
-            {type}
+            {aspect}
           </span>
         </div>
       </div>
@@ -81,4 +90,7 @@ export default function BentoCard({ title, description, image, type, index }: Be
     </motion.div>
   );
 }
+
+// Memoize to prevent unnecessary re-renders during scrolling
+export default memo(BentoCard);
 

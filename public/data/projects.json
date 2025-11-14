@@ -1,87 +1,98 @@
 [
   {
     "id": 1,
-    "title": "Name It",
-    "description": "AI-powered domain name generator using OpenAI GPT-4. Generate creative, available domain names instantly.",
-    "image": "/temp/public/projects/webp/name-it.webp",
-    "type": "featured"
+    "title": "SIMPLE AND POWERFUL",
+    "description": "From notebook to production, prototype, iterate, and deploy your application with Chroma. Getting started is as easy as pip install...",
+    "image": "/projects/webp/name-it.webp",
+    "pattern": "pattern1",
+    "aspect": "1:3"
   },
   {
     "id": 2,
-    "title": "NASA Explorer",
-    "description": "Interactive NASA API explorer with real-time space data visualization and rover imagery.",
-    "image": "/temp/public/projects/webp/nasa.webp",
-    "type": "simple"
+    "title": "FULL FEATURED",
+    "description": "Everything you need for retrieval: Vector search, Full-text search, Metadata search, SOC II Type I",
+    "image": "/projects/webp/nasa.webp",
+    "pattern": "pattern2a",
+    "aspect": "1:2"
   },
   {
     "id": 3,
-    "title": "NFT Emporium",
-    "description": "Full-featured NFT marketplace built on Ethereum with smart contracts and IPFS storage.",
-    "image": "/temp/public/projects/webp/nft-emporium.webp",
-    "type": "integrated"
+    "title": "FREE",
+    "description": "Open source under Apache 2.0",
+    "image": "/projects/webp/nft-emporium.webp",
+    "pattern": "pattern2b",
+    "aspect": "1:1"
   },
   {
     "id": 4,
-    "title": "Open Funds",
-    "description": "Decentralized crowdfunding platform with transparent fund tracking on blockchain.",
-    "image": "/temp/public/projects/webp/open-funds.webp",
-    "type": "simple"
+    "title": "SPEAKS YOUR LANGUAGE",
+    "description": "Clients for JS, Python, Ruby, PHP, Java and more.",
+    "image": "/projects/webp/open-funds.webp",
+    "pattern": "pattern3a",
+    "aspect": "1:1"
   },
   {
     "id": 5,
-    "title": "Safe Deploy",
-    "description": "Zero-downtime deployment orchestration tool with automated rollback and health checks.",
-    "image": "/temp/public/projects/webp/safe-deploy.webp",
-    "type": "featured"
+    "title": "INTEGRATED",
+    "description": "Embedding models from HuggingFace, OpenAI, Google, and more, built in. Integrated with Langchain, LlamaIndex, with more tools and frameworks coming soon.",
+    "image": "/projects/webp/safe-deploy.webp",
+    "pattern": "pattern3b",
+    "aspect": "1:2"
   },
   {
     "id": 6,
-    "title": "Solana Wedding",
-    "description": "Store your wedding vows permanently on Solana blockchain. Forever immutable, forever yours.",
-    "image": "/temp/public/projects/webp/solana-wedding.webp",
-    "type": "integrated"
+    "title": "Safe Deploy",
+    "description": "Zero-downtime deployment orchestration tool with automated rollback and health checks.",
+    "image": "/projects/webp/solana-wedding.webp",
+    "pattern": "pattern1",
+    "aspect": "1:3"
   },
   {
     "id": 7,
     "title": "Type It All",
     "description": "Modern typing speed test with real-time WPM tracking and competitive leaderboards.",
-    "image": "/temp/public/projects/webp/type-it-all.webp",
-    "type": "simple"
+    "image": "/projects/webp/type-it-all.webp",
+    "pattern": "pattern2a",
+    "aspect": "1:2"
   },
   {
     "id": 8,
     "title": "Vector Search DB",
     "description": "High-performance vector database for embeddings with Python, Ruby, PHP, and Java clients.",
-    "image": "/temp/public/projects/webp/name-it.webp",
-    "type": "featured"
+    "image": "/projects/webp/name-it.webp",
+    "pattern": "pattern2b",
+    "aspect": "1:1"
   },
   {
     "id": 9,
     "title": "Real-time Analytics",
     "description": "Stream processing engine for real-time data analytics with sub-second latency.",
-    "image": "/temp/public/projects/webp/nasa.webp",
-    "type": "integrated"
+    "image": "/projects/webp/nasa.webp",
+    "pattern": "pattern3a",
+    "aspect": "1:1"
   },
   {
     "id": 10,
     "title": "Cloud Sync",
     "description": "Multi-cloud file synchronization service supporting AWS S3, Google Cloud, and Azure.",
-    "image": "/temp/public/projects/webp/nft-emporium.webp",
-    "type": "simple"
+    "image": "/projects/webp/nft-emporium.webp",
+    "pattern": "pattern3b",
+    "aspect": "1:2"
   },
   {
     "id": 11,
     "title": "API Gateway",
     "description": "Enterprise-grade API gateway with rate limiting, authentication, and monitoring.",
-    "image": "/temp/public/projects/webp/open-funds.webp",
-    "type": "integrated"
+    "image": "/projects/webp/open-funds.webp",
+    "pattern": "pattern1",
+    "aspect": "1:3"
   },
   {
     "id": 12,
     "title": "Smart Cache",
     "description": "Distributed caching system with intelligent prefetching and automatic invalidation.",
-    "image": "/temp/public/projects/webp/safe-deploy.webp",
-    "type": "simple"
+    "image": "/projects/webp/safe-deploy.webp",
+    "pattern": "pattern2a",
+    "aspect": "1:2"
   }
 ]
-

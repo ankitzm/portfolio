@@ -2,7 +2,7 @@
 
 ## Current Layout Structure
 
-The Bento Grid uses a **modular, repeating section pattern** that scrolls horizontally.
+The Bento Grid uses a **vertical scrolling layout** with a modular 3-column pattern.
 
 ### One Section = 3 Columns:
 
@@ -18,11 +18,11 @@ The Bento Grid uses a **modular, repeating section pattern** that scrolls horizo
 └────────────┴────────────┴────────────┘
 ```
 
-This section repeats:
-- **20 times horizontally** (~21,000px scrollable width)
-- **15 rows vertically** (substantial vertical scrolling)
-
-Total: **300 sections = 1,500 cards** rendered for "infinite" feel.
+**Layout Behavior:**
+- ✅ **Vertical scrolling only** - no horizontal scroll
+- ✅ **All projects displayed once** - no repetition
+- ✅ **Responsive & centered** - max-width container with auto margins
+- ✅ **Grouped by pattern** - projects automatically organized into sections
 
 ---
 
@@ -31,8 +31,8 @@ Total: **300 sections = 1,500 cards** rendered for "infinite" feel.
 ```
 app/
 ├── components/
-│   ├── BentoGrid.tsx       # Main container, handles data loading & repetition
-│   ├── BentoSection.tsx    # One repeating section (3 columns)
+│   ├── BentoGrid.tsx       # Main container, handles data loading & layout
+│   ├── BentoSection.tsx    # Groups projects by pattern into sections
 │   └── BentoCard.tsx       # Individual card component
 ├── projects/
 │   └── page.tsx            # Projects page that imports BentoGrid
@@ -40,6 +40,13 @@ public/
 └── data/
     └── projects.json       # Project data with patterns and aspect ratios
 ```
+
+**How It Works:**
+1. `BentoGrid.tsx` loads all projects from `projects.json`
+2. `BentoSection.tsx` groups projects by their pattern type
+3. Creates vertical sections automatically based on available projects
+4. Each section displays up to 5 cards in the 3-column layout
+5. Layout is centered with max-width and responsive padding
 
 ---
 
@@ -104,21 +111,7 @@ Update the `aspect` field:
 
 3. Update `projects.json` with new pattern types
 
-### 5. Change Number of Repeating Sections
-
-**File:** `app/components/BentoGrid.tsx`
-
-```tsx
-const horizontalRepeatCount = 20; // Horizontal sections
-const verticalRepeatCount = 15;   // Vertical rows
-```
-
-**Note:** Total rendered cards = `horizontalRepeatCount × verticalRepeatCount × 5`  
-Current: 20 × 15 × 5 = **1,500 cards**
-
-⚠️ **Performance Impact:** Higher counts may impact initial load time but provide more scrollable area.
-
-### 6. Modify Individual Card Styling
+### 5. Modify Individual Card Styling
 
 **File:** `app/components/BentoCard.tsx`
 
@@ -138,30 +131,39 @@ Update classes in the motion.div or content sections.
   "description": "Project description here",
   "image": "/projects/webp/your-image.webp",
   "pattern": "pattern1",
-  "aspect": "1:4"
+  "aspect": "1:3"
 }
 ```
 
 3. Make sure the image exists in `/public/projects/webp/`
+4. The project will automatically appear in the grid grouped by its pattern
+5. **Pattern types available:**
+   - `pattern1`: Tall single card (aspect 1:3) - appears in Column 1
+   - `pattern2a`: Medium card (aspect 1:2) - top of Column 2
+   - `pattern2b`: Square card (aspect 1:1) - bottom of Column 2
+   - `pattern3a`: Square card (aspect 1:1) - top of Column 3
+   - `pattern3b`: Medium card (aspect 1:2) - bottom of Column 3
 
 ---
 
 ## Design Principles
 
-- **Modular**: Each section is self-contained and repeatable
+- **Modular**: Each section is self-contained with clear pattern structure
 - **Simple**: Easy to understand column-based structure  
 - **Flexible**: Add/remove columns without breaking layout
-- **Responsive**: Mobile-first with md: breakpoints
-- **Performant**: Optimized for smooth bidirectional scrolling
+- **Responsive**: Mobile-first with md: breakpoints, centered layout
+- **Performant**: Optimized for smooth vertical scrolling
+- **Automatic**: Projects automatically grouped by pattern type
 
 ## Performance Optimizations
 
 ✅ **React.memo()** - Components memoized to prevent unnecessary re-renders  
 ✅ **Lazy Loading** - Images load on-demand with `loading="lazy"`  
 ✅ **Hardware Acceleration** - CSS transforms use GPU acceleration  
-✅ **Optimized Animation** - Reduced animation delays for large grids  
+✅ **Optimized Animation** - Staggered animations for smooth loading  
 ✅ **Quality Control** - Images at 75% quality for faster loading  
 ✅ **Touch Scrolling** - WebKit optimization for mobile devices
+✅ **No Repetition** - Each project rendered only once for better performance
 
 ---
 
@@ -169,10 +171,17 @@ Update classes in the motion.div or content sections.
 
 | File | Purpose |
 |------|---------|
-| `BentoGrid.tsx` | Data loading, horizontal scrolling, repetition count |
-| `BentoSection.tsx` | Column layout, pattern assignment, spacing |
+| `BentoGrid.tsx` | Data loading, main container, vertical scrolling |
+| `BentoSection.tsx` | Groups projects by pattern, creates sections automatically |
 | `BentoCard.tsx` | Individual card styling, hover effects, aspect ratios |
 | `projects.json` | Project data, patterns, aspect ratios |
+
+**Key Changes from Previous Version:**
+- ❌ Removed horizontal scrolling
+- ❌ Removed project repetition
+- ✅ Vertical scrolling only
+- ✅ Centered layout with max-width
+- ✅ Automatic pattern-based grouping
 
 ---
 

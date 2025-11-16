@@ -1,10 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
-
-const DROP_DURATION_MS = 1200; // drop-in duration
-const EXPAND_DURATION_MS = 800; // expand-to-full duration
+import { useEffect, useState } from "react";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -18,15 +15,9 @@ export default function NavBar() {
   const [dropped, setDropped] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
-  const activeItem = useMemo(() => {
-    return navItems.find((item) =>
-      item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
-    ) ?? navItems[0];
-  }, [pathname]);
-
   useEffect(() => {
     const dropTimer = window.setTimeout(() => setDropped(true), 0);
-    const expandTimer = window.setTimeout(() => setExpanded(true), DROP_DURATION_MS);
+    const expandTimer = window.setTimeout(() => setExpanded(true), 1200);
     return () => {
       clearTimeout(dropTimer);
       clearTimeout(expandTimer);
@@ -35,23 +26,16 @@ export default function NavBar() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-10 flex flex-col items-center pb-3 pt-2 font-mono"
-      style={{
-        transform: dropped ? "translateY(0)" : "translateY(80px)",
-        opacity: dropped ? 1 : 0,
-        transition: `transform ${DROP_DURATION_MS}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${DROP_DURATION_MS}ms ease-out`,
-        willChange: "transform, opacity",
-      }}
+      className={`fixed bottom-0 left-0 right-0 z-10 flex flex-col items-center pb-2 pt-2 sm:pb-3 font-mono px-2 sm:px-0 will-change-transform transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        dropped ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
+      }`}
     >
       <div
-        className="relative flex bg-eerie-black-bg/80 text-[#e7e7e7]/80 rounded-2xl shadow-2xl backdrop-blur-[60px] font-semibold tracking-wider uppercase"
-        style={{
-          gap: expanded ? 24 : 0,
-          padding: expanded ? 8 : 8,
-          transform: expanded ? "scaleX(1)" : "scaleX(0.94)",
-          transformOrigin: "center",
-          transition: `transform ${EXPAND_DURATION_MS}ms cubic-bezier(0.22, 1, 0.36, 1), gap ${EXPAND_DURATION_MS}ms ease, padding ${EXPAND_DURATION_MS}ms ease`
-        }}
+        className={`relative flex bg-eerie-black-bg/80 text-[#e7e7e7]/80 rounded-xl sm:rounded-2xl shadow-2xl backdrop-blur-[60px] font-semibold tracking-wide sm:tracking-wider uppercase text-xs sm:text-sm origin-center transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          expanded 
+            ? "scale-x-100 gap-2 sm:gap-6 p-1.5 sm:p-2" 
+            : "scale-x-[0.94] gap-0 p-1.5 sm:p-2"
+        }`}
       >
         {navItems.map((item) => {
           const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -60,28 +44,23 @@ export default function NavBar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative inline-flex items-center rounded-xl transition-all ease-out group ${
+              className={`relative inline-flex items-center rounded-lg sm:rounded-xl transition-all duration-[800ms] ease-out group overflow-hidden ${
                 isActive ? "text-icterine" : "text-[#e7e7e7]/80"
-              } ${expanded ? "hover:animate-squiggle" : ""}`}
-              style={{
-                padding: isVisible ? "10px 16px" : "0px",
-                opacity: isVisible ? 1 : 0,
-                maxWidth: isVisible ? 260 : 0,
-                transform: isVisible ? "scale(1)" : "scale(0.95)",
-                overflow: "hidden",
-                pointerEvents: isVisible ? "auto" : "none",
-                transitionDuration: `${EXPAND_DURATION_MS}ms`
-              }}
+              } ${expanded ? "hover:animate-squiggle" : ""} ${
+                isVisible 
+                  ? "py-2 px-3 sm:py-2.5 sm:px-4 opacity-100 max-w-[260px] scale-100 pointer-events-auto" 
+                  : "p-0 opacity-0 max-w-0 scale-95 pointer-events-none"
+              }`}
             >
               {/* Active background */}
               {isActive && (
                 <div 
-                  className="absolute inset-0 bg-white/10 rounded-xl transition-all duration-300 ease-out"
+                  className="absolute inset-0 bg-white/10 rounded-lg sm:rounded-xl transition-all duration-300 ease-out"
                 />
               )}
               {/* Hover background */}
               <div 
-                className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out"
+                className="absolute inset-0 bg-white/5 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out"
               />
               <span className="relative z-10">{item.label}</span>
             </Link>

@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: var(--bg-fade-green);
+  --background: #c2d18f;
+  --background-base: #181937;
   --foreground: var(--rich-black);
   --bg-fade-size: 20%;
   /* CSS HEX */
@@ -10,11 +11,13 @@
   --hookers-green: #c2d18f;
   --tigers-eye: #A8612Cff;
   --eerie-black: #14171Aff;
-  --bg-fade-green: #e6ff955d;
+  --fade-green: #b2c2805d;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-base: var(--background-base);
+  --color-fade-green: var(--fade-green);
   --color-foreground: var(--foreground);
   --color-rich-black: var(--rich-black);
   --color-icterine: var(--icterine);
@@ -27,7 +30,7 @@
 }
 
 body {
-  background: var(--background);
+  /* background: var(--background); */
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }

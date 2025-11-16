@@ -7,7 +7,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/experience", label: "Experience" },
-  { href: "/randoms", label: "Randoms" },
+  // { href: "/randoms", label: "Randoms" },
 ];
 
 export default function NavBar() {
@@ -55,7 +55,7 @@ export default function NavBar() {
               {/* Active background */}
               {isActive && (
                 <div 
-                  className="absolute inset-0 bg-white/20 rounded-4xl sm:rounded-2xl transition-all duration-300 ease-out"
+                  className="absolute inset-0 bg-white/20 rounded-b-lg md:rounded-2xl transition-all duration-300 ease-out"
                 />
               )}
               {/* Hover background */}

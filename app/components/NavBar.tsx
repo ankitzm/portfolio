@@ -35,9 +35,9 @@ export default function NavBar() {
 
   return (
     <nav
-      className="sticky top-0 z-10 flex flex-col items-center pt-3 pb-2 font-mono"
+      className="fixed bottom-0 left-0 right-0 z-10 flex flex-col items-center pb-3 pt-2 font-mono"
       style={{
-        transform: dropped ? "translateY(0)" : "translateY(-80px)",
+        transform: dropped ? "translateY(0)" : "translateY(80px)",
         opacity: dropped ? 1 : 0,
         transition: `transform ${DROP_DURATION_MS}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${DROP_DURATION_MS}ms ease-out`,
         willChange: "transform, opacity",

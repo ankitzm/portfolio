@@ -26,7 +26,7 @@ export default function NavBar() {
 
   return (
     <nav
-      className={`fixed bottom-0 left-0 right-0 z-10 flex flex-col items-center pb-2 pt-2 sm:pb-3 font-mono px-2 sm:px-0 will-change-transform transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`fixed bottom-0 left-0 right-0 z-50 flex flex-col items-center pb-2 pt-2 sm:pb-3 font-mono px-2 sm:px-0 will-change-transform transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
         dropped ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
       }`}
     >

@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background-base h-screen overflow-hidden`}
       >
         <div className="h-screen p-4 pb-6 md:p-10 m-0">
-          <div className="bg-background h-full rounded-2xl overflow-y-auto">
+          <div className="bg-background h-full rounded-2xl overflow-y-auto flex flex-col items-center w-full justify-center">
           {children}
           </div>
         </div>

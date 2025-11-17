@@ -31,7 +31,7 @@ export default function ExpandedProjectCard({
   return createPortal(
     <motion.div
       layoutId={layoutId}
-      className="fixed inset-0 m-4 md:m-10 z-10 border-2 border-background-base/20 bg-background rounded-2xl p-8 overflow-y-auto"
+      className="fixed inset-0 m-6 md:m-12 z-10 border-2 border-background-base/20 bg-background rounded-2xl p-8 overflow-y-auto"
       transition={{
         type: "spring",
         stiffness: 300,

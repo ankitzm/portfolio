@@ -3,6 +3,7 @@
 :root {
   --background: #c2d18f;
   --background-base: #181937;
+  --text-base: #181937cd;
   --foreground: var(--rich-black);
   --bg-fade-size: 20%;
   /* CSS HEX */
@@ -17,6 +18,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-background-base: var(--background-base);
+  --color-text-base: var(--text-base);
   --color-fade-green: var(--fade-green);
   --color-foreground: var(--foreground);
   --color-rich-black: var(--rich-black);

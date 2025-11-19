@@ -68,8 +68,8 @@ export default function ProjectCard({
       >
         {/* Collapsed view: Title and tags in a row */}
         <div className="p-4 flex items-center justify-between gap-4">
-          <h2 className="text-base font-normal">{title}</h2>
-          <div className="text-xs text-gray-400 whitespace-nowrap">
+          <h2 className="text-base font-normal text-text-base">{title}</h2>
+          <div className="text-xs text-text-base whitespace-nowrap">
             {tags.join(", ")}
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function ProjectCard({
                 
                 {/* Project description */}
                 <div className="flex-1">
-                  <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                  <p className="text-text-base text-sm leading-relaxed mb-4">
                     {description}
                   </p>
                   
@@ -108,7 +108,7 @@ export default function ProjectCard({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
+                        className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
                       >
                         <span>↗</span> live
                       </a>
@@ -119,7 +119,7 @@ export default function ProjectCard({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
+                        className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
                       >
                         <span>↗</span> code
                       </a>
@@ -130,7 +130,7 @@ export default function ProjectCard({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors"
+                        className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
                       >
                         <span>↗</span> demo
                       </a>
@@ -160,7 +160,7 @@ export default function ProjectCard({
       }}
     >
       <motion.h1 
-        className="text-2xl font-bold"
+        className="text-2xl font-bold text-text-base"
         layout="position"
       >
         {title}

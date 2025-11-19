@@ -45,7 +45,7 @@ export default function NavBar() {
               key={item.href}
               href={item.href}
               className={`relative inline-flex items-center rounded-lg sm:rounded-xl transition-all duration-[800ms] ease-out group overflow-hidden ${
-                isActive ? "text-background-base/80" : "text-background-base/60"
+                isActive ? "text-text-base" : "text-text-base/80"
               } ${expanded ? "hover:animate-squiggle" : ""} ${
                 isVisible 
                   ? "py-2 px-3 sm:py-2.5 sm:px-4 opacity-100 max-w-[260px] scale-100 pointer-events-auto" 

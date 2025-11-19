@@ -121,10 +121,15 @@ export default function ProjectsPage() {
 
         {/* Only show modal expansion for tablet and desktop */}
         <AnimatePresence>
-          {expandedCard !== null && !isMobile && (
+          {expandedCard !== null && !isMobile && projectsData[expandedCard] && (
             <ExpandedProjectCard
               layoutId={`project-card-${expandedCard}`}
-              title={projectsData[expandedCard]?.name || "Project"}
+              title={projectsData[expandedCard].name}
+              description={projectsData[expandedCard].description}
+              image={`/projects/webp/${projectsData[expandedCard].image}.webp`}
+              tags={projectsData[expandedCard].tags}
+              liveLink={projectsData[expandedCard].links.website}
+              codeLink={projectsData[expandedCard].links.github}
               onClose={handleCardClose}
             />
           )}

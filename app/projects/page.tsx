@@ -6,8 +6,35 @@ import ProjectCard from "../components/ProjectCard";
 import ExpandedProjectCard from "../components/ExpandedProjectCard";
 import ProjectsGrid from "../components/ProjectsGrid";
 
+// Hook to detect screen size
+function useScreenSize() {
+  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">("desktop");
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setScreenSize("mobile");
+      } else if (width < 1024) {
+        setScreenSize("tablet");
+      } else {
+        setScreenSize("desktop");
+      }
+    };
+
+    // Set initial size
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return screenSize;
+}
+
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const screenSize = useScreenSize();
 
   const handleCardClick = (index: number) => {
     setExpandedCard(index);
@@ -30,7 +57,14 @@ export default function ProjectsPage() {
     };
   }, [expandedCard]);
 
-  const cardSpans = [6, 4, 3, 4, 3, 4, 6, 3, 4, 3];
+  // Responsive card spans for different screen sizes
+  const cardSpansConfig = {
+    mobile: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],    // 1 card per row
+    tablet: [6, 4, 5, 5, 4, 6, 5, 5, 6, 4],              // 2 cards per row
+    desktop: [6, 4, 3, 4, 3, 4, 6, 3, 4, 3],             // Variable layout
+  };
+
+  const cardSpans = cardSpansConfig[screenSize];
 
   return (
     <LayoutGroup>

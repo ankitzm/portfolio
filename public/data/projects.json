@@ -1,98 +1,120 @@
 [
   {
-    "id": 1,
-    "title": "SIMPLE AND POWERFUL",
-    "description": "From notebook to production, prototype, iterate, and deploy your application with Chroma. Getting started is as easy as pip install...",
-    "image": "/projects/webp/name-it.webp",
-    "pattern": "pattern1",
-    "aspect": "1:3"
+      "name": "Safe Deploy",
+      "title": "Safe Deploy base decription",
+      "description": "An NPM package to deploy locally built Smart Contract from browser using Metamask wallet on a locally served webpage(on localhost with no external dependencies). No need of plug the private-key into the development environment.",
+      "image": "safe-deploy",
+      "links": {
+          "github": "https://github.com/ankitzm/safe-deploy",
+          "website": "https://www.npmjs.com/package/safe-deploy"
+      },
+      "tags": [
+          "Web3",
+          "NodeJS",
+          "ExpressJS",
+          "Hardhat",
+          "Solidity"
+      ]
   },
   {
-    "id": 2,
-    "title": "FULL FEATURED",
-    "description": "Everything you need for retrieval: Vector search, Full-text search, Metadata search, SOC II Type I",
-    "image": "/projects/webp/nasa.webp",
-    "pattern": "pattern2a",
-    "aspect": "1:2"
+      "name": "Open Funds",
+      "title": "Open Funds base description",
+      "description": "An open collective alternative built on NEAR blockchain. It helps users to collect donation for their projects to continue work on them. The project data and user data is stored on Near blockchain.",
+      "image": "open-funds",
+      "links": {
+          "github": "https://github.com/ankitzm/near-funding-frontend",
+          "website": "https://open-funds.vercel.app/"
+      },
+      "tags": [
+          "Web3",
+          "ReactJS",
+          "TailwindCSS",
+          "NEAR Blockchain",
+          "JSON-RPC"
+      ]
   },
   {
-    "id": 3,
-    "title": "FREE",
-    "description": "Open source under Apache 2.0",
-    "image": "/projects/webp/nft-emporium.webp",
-    "pattern": "pattern2b",
-    "aspect": "1:1"
+      "name": "Type It All",
+      "title": "Type It All base description",
+      "description": "It's a typing speed checking web-app with a simple one minute test. I have integrated an API for fetching random paragraph for the test. Post test completion, the user can share their typing speed(WPM) on Twitter",
+      "image": "type-it-all",
+      "links": {
+          "github": "https://github.com/ankitzm/type-it-all",
+          "website": "https://type-it-all.vercel.app/"
+      },
+      "tags": [
+          "Frontend",
+          "ReactJS",
+          "TailwindCSS",
+          "NPM Packages",
+          "API's",
+          "Twitter/Facebook share"
+      ]
   },
   {
-    "id": 4,
-    "title": "SPEAKS YOUR LANGUAGE",
-    "description": "Clients for JS, Python, Ruby, PHP, Java and more.",
-    "image": "/projects/webp/open-funds.webp",
-    "pattern": "pattern3a",
-    "aspect": "1:1"
+      "name": "Name It",
+      "title": "Name It base description",
+      "description": "It can be used for finding name for your new startup or project. Just enter some keywords and this will fetch related word using an open-sourced libraby. Clicking any card will redirects to google domains for purchase.",
+      "image": "name-it",
+      "links": {
+          "github": "https://github.com/ankitzm/nameit",
+          "website": "https://nameit.vercel.app/"
+      },
+      "tags": [
+          "ReactJS",
+          "Google Domain",
+          "Text Searching"
+      ]
   },
   {
-    "id": 5,
-    "title": "INTEGRATED",
-    "description": "Embedding models from HuggingFace, OpenAI, Google, and more, built in. Integrated with Langchain, LlamaIndex, with more tools and frameworks coming soon.",
-    "image": "/projects/webp/safe-deploy.webp",
-    "pattern": "pattern3b",
-    "aspect": "1:2"
+      "name": "Solana Wedding",
+      "title": "Solana Wedding base description",
+      "description": "This is a blockchian based wedding registry platform which uses Solana Blockchain under the hood. It uses DEVNET which uses fake SOL for transaction. It sends minimum data to blockchian, making it cocst effective.",
+      "image": "solana-wedding",
+      "links": {
+          "github": "https://github.com/ankitzm/solana-wedding",
+          "website": "https://solana-wedding.vercel.app/"
+      },
+      "tags": [
+          "Web3",
+          "Frontend",
+          "ReactJS",
+          "Rust",
+          "TailwindCSS",
+          "NPM Packages"
+      ]
   },
   {
-    "id": 6,
-    "title": "Safe Deploy",
-    "description": "Zero-downtime deployment orchestration tool with automated rollback and health checks.",
-    "image": "/projects/webp/solana-wedding.webp",
-    "pattern": "pattern1",
-    "aspect": "1:3"
+      "name": "NFT Emporium",
+      "title": "NFT Emporium base description",
+      "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
+      "image": "nft-emporium",
+      "links": {
+          "github": "https://github.com/Suvraneel/NFT-Emporium",
+          "website": "https://suvraneel.github.io/NFT-Emporium/"
+      },
+      "tags": [
+          "Web3",
+          "Chainlink",
+          "NextJS",
+          "Frontend",
+          "NFT"
+      ]
   },
   {
-    "id": 7,
-    "title": "Type It All",
-    "description": "Modern typing speed test with real-time WPM tracking and competitive leaderboards.",
-    "image": "/projects/webp/type-it-all.webp",
-    "pattern": "pattern2a",
-    "aspect": "1:2"
-  },
-  {
-    "id": 8,
-    "title": "Vector Search DB",
-    "description": "High-performance vector database for embeddings with Python, Ruby, PHP, and Java clients.",
-    "image": "/projects/webp/name-it.webp",
-    "pattern": "pattern2b",
-    "aspect": "1:1"
-  },
-  {
-    "id": 9,
-    "title": "Real-time Analytics",
-    "description": "Stream processing engine for real-time data analytics with sub-second latency.",
-    "image": "/projects/webp/nasa.webp",
-    "pattern": "pattern3a",
-    "aspect": "1:1"
-  },
-  {
-    "id": 10,
-    "title": "Cloud Sync",
-    "description": "Multi-cloud file synchronization service supporting AWS S3, Google Cloud, and Azure.",
-    "image": "/projects/webp/nft-emporium.webp",
-    "pattern": "pattern3b",
-    "aspect": "1:2"
-  },
-  {
-    "id": 11,
-    "title": "API Gateway",
-    "description": "Enterprise-grade API gateway with rate limiting, authentication, and monitoring.",
-    "image": "/projects/webp/open-funds.webp",
-    "pattern": "pattern1",
-    "aspect": "1:3"
-  },
-  {
-    "id": 12,
-    "title": "Smart Cache",
-    "description": "Distributed caching system with intelligent prefetching and automatic invalidation.",
-    "image": "/projects/webp/safe-deploy.webp",
-    "pattern": "pattern2a",
-    "aspect": "1:2"
+      "name": "NASA App(Frontend)",
+      "title": "NASA App(Frontend) base description",
+     "description": "This project NASA API and fetches picture of the day in a weekly manner. It uses lazy loading of images and custom fetch to request data from API in small chunks.",
+      "image": "nasa",
+      "links": {
+          "github": "https://github.com/ankitzm/nasa-api-frontend",
+          "website": "https://nasa-api-frontend.vercel.app"
+      },
+      "tags": [
+          "Frontend",
+          "NextJS",
+          "TailwindCSS",
+          "Nasa API"
+      ]
   }
 ]

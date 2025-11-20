@@ -36,19 +36,39 @@ export default function ExpandedProjectCard({
     onClose();
   };
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    // Close when clicking the backdrop (outside the content)
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const handleContentClick = (e: React.MouseEvent) => {
+    // Stop propagation to prevent backdrop click
+    e.stopPropagation();
+  };
+
   if (!mounted) return null;
 
   return createPortal(
     <motion.div
-      layoutId={layoutId}
-      className="fixed inset-0 flex items-center justify-center m-6 md:m-12"
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 backdrop-blur-xs flex items-center justify-center p-6 md:p-12 z-20"
+      onClick={handleBackdropClick}
     >
-      <div className="max-w-[900px] h-fit max-h-full mx-auto z-10 border-2 border-background-base/20 bg-background backdrop-blur-xl rounded-2xl p-8 overflow-y-auto">
+      <motion.div
+        layoutId={layoutId}
+        className="max-w-[900px] w-full h-fit max-h-full border-2 border-background-base/20 bg-background rounded-2xl p-8 overflow-y-auto relative"
+        onClick={handleContentClick}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
+        }}
+      >
         <button
           type="button"
           onClick={handleCloseClick}
@@ -92,7 +112,7 @@ export default function ExpandedProjectCard({
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           {/* Project Image */}
           {image && (
-            <div className="mb-6 rounded-lg overflow-hidden max-w-[600px]">
+            <div className="mb-6 rounded-lg overflow-hidden max-w-[540px]">
               <img
                 src={image}
                 alt={title}
@@ -134,7 +154,7 @@ export default function ExpandedProjectCard({
             {description}
           </p>
         </div>
-      </div>
+      </motion.div>
     </motion.div>,
     document.body
   );

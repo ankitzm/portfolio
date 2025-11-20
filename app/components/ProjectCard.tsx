@@ -67,9 +67,9 @@ export default function ProjectCard({
         }`}
       >
         {/* Collapsed view: Title and tags in a row */}
-        <div className="p-4 flex items-center justify-between gap-4">
-          <h2 className="text-base font-normal text-text-base">{title}</h2>
-          <div className="text-xs text-text-base whitespace-nowrap">
+        <div className="p-4 items-center justify-between gap-4 grid grid-cols-2">
+          <h2 className="text-base font-normal text-text-base col-span-1">{title}</h2>
+          <div className="text-xs text-text-base col-span-1 text-right">
             {tags.join(", ")}
           </div>
         </div>
@@ -82,61 +82,57 @@ export default function ProjectCard({
         >
           <div className="overflow-hidden">
             <div className="px-4 pb-4">
-              <div className="flex gap-4">
-                {/* Project image/thumbnail */}
-                {image && (
-                  <div className="w-1/3 flex-shrink-0">
-                    <img
-                      src={image}
-                      alt={title}
-                      className="w-full h-auto rounded-lg object-cover bg-gray-800"
-                    />
-                  </div>
-                )}
-                
-                {/* Project description */}
-                <div className="flex-1">
-                  <p className="text-text-base text-sm leading-relaxed mb-4">
-                    {description}
-                  </p>
-                  
-                  {/* Action links */}
-                  <div className="flex gap-4 text-sm">
-                    {liveLink && (
-                      <a
-                        href={liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
-                      >
-                        <span>↗</span> live
-                      </a>
-                    )}
-                    {codeLink && (
-                      <a
-                        href={codeLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
-                      >
-                        <span>↗</span> code
-                      </a>
-                    )}
-                    {demoLink && (
-                      <a
-                        href={demoLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
-                      >
-                        <span>↗</span> demo
-                      </a>
-                    )}
-                  </div>
+              {/* Project image/thumbnail - Full width */}
+              {image && (
+                <div className="mb-4">
+                  <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-auto rounded-lg object-cover bg-gray-800"
+                  />
                 </div>
+              )}
+              
+              {/* Project description */}
+              <p className="text-text-base text-sm leading-relaxed mb-4">
+                {description}
+              </p>
+              
+              {/* Action links */}
+              <div className="flex gap-4 text-sm">
+                {liveLink && (
+                  <a
+                    href={liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
+                  >
+                    <span>↗</span> live
+                  </a>
+                )}
+                {codeLink && (
+                  <a
+                    href={codeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
+                  >
+                    <span>↗</span> code
+                  </a>
+                )}
+                {demoLink && (
+                  <a
+                    href={demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex items-center gap-1 text-text-base hover:text-white transition-colors"
+                  >
+                    <span>↗</span> demo
+                  </a>
+                )}
               </div>
             </div>
           </div>

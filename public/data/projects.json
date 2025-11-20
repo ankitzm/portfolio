@@ -1,120 +1,120 @@
 [
-  {
-      "name": "Safe Deploy",
-      "title": "Safe Deploy base decription",
-      "description": "An NPM package to deploy locally built Smart Contract from browser using Metamask wallet on a locally served webpage(on localhost with no external dependencies). No need of plug the private-key into the development environment.",
-      "image": "safe-deploy",
-      "links": {
-          "github": "https://github.com/ankitzm/safe-deploy",
-          "website": "https://www.npmjs.com/package/safe-deploy"
-      },
-      "tags": [
-          "Web3",
-          "NodeJS",
-          "ExpressJS",
-          "Hardhat",
-          "Solidity"
-      ]
-  },
-  {
-      "name": "Open Funds",
-      "title": "Open Funds base description",
-      "description": "An open collective alternative built on NEAR blockchain. It helps users to collect donation for their projects to continue work on them. The project data and user data is stored on Near blockchain.",
-      "image": "open-funds",
-      "links": {
-          "github": "https://github.com/ankitzm/near-funding-frontend",
-          "website": "https://open-funds.vercel.app/"
-      },
-      "tags": [
-          "Web3",
-          "ReactJS",
-          "TailwindCSS",
-          "NEAR Blockchain",
-          "JSON-RPC"
-      ]
-  },
-  {
-      "name": "Type It All",
-      "title": "Type It All base description",
-      "description": "It's a typing speed checking web-app with a simple one minute test. I have integrated an API for fetching random paragraph for the test. Post test completion, the user can share their typing speed(WPM) on Twitter",
-      "image": "type-it-all",
-      "links": {
-          "github": "https://github.com/ankitzm/type-it-all",
-          "website": "https://type-it-all.vercel.app/"
-      },
-      "tags": [
-          "Frontend",
-          "ReactJS",
-          "TailwindCSS",
-          "NPM Packages",
-          "API's",
-          "Twitter/Facebook share"
-      ]
-  },
-  {
-      "name": "Name It",
-      "title": "Name It base description",
-      "description": "It can be used for finding name for your new startup or project. Just enter some keywords and this will fetch related word using an open-sourced libraby. Clicking any card will redirects to google domains for purchase.",
-      "image": "name-it",
-      "links": {
-          "github": "https://github.com/ankitzm/nameit",
-          "website": "https://nameit.vercel.app/"
-      },
-      "tags": [
-          "ReactJS",
-          "Google Domain",
-          "Text Searching"
-      ]
-  },
-  {
-      "name": "Solana Wedding",
-      "title": "Solana Wedding base description",
-      "description": "This is a blockchian based wedding registry platform which uses Solana Blockchain under the hood. It uses DEVNET which uses fake SOL for transaction. It sends minimum data to blockchian, making it cocst effective.",
-      "image": "solana-wedding",
-      "links": {
-          "github": "https://github.com/ankitzm/solana-wedding",
-          "website": "https://solana-wedding.vercel.app/"
-      },
-      "tags": [
-          "Web3",
-          "Frontend",
-          "ReactJS",
-          "Rust",
-          "TailwindCSS",
-          "NPM Packages"
-      ]
-  },
-  {
-      "name": "NFT Emporium",
-      "title": "NFT Emporium base description",
-      "description": "This project can be used to mint NFT on Poloygon, Ethereum, BSC and others with very simple UI. It uses Moralis as a backend, which makes it lightning fast.",
-      "image": "nft-emporium",
-      "links": {
-          "github": "https://github.com/Suvraneel/NFT-Emporium",
-          "website": "https://suvraneel.github.io/NFT-Emporium/"
-      },
-      "tags": [
-          "Web3",
-          "Chainlink",
-          "NextJS",
-          "Frontend",
-          "NFT"
-      ]
-  },
-  {
-      "name": "NASA App(Frontend)",
-      "title": "NASA App(Frontend) base description",
-     "description": "This project NASA API and fetches picture of the day in a weekly manner. It uses lazy loading of images and custom fetch to request data from API in small chunks.",
-      "image": "nasa",
-      "links": {
-          "github": "https://github.com/ankitzm/nasa-api-frontend",
-          "website": "https://nasa-api-frontend.vercel.app"
-      },
-      "tags": [
-          "Frontend",
-          "NextJS",
-          "TailwindCSS",
-          "Nasa API"
-      ]
-  }
+    {
+        "name": "Safe Deploy",
+        "title": "Browser-based smart contract deployment—no private keys exposed.",
+        "description": "A lightweight NPM package that enables developers to deploy locally compiled smart contracts directly from the browser using MetaMask—no CLI, private-key injection, or external dependencies required. Works seamlessly on localhost and supports secure, frictionless development workflows.",
+        "image": "safe-deploy",
+        "links": {
+            "github": "https://github.com/ankitzm/safe-deploy",
+            "website": "https://www.npmjs.com/package/safe-deploy"
+        },
+        "tags": [
+            "Web3",
+            "NodeJS",
+            "ExpressJS",
+            "Hardhat",
+            "Solidity"
+        ]
+    },
+    {
+        "name": "Open Funds",
+        "title": "A decentralized alternative to OpenCollective on the NEAR blockchain.",
+        "description": "A crowdfunding platform built on the NEAR blockchain that allows creators and project teams to collect donations transparently. All project and contributor data is stored on-chain, ensuring trustless access, verifiable funding, and censorship-resistant project sustainability.",
+        "image": "open-funds",
+        "links": {
+            "github": "https://github.com/ankitzm/near-funding-frontend",
+            "website": "https://open-funds.vercel.app/"
+        },
+        "tags": [
+            "Web3",
+            "ReactJS",
+            "TailwindCSS",
+            "NEAR Blockchain",
+            "JSON-RPC"
+        ]
+    },
+    {
+        "name": "Type It All",
+        "title": "A fast, modern typing-speed tester with API-powered prompts.",
+        "description": "A clean and interactive typing test web-app offering a one-minute speed evaluation. It fetches random text via an external API and provides real-time accuracy/WPM metrics. Users can instantly share their results on Twitter for friendly competition.",
+        "image": "type-it-all",
+        "links": {
+            "github": "https://github.com/ankitzm/type-it-all",
+            "website": "https://type-it-all.vercel.app/"
+        },
+        "tags": [
+            "Frontend",
+            "ReactJS",
+            "TailwindCSS",
+            "NPM Packages",
+            "API's",
+            "Twitter/Facebook share"
+        ]
+    },
+    {
+        "name": "Name It",
+        "title": "AI-style name suggestions for startups, instantly domain-checkable.",
+        "description": "A simple tool to generate creative name ideas for new startups or projects. Enter keywords and get related suggestions powered by an open-source word-association library. Each result links directly to Google Domains for quick domain availability checks.",
+        "image": "name-it",
+        "links": {
+            "github": "https://github.com/ankitzm/nameit",
+            "website": "https://nameit.vercel.app/"
+        },
+        "tags": [
+            "ReactJS",
+            "Google Domain",
+            "Text Searching"
+        ]
+    },
+    {
+        "name": "Solana Wedding",
+        "title": "A blockchain-powered wedding registry built on Solana Devnet.",
+        "description": "A decentralized wedding registry using the Solana blockchain (Devnet). It stores minimal on-chain data to keep transactions fast and cost-effective. Couples can record moments and gifts with blockchain immutability ensured through lightweight Solana program integration.",
+        "image": "solana-wedding",
+        "links": {
+            "github": "https://github.com/ankitzm/solana-wedding",
+            "website": "https://solana-wedding.vercel.app/"
+        },
+        "tags": [
+            "Web3",
+            "Frontend",
+            "ReactJS",
+            "Rust",
+            "TailwindCSS",
+            "NPM Packages"
+        ]
+    },
+    {
+        "name": "NFT Emporium",
+        "title": "Multi-chain NFT minting with a simple, fast, no-code UI.",
+        "description": "A multi-chain NFT minting platform supporting Polygon, Ethereum, BSC, and more. Powered by Moralis on the backend, the app provides a smooth and intuitive UI for creators to mint NFTs without needing blockchain expertise or complex setup.",
+        "image": "nft-emporium",
+        "links": {
+            "github": "https://github.com/Suvraneel/NFT-Emporium",
+            "website": "https://suvraneel.github.io/NFT-Emporium/"
+        },
+        "tags": [
+            "Web3",
+            "Chainlink",
+            "NextJS",
+            "Frontend",
+            "NFT"
+        ]
+    },
+    {
+        "name": "NASA App (Frontend)",
+        "title": "A clean NASA APOD viewer with weekly aggregation and lazy-loading.",
+        "description": "A frontend application that displays NASA’s Astronomy Picture of the Day, grouped weekly for better browsing. Uses custom fetch logic, lazy image loading, and efficient API chunking to deliver a seamless and optimized user experience.",
+        "image": "nasa",
+        "links": {
+            "github": "https://github.com/ankitzm/nasa-api-frontend",
+            "website": "https://nasa-api-frontend.vercel.app"
+        },
+        "tags": [
+            "Frontend",
+            "NextJS",
+            "TailwindCSS",
+            "Nasa API"
+        ]
+    }
 ]

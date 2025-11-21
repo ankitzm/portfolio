@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #c2d18f;
-  --background-base: #181937;
+  --background: #fdfef5;
+  --background-base: #0c3829;
   --text-base: #181937cd;
   --foreground: var(--rich-black);
   --bg-fade-size: 20%;

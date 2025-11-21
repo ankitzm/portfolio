@@ -55,15 +55,19 @@ function parseMarkdownLinks(text: string) {
 
 export default function Timeline() {
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-4 pb-10">
+    <div className="relative w-full max-w-4xl mx-auto space-y-4 pb-10 z-10">
       {timelineData.map((entry, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: index * 0.1 }}
-          className="border-2 border-background-base/20 bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
+          transition={{ 
+            duration: 0.3, 
+            delay: index * 0.05,
+            ease: "easeOut"
+          }}
+          className="border-2 border-background-base/20 bg-background rounded-2xl p-4 md:p-6 transition-all duration-300"
         >
           {/* Header: Date and Title */}
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">

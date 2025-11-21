@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 import DelicateAsciiDots from "@/app/components/ui/delicate-ascii-dots";
 import {
   Terminal,
@@ -11,7 +12,18 @@ export default function Home() {
     <div className="relative w-full h-screen font-sans overflow-hidden">
       <DelicateAsciiDots />
       <div className="relative z-10 flex items-center justify-center h-full font-san">
-        <Terminal className="max-h-[500px] max-w-lg">
+        <div className="relative w-full max-w-lg px-2">
+          {/* Wave GIF - only visible on mobile */}
+          <div className="absolute -top-16 -right-0 pr-4 z-20">
+            <Image
+              src="/wave.gif"
+              alt="Wave"
+              width={60}
+              height={60}
+              unoptimized
+            />
+          </div>
+          <Terminal className="max-h-[550px] w-full">
           <AnimatedSpan delay={0} className="text-background-base font-semibold">$ whoami</AnimatedSpan>
           <TypingAnimation delay={800} duration={50} className="ml-2 text-text-base/90">
             &gt; Full Stack Developer & Creative Technologist
@@ -28,13 +40,14 @@ export default function Home() {
             &gt; React • Next.js • TypeScript • Node.js • Solidity
           </TypingAnimation>
           <AnimatedSpan delay={12500} className="mt-2 text-background-base font-semibold">$ echo $STATUS</AnimatedSpan>
-          <TypingAnimation delay={13300} duration={50} className="ml-2 text-hookers-green font-medium">
+          <TypingAnimation delay={13300} duration={50} className="ml-2 text-background-base/80 font-medium">
             &gt; ✓ Available for opportunities
           </TypingAnimation>
           <AnimatedSpan delay={15500} className="text-background-base mt-2 font-semibold">
             $ _
           </AnimatedSpan>
         </Terminal>
+        </div>
       </div>
     </div>
   );

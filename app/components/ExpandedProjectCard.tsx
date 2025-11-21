@@ -101,7 +101,7 @@ export default function ExpandedProjectCard({
             {tags.map((tag, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 text-xs bg-white/10 border border-white/20 rounded-full text-text-base"
+                className="px-3 py-1 text-xs bg-black/5 rounded-full text-text-base"
               >
                 {tag}
               </span>
@@ -112,7 +112,7 @@ export default function ExpandedProjectCard({
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           {/* Project Image */}
           {image && (
-            <div className="mb-6 rounded-lg overflow-hidden max-w-[540px]">
+            <div className="mb-6 rounded-lg overflow-hidden max-w-[540px] border-2 border-background-base/20">
               <img
                 src={image}
                 alt={title}
@@ -129,7 +129,7 @@ export default function ExpandedProjectCard({
                   href={liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
+                  className="px-6 py-3 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
                 >
                   <span>↗</span> Visit Website
                 </a>
@@ -139,7 +139,7 @@ export default function ExpandedProjectCard({
                   href={codeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
+                  className="px-6 py-3  hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
                 >
                   <span>↗</span> View Code
                 </a>

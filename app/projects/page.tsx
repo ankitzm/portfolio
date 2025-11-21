@@ -76,15 +76,16 @@ export default function ProjectsPage() {
 
   return (
     <LayoutGroup>
-      <main className={`h-full w-full ${expandedCard !== null && !isMobile ? "overflow-hidden" : "overflow-y-auto"}`}>
+      <main className={`relative h-full w-full z-10 bg-background/50 ${expandedCard !== null && !isMobile ? "overflow-hidden" : "overflow-y-auto"}`}>
         {isMobile ? (
           // Mobile: List view
           <div className="m-4">
             {projectsData.map((project, index) => (
               <ProjectCard
                 key={index}
+                name={project.name}
                 layoutId={`project-card-${index}`}
-                title={project.name}
+                title={project.title}
                 description={project.description}
                 image={`/projects/webp/${project.image}.webp`}
                 tags={project.tags}
@@ -104,7 +105,8 @@ export default function ProjectsPage() {
               <ProjectCard
                 key={index}
                 layoutId={`project-card-${index}`}
-                title={project.name}
+                name={project.name}
+                title={project.title}
                 description={project.description}
                 image={`/projects/webp/${project.image}.webp`}
                 tags={project.tags}

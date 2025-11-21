@@ -8,7 +8,7 @@ export default function ProjectsGrid({
   className = "",
 }: ProjectsGridProps) {
   return (
-    <div className={`m-4 mb-8 grid grid-cols-10 gap-4 ${className}`}>
+    <div className={`m-6 mb-16 grid grid-cols-10 gap-4 ${className}`}>
       {children}
     </div>
   );

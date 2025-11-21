@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 interface ProjectCardProps {
   colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  name?: string;
   title?: string;
   description?: string;
   image?: string;
@@ -21,7 +22,8 @@ interface ProjectCardProps {
 
 export default function ProjectCard({
   colSpan = 3,
-  title = "Project xyz",
+  name = "Project xyz",
+  title = "short title",
   description = "Project description goes here...",
   image,
   tags = [],
@@ -62,13 +64,13 @@ export default function ProjectCard({
     return (
       <div
         onClick={handleCardClick}
-        className={`border-b border-background-base/20 ${colSpanClass} ${className} cursor-pointer hover:bg-white/5 transition-all duration-300 ease-in-out ${
+        className={`border-b border-background-base/20 ${colSpanClass} ${className} cursor-pointer hover:bg-white/40 transition-all duration-300 ease-in-out ${
           isExpanded ? "bg-white/5" : ""
         }`}
       >
         {/* Collapsed view: Title and tags in a row */}
         <div className="p-4 items-center justify-between gap-4 grid grid-cols-2">
-          <h2 className="text-base font-normal text-text-base col-span-1">{title}</h2>
+          <h2 className="text-base font-normal text-text-base col-span-1">{name}</h2>
           <div className="text-xs text-text-base col-span-1 text-right">
             {tags.join(", ")}
           </div>
@@ -146,7 +148,7 @@ export default function ProjectCard({
     <motion.div
       layoutId={layoutId}
       onClick={handleCardClick}
-      className={`border-2 border-background-base/20 bg-white/5 rounded-2xl p-4 h-60 ${colSpanClass} ${className} ${
+      className={`relative border-2 border-background-base/20 bg-white/5 rounded-2xl p-4 h-60 overflow-hidden ${colSpanClass} ${className} ${
         isExpanded ? "opacity-0 pointer-events-none" : "cursor-pointer hover:bg-white/10"
       } transition-opacity`}
       transition={{
@@ -159,8 +161,23 @@ export default function ProjectCard({
         className="text-2xl font-bold text-text-base"
         layout="position"
       >
-        {title}
+        {name}
       </motion.h1>
+      <motion.h2 
+        className="text-lg font-normal text-text-base"
+        layout="position"
+      >
+        {title}
+      </motion.h2>
+      <motion.p 
+        className="text-sm text-text-base"
+      >
+        <img
+          src={image}
+          alt={title}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] min-w-1/2 w-2/3 max-w-64 max-h-3/4 rounded-lg object-cover border-2 border-background-base/20"
+        />
+      </motion.p>
     </motion.div>
   );
 }

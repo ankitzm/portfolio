@@ -102,8 +102,8 @@
         ]
     },
     {
-        "name": "NASA App (Frontend)",
-        "title": "A clean NASA APOD viewer with weekly aggregation and lazy-loading.",
+        "name": "NASA App",
+        "title": "A clean NASA viewer with weekly aggregation and lazy-loading.",
         "description": "A frontend application that displays NASA’s Astronomy Picture of the Day, grouped weekly for better browsing. Uses custom fetch logic, lazy image loading, and efficient API chunking to deliver a seamless and optimized user experience.",
         "image": "nasa",
         "links": {

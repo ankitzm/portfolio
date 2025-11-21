@@ -36,15 +36,7 @@ export default function TerminalIntro({
       
       <Terminal className={`max-h-[550px] w-full ${className}`}>
         {lines.map((line, index) =>
-          line.type === "command" ? (
-            <AnimatedSpan
-              key={index}
-              delay={line.delay}
-              className={line.className}
-            >
-              {line.text}
-            </AnimatedSpan>
-          ) : (
+          (
             <TypingAnimation
               key={index}
               delay={line.delay}

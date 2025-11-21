@@ -363,7 +363,7 @@ const DelicateAsciiDots = ({
   return (
     <div
       ref={containerRef}
-      className='w-full h-full absolute inset-0 overflow-hidden opacity-50'
+      className='w-full h-full absolute inset-0 overflow-hidden opacity-10'
       style={{ backgroundColor }}
     >
       <canvas ref={canvasRef} className='block w-full h-full' />

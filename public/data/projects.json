@@ -1,5 +1,73 @@
 [
     {
+        "name": "Jerico",
+        "title": "Blockchain-native invoicing & instant PYUSD settlement.",
+        "description": "A mobile-first, zero-custody invoicing and payments platform that enables instant wallet-to-wallet invoice settlement using PYUSD and Ethereum smart contracts. Creators issue on-chain invoices (InvoiceFactory.createInvoice), optionally store metadata on IPFS/Arweave, and receive payments via payInvoice(invoiceId) with QR/deep-link UX. Real-time event indexing (The Graph / custom indexer) and push updates power live UI; smart contracts are gas- and storage-optimized and handle PYUSD’s 6-decimal math safely.",
+        "image": "jerico",
+        "links": {
+            "github": "",
+            "website": ""
+        },
+        "tags": [
+            "Web3",
+            "Ethereum",
+            "PYUSD",
+            "Smart Contracts",
+            "React"
+        ]
+    },
+    {
+        "name": "SolLens",
+        "title": "Chrome extension that annotates Solscan with friendly names, tags & colors.",
+        "description": "A privacy-first Chrome extension that enriches Solscan UX by letting users assign names, tags and colors to Solana addresses and display them inline without breaking links. Runs fully locally (chrome.storage.local), uses an anchor-first DOM scanning strategy with MutationObserver for SPA support, and exposes import/export JSON, fast search, multi-tag filters, and a polished React+Tailwind popup UI. Optimized for minimal CPU/memory impact and safe, local-only data handling.",
+        "image": "sollens",
+        "links": {
+            "github": "",
+            "website": ""
+        },
+        "tags": [
+            "Chrome Extension",
+            "Solana",
+            "TypeScript",
+            "React",
+            "Privacy"
+        ]
+    },
+    {
+        "name": "Terms-Simplified",
+        "title": "AI-powered extension that highlights risky clauses in Terms & Conditions.",
+        "description": "A browser extension that analyzes a site’s Terms & Conditions with a single click using Perplexity Sonar AI. Detects issues like excessive data sharing, unfair termination, auto-renewal traps, IP overreach, liability limits, and unclear refunds. API keys and results remain local (no telemetry), with progress UI and smart caching to minimize API usage. Designed to give fast, actionable summaries so users can understand risks before accepting T&Cs.",
+        "image": "terms-simplified",
+        "links": {
+            "github": "",
+            "website": ""
+        },
+        "tags": [
+            "Browser Extension",
+            "AI",
+            "Privacy",
+            "Perplexity API",
+            "Security"
+        ]
+    },
+    {
+        "name": "Share-on-Network",
+        "title": "Run your Next.js dev server on LAN to share pages across devices.",
+        "description": "A small utility-demo built with Next.js server actions that demonstrates serving a local dev site on the LAN so other devices can access it via your machine’s IP (e.g., 192.168.x.x:3000). Useful for quick previews on mobile or remote testing, with docs for finding your IP (ipconfig / ifconfig / hostname -I), default port behavior, and simple screenshots showing desktop & mobile access. Tech: Next.js (server actions) + TailwindCSS.",
+        "image": "share-on-network",
+        "links": {
+            "github": "",
+            "website": ""
+        },
+        "tags": [
+            "NextJS",
+            "TailwindCSS",
+            "Server Actions",
+            "Local Network",
+            "Dev Tools"
+        ]
+    },
+    {
         "name": "Safe Deploy",
         "title": "Browser-based smart contract deployment—no private keys exposed.",
         "description": "A lightweight NPM package that enables developers to deploy locally compiled smart contracts directly from the browser using MetaMask—no CLI, private-key injection, or external dependencies required. Works seamlessly on localhost and supports secure, frictionless development workflows.",

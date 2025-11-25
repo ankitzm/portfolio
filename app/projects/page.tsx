@@ -66,8 +66,8 @@ export default function ProjectsPage() {
   // Responsive card spans for different screen sizes
   const cardSpansConfig = {
     mobile: [10, 10, 10, 10, 10, 10, 10],    // 1 card per row
-    tablet: [6, 4, 5, 5, 4, 6, 5],           // 2 cards per row
-    desktop: [6, 4, 3, 4, 3, 4, 6],          // Variable layout
+    tablet: [6, 4, 5, 5, 4, 6, 5, 5, 6, 4, 5],           // 2 cards per row
+    desktop: [6, 4, 3, 4, 3, 4, 6, 4, 3, 3, 4],          // Variable layout
   };
 
   const cardSpans = cardSpansConfig[screenSize];

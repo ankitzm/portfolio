@@ -1,7 +1,7 @@
 "use client";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTransition } from "./TransitionContext";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -12,6 +12,7 @@ const navItems = [
 
 export default function NavBar() {
   const pathname = usePathname();
+  const { navigateTo } = useTransition();
   const [dropped, setDropped] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
@@ -41,9 +42,13 @@ export default function NavBar() {
           const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
           const isVisible = expanded || isActive;
           return (
-            <Link
+            <button
               key={item.href}
-              href={item.href}
+              onClick={() => {
+                if (!isActive) {
+                  navigateTo(item.href);
+                }
+              }}
               className={`relative inline-flex items-center rounded-lg sm:rounded-xl transition-all duration-[800ms] ease-out group overflow-hidden ${
                 isActive ? "text-text-base" : "text-text-base/80"
               } ${expanded ? "hover:animate-squiggle" : ""} ${
@@ -63,7 +68,7 @@ export default function NavBar() {
                 className="absolute inset-0 bg-black/2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out"
               />
               <span className="relative z-10">{item.label}</span>
-            </Link>
+            </button>
           );
         })}
       </div>

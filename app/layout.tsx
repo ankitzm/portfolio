@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
+import PageTransition from "./components/PageTransition";
+import { TransitionProvider } from "./components/TransitionContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,13 +30,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background-base h-screen overflow-hidden`}
       >
-        <div className="h-screen px-2 pt-6 pb-26 md:p-10 m-0">
-          <div className="bg-background h-full rounded-2xl overflow-y-auto flex flex-col items-center w-full justify-center border-4 md:border-8 border-background-base/50">
-          {children}
+        <TransitionProvider>
+          <div className="h-screen px-2 pt-6 pb-26 md:p-10 m-0">
+            <div className="bg-background h-full rounded-2xl overflow-hidden flex flex-col items-center w-full justify-center border-4 md:border-8 border-background-base/50 relative">
+              <PageTransition>{children}</PageTransition>
+            </div>
           </div>
-        </div>
 
-        <NavBar />
+          <NavBar />
+        </TransitionProvider>
       </body>
     </html>
   );

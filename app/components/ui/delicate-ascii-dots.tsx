@@ -8,6 +8,7 @@ interface DelicateAsciiDotsProps {
   gridSize?: number;
   removeWaveLine?: boolean;
   animationSpeed?: number;
+  opacity?: number;
 }
 
 interface Wave {
@@ -30,6 +31,7 @@ const DelicateAsciiDots = ({
   gridSize = 80,
   removeWaveLine = true,
   animationSpeed = 0.5,
+  opacity = 0.1,
 }: DelicateAsciiDotsProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -363,8 +365,8 @@ const DelicateAsciiDots = ({
   return (
     <div
       ref={containerRef}
-      className='w-full h-full absolute inset-0 overflow-hidden opacity-10'
-      style={{ backgroundColor }}
+      className='w-full h-full absolute inset-0 overflow-hidden'
+      style={{ backgroundColor, opacity }}
     >
       <canvas ref={canvasRef} className='block w-full h-full' />
     </div>

@@ -21,7 +21,7 @@ export function parseMarkdownLinks(text: string) {
         href={match[2]}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-text-base underline hover:text-white transition-colors"
+        className="text-background-base/80 underline hover:text-background-base transition-colors"
       >
         {match[1]}
       </a>

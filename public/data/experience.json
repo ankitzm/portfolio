@@ -1,9 +1,29 @@
 [
   {
     "color": "black",
+    "company": "",
+    "role": "Freelancing",
+    "date": "October '25 - Present",
+    "description": [
+      "Building websites and full-stack apps for clients using Next.js and Vue.js",
+      "Desiged dashboards, landing pages, and tools with clean UI/UX.",
+      "Learning Rust, automation, and better frontend architecture."
+    ],
+    "skills": [
+      "Next.js",
+      "React",
+      "Vue.js",
+      "Node.js",
+      "NestJS",
+      "TypeScript",
+      "Rust"
+    ]
+  },
+  {
+    "color": "black",
     "company": "Stealth Company(web3 game)",
     "role": "Full Stack Developer",
-    "date": "May '24 - September '25",
+    "date": "May '24 - October '25",
     "description": [
       "Developed a web3 game from scratch using React, Tailwind CSS, and TypeScript.",
       "Helped in building the game's backend using Node.js and Express.",

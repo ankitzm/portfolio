@@ -265,7 +265,7 @@ const DelicateAsciiDots = ({
       for (let x = 0; x < gridSize; x++) {
         const cell = newGrid[y][x];
         if (cell && cell.char && CHARS.includes(cell.char)) {
-          ctx.fillStyle = `rgba(${textColor}, ${cell.opacity})`;
+          ctx.fillStyle = textColor;
           ctx.fillText(
             cell.char,
             x * cellWidth + cellWidth / 2,

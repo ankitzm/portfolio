@@ -75,11 +75,11 @@ export default function PageTransition({
       >
         <div className="relative w-full h-full bg-background-base">
           <DelicateAsciiDots
-            backgroundColor="rgb(12, 56, 41)"
-            textColor="253, 254, 245"
+            backgroundColor="#e2e8cb"
+            textColor="#0c3829"
             gridSize={60}
             removeWaveLine={true}
-            animationSpeed={1.5}
+            animationSpeed={1}
             opacity={1}
           />
         </div>

@@ -60,12 +60,12 @@ export default function NavBar() {
               {/* Active background */}
               {isActive && (
                 <div 
-                  className="absolute inset-0 bg-black/5 rounded-lg transition-all duration-300 ease-out"
+                  className="absolute inset-0 bg-fade-green/80 rounded-lg transition-all duration-300 ease-out"
                 />
               )}
               {/* Hover background */}
               <div 
-                className="absolute inset-0 bg-black/2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out"
+                className="absolute inset-0 bg-fade-green/40 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out"
               />
               <span className="relative z-10">{item.label}</span>
             </button>

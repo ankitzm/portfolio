@@ -20,7 +20,7 @@
         "name": "SolLens",
         "title": "Chrome extension that annotates Solscan with friendly names, tags & colors.",
         "description": "A privacy-first Chrome extension that enriches Solscan UX by letting users assign names, tags and colors to Solana addresses and display them inline without breaking links. Runs fully locally (chrome.storage.local), uses an anchor-first DOM scanning strategy with MutationObserver for SPA support, and exposes import/export JSON, fast search, multi-tag filters, and a polished React+Tailwind popup UI. Optimized for minimal CPU/memory impact and safe, local-only data handling.",
-        "image": "sollens",
+        "image": "sol-lens",
         "links": {
             "github": "",
             "website": ""

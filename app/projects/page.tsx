@@ -67,7 +67,7 @@ export default function ProjectsPage() {
   const cardSpansConfig = {
     mobile: [10, 10, 10, 10, 10, 10, 10],    // 1 card per row
     tablet: [6, 4, 5, 5, 4, 6, 5, 5, 6, 4, 5],           // 2 cards per row
-    desktop: [6, 4, 3, 4, 3, 4, 6, 4, 3, 3, 4],          // Variable layout
+    desktop: [4, 3, 3, 3, 4, 3, 3, 3, 4, 3, 3, 4],          // Variable layout
   };
 
   const cardSpans = cardSpansConfig[screenSize];
@@ -76,7 +76,7 @@ export default function ProjectsPage() {
 
   return (
     <LayoutGroup>
-      <main className={`relative h-full w-full z-10 bg-background/50 ${expandedCard !== null && !isMobile ? "overflow-hidden" : "overflow-y-auto"}`}>
+      <main className={`relative h-full w-full z-10 ${expandedCard !== null && !isMobile ? "overflow-hidden" : "overflow-y-auto"}`}>
         {isMobile ? (
           // Mobile: List view
           <div className="m-4">

@@ -148,8 +148,8 @@ export default function ProjectCard({
     <motion.div
       layoutId={layoutId}
       onClick={handleCardClick}
-      className={`relative border-2 border-background-base/20 bg-white/5 rounded-2xl p-4 h-60 overflow-hidden ${colSpanClass} ${className} ${
-        isExpanded ? "opacity-0 pointer-events-none" : "cursor-pointer hover:bg-white/10"
+      className={`relative border-2 border-background-base/20 bg-fade-green/40 rounded-2xl p-4 h-60 overflow-hidden ${colSpanClass} ${className} ${
+        isExpanded ? "opacity-0 pointer-events-none" : "cursor-pointer hover:bg-fade-green/50"
       } transition-opacity`}
       transition={{
         type: "spring",

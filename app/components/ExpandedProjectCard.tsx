@@ -88,12 +88,41 @@ export default function ExpandedProjectCard({
             />
           </svg>
         </button>
-        <motion.h1
-          className="text-4xl font-bold mb-4 text-text-base"
-          layout="position"
-        >
-          {title}
-        </motion.h1>
+
+        <div className="flex items-center mb-4 gap-4">
+          <motion.h1
+            className="text-4xl font-bold text-text-base"
+            layout="position"
+          >
+            {title}
+          </motion.h1>
+
+          {/* Action Links */}
+          {(liveLink || codeLink) && (
+            <div className="flex gap-4 text-sm">
+              {liveLink && (
+                <a
+                  href={liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
+                >
+                  <span>↗</span> Visit Website
+                </a>
+              )}
+              {codeLink && (
+                <a
+                  href={codeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
+                >
+                  <span>↗</span> View Code
+                </a>
+              )}
+            </div>
+          )}
+        </div>
 
         {/* Tags */}
         {tags.length > 0 && (
@@ -109,7 +138,7 @@ export default function ExpandedProjectCard({
           </div>
         )}
 
-        <div className="flex flex-col md:flex-row gap-4 justify-center">
+        <div className="flex md:flex-row gap-4 justify-center">
           {/* Project Image */}
           {image && (
             <div className="mb-6 rounded-lg overflow-hidden max-w-[540px] border-2 border-background-base/20">
@@ -120,34 +149,8 @@ export default function ExpandedProjectCard({
               />
             </div>
           )}
-
-          {/* Action Links */}
-          {(liveLink || codeLink) && (
-            <div className="flex flex-col gap-4">
-              {liveLink && (
-                <a
-                  href={liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
-                >
-                  <span>↗</span> Visit Website
-                </a>
-              )}
-              {codeLink && (
-                <a
-                  href={codeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3  hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
-                >
-                  <span>↗</span> View Code
-                </a>
-              )}
-            </div>
-          )}
-
         </div>
+
         {/* Description */}
         <div className="mt-6">
           <p className="text-text-base text-lg leading-relaxed">

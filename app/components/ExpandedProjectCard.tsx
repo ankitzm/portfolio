@@ -99,25 +99,25 @@ export default function ExpandedProjectCard({
 
           {/* Action Links */}
           {(liveLink || codeLink) && (
-            <div className="flex gap-4 text-sm">
-              {liveLink && (
-                <a
-                  href={liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
-                >
-                  <span>↗</span> Visit Website
-                </a>
-              )}
+            <div className="flex gap-2 text-sm">
               {codeLink && (
                 <a
                   href={codeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
+                  className="h-8 w-8 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
                 >
-                  <span>↗</span> View Code
+                  <img src="/github.svg" alt="Github" className="w-4 h-4 m-auto" />
+                </a>
+              )}
+              {liveLink && (
+                <a
+                  href={liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-8 w-8 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
+                >
+                  <img src="/link.svg" alt="Link" className="w-3 h-3 m-auto" />
                 </a>
               )}
             </div>

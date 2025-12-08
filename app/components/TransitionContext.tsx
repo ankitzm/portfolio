@@ -38,6 +38,12 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
       setIsTransitioning(false);
       isNavigatingRef.current = false;
     }, 1050);
+
+    // Safety fallback - ensure state resets after 2 seconds no matter what
+    setTimeout(() => {
+      setIsTransitioning(false);
+      isNavigatingRef.current = false;
+    }, 2000);
   }, [router]);
 
   return (

@@ -14,17 +14,21 @@ export default function PageTransition({
   const [displayChildren, setDisplayChildren] = useState(children);
   const [shouldAnimate, setShouldAnimate] = useState(true);
   const transitionStartedRef = useRef(false);
+  const latestChildrenRef = useRef(children);
 
-  // Update displayChildren when children change AND curtain is covering
+  // Always keep track of latest children
+  latestChildrenRef.current = children;
+
+  // Update displayChildren when children change
   useEffect(() => {
-    // Only update if we're in the middle of a transition (curtain is covering)
+    // During transition, update when curtain is covering
     if (curtainState === 'dropping' || curtainState === 'covering') {
       setDisplayChildren(children);
-    } else if (!isTransitioning) {
+    } else if (curtainState === 'hidden') {
       // When not transitioning, always show current children
       setDisplayChildren(children);
     }
-  }, [children, curtainState, isTransitioning]);
+  }, [children, curtainState]);
 
   // Handle curtain animation when transition starts
   useEffect(() => {
@@ -35,9 +39,11 @@ export default function PageTransition({
       setShouldAnimate(true);
       setCurtainState('dropping');
 
-      // Step 2: After curtain covers, mark as covering (content swap happens via children effect)
+      // Step 2: After curtain covers, mark as covering and ensure content is updated
       const coverTimeout = setTimeout(() => {
         setCurtainState('covering');
+        // Force update to latest children in case the effect missed it
+        setDisplayChildren(latestChildrenRef.current);
       }, 500);
 
       // Step 3: Start lifting curtain (moving down to reveal new content)
@@ -50,14 +56,24 @@ export default function PageTransition({
         // Disable animation to instantly jump back to top
         setShouldAnimate(false);
         setCurtainState('hidden');
+        transitionStartedRef.current = false;
       }, 1050);
+
+      // Safety fallback - force hide curtain after 2 seconds no matter what
+      const safetyTimeout = setTimeout(() => {
+        setShouldAnimate(false);
+        setCurtainState('hidden');
+        transitionStartedRef.current = false;
+        setDisplayChildren(latestChildrenRef.current);
+      }, 2000);
 
       return () => {
         clearTimeout(coverTimeout);
         clearTimeout(liftTimeout);
         clearTimeout(hideTimeout);
+        clearTimeout(safetyTimeout);
       };
-    } else if (!isTransitioning) {
+    } else if (!isTransitioning && curtainState === 'hidden') {
       transitionStartedRef.current = false;
     }
   }, [isTransitioning]);

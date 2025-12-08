@@ -14,25 +14,30 @@ const TransitionContext = createContext<TransitionContextType | undefined>(undef
 export function TransitionProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const transitionCallbacks = useRef<(() => void)[]>([]);
+  const isNavigatingRef = useRef(false);
 
   const triggerTransition = useCallback(() => {
     setIsTransitioning(true);
   }, []);
 
   const navigateTo = useCallback((href: string) => {
+    // Prevent multiple transitions at once
+    if (isNavigatingRef.current) return;
+    isNavigatingRef.current = true;
+
     // Start curtain drop immediately
     setIsTransitioning(true);
     
     // After 500ms (when curtain has dropped), actually navigate
     setTimeout(() => {
       router.push(href);
-      
-      // After another 550ms (when curtain lifts), end transition
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 550);
     }, 500);
+
+    // After full animation (drop + lift), end transition
+    setTimeout(() => {
+      setIsTransitioning(false);
+      isNavigatingRef.current = false;
+    }, 1050);
   }, [router]);
 
   return (

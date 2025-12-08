@@ -1,7 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import DelicateAsciiDots from './ui/delicate-ascii-dots';
 import { useTransition } from './TransitionContext';
 
@@ -10,30 +9,43 @@ export default function PageTransition({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
   const { isTransitioning } = useTransition();
   const [curtainState, setCurtainState] = useState<'hidden' | 'dropping' | 'covering' | 'lifting'>('hidden');
   const [displayChildren, setDisplayChildren] = useState(children);
   const [shouldAnimate, setShouldAnimate] = useState(true);
+  const transitionStartedRef = useRef(false);
+
+  // Update displayChildren when children change AND curtain is covering
+  useEffect(() => {
+    // Only update if we're in the middle of a transition (curtain is covering)
+    if (curtainState === 'dropping' || curtainState === 'covering') {
+      setDisplayChildren(children);
+    } else if (!isTransitioning) {
+      // When not transitioning, always show current children
+      setDisplayChildren(children);
+    }
+  }, [children, curtainState, isTransitioning]);
 
   // Handle curtain animation when transition starts
   useEffect(() => {
-    if (isTransitioning) {
+    if (isTransitioning && !transitionStartedRef.current) {
+      transitionStartedRef.current = true;
+      
       // Step 1: Drop the curtain down from top (old content still showing)
       setShouldAnimate(true);
       setCurtainState('dropping');
 
-      // Step 2: After 500ms when curtain fully covers, update content
-      const updateContentTimeout = setTimeout(() => {
-        setDisplayChildren(children);
+      // Step 2: After curtain covers, mark as covering (content swap happens via children effect)
+      const coverTimeout = setTimeout(() => {
+        setCurtainState('covering');
       }, 500);
 
-      // Step 3: After content updates, start lifting curtain (moving down)
+      // Step 3: Start lifting curtain (moving down to reveal new content)
       const liftTimeout = setTimeout(() => {
         setCurtainState('lifting');
-      }, 550); // Small delay to ensure content is rendered
+      }, 550);
 
-      // Step 4: After 1000ms total, curtain is fully lifted
+      // Step 4: After full animation, curtain is fully lifted
       const hideTimeout = setTimeout(() => {
         // Disable animation to instantly jump back to top
         setShouldAnimate(false);
@@ -41,12 +53,14 @@ export default function PageTransition({
       }, 1050);
 
       return () => {
-        clearTimeout(updateContentTimeout);
+        clearTimeout(coverTimeout);
         clearTimeout(liftTimeout);
         clearTimeout(hideTimeout);
       };
+    } else if (!isTransitioning) {
+      transitionStartedRef.current = false;
     }
-  }, [isTransitioning, children]);
+  }, [isTransitioning]);
 
   // Determine transform based on state
   const getTransform = () => {

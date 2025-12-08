@@ -16,7 +16,7 @@ export const homeTerminalLines: TerminalLine[] = [
   },
   {
     type: "output",
-    text: "> Full Stack Developer & Creative Technologist",
+    text: "> i am Ankit Singh, a Full Stack Developer & Creative Technologist",
     delay: 465,
     duration: 22,
     className: "ml-2 text-text-base/90",
@@ -51,7 +51,7 @@ export const homeTerminalLines: TerminalLine[] = [
   },
   {
     type: "output",
-    text: "> React • Next.js • TypeScript • Node.js • Solidity",
+    text: "> React • Next.js • TypeScript • Node.js • Solidity(evm) • NestJS",
     delay: 5860,
     duration: 20,
     className: "ml-2 text-tigers-eye font-medium",
@@ -65,7 +65,7 @@ export const homeTerminalLines: TerminalLine[] = [
   },
   {
     type: "output",
-    text: "> ✓ Available for opportunities",
+    text: "> ✓ Available for opportunities.",
     delay: 7535,
     duration: 28,
     className: "ml-2 text-background-base/80 font-medium",

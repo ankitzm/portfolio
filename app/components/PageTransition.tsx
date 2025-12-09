@@ -14,55 +14,55 @@ export default function PageTransition({
   const [displayChildren, setDisplayChildren] = useState(children);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  // Track if we are currently handling a navigation sequence to prevent interruptions
-  const isAnimatingRef = useRef(false);
-
+  // Effect 1: Trigger the start of the transition
   useEffect(() => {
-    // 1. START: Navigation triggered from context
-    // We only start if we are effectively hidden or ready to start
-    if (isTransitioning && curtainState === 'hidden' && !isAnimatingRef.current) {
-      isAnimatingRef.current = true;
+    if (isTransitioning && curtainState === 'hidden') {
       setShouldAnimate(true);
-      
-      // Use a small tick to ensure the 'transition-transform' class is applied before changing state
+      // Small delay to ensure CSS transition can catch the state change
       requestAnimationFrame(() => {
         setCurtainState('dropping');
       });
+    }
+  }, [isTransitioning, curtainState]);
 
-      // Wait for drop animation to finish
+  // Effect 2: Handle automatic state progressions (Timers)
+  useEffect(() => {
+    if (curtainState === 'dropping') {
       const timer = setTimeout(() => {
         setCurtainState('covered');
-      }, 600); // Match CSS duration
+      }, 600);
       return () => clearTimeout(timer);
     }
 
-    // 2. WAITING -> SWAP: Curtain is fully down
-    if (curtainState === 'covered') {
-      // If navigation is complete (isTransitioning is false), we can swap and lift
-      // If navigation is still pending (isTransitioning is true), we wait here
-      if (!isTransitioning) {
-        // Swap the content while hidden
-        setDisplayChildren(children);
-
-        // Start lifting after a brief delay to ensure content is rendered
-        const timer = setTimeout(() => {
-          setCurtainState('lifting');
-        }, 100);
-        return () => clearTimeout(timer);
-      }
-    }
-
-    // 3. FINISH: Curtain has lifted off screen
     if (curtainState === 'lifting') {
       const timer = setTimeout(() => {
-        // Animation complete. Reset seamlessly.
         setShouldAnimate(false);
         setCurtainState('hidden');
-        isAnimatingRef.current = false;
-      }, 600); // Match CSS duration
+      }, 600);
       return () => clearTimeout(timer);
     }
-  }, [isTransitioning, curtainState, children]);
+  }, [curtainState]);
+
+  // Effect 3: Handle the "Hold" state (Waiting for navigation to finish)
+  useEffect(() => {
+    if (curtainState === 'covered' && !isTransitioning) {
+      // Update content underneath
+      setDisplayChildren(children);
+
+      // Brief pause before lifting to ensure render is ready
+      const timer = setTimeout(() => {
+        setCurtainState('lifting');
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [curtainState, isTransitioning, children]);
+
+  // Effect 4: Ensure children are kept in sync when not transitioning
+  useEffect(() => {
+    if (curtainState === 'hidden' && !isTransitioning) {
+      setDisplayChildren(children);
+    }
+  }, [children, curtainState, isTransitioning]);
 
   // Determine transform based on state
   const getTransform = () => {
@@ -87,7 +87,7 @@ export default function PageTransition({
 
       {/* Curtain transition overlay */}
       <div
-        className={`fixed inset-0 z-[100] pointer-events-none ${
+        className={`absolute inset-0 z-50 pointer-events-none ${
           shouldAnimate 
             ? 'transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]' 
             : ''

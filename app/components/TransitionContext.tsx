@@ -1,7 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface TransitionContextType {
   navigateTo: (href: string) => void;
@@ -13,8 +13,15 @@ const TransitionContext = createContext<TransitionContextType | undefined>(undef
 
 export function TransitionProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const isNavigatingRef = useRef(false);
+
+  // Reset transition state when pathname changes (navigation completes)
+  useEffect(() => {
+    setIsTransitioning(false);
+    isNavigatingRef.current = false;
+  }, [pathname]);
 
   const triggerTransition = useCallback(() => {
     setIsTransitioning(true);
@@ -23,28 +30,29 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
   const navigateTo = useCallback((href: string) => {
     // Prevent multiple transitions at once
     if (isNavigatingRef.current) return;
+    
+    // Check if we're navigating to the current page
+    if (href === pathname) {
+       router.push(href);
+       return;
+    }
+
     isNavigatingRef.current = true;
 
     // Start curtain drop immediately
     setIsTransitioning(true);
     
-    // After 500ms (when curtain has dropped), actually navigate
+    // After 600ms (when curtain has fully dropped), actually navigate
     setTimeout(() => {
       router.push(href);
-    }, 500);
+    }, 600);
 
-    // After full animation (drop + lift), end transition
+    // Safety fallback - ensure state resets after 3 seconds no matter what
     setTimeout(() => {
       setIsTransitioning(false);
       isNavigatingRef.current = false;
-    }, 1050);
-
-    // Safety fallback - ensure state resets after 2 seconds no matter what
-    setTimeout(() => {
-      setIsTransitioning(false);
-      isNavigatingRef.current = false;
-    }, 2000);
-  }, [router]);
+    }, 3000);
+  }, [router, pathname]);
 
   return (
     <TransitionContext.Provider value={{ navigateTo, isTransitioning, triggerTransition }}>

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Righteous } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import NavBar from "./components/NavBar";
 import PageTransition from "./components/PageTransition";
 import { TransitionProvider } from "./components/TransitionContext";
-import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

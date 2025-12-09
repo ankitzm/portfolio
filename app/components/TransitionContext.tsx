@@ -29,8 +29,16 @@ export function TransitionProvider({
   const pathname = usePathname();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const isNavigatingRef = useRef(false);
+  const timeoutRef = useRef<NodeJS.Timeout>(null);
 
-  // Reset transition state when pathname changes (navigation completes)
+  // Clear timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
   useEffect(() => {
     void pathname;
     setIsTransitioning(false);
@@ -58,7 +66,7 @@ export function TransitionProvider({
       setIsTransitioning(true);
 
       // After 600ms (when curtain has fully dropped), actually navigate
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         router.push(href);
       }, 600);
 

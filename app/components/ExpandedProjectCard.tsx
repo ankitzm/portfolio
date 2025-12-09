@@ -160,7 +160,7 @@ export default function ExpandedProjectCard({
 
         <div className="flex md:flex-row gap-4 justify-center">
           {/* Project Image */}
-          {image && (
+          {image ? (
             <div className="mb-6 rounded-lg overflow-hidden max-w-[540px] border-2 border-background-base/20 w-full">
               <Image
                 src={image}
@@ -170,7 +170,7 @@ export default function ExpandedProjectCard({
                 className="w-full h-auto object-cover bg-gray-800"
               />
             </div>
-          )}
+          ) : null}
         </div>
 
         {/* Description */}

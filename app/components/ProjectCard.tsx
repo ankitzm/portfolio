@@ -93,7 +93,7 @@ export default function ProjectCard({
           <div className="overflow-hidden">
             <div className="px-4 pb-4">
               {/* Project image/thumbnail - Full width */}
-              {image && (
+              {image ? (
                 <div className="mb-4">
                   <Image
                     src={image}
@@ -104,7 +104,7 @@ export default function ProjectCard({
                     className="w-full h-auto rounded-lg object-cover bg-gray-800"
                   />
                 </div>
-              )}
+              ) : null}
 
               {/* Project description */}
               <p className="text-text-base text-sm leading-relaxed mb-4">
@@ -183,13 +183,15 @@ export default function ProjectCard({
         {title}
       </motion.h2>
       <motion.p className="text-sm text-text-base">
-        <Image
-          src={image}
-          alt={title}
-          width={400}
-          height={300}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] min-w-1/2 w-2/3 max-w-64 max-h-3/4 rounded-lg object-cover border-2 border-background-base/20"
-        />
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            width={400}
+            height={300}
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] min-w-1/2 w-2/3 max-w-64 max-h-3/4 rounded-lg object-cover border-2 border-background-base/20"
+          />
+        ) : null}
       </motion.p>
     </motion.div>
   );

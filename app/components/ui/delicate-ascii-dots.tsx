@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useCallback, useEffect, useRef } from "react";
 
 interface DelicateAsciiDotsProps {
   backgroundColor?: string;
@@ -26,8 +26,8 @@ interface GridCell {
 }
 
 const DelicateAsciiDots = ({
-  backgroundColor = 'transparent',
-  textColor = '100, 100, 100',
+  backgroundColor = "transparent",
+  textColor = "100, 100, 100",
   gridSize = 80,
   removeWaveLine = true,
   animationSpeed = 0.5,
@@ -45,7 +45,7 @@ const DelicateAsciiDots = ({
   const dimensionsRef = useRef({ width: 0, height: 0 });
 
   const CHARS =
-    '⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⠁⠂⠄⠈⠐⠠⡀⢀⠃⠅⠘⠨⠊⠋⠌⠍⠎⠏⠑⠒⠓⠔⠕⠖⠗⠙⠚⠛⠜⠝⠞⠟⠡⠢⠣⠤⠥⠦⠧⠩⠪⠫⠬⠭⠮⠯⠱⠲⠳⠴⠵⠶⠷⠹⠺⠻⠼⠽⠾⠿⡁⡂⡃⡄⡅⡆⡇⡉⡊⡋⡌⡍⡎⡏⡑⡒⡓⡔⡕⡖⡗⡙⡚⡛⡜⡝⡞⡟⡡⡢⡣⡤⡥⡦⡧⡩⡪⡫⡬⡭⡮⡯⡱⡲⡳⡴⡵⡶⡷⡹⡺⡻⡼⡽⡾⡿⢁⢂⢃⢄⢅⢆⢇⢉⢊⢋⢌⢍⢎⢏⢑⢒⢓⢔⢕⢖⢗⢙⢚⢛⢜⢝⢞⢟⢡⢢⢣⢤⢥⢦⢧⢩⢪⢫⢬⢭⢮⢯⢱⢲⢳⢴⢵⢶⢷⢹⢺⢻⢼⢽⢾⢿⣀⣁⣂⣃⣄⣅⣆⣇⣉⣊⣋⣌⣍⣎⣏⣑⣒⣓⣔⣕⣖⣗⣙⣚⣛⣜⣝⣞⣟⣡⣢⣣⣤⣥⣦⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿';
+    "⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿⠁⠂⠄⠈⠐⠠⡀⢀⠃⠅⠘⠨⠊⠋⠌⠍⠎⠏⠑⠒⠓⠔⠕⠖⠗⠙⠚⠛⠜⠝⠞⠟⠡⠢⠣⠤⠥⠦⠧⠩⠪⠫⠬⠭⠮⠯⠱⠲⠳⠴⠵⠶⠷⠹⠺⠻⠼⠽⠾⠿⡁⡂⡃⡄⡅⡆⡇⡉⡊⡋⡌⡍⡎⡏⡑⡒⡓⡔⡕⡖⡗⡙⡚⡛⡜⡝⡞⡟⡡⡢⡣⡤⡥⡦⡧⡩⡪⡫⡬⡭⡮⡯⡱⡲⡳⡴⡵⡶⡷⡹⡺⡻⡼⡽⡾⡿⢁⢂⢃⢄⢅⢆⢇⢉⢊⢋⢌⢍⢎⢏⢑⢒⢓⢔⢕⢖⢗⢙⢚⢛⢜⢝⢞⢟⢡⢢⢣⢤⢥⢦⢧⢩⢪⢫⢬⢭⢮⢯⢱⢲⢳⢴⢵⢶⢷⢹⢺⢻⢼⢽⢾⢿⣀⣁⣂⣃⣄⣅⣆⣇⣉⣊⣋⣌⣍⣎⣏⣑⣒⣓⣔⣕⣖⣗⣙⣚⣛⣜⣝⣞⣟⣡⣢⣣⣤⣥⣦⣧⣩⣪⣫⣬⣭⣮⣯⣱⣲⣳⣴⣵⣶⣷⣹⣺⣻⣼⣽⣾⣿";
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -65,10 +65,10 @@ const DelicateAsciiDots = ({
     canvas.width = width * dpr;
     canvas.height = height * dpr;
 
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (ctx) {
       ctx.scale(dpr, dpr);
     }
@@ -117,53 +117,52 @@ const DelicateAsciiDots = ({
       // Clean up old waves
       const now = Date.now();
       clickWaves.current = clickWaves.current.filter(
-        (wave) => now - wave.time < 4000
+        (wave) => now - wave.time < 4000,
       );
     },
-    [gridSize]
+    [gridSize],
   );
 
   const handleMouseUp = useCallback(() => {
     mouseRef.current.isDown = false;
   }, []);
 
-  const getClickWaveInfluence = (
-    x: number,
-    y: number,
-    currentTime: number
-  ): number => {
-    let totalInfluence = 0;
+  const getClickWaveInfluence = useCallback(
+    (x: number, y: number, currentTime: number): number => {
+      let totalInfluence = 0;
 
-    clickWaves.current.forEach((wave) => {
-      const age = currentTime - wave.time;
-      const maxAge = 4000;
-      if (age < maxAge) {
-        const dx = x - wave.x;
-        const dy = y - wave.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const waveRadius = (age / maxAge) * gridSize * 0.8;
-        const waveWidth = gridSize * 0.15;
+      clickWaves.current.forEach((wave) => {
+        const age = currentTime - wave.time;
+        const maxAge = 4000;
+        if (age < maxAge) {
+          const dx = x - wave.x;
+          const dy = y - wave.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const waveRadius = (age / maxAge) * gridSize * 0.8;
+          const waveWidth = gridSize * 0.15;
 
-        if (Math.abs(distance - waveRadius) < waveWidth) {
-          const waveStrength = (1 - age / maxAge) * wave.intensity;
-          const proximityToWave =
-            1 - Math.abs(distance - waveRadius) / waveWidth;
-          totalInfluence +=
-            waveStrength *
-            proximityToWave *
-            Math.sin((distance - waveRadius) * 0.5);
+          if (Math.abs(distance - waveRadius) < waveWidth) {
+            const waveStrength = (1 - age / maxAge) * wave.intensity;
+            const proximityToWave =
+              1 - Math.abs(distance - waveRadius) / waveWidth;
+            totalInfluence +=
+              waveStrength *
+              proximityToWave *
+              Math.sin((distance - waveRadius) * 0.5);
+          }
         }
-      }
-    });
+      });
 
-    return totalInfluence;
-  };
+      return totalInfluence;
+    },
+    [gridSize],
+  );
 
   const animate = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const currentTime = Date.now();
@@ -213,7 +212,7 @@ const DelicateAsciiDots = ({
           const falloff = 1 / (1 + dist * 0.1);
           const value =
             Math.sin(
-              dist * wave.frequency - timeRef.current * wave.speed + wave.phase
+              dist * wave.frequency - timeRef.current * wave.speed + wave.phase,
             ) *
             wave.amplitude *
             falloff;
@@ -227,7 +226,7 @@ const DelicateAsciiDots = ({
 
         // Enhanced mouse interaction
         const mouseDistance = Math.sqrt(
-          (x - mouseGridX) ** 2 + (y - mouseGridY) ** 2
+          (x - mouseGridX) ** 2 + (y - mouseGridY) ** 2,
         );
         if (mouseDistance < gridSize * 0.3) {
           const mouseEffect = (1 - mouseDistance / (gridSize * 0.3)) * 0.8;
@@ -239,11 +238,11 @@ const DelicateAsciiDots = ({
         if (Math.abs(totalWave) > 0.2) {
           const charIndex = Math.min(
             CHARS.length - 1,
-            Math.max(0, Math.floor(normalizedWave * (CHARS.length - 1)))
+            Math.max(0, Math.floor(normalizedWave * (CHARS.length - 1))),
           );
           const opacity = Math.min(
             0.9,
-            Math.max(0.4, 0.4 + normalizedWave * 0.5)
+            Math.max(0.4, 0.4 + normalizedWave * 0.5),
           );
 
           newGrid[y][x] = {
@@ -257,19 +256,19 @@ const DelicateAsciiDots = ({
     // Calculate optimal font size
     const fontSize = Math.min(cellWidth, cellHeight) * 0.8;
     ctx.font = `${fontSize}px monospace`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
 
     // Draw characters
     for (let y = 0; y < gridSize; y++) {
       for (let x = 0; x < gridSize; x++) {
         const cell = newGrid[y][x];
-        if (cell && cell.char && CHARS.includes(cell.char)) {
+        if (cell?.char && CHARS.includes(cell.char)) {
           ctx.fillStyle = textColor;
           ctx.fillText(
             cell.char,
             x * cellWidth + cellWidth / 2,
-            y * cellHeight + cellHeight / 2
+            y * cellHeight + cellHeight / 2,
           );
         }
       }
@@ -293,7 +292,7 @@ const DelicateAsciiDots = ({
             wave.y * cellHeight,
             radius,
             0,
-            2 * Math.PI
+            2 * Math.PI,
           );
           ctx.stroke();
         }
@@ -301,7 +300,14 @@ const DelicateAsciiDots = ({
     }
 
     animationFrameId.current = requestAnimationFrame(animate);
-  }, [backgroundColor, textColor, gridSize, animationSpeed, removeWaveLine]);
+  }, [
+    backgroundColor,
+    textColor,
+    gridSize,
+    animationSpeed,
+    removeWaveLine,
+    getClickWaveInfluence,
+  ]);
 
   useEffect(() => {
     // Initialize background waves
@@ -331,19 +337,19 @@ const DelicateAsciiDots = ({
       resizeCanvas();
     };
 
-    window.addEventListener('resize', handleResize);
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mousedown', handleMouseDown);
-    canvas.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener("resize", handleResize);
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mousedown", handleMouseDown);
+    canvas.addEventListener("mouseup", handleMouseUp);
 
     // Start animation
     animate();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mousedown', handleMouseDown);
-      canvas.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener("resize", handleResize);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mousedown", handleMouseDown);
+      canvas.removeEventListener("mouseup", handleMouseUp);
 
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
@@ -365,13 +371,12 @@ const DelicateAsciiDots = ({
   return (
     <div
       ref={containerRef}
-      className='w-full h-full absolute inset-0 overflow-hidden'
+      className="w-full h-full absolute inset-0 overflow-hidden"
       style={{ backgroundColor, opacity }}
     >
-      <canvas ref={canvasRef} className='block w-full h-full' />
+      <canvas ref={canvasRef} className="block w-full h-full" />
     </div>
   );
 };
 
 export default DelicateAsciiDots;
-

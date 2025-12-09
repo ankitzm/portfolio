@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface ProjectCardProps {
   colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -62,44 +63,54 @@ export default function ProjectCard({
   if (showInlineExpansion) {
     // Mobile: List-style accordion matching the design
     return (
-      <div
+      <button
+        type="button"
         onClick={handleCardClick}
-        className={`border-b border-background-base/20 ${colSpanClass} ${className} cursor-pointer hover:bg-white/40 transition-all duration-300 ease-in-out ${
+        className={`w-full text-left appearance-none border-b border-background-base/20 ${colSpanClass} ${className} cursor-pointer hover:bg-white/40 transition-all duration-300 ease-in-out ${
           isExpanded ? "bg-white/5" : ""
         }`}
       >
         {/* Collapsed view: Title and tags in a row */}
         <div className="p-4 items-center justify-between gap-4 grid grid-cols-2">
-          <h2 className="text-base font-normal text-text-base col-span-1">{name}</h2>
+          <h2 className="text-base font-normal text-text-base col-span-1">
+            {name}
+          </h2>
           <div className="text-xs text-text-base col-span-1 text-right">
             {tags.join(", ")}
           </div>
         </div>
-        
+
         {/* Expandable content */}
+        {/* biome-ignore lint/a11y/noStaticElementInteractions: stop propagation */}
         <div
           className={`grid transition-all duration-300 ease-in-out ${
             isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
           }`}
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+          role="presentation"
         >
           <div className="overflow-hidden">
             <div className="px-4 pb-4">
               {/* Project image/thumbnail - Full width */}
               {image && (
                 <div className="mb-4">
-                  <img
+                  <Image
                     src={image}
                     alt={title}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     className="w-full h-auto rounded-lg object-cover bg-gray-800"
                   />
                 </div>
               )}
-              
+
               {/* Project description */}
               <p className="text-text-base text-sm leading-relaxed mb-4">
                 {description}
               </p>
-              
+
               {/* Action links */}
               <div className="flex gap-4 text-sm">
                 {liveLink && (
@@ -139,7 +150,7 @@ export default function ProjectCard({
             </div>
           </div>
         </div>
-      </div>
+      </button>
     );
   }
 
@@ -149,7 +160,9 @@ export default function ProjectCard({
       layoutId={layoutId}
       onClick={handleCardClick}
       className={`relative border-2 border-background-base/20 bg-fade-green/40 rounded-2xl p-4 h-60 overflow-hidden ${colSpanClass} ${className} ${
-        isExpanded ? "opacity-0 pointer-events-none" : "cursor-pointer hover:bg-fade-green/50"
+        isExpanded
+          ? "opacity-0 pointer-events-none"
+          : "cursor-pointer hover:bg-fade-green/50"
       } transition-opacity`}
       transition={{
         type: "spring",
@@ -157,28 +170,27 @@ export default function ProjectCard({
         damping: 30,
       }}
     >
-      <motion.h1 
+      <motion.h1
         className="text-2xl font-bold text-text-base"
         layout="position"
       >
         {name}
       </motion.h1>
-      <motion.h2 
+      <motion.h2
         className="text-lg font-normal text-text-base"
         layout="position"
       >
         {title}
       </motion.h2>
-      <motion.p 
-        className="text-sm text-text-base"
-      >
-        <img
+      <motion.p className="text-sm text-text-base">
+        <Image
           src={image}
           alt={title}
+          width={400}
+          height={300}
           className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] min-w-1/2 w-2/3 max-w-64 max-h-3/4 rounded-lg object-cover border-2 border-background-base/20"
         />
       </motion.p>
     </motion.div>
   );
 }
-

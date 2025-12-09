@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { parseMarkdownLinks } from "@/lib/parseMarkdownLinks";
 import experienceData from "@/public/data/experience.json";
 import type { TimelineEntry } from "@/types/experience";
-import { parseMarkdownLinks } from "@/lib/parseMarkdownLinks";
 
 const timelineData: TimelineEntry[] = experienceData;
 
@@ -13,7 +13,7 @@ export default function ExperiencePage() {
       <div className="relative w-full max-w-4xl mx-auto space-y-4 pb-10">
         {timelineData.map((entry, index) => (
           <motion.div
-            key={index}
+            key={entry.company + entry.role}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -42,6 +42,7 @@ export default function ExperiencePage() {
             {/* Description - render as list with proper bullet alignment */}
             <ul className="text-text-base/80 text-sm sm:text-base mb-5 space-y-3 list-disc pl-5 marker:text-text-base/60">
               {entry.description.map((item, idx) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: order doesn't change
                 <li key={idx} className="leading-relaxed pl-1.5">
                   {parseMarkdownLinks(item)}
                 </li>
@@ -51,9 +52,9 @@ export default function ExperiencePage() {
             {/* Skills/Tags */}
             {entry.skills && entry.skills.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-1">
-                {entry.skills.map((skill, skillIndex) => (
+                {entry.skills.map((skill) => (
                   <span
-                    key={skillIndex}
+                    key={skill}
                     className="text-xs px-2.5 py-1 rounded-lg bg-background-base/5 text-text-base/70 border border-background-base/10"
                   >
                     {skill}

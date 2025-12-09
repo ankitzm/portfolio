@@ -1,13 +1,13 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "3.5.0",
   "private": true,
   "engines": {
-    "node": ">=22.x"
+    "node": ">=24.x"
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write"

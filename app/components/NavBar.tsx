@@ -33,16 +33,20 @@ export default function NavBar() {
     >
       <div
         className={`relative flex bg-background rounded-xl sm:rounded-2xl font-semibold tracking-wide sm:tracking-wider uppercase text-xs sm:text-sm origin-center transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] border-8 border-background-base ${
-          expanded 
-            ? "scale-x-100 gap-2 sm:gap-6 p-1.5 sm:p-2" 
+          expanded
+            ? "scale-x-100 gap-2 sm:gap-6 p-1.5 sm:p-2"
             : "scale-x-[0.94] gap-0 p-1.5 sm:p-2"
         }`}
       >
         {navItems.map((item) => {
-          const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+          const isActive =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(item.href);
           const isVisible = expanded || isActive;
           return (
             <button
+              type="button"
               key={item.href}
               onClick={() => {
                 if (!isActive) {
@@ -52,21 +56,17 @@ export default function NavBar() {
               className={`relative inline-flex items-center rounded-lg sm:rounded-xl transition-all duration-[800ms] ease-out group overflow-hidden ${
                 isActive ? "text-text-base" : "text-text-base/80"
               } ${expanded ? "hover:animate-squiggle" : ""} ${
-                isVisible 
-                  ? "py-2 px-3 sm:py-2.5 sm:px-4 opacity-100 max-w-[260px] scale-100 pointer-events-auto" 
+                isVisible
+                  ? "py-2 px-3 sm:py-2.5 sm:px-4 opacity-100 max-w-[260px] scale-100 pointer-events-auto"
                   : "p-0 opacity-0 max-w-0 scale-95 pointer-events-none"
               }`}
             >
               {/* Active background */}
               {isActive && (
-                <div 
-                  className="absolute inset-0 bg-fade-green/80 rounded-lg transition-all duration-300 ease-out"
-                />
+                <div className="absolute inset-0 bg-fade-green/80 rounded-lg transition-all duration-300 ease-out" />
               )}
               {/* Hover background */}
-              <div 
-                className="absolute inset-0 bg-fade-green/40 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out"
-              />
+              <div className="absolute inset-0 bg-fade-green/40 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out" />
               <span className="relative z-10">{item.label}</span>
             </button>
           );
@@ -75,5 +75,3 @@ export default function NavBar() {
     </nav>
   );
 }
-
-

@@ -41,108 +41,101 @@
       "NestJS"
     ]
   },
-    {
-      "color": "red",
-      "company": "Router Protocol",
-      "role": "Full Stack Developer",
-      "date": "April '24 - March '25",
-      "description": [
-        "Developed [Router Nitro v2](https://routernitro.com/swap), improving overall cross-chain swap UX.",
-        "Designed a modular, reusable architecture to reduce code duplication and speed up new chain integrations.",
-        "Built the full [CEX withdrawal](https://x.com/routerprotocol/status/1904176702873633007) flow, attracting 60+ users on day one and enabling direct bridging across 30+ chains.",
-        "Managed and optimized the rewards backend with NestJS + PostgreSQL, improving query performance by ~40%.",
-        "Co-developed the [Tangled SDK](https://www.npmjs.com/package/@tangled3/react), simplifying multichain integrations with clean APIs for EVM, Solana, Sui, Cosmos, AlephZero, Tron, Router Chain, and Injective."
-      ],
-      "skills": [
-        "Nodejs/Nestjs",
-        "React/Nextjs",
-        "Wallets",
-        "Web3 UX",
-        "Postgres/MongoDB",
-        "Optimizations"
-      ]
-    },
-    {
-      "color": "purple",
-      "company": "ThirdFi",
-      "role": "Dev. Advocate/Developer",
-      "date": "April '23 - August '23",
-      "description": [
-        "Created [Product](https://docs.thirdfi.org/product/overview) and [API Docs](https://thirdfi.readme.io/reference/introduction) with sample applications.",
-        "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) guides covering blockchain concepts and API usage.",
-        "Delivered Web3 workshops across several Discord communities, including LearnWeb3.",
-        "Contributed to the DerpDEX launch on zkSync and Base.",
-        "Built comprehensive Protocol, Product, and Getting Started docs for DerpDEX on Gitbook."
-      ],
-      "skills": [
-        "Nodejs",
-        "Postman",
-        "JavaScript",
-        "TypeScript",
-        "APIs",
-        "WebSocket",
-        "Webhooks",
-        "Documentation",
-        "Chrome Extension"
-      ]
-    },
-    {
-      "color": "orange",
-      "company": "BlockTrain",
-      "role": "Content Creator",
-      "date": "May '22 - Nov '22",
-      "description": [
-        "Published daily blogs on [Medium](https://medium.com/@0xblocktrain) and [Hashnode](https://blocktrain.hashnode.dev/).",
-        "Created educational videos on BlockTrain’s [YouTube](https://www.youtube.com/c/Blocktrain).",
-        "Hosted blockchain meetups across Indian colleges.",
-        "Built demo projects for workshops and teaching sessions."
-      ],
-      "skills": [
-        "Writing",
-        "JavaScript",
-        "Communication",
-        "Blockchain",
-        ": )"
-      ]
-    },
-    {
-      "color": "purple",
-      "company": "API Hacks Hackathon",
-      "role": "Organizer",
-      "date": "September '21 - October '21",
-      "description": [
-        "Organized API HACKS 2 to help beginners get into development.",
-        "Focused on learning, building, and API-driven development.",
-        "Ran workshops on Tech Phantom's YouTube channel to support participants."
-      ],
-      "skills": [
-        "Postman",
-        "JavaScript",
-        "Workshops",
-        "Event Management",
-        "Hackathon"
-      ]
-    },
-    {
-      "color": "red",
-      "company": "PrepBytes",
-      "role": "Community",
-      "date": "Aug '21 - February '22",
-      "description": [
-        "Boosted engagement in PrepBytes’ coding challenges and workshops.",
-        "Collaborated with student communities to support learning and development.",
-        "Hosted a coding contest with 700+ registrations.",
-        "Helped community members improve their coding skills."
-      ],
-      "skills": [
-        "Communication",
-        "Coding",
-        "JavaScript",
-        "Workshops",
-        "C++",
-        "Community",
-        "Coding Competitions"
-      ]
-    }
-  ]
-  
+  {
+    "color": "red",
+    "company": "Router Protocol",
+    "role": "Full Stack Developer",
+    "date": "April '24 - March '25",
+    "description": [
+      "Developed [Router Nitro v2](https://routernitro.com/swap), improving overall cross-chain swap UX.",
+      "Designed a modular, reusable architecture to reduce code duplication and speed up new chain integrations.",
+      "Built the full [CEX withdrawal](https://x.com/routerprotocol/status/1904176702873633007) flow, attracting 60+ users on day one and enabling direct bridging across 30+ chains.",
+      "Managed and optimized the rewards backend with NestJS + PostgreSQL, improving query performance by ~40%.",
+      "Co-developed the [Tangled SDK](https://www.npmjs.com/package/@tangled3/react), simplifying multichain integrations with clean APIs for EVM, Solana, Sui, Cosmos, AlephZero, Tron, Router Chain, and Injective."
+    ],
+    "skills": [
+      "Nodejs/Nestjs",
+      "React/Nextjs",
+      "Wallets",
+      "Web3 UX",
+      "Postgres/MongoDB",
+      "Optimizations"
+    ]
+  },
+  {
+    "color": "purple",
+    "company": "ThirdFi",
+    "role": "Dev. Advocate/Developer",
+    "date": "April '23 - August '23",
+    "description": [
+      "Created [Product](https://docs.thirdfi.org/product/overview) and [API Docs](https://thirdfi.readme.io/reference/introduction) with sample applications.",
+      "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) guides covering blockchain concepts and API usage.",
+      "Delivered Web3 workshops across several Discord communities, including LearnWeb3.",
+      "Contributed to the DerpDEX launch on zkSync and Base.",
+      "Built comprehensive Protocol, Product, and Getting Started docs for DerpDEX on Gitbook."
+    ],
+    "skills": [
+      "Nodejs",
+      "Postman",
+      "JavaScript",
+      "TypeScript",
+      "APIs",
+      "WebSocket",
+      "Webhooks",
+      "Documentation",
+      "Chrome Extension"
+    ]
+  },
+  {
+    "color": "orange",
+    "company": "BlockTrain",
+    "role": "Content Creator",
+    "date": "May '22 - Nov '22",
+    "description": [
+      "Published daily blogs on [Medium](https://medium.com/@0xblocktrain) and [Hashnode](https://blocktrain.hashnode.dev/).",
+      "Created educational videos on BlockTrain’s [YouTube](https://www.youtube.com/c/Blocktrain).",
+      "Hosted blockchain meetups across Indian colleges.",
+      "Built demo projects for workshops and teaching sessions."
+    ],
+    "skills": ["Writing", "JavaScript", "Communication", "Blockchain", ": )"]
+  },
+  {
+    "color": "purple",
+    "company": "API Hacks Hackathon",
+    "role": "Organizer",
+    "date": "September '21 - October '21",
+    "description": [
+      "Organized API HACKS 2 to help beginners get into development.",
+      "Focused on learning, building, and API-driven development.",
+      "Ran workshops on Tech Phantom's YouTube channel to support participants."
+    ],
+    "skills": [
+      "Postman",
+      "JavaScript",
+      "Workshops",
+      "Event Management",
+      "Hackathon"
+    ]
+  },
+  {
+    "color": "red",
+    "company": "PrepBytes",
+    "role": "Community",
+    "date": "Aug '21 - February '22",
+    "description": [
+      "Boosted engagement in PrepBytes’ coding challenges and workshops.",
+      "Collaborated with student communities to support learning and development.",
+      "Hosted a coding contest with 700+ registrations.",
+      "Helped community members improve their coding skills."
+    ],
+    "skills": [
+      "Communication",
+      "Coding",
+      "JavaScript",
+      "Workshops",
+      "C++",
+      "Community",
+      "Coding Competitions"
+    ]
+  }
+]

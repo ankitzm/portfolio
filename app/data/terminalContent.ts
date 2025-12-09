@@ -78,4 +78,3 @@ export const homeTerminalLines: TerminalLine[] = [
     className: "text-background-base mt-2 font-semibold",
   },
 ];
-

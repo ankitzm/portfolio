@@ -1,15 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
-import ProjectCard from "../components/ProjectCard";
-import ExpandedProjectCard from "../components/ExpandedProjectCard";
-import ProjectsGrid from "../components/ProjectsGrid";
+import { useEffect, useState } from "react";
 import projectsData from "@/public/data/projects.json";
+import ExpandedProjectCard from "../components/ExpandedProjectCard";
+import ProjectCard from "../components/ProjectCard";
+import ProjectsGrid from "../components/ProjectsGrid";
 
 // Hook to detect screen size
 function useScreenSize() {
-  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">("desktop");
+  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
+    "desktop",
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -57,7 +59,7 @@ export default function ProjectsPage() {
     } else {
       document.body.style.overflow = "";
     }
-    
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -65,9 +67,9 @@ export default function ProjectsPage() {
 
   // Responsive card spans for different screen sizes
   const cardSpansConfig = {
-    mobile: [10, 10, 10, 10, 10, 10, 10],    // 1 card per row
-    tablet: [6, 4, 5, 5, 4, 6, 5, 5, 6, 4, 5],           // 2 cards per row
-    desktop: [4, 3, 3, 3, 4, 3, 3, 3, 4, 3, 3, 4],          // Variable layout
+    mobile: [10, 10, 10, 10, 10, 10, 10], // 1 card per row
+    tablet: [6, 4, 5, 5, 4, 6, 5, 5, 6, 4, 5], // 2 cards per row
+    desktop: [4, 3, 3, 3, 4, 3, 3, 3, 4, 3, 3, 4], // Variable layout
   };
 
   const cardSpans = cardSpansConfig[screenSize];
@@ -76,13 +78,15 @@ export default function ProjectsPage() {
 
   return (
     <LayoutGroup>
-      <main className={`relative h-full w-full z-10 ${expandedCard !== null && !isMobile ? "overflow-hidden" : "overflow-y-auto"}`}>
+      <main
+        className={`relative h-full w-full z-10 ${expandedCard !== null && !isMobile ? "overflow-hidden" : "overflow-y-auto"}`}
+      >
         {isMobile ? (
           // Mobile: List view
           <div className="m-4">
             {projectsData.map((project, index) => (
               <ProjectCard
-                key={index}
+                key={project.name}
                 name={project.name}
                 layoutId={`project-card-${index}`}
                 title={project.title}
@@ -103,7 +107,7 @@ export default function ProjectsPage() {
           <ProjectsGrid>
             {projectsData.slice(0, cardSpans.length).map((project, index) => (
               <ProjectCard
-                key={index}
+                key={project.name}
                 layoutId={`project-card-${index}`}
                 name={project.name}
                 title={project.title}
@@ -112,7 +116,9 @@ export default function ProjectsPage() {
                 tags={project.tags}
                 liveLink={project.links.website}
                 codeLink={project.links.github}
-                colSpan={cardSpans[index] as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10}
+                colSpan={
+                  cardSpans[index] as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+                }
                 isExpanded={expandedCard === index}
                 onClick={() => handleCardClick(index)}
                 showInlineExpansion={false}
@@ -140,5 +146,3 @@ export default function ProjectsPage() {
     </LayoutGroup>
   );
 }
-
-

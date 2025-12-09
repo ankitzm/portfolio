@@ -6,4 +6,3 @@ export type TimelineEntry = {
   skills: string[];
   color: string;
 };
-

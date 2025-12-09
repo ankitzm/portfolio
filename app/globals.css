@@ -7,11 +7,11 @@
   --foreground: var(--rich-black);
   --bg-fade-size: 20%;
   /* CSS HEX */
-  --rich-black: #08202Aff;
-  --icterine: #FEF987ff;
+  --rich-black: #08202aff;
+  --icterine: #fef987ff;
   --hookers-green: #97a95d;
-  --tigers-eye: #A8612Cff;
-  --eerie-black: #14171Aff;
+  --tigers-eye: #a8612cff;
+  --eerie-black: #14171aff;
   --fade-green: #e2e8cb;
 }
 
@@ -37,22 +37,43 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-@keyframes squiggle{
-  0%{ transform: translateY(0) rotate(0deg); }
-  25%{ transform: translateY(-4px) rotate(6deg); }
-  50%{ transform: translateY(0) rotate(0deg); }
-  75%{ transform: translateY(-3px) rotate(-6deg); }
-  100%{ transform: translateY(0) rotate(0deg); }
+@keyframes squiggle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(6deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-6deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
-@keyframes squiggle-hover{
-  0%{ transform: translateY(0) rotate(0deg) scale(1); }
-  20%{ transform: translateY(-2px) rotate(3deg) scale(1.02); }
-  40%{ transform: translateY(1px) rotate(-2deg) scale(0.98); }
-  60%{ transform: translateY(-1px) rotate(2deg) scale(1.01); }
-  80%{ transform: translateY(2px) rotate(-1deg) scale(0.99); }
-  100%{ transform: translateY(0) rotate(0deg) scale(1); }
+@keyframes squiggle-hover {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  20% {
+    transform: translateY(-2px) rotate(3deg) scale(1.02);
+  }
+  40% {
+    transform: translateY(1px) rotate(-2deg) scale(0.98);
+  }
+  60% {
+    transform: translateY(-1px) rotate(2deg) scale(1.01);
+  }
+  80% {
+    transform: translateY(2px) rotate(-1deg) scale(0.99);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
 }
 
 .animate-squiggle {

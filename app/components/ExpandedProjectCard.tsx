@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { createPortal } from "react-dom";
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 interface ExpandedProjectCardProps {
   title: string;
@@ -31,7 +32,7 @@ export default function ExpandedProjectCard({
   useEffect(() => {
     setMounted(true);
     // Target the content area instead of document.body
-    const contentArea = document.getElementById('content-area');
+    const contentArea = document.getElementById("content-area");
     setPortalTarget(contentArea);
   }, []);
 
@@ -84,7 +85,10 @@ export default function ExpandedProjectCard({
             className="h-6 w-6"
             viewBox="0 0 20 20"
             fill="currentColor"
+            role="img"
+            aria-labelledby="close-icon-title"
           >
+            <title id="close-icon-title">Close</title>
             <path
               fillRule="evenodd"
               d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -111,7 +115,13 @@ export default function ExpandedProjectCard({
                   rel="noopener noreferrer"
                   className="h-8 w-8 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
                 >
-                  <img src="/github.svg" alt="Github" className="w-4 h-4 m-auto" />
+                  <Image
+                    src="/github.svg"
+                    alt="Github"
+                    width={16}
+                    height={16}
+                    className="m-auto"
+                  />
                 </a>
               )}
               {liveLink && (
@@ -121,7 +131,13 @@ export default function ExpandedProjectCard({
                   rel="noopener noreferrer"
                   className="h-8 w-8 hover:bg-black/5 border border-black/20 rounded-lg transition-colors flex items-center gap-2 text-text-base"
                 >
-                  <img src="/link.svg" alt="Link" className="w-3 h-3 m-auto" />
+                  <Image
+                    src="/link.svg"
+                    alt="Link"
+                    width={12}
+                    height={12}
+                    className="m-auto"
+                  />
                 </a>
               )}
             </div>
@@ -131,9 +147,9 @@ export default function ExpandedProjectCard({
         {/* Tags */}
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-6">
-            {tags.map((tag, idx) => (
+            {tags.map((tag) => (
               <span
-                key={idx}
+                key={tag}
                 className="px-3 py-1 text-xs bg-black/5 rounded-full text-text-base"
               >
                 {tag}
@@ -145,10 +161,12 @@ export default function ExpandedProjectCard({
         <div className="flex md:flex-row gap-4 justify-center">
           {/* Project Image */}
           {image && (
-            <div className="mb-6 rounded-lg overflow-hidden max-w-[540px] border-2 border-background-base/20">
-              <img
+            <div className="mb-6 rounded-lg overflow-hidden max-w-[540px] border-2 border-background-base/20 w-full">
+              <Image
                 src={image}
                 alt={title}
+                width={540}
+                height={300}
                 className="w-full h-auto object-cover bg-gray-800"
               />
             </div>
@@ -163,7 +181,6 @@ export default function ExpandedProjectCard({
         </div>
       </motion.div>
     </motion.div>,
-    portalTarget
+    portalTarget,
   );
 }
-

@@ -4,7 +4,6 @@ import "./globals.css";
 import NavBar from "./components/NavBar";
 import PageTransition from "./components/PageTransition";
 import { TransitionProvider } from "./components/TransitionContext";
-import ConnectButton from "./components/connect";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +31,9 @@ export const metadata: Metadata = {
   title: "Ankit Singh's Portfolio",
   description: "Portfolio v3 hosted by Ankit Singh",
   other: {
-    "Portfolio": "Ankit Singh's Portfolio",
-    "Version": "3.5",
-    "User": "ankitzm",
+    Portfolio: "Ankit Singh's Portfolio",
+    Version: "3.5",
+    User: "ankitzm",
   },
   openGraph: {
     title: "Ankit Singh's Portfolio",
@@ -57,7 +56,9 @@ export const metadata: Metadata = {
     title: "Ankit Singh's Portfolio",
     description: "Portfolio v3 hosted by Ankit Singh",
     creator: "@ankitzm",
-    images: ["https://raw.githubusercontent.com/ankitzm/resume/main/preview.png"],
+    images: [
+      "https://raw.githubusercontent.com/ankitzm/resume/main/preview.png",
+    ],
   },
   icons: {
     icon: "/leaf.svg",
@@ -77,7 +78,10 @@ export default function RootLayout({
       >
         <TransitionProvider>
           <div className="h-screen px-2 pt-6 pb-26 md:p-10 m-0">
-            <div id="content-area" className="bg-background h-full rounded-2xl overflow-hidden flex flex-col items-center w-full justify-center border-4 md:border-8 border-background-base/50 relative">
+            <div
+              id="content-area"
+              className="bg-background h-full rounded-2xl overflow-hidden flex flex-col items-center w-full justify-center border-4 md:border-8 border-background-base/50 relative"
+            >
               <PageTransition>
                 {children}
                 {/* { !== "/projects" && <ConnectButton />} */}

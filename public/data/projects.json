@@ -1,188 +1,143 @@
 [
-    {
-        "name": "Jerico",
-        "title": "Blockchain-native invoicing with instant PYUSD payments.",
-        "description": "A mobile-first invoicing and payments platform that lets freelancers and businesses create invoices and receive instant wallet-to-wallet payments using PYUSD on Ethereum. Invoices are generated on-chain, shared via links or QR codes, and settled directly with no custody or intermediaries.",
-        "image": "jerico",
-        "links": {
-            "github": "https://github.com/ankitzm/jerico",
-            "website": ""
-        },
-        "tags": [
-            "Web3",
-            "Ethereum",
-            "PYUSD",
-            "Smart Contracts",
-            "React"
-        ]
+  {
+    "name": "Jerico",
+    "title": "Blockchain-native invoicing with instant PYUSD payments.",
+    "description": "A mobile-first invoicing and payments platform that lets freelancers and businesses create invoices and receive instant wallet-to-wallet payments using PYUSD on Ethereum. Invoices are generated on-chain, shared via links or QR codes, and settled directly with no custody or intermediaries.",
+    "image": "jerico",
+    "links": {
+      "github": "https://github.com/ankitzm/jerico",
+      "website": ""
     },
-    {
-        "name": "SolLens",
-        "title": "Name, tag, and color Solana addresses directly on Solscan.",
-        "description": "A privacy-first Chrome extension that allows users to assign friendly names, tags, and colors to Solana wallet addresses and see them inline on Solscan. All data is stored locally, links remain untouched, and the extension works seamlessly across Solscan’s dynamic pages.",
-        "image": "sol-lens",
-        "links": {
-            "github": "https://github.com/ankitzm/sollens",
-            "website": ""
-        },
-        "tags": [
-            "Chrome Extension",
-            "Solana",
-            "TypeScript",
-            "React",
-            "Privacy"
-        ]
+    "tags": ["Web3", "Ethereum", "PYUSD", "Smart Contracts", "React"]
+  },
+  {
+    "name": "SolLens",
+    "title": "Name, tag, and color Solana addresses directly on Solscan.",
+    "description": "A privacy-first Chrome extension that allows users to assign friendly names, tags, and colors to Solana wallet addresses and see them inline on Solscan. All data is stored locally, links remain untouched, and the extension works seamlessly across Solscan’s dynamic pages.",
+    "image": "sol-lens",
+    "links": {
+      "github": "https://github.com/ankitzm/sollens",
+      "website": ""
     },
-    {
-        "name": "Terms-Simplified",
-        "title": "Understand risky Terms & Conditions before accepting them.",
-        "description": "A browser extension that analyzes a website’s Terms & Conditions using AI and highlights potentially harmful clauses such as unfair termination, data sharing, auto-renewals, and liability limits. Your API key and analysis stay local, with no tracking or data collection.",
-        "image": "terms-simplified",
-        "links": {
-            "github": "https://github.com/ankitzm/terms-simplified",
-            "website": ""
-        },
-        "tags": [
-            "Browser Extension",
-            "AI",
-            "Privacy",
-            "Perplexity API",
-            "Security"
-        ]
+    "tags": ["Chrome Extension", "Solana", "TypeScript", "React", "Privacy"]
+  },
+  {
+    "name": "Terms-Simplified",
+    "title": "Understand risky Terms & Conditions before accepting them.",
+    "description": "A browser extension that analyzes a website’s Terms & Conditions using AI and highlights potentially harmful clauses such as unfair termination, data sharing, auto-renewals, and liability limits. Your API key and analysis stay local, with no tracking or data collection.",
+    "image": "terms-simplified",
+    "links": {
+      "github": "https://github.com/ankitzm/terms-simplified",
+      "website": ""
     },
-    {
-        "name": "Share-on-Network",
-        "title": "Access your local Next.js app on any device in the same network.",
-        "description": "A simple utility showing how a Next.js development server can be accessed over a local LAN using your device’s IP address. Useful for quickly previewing or testing pages on multiple devices without deployment.",
-        "image": "share-on-network",
-        "links": {
-            "github": "https://github.com/ankitzm/share-on-network",
-            "website": ""
-        },
-        "tags": [
-            "NextJS",
-            "TailwindCSS",
-            "Server Actions",
-            "Local Network",
-            "Dev Tools"
-        ]
+    "tags": ["Browser Extension", "AI", "Privacy", "Perplexity API", "Security"]
+  },
+  {
+    "name": "Share-on-Network",
+    "title": "Access your local Next.js app on any device in the same network.",
+    "description": "A simple utility showing how a Next.js development server can be accessed over a local LAN using your device’s IP address. Useful for quickly previewing or testing pages on multiple devices without deployment.",
+    "image": "share-on-network",
+    "links": {
+      "github": "https://github.com/ankitzm/share-on-network",
+      "website": ""
     },
-    {
-        "name": "Safe Deploy",
-        "title": "Browser-based smart contract deployment—no private keys exposed.",
-        "description": "A lightweight NPM package that enables developers to deploy locally compiled smart contracts directly from the browser using MetaMask—no CLI, private-key injection, or external dependencies required. Works seamlessly on localhost and supports secure, frictionless development workflows.",
-        "image": "safe-deploy",
-        "links": {
-            "github": "https://github.com/ankitzm/safe-deploy",
-            "website": "https://www.npmjs.com/package/safe-deploy"
-        },
-        "tags": [
-            "Web3",
-            "NodeJS",
-            "ExpressJS",
-            "Hardhat",
-            "Solidity"
-        ]
+    "tags": [
+      "NextJS",
+      "TailwindCSS",
+      "Server Actions",
+      "Local Network",
+      "Dev Tools"
+    ]
+  },
+  {
+    "name": "Safe Deploy",
+    "title": "Browser-based smart contract deployment—no private keys exposed.",
+    "description": "A lightweight NPM package that enables developers to deploy locally compiled smart contracts directly from the browser using MetaMask—no CLI, private-key injection, or external dependencies required. Works seamlessly on localhost and supports secure, frictionless development workflows.",
+    "image": "safe-deploy",
+    "links": {
+      "github": "https://github.com/ankitzm/safe-deploy",
+      "website": "https://www.npmjs.com/package/safe-deploy"
     },
-    {
-        "name": "Open Funds",
-        "title": "A decentralized alternative to OpenCollective on the NEAR blockchain.",
-        "description": "A crowdfunding platform built on the NEAR blockchain that allows creators and project teams to collect donations transparently. All project and contributor data is stored on-chain, ensuring trustless access, verifiable funding, and censorship-resistant project sustainability.",
-        "image": "open-funds",
-        "links": {
-            "github": "https://github.com/ankitzm/near-funding-frontend",
-            "website": "https://open-funds.vercel.app/"
-        },
-        "tags": [
-            "Web3",
-            "ReactJS",
-            "TailwindCSS",
-            "NEAR Blockchain",
-            "JSON-RPC"
-        ]
+    "tags": ["Web3", "NodeJS", "ExpressJS", "Hardhat", "Solidity"]
+  },
+  {
+    "name": "Open Funds",
+    "title": "A decentralized alternative to OpenCollective on the NEAR blockchain.",
+    "description": "A crowdfunding platform built on the NEAR blockchain that allows creators and project teams to collect donations transparently. All project and contributor data is stored on-chain, ensuring trustless access, verifiable funding, and censorship-resistant project sustainability.",
+    "image": "open-funds",
+    "links": {
+      "github": "https://github.com/ankitzm/near-funding-frontend",
+      "website": "https://open-funds.vercel.app/"
     },
-    {
-        "name": "Type It All",
-        "title": "A fast, modern typing-speed tester with API-powered prompts.",
-        "description": "A clean and interactive typing test web-app offering a one-minute speed evaluation. It fetches random text via an external API and provides real-time accuracy/WPM metrics. Users can instantly share their results on Twitter for friendly competition.",
-        "image": "type-it-all",
-        "links": {
-            "github": "https://github.com/ankitzm/type-it-all",
-            "website": "https://type-it-all.vercel.app/"
-        },
-        "tags": [
-            "Frontend",
-            "ReactJS",
-            "TailwindCSS",
-            "NPM Packages",
-            "API's",
-            "Twitter/Facebook share"
-        ]
+    "tags": ["Web3", "ReactJS", "TailwindCSS", "NEAR Blockchain", "JSON-RPC"]
+  },
+  {
+    "name": "Type It All",
+    "title": "A fast, modern typing-speed tester with API-powered prompts.",
+    "description": "A clean and interactive typing test web-app offering a one-minute speed evaluation. It fetches random text via an external API and provides real-time accuracy/WPM metrics. Users can instantly share their results on Twitter for friendly competition.",
+    "image": "type-it-all",
+    "links": {
+      "github": "https://github.com/ankitzm/type-it-all",
+      "website": "https://type-it-all.vercel.app/"
     },
-    {
-        "name": "Name It",
-        "title": "AI-style name suggestions for startups, instantly domain-checkable.",
-        "description": "A simple tool to generate creative name ideas for new startups or projects. Enter keywords and get related suggestions powered by an open-source word-association library. Each result links directly to Google Domains for quick domain availability checks.",
-        "image": "name-it",
-        "links": {
-            "github": "https://github.com/ankitzm/nameit",
-            "website": "https://nameit.vercel.app/"
-        },
-        "tags": [
-            "ReactJS",
-            "Google Domain",
-            "Text Searching"
-        ]
+    "tags": [
+      "Frontend",
+      "ReactJS",
+      "TailwindCSS",
+      "NPM Packages",
+      "API's",
+      "Twitter/Facebook share"
+    ]
+  },
+  {
+    "name": "Name It",
+    "title": "AI-style name suggestions for startups, instantly domain-checkable.",
+    "description": "A simple tool to generate creative name ideas for new startups or projects. Enter keywords and get related suggestions powered by an open-source word-association library. Each result links directly to Google Domains for quick domain availability checks.",
+    "image": "name-it",
+    "links": {
+      "github": "https://github.com/ankitzm/nameit",
+      "website": "https://nameit.vercel.app/"
     },
-    {
-        "name": "Solana Wedding",
-        "title": "A blockchain-powered wedding registry built on Solana Devnet.",
-        "description": "A decentralized wedding registry using the Solana blockchain (Devnet). It stores minimal on-chain data to keep transactions fast and cost-effective. Couples can record moments and gifts with blockchain immutability ensured through lightweight Solana program integration.",
-        "image": "solana-wedding",
-        "links": {
-            "github": "https://github.com/ankitzm/solana-wedding",
-            "website": "https://solana-wedding.vercel.app/"
-        },
-        "tags": [
-            "Web3",
-            "Frontend",
-            "ReactJS",
-            "Rust",
-            "TailwindCSS",
-            "NPM Packages"
-        ]
+    "tags": ["ReactJS", "Google Domain", "Text Searching"]
+  },
+  {
+    "name": "Solana Wedding",
+    "title": "A blockchain-powered wedding registry built on Solana Devnet.",
+    "description": "A decentralized wedding registry using the Solana blockchain (Devnet). It stores minimal on-chain data to keep transactions fast and cost-effective. Couples can record moments and gifts with blockchain immutability ensured through lightweight Solana program integration.",
+    "image": "solana-wedding",
+    "links": {
+      "github": "https://github.com/ankitzm/solana-wedding",
+      "website": "https://solana-wedding.vercel.app/"
     },
-    {
-        "name": "NFT Emporium",
-        "title": "Multi-chain NFT minting with a simple, fast, no-code UI.",
-        "description": "A multi-chain NFT minting platform supporting Polygon, Ethereum, BSC, and more. Powered by Moralis on the backend, the app provides a smooth and intuitive UI for creators to mint NFTs without needing blockchain expertise or complex setup.",
-        "image": "nft-emporium",
-        "links": {
-            "github": "https://github.com/Suvraneel/NFT-Emporium",
-            "website": "https://suvraneel.github.io/NFT-Emporium/"
-        },
-        "tags": [
-            "Web3",
-            "Chainlink",
-            "NextJS",
-            "Frontend",
-            "NFT"
-        ]
+    "tags": [
+      "Web3",
+      "Frontend",
+      "ReactJS",
+      "Rust",
+      "TailwindCSS",
+      "NPM Packages"
+    ]
+  },
+  {
+    "name": "NFT Emporium",
+    "title": "Multi-chain NFT minting with a simple, fast, no-code UI.",
+    "description": "A multi-chain NFT minting platform supporting Polygon, Ethereum, BSC, and more. Powered by Moralis on the backend, the app provides a smooth and intuitive UI for creators to mint NFTs without needing blockchain expertise or complex setup.",
+    "image": "nft-emporium",
+    "links": {
+      "github": "https://github.com/Suvraneel/NFT-Emporium",
+      "website": "https://suvraneel.github.io/NFT-Emporium/"
     },
-    {
-        "name": "NASA App",
-        "title": "A clean NASA viewer with weekly aggregation and lazy-loading.",
-        "description": "A frontend application that displays NASA’s Astronomy Picture of the Day, grouped weekly for better browsing. Uses custom fetch logic, lazy image loading, and efficient API chunking to deliver a seamless and optimized user experience.",
-        "image": "nasa",
-        "links": {
-            "github": "https://github.com/ankitzm/nasa-api-frontend",
-            "website": "https://nasa-api-frontend.vercel.app"
-        },
-        "tags": [
-            "Frontend",
-            "NextJS",
-            "TailwindCSS",
-            "Nasa API"
-        ]
-    }
+    "tags": ["Web3", "Chainlink", "NextJS", "Frontend", "NFT"]
+  },
+  {
+    "name": "NASA App",
+    "title": "A clean NASA viewer with weekly aggregation and lazy-loading.",
+    "description": "A frontend application that displays NASA’s Astronomy Picture of the Day, grouped weekly for better browsing. Uses custom fetch logic, lazy image loading, and efficient API chunking to deliver a seamless and optimized user experience.",
+    "image": "nasa",
+    "links": {
+      "github": "https://github.com/ankitzm/nasa-api-frontend",
+      "website": "https://nasa-api-frontend.vercel.app"
+    },
+    "tags": ["Frontend", "NextJS", "TailwindCSS", "Nasa API"]
+  }
 ]

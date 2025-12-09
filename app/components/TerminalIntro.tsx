@@ -1,12 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { Terminal, TypingAnimation } from "@/app/components/ui/terminal";
 import {
-  Terminal,
-  TypingAnimation,
-  AnimatedSpan,
-} from "@/app/components/ui/terminal";
-import { homeTerminalLines, type TerminalLine } from "@/app/data/terminalContent";
+  homeTerminalLines,
+  type TerminalLine,
+} from "@/app/data/terminalContent";
 
 interface TerminalIntroProps {
   lines?: TerminalLine[];
@@ -33,22 +32,20 @@ export default function TerminalIntro({
           />
         </div>
       )}
-      
+
       <Terminal className={`max-h-[550px] w-full ${className}`}>
-        {lines.map((line, index) =>
-          (
-            <TypingAnimation
-              key={index}
-              delay={line.delay}
-              duration={line.duration || 50}
-              className={line.className}
-            >
-              {line.text}
-            </TypingAnimation>
-          )
-        )}
+        {lines.map((line, index) => (
+          <TypingAnimation
+            // biome-ignore lint/suspicious/noArrayIndexKey: needed for unique key
+            key={line.text.slice(0, 10) + index}
+            delay={line.delay}
+            duration={line.duration || 50}
+            className={line.className}
+          >
+            {line.text}
+          </TypingAnimation>
+        ))}
       </Terminal>
     </div>
   );
 }
-

@@ -1,7 +1,7 @@
 "use client";
 
-import DelicateAsciiDots from "@/app/components/ui/delicate-ascii-dots";
 import TerminalIntro from "@/app/components/TerminalIntro";
+import DelicateAsciiDots from "@/app/components/ui/delicate-ascii-dots";
 
 export default function Home() {
   return (

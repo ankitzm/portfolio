@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { motion, MotionProps } from "framer-motion";
+import { type MotionProps, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface AnimatedSpanProps extends MotionProps {
   children: React.ReactNode;
@@ -113,9 +113,10 @@ export const Terminal = ({ children, className }: TerminalProps) => {
         </div>
       </div>
       <pre className="p-2 py-4 md:p-4 overflow-y-auto overflow-x-hidden text-text-base">
-        <code className="grid gap-y-1 break-words whitespace-pre-wrap font-mono">{children}</code>
+        <code className="grid gap-y-1 break-words whitespace-pre-wrap font-mono">
+          {children}
+        </code>
       </pre>
     </div>
   );
 };
-

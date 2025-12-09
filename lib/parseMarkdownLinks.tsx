@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 
 /**
  * Parse markdown-style links [text](url) to JSX anchor tags
@@ -7,9 +7,10 @@ export function parseMarkdownLinks(text: string) {
   const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
   const parts: (string | React.ReactElement)[] = [];
   let lastIndex = 0;
-  let match;
+  let match: RegExpExecArray | null;
   let keyCounter = 0;
 
+  // biome-ignore lint/suspicious/noAssignInExpressions: standard regex loop pattern
   while ((match = linkRegex.exec(text)) !== null) {
     if (match.index > lastIndex) {
       parts.push(text.slice(lastIndex, match.index));
@@ -24,7 +25,7 @@ export function parseMarkdownLinks(text: string) {
         className="text-background-base/80 underline hover:text-background-base transition-colors"
       >
         {match[1]}
-      </a>
+      </a>,
     );
 
     lastIndex = match.index + match[0].length;
@@ -36,4 +37,3 @@ export function parseMarkdownLinks(text: string) {
 
   return parts.length > 0 ? parts : text;
 }
-

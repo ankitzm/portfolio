@@ -2,6 +2,7 @@
 
 import TerminalIntro from "@/app/components/TerminalIntro";
 import DelicateAsciiDots from "@/app/components/ui/delicate-ascii-dots";
+import ConnectButton from "./components/connect";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       <div className="relative z-10 flex items-center justify-center h-full font-san">
         <TerminalIntro />
       </div>
+
+      <ConnectButton />
     </div>
   );
 }

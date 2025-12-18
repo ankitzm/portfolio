@@ -1,13 +1,8 @@
-"use client" 
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Righteous } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import NavBar from "./components/NavBar";
-import PageTransition from "./components/PageTransition";
-import { TransitionProvider } from "./components/TransitionContext";
-import Snowfall from "react-snowfall";
+import ClientLayout from "./components/ClientLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +26,7 @@ const righteous = Righteous({
   variable: "--font-righteous",
 });
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "Ankit Singh's Portfolio",
   description: "Portfolio v3 hosted by Ankit Singh",
   other: {
@@ -70,12 +65,6 @@ const metadata: Metadata = {
   },
 };
 
-const snowflake0 = document.createElement('img')
-snowflake0.src = 'snowflake-0.svg'
-
-const images = [snowflake0]
-const snowflakeCount = window.innerWidth > 768 ? 50 : 20;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -83,32 +72,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overflow-hidden">
-      <Snowfall
-        // Controls the number of snowflakes that are created (defaults to 150).
-        snowflakeCount={snowflakeCount}
-        style={{ zIndex: 1000 }}
-        radius={[10, 20]}
-        speed={[0.5, 1.5]}
-        images={images}
-      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${righteous.variable} antialiased bg-background-base h-screen overflow-hidden`}
       >
-        <TransitionProvider>
-          <div className="h-screen px-2 pt-6 pb-26 md:p-10 m-0">
-            <div
-              id="content-area"
-              className="bg-background h-full rounded-2xl overflow-hidden flex flex-col items-center w-full justify-center border-4 md:border-8 border-background-base/50 relative"
-            >
-              <PageTransition>
-                {children}
-                {/* { !== "/projects" && <ConnectButton />} */}
-              </PageTransition>
-            </div>
-          </div>
-
-          <NavBar />
-        </TransitionProvider>
+        <ClientLayout>{children}</ClientLayout>
         <Analytics />
       </body>
     </html>

@@ -26,6 +26,9 @@ importers:
       react-dom:
         specifier: 19.1.2
         version: 19.1.2(react@19.1.2)
+      react-snowfall:
+        specifier: ^2.4.0
+        version: 2.4.0(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.4.0
@@ -609,6 +612,15 @@ packages:
     peerDependencies:
       react: ^19.1.2
 
+  react-fast-compare@3.2.2:
+    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
+
+  react-snowfall@2.4.0:
+    resolution: {integrity: sha512-KAPMiGnxt11PEgC2pTVrTQsvk5jt1kLUtG+ZamiKLphTZ7GiYT1Aa5kX6jp4jKWq1kqJHchnGT9CDm4g86A5Gg==}
+    peerDependencies:
+      react: "^16.8 ||\_17.x || 18.x || 19.x"
+      react-dom: ^16.8 || 17.x || 18.x || 19.x
+
   react@19.1.2:
     resolution: {integrity: sha512-MdWVitvLbQULD+4DP8GYjZUrepGW7d+GQkNVqJEzNxE+e9WIa4egVFE/RDfVb1u9u/Jw7dNMmPB4IqxzbFYJ0w==}
     engines: {node: '>=0.10.0'}
@@ -1069,6 +1081,14 @@ snapshots:
     dependencies:
       react: 19.1.2
       scheduler: 0.26.0
+
+  react-fast-compare@3.2.2: {}
+
+  react-snowfall@2.4.0(react-dom@19.1.2(react@19.1.2))(react@19.1.2):
+    dependencies:
+      react: 19.1.2
+      react-dom: 19.1.2(react@19.1.2)
+      react-fast-compare: 3.2.2
 
   react@19.1.2: {}
 

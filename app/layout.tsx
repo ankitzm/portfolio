@@ -1,3 +1,5 @@
+"use client" 
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Righteous } from "next/font/google";
 import "./globals.css";
@@ -5,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import NavBar from "./components/NavBar";
 import PageTransition from "./components/PageTransition";
 import { TransitionProvider } from "./components/TransitionContext";
+import Snowfall from "react-snowfall";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +31,7 @@ const righteous = Righteous({
   variable: "--font-righteous",
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Ankit Singh's Portfolio",
   description: "Portfolio v3 hosted by Ankit Singh",
   other: {
@@ -67,6 +70,12 @@ export const metadata: Metadata = {
   },
 };
 
+const snowflake0 = document.createElement('img')
+snowflake0.src = 'snowflake-0.svg'
+
+const images = [snowflake0]
+const snowflakeCount = window.innerWidth > 768 ? 50 : 20;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -74,6 +83,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overflow-hidden">
+      <Snowfall
+        // Controls the number of snowflakes that are created (defaults to 150).
+        snowflakeCount={snowflakeCount}
+        style={{ zIndex: 1000 }}
+        radius={[10, 20]}
+        speed={[0.5, 1.5]}
+        images={images}
+      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${righteous.variable} antialiased bg-background-base h-screen overflow-hidden`}
       >

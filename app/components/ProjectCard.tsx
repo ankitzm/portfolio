@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import OptimizedImage from "./ui/OptimizedImage";
 
 interface ProjectCardProps {
   colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -95,13 +95,11 @@ export default function ProjectCard({
               {/* Project image/thumbnail - Full width */}
               {image ? (
                 <div className="mb-4">
-                  <Image
+                  <OptimizedImage
                     src={image}
-                    alt={title}
-                    width={0}
-                    height={0}
+                    alt={title || "Project image"}
+                    containerClassName="rounded-lg w-full"
                     sizes="100vw"
-                    className="w-full h-auto rounded-lg object-cover bg-gray-800"
                   />
                 </div>
               ) : null}
@@ -182,17 +180,17 @@ export default function ProjectCard({
       >
         {title}
       </motion.h2>
-      <motion.p className="text-sm text-text-base">
-        {image ? (
-          <Image
+      {image ? (
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] min-w-1/2 w-2/3 max-w-64 rounded-lg border-2 border-background-base/20 overflow-hidden">
+          <OptimizedImage
             src={image}
-            alt={title}
-            width={400}
-            height={300}
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] min-w-1/2 w-2/3 max-w-64 max-h-3/4 rounded-lg object-cover border-2 border-background-base/20"
+            alt={title || "Project image"}
+            aspectRatio="5/3"
+            sizes="256px"
+            priority
           />
-        ) : null}
-      </motion.p>
+        </div>
+      ) : null}
     </motion.div>
   );
 }

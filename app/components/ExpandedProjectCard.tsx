@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import OptimizedImage from "./ui/OptimizedImage";
 
 interface ExpandedProjectCardProps {
   title: string;
@@ -162,12 +163,12 @@ export default function ExpandedProjectCard({
           {/* Project Image */}
           {image ? (
             <div className="mb-6 rounded-lg overflow-hidden max-w-[540px] border-2 border-background-base/20 w-full">
-              <Image
+              <OptimizedImage
                 src={image}
                 alt={title}
-                width={540}
-                height={300}
-                className="w-full h-auto object-cover bg-gray-800"
+                aspectRatio="5/3"
+                sizes="540px"
+                priority
               />
             </div>
           ) : null}

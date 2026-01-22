@@ -1,3 +1,5 @@
+"use client" 
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins, Righteous } from "next/font/google";
 import "./globals.css";
@@ -28,7 +30,7 @@ const righteous = Righteous({
   variable: "--font-righteous",
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Ankit Singh's Portfolio",
   description: "Portfolio v3 hosted by Ankit Singh",
   other: {
@@ -77,7 +79,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${righteous.variable} antialiased bg-background-base h-screen overflow-hidden`}
       >
-        <ClientLayout>{children}</ClientLayout>
+        <TransitionProvider>
+          <div className="h-screen px-2 pt-6 pb-26 md:p-10 m-0">
+            <div
+              id="content-area"
+              className="bg-background h-full rounded-2xl overflow-hidden flex flex-col items-center w-full justify-center border-4 md:border-8 border-background-base/50 relative"
+            >
+              <PageTransition>
+                {children}
+                {/* { !== "/projects" && <ConnectButton />} */}
+              </PageTransition>
+            </div>
+          </div>
+
+          <NavBar />
+        </TransitionProvider>
         <Analytics />
       </body>
     </html>

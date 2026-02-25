@@ -7,27 +7,17 @@ import ExpandedProjectCard from "../components/ExpandedProjectCard";
 import ProjectCard from "../components/ProjectCard";
 import ProjectsGrid from "../components/ProjectsGrid";
 
-// Hook to detect screen size
 function useScreenSize() {
-  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">(
-    "desktop",
-  );
+  const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">("desktop");
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 640) {
-        setScreenSize("mobile");
-      } else if (width < 1024) {
-        setScreenSize("tablet");
-      } else {
-        setScreenSize("desktop");
-      }
+      if (width < 640) setScreenSize("mobile");
+      else if (width < 1024) setScreenSize("tablet");
+      else setScreenSize("desktop");
     };
-
-    // Set initial size
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -35,9 +25,25 @@ function useScreenSize() {
   return screenSize;
 }
 
+const filterTags = [
+  { label: "NextJs/React", match: ["NextJS", "React", "ReactJS", "frontend"] },
+  { label: "NodeJs/ExpressJs", match: ["NodeJS", "ExpressJS", "backend", "API", "REST", "GraphQL", "Perplexity API"] },
+  { label: "Blockchain", match: ["Web3", "Solana", "Ethereum", "NEAR Blockchain", "Chainlink", "NFT"] },
+  { label: "AI", match: ["AI", "Perplexity API", "AI API"] },
+  { label: "Privacy", match: ["Privacy"] },
+  { label: "Browser Extension", match: ["Browser Extension", "Chrome Extension"] },
+  { label: "TypeScript", match: ["TypeScript", "nodejs", "expressjs", "reactjs"] },
+];
+
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [filter, setFilter] = useState<string | null>(null);
   const screenSize = useScreenSize();
+
+  const activeFilter = filterTags.find((f) => f.label === filter);
+  const filteredProjects = activeFilter
+    ? projectsData.filter((p) => p.tags.some((t) => activeFilter.match.includes(t)))
+    : projectsData;
 
   const handleCardClick = (index: number) => {
     // On mobile, toggle the same card to collapse it
@@ -81,14 +87,33 @@ export default function ProjectsPage() {
       <main
         className={`relative h-full w-full z-10 ${expandedCard !== null && !isMobile ? "overflow-hidden" : "overflow-y-auto"}`}
       >
+        {/* Filter Bar */}
+        <div className="sticky top-0 z-20 bg-background/90 backdrop-blur-sm border-b-2 border-background-base/20 px-4 py-3">
+          <div className="flex gap-2 flex-wrap">
+            {filterTags.map((tag) => (
+              <button
+                key={tag.label}
+                onClick={() => setFilter(filter === tag.label ? null : tag.label)}
+                className={`px-3 py-1.5 text-xs rounded-lg transition-colors ${
+                  filter === tag.label
+                    ? "bg-fade-green text-text-base"
+                    : "bg-background-base/10 text-text-base/70 hover:bg-fade-green/40"
+                }`}
+              >
+                {tag.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {isMobile ? (
           // Mobile: List view
           <div className="m-4">
-            {projectsData.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <ProjectCard
                 key={project.name}
                 name={project.name}
-                layoutId={`project-card-${index}`}
+                layoutId={`project-card-${project.name}`}
                 title={project.title}
                 description={project.description}
                 image={`/projects/webp/${project.image}.webp`}
@@ -105,10 +130,10 @@ export default function ProjectsPage() {
         ) : (
           // Tablet/Desktop: Grid view
           <ProjectsGrid>
-            {projectsData.slice(0, cardSpans.length).map((project, index) => (
+            {filteredProjects.slice(0, cardSpans.length).map((project, index) => (
               <ProjectCard
                 key={project.name}
-                layoutId={`project-card-${index}`}
+                layoutId={`project-card-${project.name}`}
                 name={project.name}
                 title={project.title}
                 description={project.description}
@@ -129,15 +154,15 @@ export default function ProjectsPage() {
 
         {/* Only show modal expansion for tablet and desktop */}
         <AnimatePresence>
-          {expandedCard !== null && !isMobile && projectsData[expandedCard] && (
+          {expandedCard !== null && !isMobile && filteredProjects[expandedCard] && (
             <ExpandedProjectCard
-              layoutId={`project-card-${expandedCard}`}
-              title={projectsData[expandedCard].name}
-              description={projectsData[expandedCard].description}
-              image={`/projects/webp/${projectsData[expandedCard].image}.webp`}
-              tags={projectsData[expandedCard].tags}
-              liveLink={projectsData[expandedCard].links.website}
-              codeLink={projectsData[expandedCard].links.github}
+              layoutId={`project-card-${filteredProjects[expandedCard].name}`}
+              title={filteredProjects[expandedCard].name}
+              description={filteredProjects[expandedCard].description}
+              image={`/projects/webp/${filteredProjects[expandedCard].image}.webp`}
+              tags={filteredProjects[expandedCard].tags}
+              liveLink={filteredProjects[expandedCard].links.website}
+              codeLink={filteredProjects[expandedCard].links.github}
               onClose={handleCardClose}
             />
           )}

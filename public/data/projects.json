@@ -1,5 +1,16 @@
 [
   {
+    "name": "Clarity",
+    "title": "Turn ChatGPT conversations into structured insights and interactive mind maps.",
+    "description": "A high-performance analyzer that fetches data from ChatGPT share links, processes it through advanced LLMs via OpenRouter, and generates interactive visual representations of your discussions. Features AI multi-analysis for summaries, insights, action items, and sentiment analysis with real-time streaming and a premium glassmorphic UI.",
+    "image": "clarity",
+    "links": {
+      "github": "https://github.com/ankitzm/clarity",
+      "website": ""
+    },
+    "tags": ["React", "TypeScript", "AI", "OpenRouter", "Puppeteer", "React Flow", "Vite"]
+  },
+  {
     "name": "Jerico",
     "title": "Blockchain-native invoicing with instant PYUSD payments.",
     "description": "A mobile-first invoicing and payments platform that lets freelancers and businesses create invoices and receive instant wallet-to-wallet payments using PYUSD on Ethereum. Invoices are generated on-chain, shared via links or QR codes, and settled directly with no custody or intermediaries.",

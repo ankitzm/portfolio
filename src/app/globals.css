@@ -67,6 +67,28 @@ body {
     transform: none;
   }
 }
+@keyframes growx {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes clipopen {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+@keyframes heroout {
+  to {
+    opacity: 0;
+    transform: translateY(-48px);
+  }
+}
 @keyframes blink {
   0%,
   90%,
@@ -111,6 +133,35 @@ body {
       animation-timeline: view();
       animation-range: entry 0% exit 80%;
     }
+    /* Scrubbed reveals: progress is tied to scroll position, not time. */
+    .reveal-mask {
+      animation: maskup 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 45%;
+    }
+    .reveal-clip {
+      animation: clipopen 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
+    /* Hero content drifts up and fades as it scrolls out. */
+    .hero-exit {
+      animation: heroout 1ms linear both;
+      animation-timeline: view();
+      animation-range: exit 10% exit 70%;
+    }
+  }
+}
+
+/* Reading-progress hairline in the header; hidden when unsupported. */
+.scroll-progress {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: growx linear both;
+    animation-timeline: scroll(root);
   }
 }
 

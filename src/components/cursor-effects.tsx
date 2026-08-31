@@ -8,7 +8,7 @@ import { useEffect } from "react";
  * 2. Footer eye pupils ([data-pupil]) track the cursor.
  * Direct DOM writes on mousemove; no React state, no re-renders.
  */
-export default function CursorEffects() {
+export function CursorEffects() {
   useEffect(() => {
     if (
       !window.matchMedia("(pointer: fine)").matches ||

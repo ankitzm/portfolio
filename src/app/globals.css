@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-ground: #f6f5f2;
+  --color-ink: #141412;
+  --color-mute: #5c5c57;
+  --color-faint: #8b8b85;
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-archivo);
+  --font-mono: var(--font-dm-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+::selection {
+  background: var(--color-ink);
+  color: var(--color-ground);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ground);
+  color: var(--color-ink);
+}
+
+@keyframes maskup {
+  from {
+    transform: translateY(110%) skewY(3deg);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes growy {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes slidein {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes blink {
+  0%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+  94% {
+    transform: scaleY(0.06);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .load-fade {
+    animation: fadein 0.7s both;
+  }
+  .load-mask {
+    animation: maskup 0.9s var(--ease-expo) both;
+  }
+  .eye-pupil {
+    animation: blink 5.2s infinite;
+  }
+
+  /* Scroll-driven reveals; browsers without animation-timeline just show content. */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: rise 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 40%;
+    }
+    .reveal-slide {
+      animation: slidein 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 40%;
+    }
+    .reveal-grow {
+      transform-origin: top;
+      animation: growy 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 80%;
+    }
+  }
+}
+
+/* Underline that wipes in left to right (footer CTA). */
+.wipe-link {
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0%
+    3px;
+  transition: background-size 0.5s var(--ease-expo);
+}
+.wipe-link:hover,
+.wipe-link:focus-visible {
+  background-size: 100% 3px;
 }

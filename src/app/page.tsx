@@ -1,12 +1,16 @@
 import Link from "next/link";
 
+import { ExperienceLog } from "@/components/experience-log";
 import { Hero } from "@/components/hero";
 import { StampGrid } from "@/components/stamp-grid";
 import { TornEdge } from "@/components/torn-edge";
-import { getProjects } from "@/lib/data";
+import { getExperience, getProjects } from "@/lib/data";
 
 export default async function Home() {
-  const projects = await getProjects();
+  const [projects, experience] = await Promise.all([
+    getProjects(),
+    getExperience(),
+  ]);
 
   return (
     <main>
@@ -33,6 +37,24 @@ export default async function Home() {
               <span aria-hidden="true" className="barcode h-4 w-10" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section id="experience" className="bg-ground-navy text-ground-navy">
+        <TornEdge />
+        <div className="text-paper mx-auto max-w-350 px-5 pt-4 pb-20 md:px-14 md:pb-28">
+          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="font-display text-3xl font-bold tracking-tight uppercase font-stretch-75% md:text-5xl">
+              Transit log
+            </h2>
+            <Link
+              href="/experience"
+              className="text-paper/70 hover:text-paper font-mono text-[11px] tracking-widest uppercase transition-colors"
+            >
+              Full passport →
+            </Link>
+          </div>
+          <ExperienceLog entries={experience.slice(0, 3)} />
         </div>
       </section>
     </main>

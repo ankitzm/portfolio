@@ -3,7 +3,7 @@ import "server-only";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-import type { Experience, Project } from "@/types";
+import type { Experience, Post, Project } from "@/types";
 
 async function read<T>(file: string): Promise<T> {
   const full = path.join(process.cwd(), "public", "data", file);
@@ -19,3 +19,4 @@ export const projectImage = (image: string) => `/projects/webp/${image}.webp`;
 /** Live site when there is one, else the repo. */
 export const projectHref = ({ links }: Project) =>
   links.website || links.github;
+export const getPosts = () => read<Post[]>("posts.json");

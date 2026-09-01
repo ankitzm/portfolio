@@ -21,3 +21,13 @@ export type Experience = {
   description: string[];
   skills: string[];
 };
+
+/** Entry in `public/data/posts.json`. */
+export type Post = {
+  title: string;
+  /** Display date, e.g. "12 MAR '26". */
+  date: string;
+  /** External article URL (Medium etc.). */
+  url: string;
+  minutes: number;
+};

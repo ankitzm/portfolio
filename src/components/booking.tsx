@@ -65,9 +65,16 @@ export function Booking() {
       <motion.div
         initial={false}
         animate={
-          torn ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }
+          torn
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 0, y: 20, scale: 0.95 }
         }
-        transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.15 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          delay: 0.15,
+        }}
         className={`absolute inset-0 grid place-items-center ${torn ? "" : "pointer-events-none"}`}
       >
         <a

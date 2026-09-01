@@ -39,9 +39,7 @@ export function TabNav() {
       <div className="flex">
         {tabs.map((tab) => {
           const active =
-            tab.href === "/"
-              ? pathname === "/"
-              : pathname.startsWith(tab.href);
+            tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);
           return (
             <Link
               key={tab.href}

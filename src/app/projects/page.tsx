@@ -22,9 +22,7 @@ export default async function ProjectsPage() {
             {projects.length} stamps on file
           </p>
         </div>
-        <p className="rubber-stamp mb-12 text-[11px]">
-          Entering: shipped work
-        </p>
+        <p className="rubber-stamp mb-12 text-[11px]">Entering: shipped work</p>
         <StampGrid projects={projects} />
       </div>
     </main>

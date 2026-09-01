@@ -8,13 +8,7 @@ import type { Project } from "@/types";
  * parity: even stamps tilt -1° with the denomination top-right, odd
  * stamps tilt +1° with it bottom-left.
  */
-export function Stamp({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) {
+export function Stamp({ project, index }: { project: Project; index: number }) {
   const even = index % 2 === 0;
   const denomination = `№${String(index + 1).padStart(2, "0")}`;
 
@@ -52,7 +46,7 @@ export function Stamp({
         </div>
         <span
           aria-hidden="true"
-          className="text-accent text-sm transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          className="text-accent text-sm transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
         >
           ↗
         </span>

@@ -1,0 +1,465 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ankit Singh - Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Caveat&amp;family=Courier+Prime:wght@400;700&amp;family=Hanken+Grotesk:wght@400..700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@100..900&amp;family=Hanken+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#0f36ba",
+                        "surface-tint": "#3351d2",
+                        "newsprint": "#EDEAE3",
+                        "on-surface-variant": "#444654",
+                        "kraft-envelope": "#D9B98A",
+                        "on-secondary-container": "#600e00",
+                        "surface-dim": "#dedacd",
+                        "surface": "#fef9ec",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001257",
+                        "surface-variant": "#e7e2d5",
+                        "on-background": "#1d1c14",
+                        "airmail-sky": "#A9D6EC",
+                        "secondary-container": "#fd6442",
+                        "tertiary": "#344061",
+                        "background": "#fef9ec",
+                        "secondary": "#b12d10",
+                        "document-ink": "#1C1B17",
+                        "on-tertiary-fixed": "#0d1a39",
+                        "inverse-primary": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#8c1900",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#323028",
+                        "counter-paper": "#F1ECDF",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f3eee1",
+                        "on-secondary-fixed": "#3d0600",
+                        "surface-container-highest": "#e7e2d5",
+                        "faded-ink": "#6E6A5E",
+                        "inverse-on-surface": "#f5f0e3",
+                        "primary-container": "#2b4acb",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bac5ee",
+                        "primary-fixed": "#dee1ff",
+                        "tertiary-fixed": "#dae2ff",
+                        "secondary-fixed-dim": "#ffb4a4",
+                        "on-primary-container": "#c4ccff",
+                        "on-tertiary-fixed-variant": "#3a4667",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#ede8db",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "surface-container-low": "#f8f3e6",
+                        "on-tertiary-container": "#c2cdf6",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffdad2",
+                        "outline-variant": "#c5c5d6",
+                        "tertiary-container": "#4b577a",
+                        "rule-line": "rgba(28, 27, 23, 0.16)",
+                        "surface-bright": "#fef9ec",
+                        "primary": "#002eb3",
+                        "outline": "#757686",
+                        "on-surface": "#1d1c14",
+                        "error-container": "#ffdad6",
+                        "airmail-blue": "#2B4ACB",
+                        "stamp-red": "#D94A2B",
+                        "passport-navy": "#1E2A4A"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stripe-thickness": "6px",
+                        "outer-gutter-desktop": "56px",
+                        "page-margin": "10px",
+                        "stamp-gap": "40px",
+                        "max-width": "1400px",
+                        "outer-gutter-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "document-mono": ["Courier Prime"],
+                        "annotation": ["Caveat"],
+                        "display-mobile": ["Bricolage Grotesque"],
+                        "headline-mobile": ["Bricolage Grotesque"],
+                        "display": ["Bricolage Grotesque"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "body": ["Hanken Grotesk"],
+                        "headline": ["Bricolage Grotesque"]
+                    },
+                    "fontSize": {
+                        "document-mono": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "annotation": ["18px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-mobile": ["44px", { "lineHeight": "0.95", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-mobile": ["32px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "display": ["96px", { "lineHeight": "0.95", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["15px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline": ["56px", { "lineHeight": "1.0", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .airmail-border {
+            border: 3px solid transparent;
+            background: linear-gradient(var(--tw-colors-counter-paper, #F1ECDF), var(--tw-colors-counter-paper, #F1ECDF)) padding-box,
+                        repeating-linear-gradient(45deg, 
+                            var(--tw-colors-stamp-red, #D94A2B) 0, 
+                            var(--tw-colors-stamp-red, #D94A2B) 10px, 
+                            transparent 10px, 
+                            transparent 20px, 
+                            var(--tw-colors-airmail-blue, #2B4ACB) 20px, 
+                            var(--tw-colors-airmail-blue, #2B4ACB) 30px, 
+                            transparent 30px, 
+                            transparent 40px) border-box;
+        }
+        .multiply-blend {
+            mix-blend-mode: multiply;
+        }
+        .soft-shadow-paper {
+            box-shadow: 0 16px 32px rgba(28, 27, 23, 0.08), 0 4px 8px rgba(28, 27, 23, 0.04);
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px) rotate(0deg);
+            box-shadow: 0 24px 48px rgba(28, 27, 23, 0.12), 0 8px 16px rgba(28, 27, 23, 0.06);
+        }
+        .hover-lift:active {
+            transform: translateY(1px) scale(0.99);
+            box-shadow: 0 4px 8px rgba(28, 27, 23, 0.08);
+        }
+        .timeline-line {
+            transition: height 0.5s ease-out;
+        }
+        .ticket-tear-left {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+        }
+        .ticket-tear-right {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+        }
+        .is-torn .ticket-tear-left {
+            transform: translateX(-100px) rotate(-5deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .is-torn .ticket-tear-right {
+            transform: translateX(100px) rotate(5deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .is-torn .calendly-reveal {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .calendly-reveal {
+            transition: opacity 0.5s 0.2s, transform 0.5s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-counter-paper text-document-ink min-h-screen p-page-margin selection:bg-airmail-blue selection:text-counter-paper overflow-x-hidden font-body" style="cursor: auto; user-select: auto;">
+<!-- Inset Panel -->
+<div class="airmail-border h-[calc(100vh-20px)] w-full relative bg-counter-paper flex flex-col overflow-y-auto overflow-x-hidden" id="scroll-container">
+<!-- TopNavBar -->
+<nav class="w-full top-0 sticky bg-surface border-b border-rule-line z-50">
+<div class="flex justify-between items-center px-outer-gutter-desktop py-4 max-w-max-width mx-auto">
+<a class="font-display text-display-mobile uppercase text-primary tracking-tight" href="#">ANKIT SINGH</a>
+<div class="hidden md:flex gap-8 items-center font-document-mono text-document-mono uppercase">
+<a class="text-secondary border-b-2 border-secondary pb-1" href="#projects">PROJECTS</a>
+<a class="text-faded-ink hover:text-document-ink hover:bg-surface-container-high transition-colors px-2 py-1" href="#experience">EXPERIENCE</a>
+<a class="text-faded-ink hover:text-document-ink hover:bg-surface-container-high transition-colors px-2 py-1" href="#">DISPATCHES</a>
+<a class="text-faded-ink hover:text-document-ink hover:bg-surface-container-high transition-colors px-2 py-1" href="#booking">LETS TALK</a>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex flex-col relative w-full">
+<!-- Hero Section (Asymmetric) -->
+<section class="max-w-max-width mx-auto w-full px-outer-gutter-mobile md:px-outer-gutter-desktop pt-12 md:pt-24 pb-24 grid grid-cols-1 md:grid-cols-12 gap-8 min-h-[70vh] items-start relative">
+<!-- Left 60% - Postcard -->
+<div class="relative z-10 hover-lift transform -rotate-1 soft-shadow-paper bg-surface p-8 md:p-12 border border-rule-line rounded-DEFAULT md:col-span-10">
+<div class="absolute -right-12 w-72 h-72 bg-surface p-2 soft-shadow-paper transform rotate-6 z-20 multiply-blend" style="top: 30px;">
+<div class="w-full h-full flex items-center justify-center overflow-hidden">
+<img alt="ASCII Art Badge" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfOf6bzt_tR6vRR78b-6HNSMuFx7k2PI_XD5PSpa9N0BQSJjBk9cXxrNzX2_tMq7BSLDi3zj64NitdX_MeMz52-h-0hc-v7S_6GIansSidXEK-nJh1aQBQAWH8bEs2x2Wu-ww5sBHQkzZtt5j2Uo09Lz6ND4397gWxLwu9NhmzA-ZMF42QfNBVGenYl7wnTSR-2cy9tmDMwuOC1vvL-97zE9-MwpUNSJ9JAI6oTbMqLWKchM_ViXOp4G5OxVafhI8Zqw">
+</div>
+<div class="absolute bottom-2 right-2 font-document-mono text-[10px] text-document-ink bg-surface px-1 border border-document-ink">REG. №01</div>
+</div><button class="absolute -right-12 bg-secondary text-surface font-document-mono text-sm uppercase py-3 rounded-DEFAULT border-b-2 border-document-ink active:scale-95 transition-colors hover:bg-stamp-red rotate-6 px-outer-gutter-desktop" style="top: 350px; width: 288px;">OPEN FOR WORK</button>
+<div class="mt-32 border-t border-dotted border-rule-line pt-8">
+<h1 class="font-display text-headline-mobile md:text-display uppercase leading-[0.9] tracking-tighter text-document-ink break-words md:text-[120px]">
+                            SHIPS<br>
+                            SOFTWARE,<br>
+                            END TO END
+                        </h1>
+<p class="font-document-mono text-document-mono mt-6 text-faded-ink lowercase">ai context engineering, web3 products, SDKs &amp; interfaces - i build it all.</p>
+</div>
+<div class="mt-12 flex gap-4 font-document-mono text-[10px] text-faded-ink uppercase border-t border-rule-line pt-4">
+<span class="">(01) POSTCARD</span>
+<span class="">(02) POSTMARK</span>
+<span class="">(03) STAMP</span>
+<span class="">(04) ROUTE</span>
+</div>
+</div>
+<!-- Right 40% - Accents -->
+<!-- Route Line -->
+<div class="hidden md:block absolute -bottom-24 left-1/2 w-0.5 h-32 border-l-2 border-dashed border-rule-line z-0">
+<span class="material-symbols-outlined absolute -bottom-6 -left-[11px] text-airmail-blue transform rotate-180">send</span>
+</div>
+</section>
+<!-- Recent Shipments Section -->
+<section class="w-full bg-airmail-sky py-24 px-outer-gutter-mobile md:px-outer-gutter-desktop relative" id="projects">
+<svg class="absolute top-0 left-0 w-full h-6 text-airmail-sky -translate-y-[99%] z-10 drop-shadow-sm" fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1200 20">
+<path d="M0,20 L0,10 L50,18 L100,8 L150,20 L200,5 L250,15 L300,7 L350,19 L400,10 L450,16 L500,4 L550,18 L600,9 L650,20 L700,6 L750,15 L800,8 L850,19 L900,11 L950,17 L1000,5 L1050,19 L1100,8 L1150,16 L1200,9 L1200,20 Z"></path>
+</svg>
+<div class="max-w-max-width mx-auto relative z-10">
+<div class="flex justify-between items-end mb-16 border-b border-document-ink/30 pb-4">
+<h2 class="font-display text-headline-mobile md:text-headline uppercase text-document-ink">RECENT SHIPMENTS</h2>
+<span class="font-document-mono text-document-mono text-document-ink/70 hidden md:inline-block">FRAGILE // HANDLE WITH CARE</span>
+</div>
+<!-- Grid of 3 Stamps -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stamp-gap">
+<!-- Stamp 1: CLARITY -->
+<div class="relative bg-surface p-4 border-2 border-dashed border-document-ink/30 soft-shadow-paper hover-lift transform rotate-1 group cursor-pointer rounded-DEFAULT">
+    <div class="absolute inset-0 border-8 border-surface pointer-events-none z-10"></div>
+    <div class="bg-surface-variant aspect-square w-full flex items-center justify-center overflow-hidden border-2 border-surface relative z-0">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM0ZSap5zofa6cGhhlKehKtRIWllIoonmsgZI1Romtbz0CK_Fhyj0sO_pITScoaE4DuaYXw5zd1sJUrOWOiNr-llRCH8V0-aiLXEes-OPuRLvKt-3KAT7zReeCmL3Y8dSXolKnRSTBtkchB3vffy4UN0HmV6kmhaRc1oIt-tLqMLuP6xnmzilx6VTAgIsx2F9Utvt3S4nj_GPZP4Pp0igjqxvVdasgOib1Xg101IfLUJOiad2BQuiA">
+    </div>
+    <div class="pt-4 pb-2 px-2 flex justify-between items-start border-t border-dotted border-document-ink mt-3 relative z-20">
+        <div>
+            <h3 class="font-headline text-2xl uppercase text-document-ink tracking-tight">CLARITY</h3>
+            <p class="font-document-mono text-xs text-faded-ink mt-1">DeFi SDK</p>
+        </div>
+        <span class="font-document-mono text-xs font-bold bg-document-ink text-surface px-2 py-1">№01</span>
+    </div>
+</div>
+<!-- Stamp 2: JERICO -->
+<div class="relative bg-surface p-4 border-2 border-dashed border-document-ink/30 soft-shadow-paper hover-lift transform -rotate-2 group cursor-pointer mt-8 md:mt-12 rounded-DEFAULT">
+    <div class="absolute inset-0 border-8 border-surface pointer-events-none z-10"></div>
+    <div class="bg-surface-variant aspect-square w-full flex items-center justify-center overflow-hidden border-2 border-surface relative z-0">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTw32reQkLkKCNKRCogaxplM8i15_FULniEK4RvIK4l3NWtaDJwhD9uWsmGql-CtyDGWvI1lChr9PUNV999_DVE70ySfAdHogHRFPERRxuSPoCd8lOYTx3yQtHKASLqQ8lc3L_2E_QbFSmlscfVlO5Fm24pSM3FYja16tgS8-syqx5guvIN_VH4NRJpRkvE4DZ2m9H4TCqWVrAn5PaeTqwz1uRkngOYjztL2Z0VfUcnR-Q_gBmSAJg">
+    </div>
+    <div class="pt-4 pb-2 px-2 flex justify-between items-start border-t border-dotted border-document-ink mt-3 relative z-20">
+        <div>
+            <h3 class="font-headline text-2xl uppercase text-document-ink tracking-tight">JERICO</h3>
+            <p class="font-document-mono text-xs text-faded-ink mt-1">Wallet Interface</p>
+        </div>
+        <span class="font-document-mono text-xs font-bold bg-document-ink text-surface px-2 py-1">№02</span>
+    </div>
+</div>
+<!-- Stamp 3: SOLLENS -->
+<div class="relative bg-surface p-4 border-2 border-dashed border-document-ink/30 soft-shadow-paper hover-lift transform rotate-2 group cursor-pointer mt-8 md:mt-4 rounded-DEFAULT">
+    <div class="absolute inset-0 border-8 border-surface pointer-events-none z-10"></div>
+    <div class="bg-surface-variant aspect-square w-full flex items-center justify-center overflow-hidden border-2 border-surface relative z-0">
+        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkH6q-zPorvW-qe1XbVsgLW1UKNjg0YACayslnd_XG7jRjsM4d8h7fimnFd7kzY25czFjhQco4Uoylq6OoQDHGuv59Zm42rRAhJMGwyBDYyiEywHXJuKl117a3-wZwFptMg-uUkiex2R9QxQJ7fcVuhEbGPd1PS7eghXPLsCXj-J9vJAG482Rbc0OxVq21TP3t0mUTFjaVb9IGMasqMZOv9Zi_bcY54z5679Drs09req56zNW5kbiF">
+    </div>
+    <div class="pt-4 pb-2 px-2 flex justify-between items-start border-t border-dotted border-document-ink mt-3 relative z-20">
+        <div>
+            <h3 class="font-headline text-2xl uppercase text-document-ink tracking-tight">SOLLENS</h3>
+            <p class="font-document-mono text-xs text-faded-ink mt-1">NFT Protocol</p>
+        </div>
+        <span class="font-document-mono text-xs font-bold bg-document-ink text-surface px-2 py-1">№03</span>
+    </div>
+</div>
+</div>
+<!-- Ticket Stub Link -->
+<div class="mt-24 flex justify-center">
+<a class="inline-flex items-center group relative border-2 border-document-ink bg-surface py-4 px-8 hover-lift transform -rotate-1 max-w-md w-full" href="#">
+<div class="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-airmail-sky rounded-full border-r-2 border-document-ink clip-left"></div>
+<div class="w-full flex justify-between items-center border-l-2 border-dashed border-document-ink pl-6 ml-2">
+<span class="font-headline text-lg uppercase text-document-ink tracking-wide">SEE ALL 12</span>
+<div class="flex-grow border-t-2 border-dotted border-document-ink/50 mx-4 relative top-[1px]"></div>
+<span class="font-document-mono text-sm uppercase text-document-ink group-hover:text-airmail-blue transition-colors font-bold">THE STAMP SHEET</span>
+</div>
+<div class="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-airmail-sky rounded-full border-l-2 border-document-ink clip-right"></div>
+</a>
+</div>
+</div>
+</section>
+<!-- Journey/Experience Section -->
+<section class="w-full bg-passport-navy text-counter-paper py-32 px-outer-gutter-mobile md:px-outer-gutter-desktop relative overflow-visible" id="experience">
+<svg class="absolute top-0 left-0 w-full h-6 text-passport-navy -translate-y-[99%] z-20 drop-shadow-sm" fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1200 20">
+<path d="M0,20 L0,12 L40,19 L80,6 L130,17 L170,8 L220,18 L260,10 L310,20 L350,5 L400,16 L450,9 L500,19 L550,7 L600,18 L640,11 L690,20 L730,8 L780,17 L820,10 L870,20 L920,6 L970,18 L1010,9 L1060,19 L1110,7 L1160,18 L1200,11 L1200,20 Z"></path>
+</svg>
+<div class="max-w-3xl mx-auto relative z-10">
+<div class="mb-20">
+<h2 class="font-display text-headline-mobile md:text-headline uppercase text-counter-paper mb-4">LOGBOOK</h2>
+<p class="font-document-mono text-counter-paper/60 uppercase text-sm border-b border-counter-paper/20 pb-4 inline-block">CERTIFIED ENTRIES</p>
+</div>
+<div class="relative pl-8 md:pl-16">
+<!-- Timeline Track -->
+<div class="absolute left-[15px] md:left-[31px] top-2 bottom-0 w-[2px] bg-counter-paper/10"></div>
+<!-- Animated Timeline Line (Scroll Triggered) -->
+<div class="absolute left-[15px] md:left-[31px] top-2 w-[2px] bg-secondary timeline-line z-10" id="timeline-progress" style="height: 100%;"></div>
+<!-- Entry 1 -->
+<div class="relative mb-16 timeline-entry">
+<div class="absolute -left-[29px] md:-left-[45px] top-6 w-4 h-4 rounded-full border-2 z-20 transition-colors duration-300 timeline-dot bg-secondary border-secondary shadow-[0_0_10px_rgba(177,45,16,0.5)]"></div>
+<div class="border border-counter-paper/20 p-8 hover:bg-counter-paper/5 transition-colors relative group">
+<div class="absolute top-0 right-0 p-4 font-document-mono text-xs text-counter-paper/50 uppercase">OCT 25—PRESENT</div>
+<h3 class="font-headline text-2xl uppercase mb-2">FREELANCING</h3>
+<p class="font-annotation text-xl text-counter-paper/70 mb-6">Independent Developer</p>
+<ul class="font-body text-counter-paper/80 space-y-3 mb-8 ml-4 list-disc marker:text-secondary">
+<li class="">Building custom web applications for various clients.</li>
+<li class="">Specializing in modern full-stack architectures.</li>
+<li class="">Delivering high-performance, accessible user interfaces.</li>
+</ul>
+<div class="flex flex-wrap gap-2 font-document-mono text-xs uppercase">
+<span class="px-2 py-1 border border-counter-paper/30 text-counter-paper/70">React</span>
+<span class="px-2 py-1 border border-counter-paper/30 text-counter-paper/70">Node.js</span>
+<span class="px-2 py-1 border border-counter-paper/30 text-counter-paper/70">Tailwind</span>
+</div>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative mb-16 timeline-entry">
+<div class="absolute -left-[29px] md:-left-[45px] top-6 w-4 h-4 rounded-full border-2 z-20 transition-colors duration-300 timeline-dot bg-secondary border-secondary shadow-[0_0_10px_rgba(177,45,16,0.5)]"></div>
+<div class="border border-counter-paper/20 p-8 hover:bg-counter-paper/5 transition-colors relative group">
+<div class="absolute top-0 right-0 p-4 font-document-mono text-xs text-counter-paper/50 uppercase">MAY 24—OCT 25</div>
+<h3 class="font-headline text-2xl uppercase mb-2">STEALTH COMPANY WEB3 GAME</h3>
+<p class="font-annotation text-xl text-counter-paper/70 mb-6">Senior Frontend Engineer</p>
+<ul class="font-body text-counter-paper/80 space-y-3 mb-8 ml-4 list-disc marker:text-secondary">
+<li class="">Architected the main game client using WebGL.</li>
+<li class="">Integrated smart contract interactions for in-game assets.</li>
+<li class="">Optimized rendering pipeline for 60fps on mobile browsers.</li>
+</ul>
+<div class="flex flex-wrap gap-2 font-document-mono text-xs uppercase">
+<span class="px-2 py-1 border border-counter-paper/30 text-counter-paper/70">Web3.js</span>
+<span class="px-2 py-1 border border-counter-paper/30 text-counter-paper/70">Three.js</span>
+<span class="px-2 py-1 border border-counter-paper/30 text-counter-paper/70">Solidity</span>
+</div>
+</div>
+</div>
+<!-- Entry 3 -->
+<div class="relative timeline-entry">
+<div class="absolute -left-[29px] md:-left-[45px] top-6 w-4 h-4 rounded-full border-2 z-20 transition-colors duration-300 timeline-dot bg-secondary border-secondary shadow-[0_0_10px_rgba(177,45,16,0.5)]"></div>
+<div class="border border-secondary/50 bg-secondary/5 p-8 relative group">
+<div class="absolute top-0 right-0 p-4 font-document-mono text-xs text-secondary uppercase">APR 24—MAR 25</div>
+<h3 class="font-headline text-2xl uppercase mb-2 text-secondary">ROUTER PROTOCOL</h3>
+<p class="font-annotation text-xl text-counter-paper/70 mb-6">Blockchain Developer</p>
+<ul class="font-body text-counter-paper/80 space-y-3 mb-8 ml-4 list-disc marker:text-secondary">
+<li class="">Developed cross-chain messaging infrastructure.</li>
+<li class="">Implemented relayer nodes in Rust.</li>
+<li class="">Conducted internal security audits for smart contracts.</li>
+</ul>
+<div class="flex flex-wrap gap-2 font-document-mono text-xs uppercase">
+<span class="px-2 py-1 border border-secondary/50 text-secondary">Rust</span>
+<span class="px-2 py-1 border border-secondary/50 text-secondary">Cosmos SDK</span>
+<span class="px-2 py-1 border border-secondary/50 text-secondary">EVM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Booking Section -->
+<section class="w-full bg-kraft-envelope py-32 px-outer-gutter-mobile md:px-outer-gutter-desktop relative" id="booking">
+<svg class="absolute top-0 left-0 w-full h-6 text-kraft-envelope -translate-y-[99%] z-30 drop-shadow-[0_-4px_4px_rgba(0,0,0,0.1)]" fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1200 20">
+<path d="M0,20 L0,15 L60,8 L110,18 L160,5 L220,16 L270,10 L330,20 L380,7 L440,15 L490,4 L550,19 L600,11 L660,18 L710,6 L770,17 L820,9 L880,19 L930,5 L990,16 L1040,10 L1100,20 L1150,8 L1200,15 L1200,20 Z"></path>
+</svg>
+<div class="max-w-4xl mx-auto flex flex-col items-center relative z-10">
+<div class="text-center mb-16">
+<h2 class="font-display text-headline-mobile md:text-headline uppercase text-document-ink mb-4">DISPATCH A SIGNAL</h2>
+<p class="font-document-mono text-document-ink/70 uppercase text-sm">SECURE COMMINUCATION LINE</p>
+</div>
+<div class="relative w-full max-w-2xl h-[400px] flex justify-center items-center">
+<!-- Calendly Reveal Layer -->
+<div class="absolute inset-0 bg-surface border-2 border-document-ink p-8 flex flex-col items-center justify-center soft-shadow-paper calendly-reveal z-0">
+<span class="material-symbols-outlined text-4xl text-airmail-blue mb-4">calendar_month</span>
+<h3 class="font-headline text-2xl uppercase text-document-ink mb-2">CALENDAR OPEN</h3>
+<p class="font-document-mono text-sm text-faded-ink mb-6 text-center">Select a time for our 30-minute strategic briefing.</p>
+<button class="bg-document-ink text-surface font-document-mono text-sm uppercase py-3 px-8 hover:bg-airmail-blue transition-colors">PROCEED TO SCHEDULER</button>
+</div>
+<!-- Tearable Ticket Wrapper -->
+<div class="relative w-full h-full flex cursor-pointer group is-torn" id="booking-ticket" onclick="this.classList.add('is-torn')">
+<!-- Left Side (Main Ticket) -->
+<div class="w-3/4 h-full bg-[#f4f1ea] border-y-2 border-l-2 border-document-ink/30 relative flex flex-col justify-between p-8 ticket-tear-left soft-shadow-paper z-10" style="mask-image: url('data:image/svg+xml;utf8,&lt;svg preserveAspectRatio=%22none%22 viewBox=%220 0 100 100%22 xmlns=%22http://www.w3.org/2000/svg%22&gt;&lt;polygon points=%220,0 100,0 95,5 98,15 94,25 99,35 95,45 98,55 94,65 99,75 95,85 98,95 95,100 0,100%22 fill=%22black%22/&gt;&lt;/svg&gt;'); mask-size: 100% 100%;">
+<div class="flex justify-between items-center border-b border-document-ink/20 pb-4 mb-8">
+<span class="font-document-mono text-sm text-document-ink/60 uppercase">AS</span>
+<div class="flex-grow border-t border-document-ink/20 mx-4"></div>
+<span class="font-document-mono text-sm text-document-ink/60 uppercase">YOU</span>
+</div>
+<div>
+<h2 class="font-headline text-5xl md:text-6xl uppercase text-document-ink leading-none mb-2">BOOK A<br>SESSION</h2>
+<p class="font-headline text-2xl md:text-3xl uppercase text-document-ink/60">30 MIN - CALENDLY</p>
+</div>
+<div class="mt-auto pt-8">
+<svg class="h-16 w-48 text-document-ink/70" fill="currentColor" preserveAspectRatio="none" viewBox="0 0 200 60"><path d="M0 0h5v60H0zM8 0h2v60H8zM12 0h12v60H12zM28 0h4v60h-4zM36 0h8v60h-8zM46 0h2v60h-2zM50 0h14v60H50zM68 0h6v60h-6zM76 0h2v60h-2zM82 0h10v60H82zM96 0h4v60h-4zM102 0h8v60h-8zM114 0h12v60h-12zM128 0h4v60h-4zM136 0h2v60h-2zM142 0h16v60h-16zM162 0h6v60h-6zM170 0h10v60h-10zM182 0h2v60h-2zM188 0h8v60h-8z"></path></svg>
+</div>
+</div>
+<!-- Right Side (Tear Stub) -->
+<div class="w-1/4 h-full bg-[#f4f1ea] border-y-2 border-r-2 border-document-ink/30 relative flex items-center justify-center ticket-tear-right soft-shadow-paper z-10" style="mask-image: url('data:image/svg+xml;utf8,&lt;svg preserveAspectRatio=%22none%22 viewBox=%220 0 100 100%22 xmlns=%22http://www.w3.org/2000/svg%22&gt;&lt;polygon points=%225,0 100,0 100,100 5,100 8,95 4,85 9,75 5,65 8,55 4,45 9,35 5,25 8,15 4,5%22 fill=%22black%22/&gt;&lt;/svg&gt;'); mask-size: 100% 100%;">
+<span class="font-document-mono text-sm text-document-ink/60 uppercase tracking-[0.3em] style='writing-mode: vertical-rl;' transform -rotate-90 origin-center absolute whitespace-nowrap group-hover:text-stamp-red transition-colors">TEAR HERE</span>
+</div>
+</div>
+</div>
+<p class="font-document-mono text-xs text-document-ink/50 mt-8 uppercase tracking-widest text-center">CLICK TICKET TO REVEAL SCHEDULER</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container border-t-2 border-document-ink flex flex-col md:flex-row justify-between items-center px-outer-gutter-desktop py-12 gap-8 z-40">
+<div class="font-headline text-headline-mobile text-document-ink uppercase tracking-tight text-center md:text-left">
+                ©2024 REGISTERED MAIL SYSTEM
+            </div>
+<div class="flex gap-6 font-document-mono text-document-mono uppercase">
+<a class="text-faded-ink hover:text-secondary transition-colors active:scale-95" href="#">ARCHIVE</a>
+<a class="text-faded-ink hover:text-secondary transition-colors active:scale-95" href="#">CONTACT</a>
+<a class="text-faded-ink hover:text-secondary transition-colors active:scale-95" href="#">LOGBOOK</a>
+</div>
+</footer>
+</div>
+<script>
+    // Simple scroll handler for timeline and stamp
+    const scrollContainer = document.getElementById('scroll-container');
+    const timelineProgress = document.getElementById('timeline-progress');
+    const timelineEntries = document.querySelectorAll('.timeline-entry');
+    const dots = document.querySelectorAll('.timeline-dot');
+    const expSection = document.getElementById('experience');
+
+    if(scrollContainer && expSection) {
+        scrollContainer.addEventListener('scroll', () => {
+            const expRect = expSection.getBoundingClientRect();
+            const containerHeight = scrollContainer.clientHeight;
+            
+            // Check if experience section is in view
+            if (expRect.top < containerHeight && expRect.bottom > 0) {
+                // Calculate progress down the section
+                const totalScrollable = expRect.height;
+                const scrolled = (containerHeight / 2) - expRect.top;
+                let progress = Math.max(0, Math.min(100, (scrolled / totalScrollable) * 100));
+                
+                if (timelineProgress) {
+                    timelineProgress.style.height = `${progress}%`;
+                }
+
+                // Highlight dots
+                timelineEntries.forEach((entry, index) => {
+                    const entryRect = entry.getBoundingClientRect();
+                    if (entryRect.top < (containerHeight / 2)) {
+                        dots[index].classList.remove('bg-passport-navy', 'border-counter-paper/30');
+                        dots[index].classList.add('bg-secondary', 'border-secondary', 'shadow-[0_0_10px_rgba(177,45,16,0.5)]');
+                    } else {
+                        dots[index].classList.add('bg-passport-navy', 'border-counter-paper/30');
+                        dots[index].classList.remove('bg-secondary', 'border-secondary', 'shadow-[0_0_10px_rgba(177,45,16,0.5)]');
+                    }
+                });
+            }
+        });
+    }
+</script>
+
+
+</body></html>

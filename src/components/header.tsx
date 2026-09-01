@@ -1,35 +1,34 @@
+import Link from "next/link";
+
 const links = [
-  { href: "#projects", label: "WORK" },
-  { href: "#experience", label: "EXPERIENCE" },
+  { href: "/projects", label: "PROJECTS" },
+  { href: "/experience", label: "EXPERIENCE" },
+  { href: "/dispatches", label: "DISPATCHES" },
+  { href: "/#booking", label: "LET'S TALK" },
 ];
 
 export function Header() {
   return (
-    <header className="bg-ground/90 sticky top-0 z-10 flex items-center justify-between px-5 py-4 font-mono text-[11px] backdrop-blur-sm md:px-14 md:py-5">
-      <a href="#" className="font-medium">
-        ankit singh
-      </a>
-      <nav className="flex items-center gap-7">
-        {links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="text-mute hover:border-ink hover:text-ink hidden border-b border-transparent transition-colors md:inline"
-          >
-            {link.label}
-          </a>
-        ))}
-        <a
-          href="#contact"
-          className="border-ink hover:bg-ink hover:text-ground border px-5 py-2.5 transition-colors duration-200 active:scale-[0.97]"
+    <header className="bg-surface/90 border-rule sticky top-0 z-50 border-b backdrop-blur-sm">
+      <div className="mx-auto flex max-w-350 items-center justify-between px-5 py-4 md:px-14">
+        <Link
+          href="/"
+          className="font-display text-accent text-2xl font-extrabold tracking-tight uppercase"
         >
-          LET&rsquo;S TALK
-        </a>
-      </nav>
-      <div
-        aria-hidden="true"
-        className="scroll-progress bg-ink absolute bottom-0 left-0 h-px w-full"
-      />
+          Ankit Singh
+        </Link>
+        <nav className="hidden items-center gap-8 font-mono text-xs tracking-widest md:flex">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-ink-faded hover:text-ink border-b-2 border-transparent pb-1 transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }

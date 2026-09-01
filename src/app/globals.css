@@ -1,177 +1,188 @@
 @import "tailwindcss";
 
+/*
+ * "Everything Ships" tokens. THE ONLY FILE ALLOWED TO CONTAIN COLOR
+ * LITERALS — components consume tokens via Tailwind classes only.
+ */
 @theme {
-  --color-ground: #f6f5f2;
-  --color-ink: #141412;
-  --color-mute: #5c5c57;
-  --color-faint: #8b8b85;
-  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --color-surface: #fef9ec;
+  --color-paper: #f1ecdf;
+  --color-ink: #1c1b17;
+  --color-ink-faded: #6e6a5e;
+  /* accent = airmail blue: every interactive element */
+  --color-accent: #2b4acb;
+  /* stamp = rubber-stamp red: imprints only, never interactive */
+  --color-stamp: #d94a2b;
+  --color-ground-sky: #a9d6ec;
+  --color-ground-navy: #1e2a4a;
+  --color-ground-kraft: #d9b98a;
+  --color-ground-news: #edeae3;
+  --color-rule: rgba(28, 27, 23, 0.16);
+  /* experience visa ink tints, mapped from the data color field */
+  --color-visa-paper: #f1ecdf;
+  --color-visa-red: #e86a50;
+  --color-visa-orange: #e8a050;
+  --color-visa-purple: #a78bdb;
+
+  --ease-paper: cubic-bezier(0.2, 0, 0, 1);
 }
 
 @theme inline {
-  --font-sans: var(--font-archivo);
-  --font-mono: var(--font-dm-mono);
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-hanken);
+  --font-mono: var(--font-courier);
+  --font-annotation: var(--font-caveat);
 }
 
 ::selection {
-  background: var(--color-ink);
-  color: var(--color-ground);
+  background: var(--color-accent);
+  color: var(--color-paper);
 }
 
 body {
-  background: var(--color-ground);
+  background: var(--color-surface);
   color: var(--color-ink);
+  overflow-x: clip;
 }
 
-@keyframes maskup {
-  from {
-    transform: translateY(110%) skewY(3deg);
-  }
-  to {
-    transform: none;
-  }
-}
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes growy {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-@keyframes slidein {
-  from {
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes growx {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-@keyframes clipopen {
-  from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0);
-  }
-}
-@keyframes heroout {
-  to {
-    opacity: 0;
-    transform: translateY(-48px);
-  }
-}
-@keyframes blink {
-  0%,
-  90%,
-  100% {
-    transform: scaleY(1);
-  }
-  94% {
-    transform: scaleY(0.06);
-  }
+/* Fixed airmail-stripe frame around the viewport; decoration only. */
+.airmail-frame {
+  position: fixed;
+  inset: 10px;
+  border: 3px solid transparent;
+  background: repeating-linear-gradient(
+      45deg,
+      var(--color-stamp) 0,
+      var(--color-stamp) 10px,
+      transparent 10px,
+      transparent 20px,
+      var(--color-accent) 20px,
+      var(--color-accent) 30px,
+      transparent 30px,
+      transparent 40px
+    )
+    border-box;
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.5;
+  z-index: 100;
+  pointer-events: none;
 }
 
+.soft-shadow-paper {
+  box-shadow:
+    0 16px 32px rgba(28, 27, 23, 0.08),
+    0 4px 8px rgba(28, 27, 23, 0.04);
+}
+
+/* Rotated paper objects lift and straighten on hover. */
+.hover-lift {
+  transition:
+    transform 0.3s var(--ease-paper),
+    box-shadow 0.3s var(--ease-paper);
+}
+.hover-lift:hover {
+  transform: translateY(-4px) rotate(0deg);
+  box-shadow:
+    0 24px 48px rgba(28, 27, 23, 0.12),
+    0 8px 16px rgba(28, 27, 23, 0.06);
+}
+.hover-lift:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Postage-stamp card: white matte + offset dashed perforation ring. */
+.stamp-edge {
+  background: var(--color-surface);
+  padding: 4px;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(28, 27, 23, 0.14);
+}
+.stamp-edge::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px dashed var(--color-rule);
+  pointer-events: none;
+}
+
+/* Decorative ink imprint. Never interactive — red is not a UI accent. */
+.rubber-stamp {
+  color: var(--color-stamp);
+  border: 3px solid var(--color-stamp);
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  display: inline-block;
+  transform: rotate(-4deg);
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+
+.barcode {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-ink) 0,
+    var(--color-ink) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+/* Zig-zag tear edges for the booking ticket halves. */
+.tear-main {
+  mask-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 100,0 95,5 98,15 94,25 99,35 95,45 98,55 94,65 99,75 95,85 98,95 95,100 0,100" fill="black"/></svg>');
+  mask-size: 100% 100%;
+}
+.tear-stub {
+  mask-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="5,0 100,0 100,100 5,100 8,95 4,85 9,75 5,65 8,55 4,45 9,35 5,25 8,15 4,5" fill="black"/></svg>');
+  mask-size: 100% 100%;
+}
+
+/* Hero load choreography. */
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
+  @keyframes maskup {
+    from {
+      transform: translateY(110%) skewY(3deg);
+    }
+    to {
+      transform: none;
+    }
   }
-
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes stamp-slam {
+    0% {
+      opacity: 0;
+      transform: rotate(-4deg) scale(1.4);
+    }
+    60% {
+      opacity: 0.85;
+      transform: rotate(-5deg) scale(0.96);
+    }
+    100% {
+      opacity: 0.85;
+      transform: rotate(-4deg) scale(1);
+    }
+  }
+  .load-mask {
+    animation: maskup 0.9s var(--ease-paper) both;
+  }
   .load-fade {
     animation: fadein 0.7s both;
   }
-  .load-mask {
-    animation: maskup 0.9s var(--ease-expo) both;
+  .load-slam {
+    animation: stamp-slam 0.45s var(--ease-paper) both;
   }
-  .eye-pupil {
-    animation: blink 5.2s infinite;
-  }
-
-  /* Scroll-driven reveals; browsers without animation-timeline just show content. */
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: rise 1ms linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 40%;
-    }
-    .reveal-slide {
-      animation: slidein 1ms linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 40%;
-    }
-    .reveal-grow {
-      transform-origin: top;
-      animation: growy 1ms linear both;
-      animation-timeline: view();
-      animation-range: entry 0% exit 80%;
-    }
-    /* Scrubbed reveals: progress is tied to scroll position, not time. */
-    .reveal-mask {
-      animation: maskup 1ms linear both;
-      animation-timeline: view();
-      animation-range: entry 10% entry 45%;
-    }
-    .reveal-clip {
-      animation: clipopen 1ms linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 45%;
-    }
-    /* Hero content drifts up and fades as it scrolls out. */
-    .hero-exit {
-      animation: heroout 1ms linear both;
-      animation-timeline: view();
-      animation-range: exit 10% exit 70%;
-    }
-  }
-}
-
-/* Reading-progress hairline in the header; hidden when unsupported. */
-.scroll-progress {
-  transform: scaleX(0);
-  transform-origin: left;
-}
-@supports (animation-timeline: scroll()) {
-  .scroll-progress {
-    animation: growx linear both;
-    animation-timeline: scroll(root);
-  }
-}
-
-/* Underline that wipes in left to right (footer CTA). */
-.wipe-link {
-  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0%
-    3px;
-  transition: background-size 0.5s var(--ease-expo);
-}
-.wipe-link:hover,
-.wipe-link:focus-visible {
-  background-size: 100% 3px;
 }

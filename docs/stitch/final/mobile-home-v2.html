@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AS - Ships Software, End to End</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&amp;family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=Caveat:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#0f36ba",
+                        "inverse-surface": "#323028",
+                        "faded-ink": "#6E6A5E",
+                        "surface": "#fef9ec",
+                        "newsprint": "#EDEAE3",
+                        "on-background": "#1d1c14",
+                        "error-container": "#ffdad6",
+                        "outline": "#757686",
+                        "inverse-primary": "#b9c3ff",
+                        "surface-container": "#f3eee1",
+                        "tertiary-container": "#4b577a",
+                        "secondary-container": "#fd6442",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#0d1a39",
+                        "surface-bright": "#fef9ec",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#ede8db",
+                        "primary-fixed": "#dee1ff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb4a4",
+                        "on-tertiary-fixed-variant": "#3a4667",
+                        "on-secondary-fixed": "#3d0600",
+                        "tertiary-fixed": "#dae2ff",
+                        "surface-dim": "#dedacd",
+                        "surface-container-highest": "#e7e2d5",
+                        "surface-tint": "#3351d2",
+                        "background": "#fef9ec",
+                        "primary": "#002eb3",
+                        "surface-container-lowest": "#ffffff",
+                        "rule-line": "rgba(28, 27, 23, 0.16)",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#444654",
+                        "on-error": "#ffffff",
+                        "primary-container": "#2b4acb",
+                        "inverse-on-surface": "#f5f0e3",
+                        "on-primary-fixed": "#001257",
+                        "counter-paper": "#F1ECDF",
+                        "surface-container-low": "#f8f3e6",
+                        "surface-variant": "#e7e2d5",
+                        "tertiary-fixed-dim": "#bac5ee",
+                        "on-secondary-fixed-variant": "#8c1900",
+                        "on-secondary-container": "#600e00",
+                        "on-tertiary-container": "#c2cdf6",
+                        "secondary": "#b12d10",
+                        "airmail-sky": "#A9D6EC",
+                        "tertiary": "#344061",
+                        "document-ink": "#1C1B17",
+                        "secondary-fixed": "#ffdad2",
+                        "kraft-envelope": "#D9B98A",
+                        "on-surface": "#1d1c14",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "on-primary-container": "#c4ccff",
+                        "outline-variant": "#c5c5d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "page-margin": "10px",
+                        "stripe-thickness": "6px",
+                        "outer-gutter-desktop": "56px",
+                        "outer-gutter-mobile": "20px",
+                        "max-width": "1400px",
+                        "stamp-gap": "40px"
+                    },
+                    "fontFamily": {
+                        "body": ["Hanken Grotesk"],
+                        "annotation": ["Caveat"],
+                        "display-mobile": ["Bricolage Grotesque"],
+                        "headline": ["Bricolage Grotesque"],
+                        "display": ["Bricolage Grotesque"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "headline-mobile": ["Bricolage Grotesque"],
+                        "document-mono": ["Courier Prime"]
+                    },
+                    "fontSize": {
+                        "body": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "annotation": ["18px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-mobile": ["44px", { "lineHeight": "0.95", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline": ["56px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "display": ["96px", { "lineHeight": "0.95", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["15px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-mobile": ["32px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "document-mono": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    },
+                    "backgroundImage": {
+                        'airmail-border': 'repeating-linear-gradient(45deg, #b12d10 0, #b12d10 10px, transparent 10px, transparent 20px, #002eb3 20px, #002eb3 30px, transparent 30px, transparent 40px)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .airmail-frame {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 3px solid rgba(0,0,0,0);
+            background: 
+                linear-gradient(var(--surface-color, #fef9ec), var(--surface-color, #fef9ec)) padding-box,
+                repeating-linear-gradient(45deg, #b12d10 0, #b12d10 10px, transparent 10px, transparent 20px, #002eb3 20px, #002eb3 30px, transparent 30px, transparent 40px) border-box;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        .stamp-edge {
+            background-color: #ffffff;
+            padding: 4px;
+            box-shadow: 0 4px 32px rgba(28,27,23,0.14);
+            position: relative;
+            transform: rotate(-1deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stamp-edge:hover {
+            transform: translateY(-4px) rotate(0deg);
+            box-shadow: 0 8px 40px rgba(28,27,23,0.2);
+        }
+        .stamp-edge::before {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            background: transparent;
+            border: 2px dashed #ede8db;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .multiply-blend {
+            mix-blend-mode: multiply;
+        }
+        
+        .rubber-stamp {
+            color: #b12d10;
+            border: 3px solid #b12d10;
+            padding: 8px 16px;
+            font-family: 'Courier Prime', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transform: rotate(-4deg);
+            display: inline-block;
+            opacity: 0.85;
+            mix-blend-mode: multiply;
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+        
+        .rubber-stamp:hover {
+            opacity: 1;
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .rubber-stamp:active {
+            transform: rotate(0deg) scale(0.95);
+        }
+        
+        .dotted-rule {
+            border-bottom: 2px dotted rgba(28, 27, 23, 0.16);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen relative overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Airmail Frame -->
+<div class="airmail-frame hidden md:block"></div>
+<div class="fixed top-[5px] left-[5px] right-[5px] bottom-[5px] border-[2px] border-transparent bg-[repeating-linear-gradient(45deg,#b12d10_0,#b12d10_8px,transparent_8px,transparent_16px,#002eb3_16px,#002eb3_24px,transparent_24px,transparent_32px)] opacity-50 z-[100] pointer-events-none md:hidden" style="-webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;"></div>
+<!-- Top Navigation -->
+<header class="bg-surface dark:bg-surface font-headline-mobile text-headline-mobile md:font-headline md:text-headline fixed top-0 w-full z-50 border-b border-rule-line dark:border-rule-line bg-surface/90 backdrop-blur-sm flat no shadows flex justify-between items-center w-full px-outer-gutter-mobile md:px-outer-gutter-desktop h-16">
+<div class="flex items-center">
+<span class="material-symbols-outlined mr-4 cursor-pointer hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200">menu</span>
+<span class="font-document-mono text-headline-mobile font-bold text-document-ink dark:text-inverse-on-surface">AS</span>
+</div>
+<div>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200">mail</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-outer-gutter-mobile md:px-outer-gutter-desktop max-w-max-width mx-auto">
+<!-- Hero Section -->
+<section class="min-h-[80dvh] flex flex-col justify-center items-start mb-24 relative">
+<h1 class="font-display-mobile text-display-mobile md:font-display md:text-display text-document-ink max-w-[800px] mb-8 z-10 leading-tight">
+                SHIPS SOFTWARE,<br/>END TO END
+            </h1>
+<div class="mt-8 flex flex-col items-start z-10 relative">
+<div class="stamp-edge mb-8">
+<img class="w-[200px] h-[250px] object-cover filter grayscale contrast-125 sepia-[0.2]" data-alt="A professional headshot of a software developer with a warm, confident expression. The lighting is soft and studio-quality, casting gentle shadows that give depth. The background is a stark, crisp white to contrast with the subject and fit a high-end editorial or postal stamp aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq0beAeXwt9Guj4x_cT722YZdc9BFva7OJ6_7yTiK_fO77JQeL8Iqqgu4-yF9Yaoen1AX-0BU-tQcCZ2yo0CBg-RzZv5A-jb1pHP88ZFuiYBtBoQFju6oLPpPN1nFggV4KJP62c2ZYMFAy3ldKTqupUviQW3Rm6OjSCIeJN7svVIYR9nk2Lznv-Os9ySVfwclNEdShleTvro0KkrNvgW7MAJ2f4mjI8WMVRyeoJQwXllXVi4Xr1f4hxKZKc7hGC5NO-w"/>
+<div class="absolute bottom-2 right-2 font-document-mono text-document-mono text-faded-ink text-[10px]">№01</div>
+</div>
+<button class="rubber-stamp font-document-mono mt-4">
+                    OPEN FOR WORK
+                </button>
+</div>
+<!-- Atmospheric background elements -->
+<div class="absolute right-0 top-1/4 opacity-10 pointer-events-none w-64 h-64 border border-document-ink rounded-full flex items-center justify-center">
+<div class="w-48 h-48 border border-document-ink rounded-full"></div>
+</div>
+</section>
+<!-- Recent Shipments (Stamps) -->
+<section class="mb-32">
+<div class="flex items-center justify-between mb-12 dotted-rule pb-4">
+<h2 class="font-headline-mobile text-headline-mobile md:font-headline md:text-headline text-document-ink">RECENT SHIPMENTS</h2>
+<span class="font-document-mono text-document-mono text-faded-ink hidden md:block">PARCELS: 03</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stamp-gap">
+<!-- Parcel 1 -->
+<div class="stamp-edge group cursor-pointer" style="transform: rotate(1deg);">
+<div class="p-2 bg-surface">
+<img class="w-full aspect-[4/3] object-cover border border-rule-line mb-4 transition-transform group-hover:scale-[1.02]" data-alt="A stylized, high-fidelity screenshot of a clean, modern UI dashboard named 'Clarity'. The interface features crisp typography, subtle off-white backgrounds, and distinct, minimal data visualizations. It looks like it is printed on slightly textured paper, maintaining the overall postal aesthetic." src="https://lh3.googleusercontent.com/aida/AEtjO1V88jjjk2aQEOaT4hePHYfprPDfjbRfE4KTq-ERjiJAinuCW7qUISnENPT-kS93ofQrDdPZjRHGouYRJhk48si9n6eEsb6wFho3du3A3L3t8HBlHp6_y3PvOTQ3M7n94esrUjVwPNrylepinZNdeBrDEz-qMBr0j3ASu2peW24_Le9LhYFVGZyrtNy4gAoNWDM5E6cBufqd1kBDDAjA233-L8Wbipuh5aC49fFktyBRbpemGZCZn6MUACo"/>
+<div class="flex justify-between items-start font-document-mono">
+<div>
+<h3 class="font-bold text-document-ink text-[14px] uppercase tracking-wider">Clarity UI</h3>
+<p class="text-faded-ink text-[12px] mt-1">DASHBOARD DESIGN</p>
+</div>
+<span class="text-airmail-sky">↗</span>
+</div>
+</div>
+</div>
+<!-- Parcel 2 -->
+<div class="stamp-edge group cursor-pointer" style="transform: rotate(-2deg);">
+<div class="p-2 bg-surface">
+<img class="w-full aspect-[4/3] object-cover border border-rule-line mb-4 transition-transform group-hover:scale-[1.02]" data-alt="A fashion e-commerce interface named 'Jerico' displayed as a grid of high-fashion photography. The layout is structured and elegant, utilizing stark contrasts and a minimal color palette that aligns with a sophisticated, physical mail aesthetic. Soft shadows imply depth." src="https://lh3.googleusercontent.com/aida/AEtjO1Ww28Legro81-pg6yLQ-l8EuRO3IdXDH7nASzHl3ypynX5CrhpdtFhVkoY0I0DWU3SmxeIyGysxHJNiCxwu086qGUOp2HJ3WBY7GSSpFR9ooAOvL6UlxOBcsFuJCqnlTfsOY_sWwsGYr-4Q9YJqbfnNUjZ484NIohvkcJUzxVtt2S3IxQ7TuE3ZPy7l3VKQqR_HCRDg8ynuHSs5pSGwBF3zymHkx5KsCAp0mgsWhe5rd7ulP3IwNvQYZ_E"/>
+<div class="flex justify-between items-start font-document-mono">
+<div>
+<h3 class="font-bold text-document-ink text-[14px] uppercase tracking-wider">Jerico</h3>
+<p class="text-faded-ink text-[12px] mt-1">E-COMMERCE FLOW</p>
+</div>
+<span class="text-airmail-sky">↗</span>
+</div>
+</div>
+</div>
+<!-- Parcel 3 -->
+<div class="stamp-edge group cursor-pointer" style="transform: rotate(0.5deg);">
+<div class="p-2 bg-surface">
+<img class="w-full aspect-[4/3] object-cover border border-rule-line mb-4 transition-transform group-hover:scale-[1.02]" data-alt="A dark-mode fintech application interface named 'Sollens LTS'. It features a prominent glowing green trend line chart against a deep charcoal background. The design is sleek, precise, and conveys high security, sitting cleanly within a structured, tactile container." src="https://lh3.googleusercontent.com/aida/AEtjO1U_3uZO-U0RlTfjmb96prkXGEayQ637-VzXhkAjLeefVMy3pfMVoBcVZhUoZSSHcWtc_jLexqsFtD2dvNqowhoygVjhe5nkFvST75ed0enlq6fyYCjOnnUtzWOIN0-cOYuGFbzlNKLQT05rYbwIsPZjI-5LjeTuCNrvzC3ye6v0LenE8DWmDuF3mdmGLmkj5nIMd5tvT0WOPrp2kg41VmcWGB597EiUh2sZBcxFppQsePYSbuvNU9TxEw"/>
+<div class="flex justify-between items-start font-document-mono">
+<div>
+<h3 class="font-bold text-document-ink text-[14px] uppercase tracking-wider">Sollens LTS</h3>
+<p class="text-faded-ink text-[12px] mt-1">FINTECH SYSTEM</p>
+</div>
+<span class="text-airmail-sky">↗</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Passport -->
+<section class="mb-32">
+<div class="flex items-center justify-between mb-12 dotted-rule pb-4">
+<h2 class="font-headline-mobile text-headline-mobile md:font-headline md:text-headline text-document-ink">TRANSIT LOG</h2>
+<span class="font-document-mono text-document-mono text-faded-ink hidden md:block">VISAS: 04</span>
+</div>
+<div class="relative border-l border-dashed border-rule-line ml-4 md:ml-[200px] pl-8 pb-8 space-y-16">
+<!-- Entry 1 -->
+<div class="relative group">
+<div class="absolute -left-[41px] top-2 w-4 h-4 rounded-full border-2 border-document-ink bg-surface transition-colors group-hover:bg-primary group-hover:border-primary"></div>
+<div class="md:absolute md:-left-[180px] md:top-1 font-document-mono text-document-mono text-faded-ink mb-2 md:mb-0">
+                        2022 — PRES
+                    </div>
+<div class="bg-surface-container-lowest border border-rule-line p-6 shadow-[0_4px_32px_rgba(28,27,23,0.05)] hover:shadow-[0_8px_40px_rgba(28,27,23,0.1)] transition-shadow">
+<h3 class="font-headline-mobile text-headline-mobile text-document-ink mb-2">Senior Frontend Engineer</h3>
+<h4 class="font-document-mono text-document-mono text-primary mb-4 uppercase tracking-widest">Stripe // Dublin, IE</h4>
+<p class="font-body text-body text-on-surface-variant mb-6">Architected core payment flows and optimized checkout conversion. Led a squad of 4 engineers transitioning legacy React architecture to a modern Next.js stack, improving TTI by 40%.</p>
+<div class="flex flex-wrap gap-2">
+<span class="font-document-mono text-[10px] px-2 py-1 border border-rule-line text-faded-ink">REACT</span>
+<span class="font-document-mono text-[10px] px-2 py-1 border border-rule-line text-faded-ink">TYPESCRIPT</span>
+<span class="font-document-mono text-[10px] px-2 py-1 border border-rule-line text-faded-ink">SYSTEMS</span>
+</div>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative group">
+<div class="absolute -left-[41px] top-2 w-4 h-4 rounded-full border-2 border-document-ink bg-surface transition-colors group-hover:bg-primary group-hover:border-primary"></div>
+<div class="md:absolute md:-left-[180px] md:top-1 font-document-mono text-document-mono text-faded-ink mb-2 md:mb-0">
+                        2019 — 2022
+                    </div>
+<div class="bg-surface-container-lowest border border-rule-line p-6 shadow-[0_4px_32px_rgba(28,27,23,0.05)] hover:shadow-[0_8px_40px_rgba(28,27,23,0.1)] transition-shadow">
+<h3 class="font-headline-mobile text-headline-mobile text-document-ink mb-2">UI Engineer</h3>
+<h4 class="font-document-mono text-document-mono text-primary mb-4 uppercase tracking-widest">Shopify // Remote</h4>
+<p class="font-body text-body text-on-surface-variant mb-6">Developed responsive merchant dashboard components. Contributed heavily to Polaris design system, focusing on accessibility and tactile interaction patterns.</p>
+<div class="flex flex-wrap gap-2">
+<span class="font-document-mono text-[10px] px-2 py-1 border border-rule-line text-faded-ink">VUE</span>
+<span class="font-document-mono text-[10px] px-2 py-1 border border-rule-line text-faded-ink">A11Y</span>
+<span class="font-document-mono text-[10px] px-2 py-1 border border-rule-line text-faded-ink">CSS GRID</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Booking Interaction (Ticket) -->
+<section class="mb-24 flex justify-center">
+<div class="w-full max-w-2xl bg-surface-container-lowest border border-rule-line shadow-[0_8px_32px_rgba(28,27,23,0.1)] flex flex-col md:flex-row relative overflow-hidden group cursor-pointer" onclick="this.classList.toggle('bg-newsprint')">
+<!-- Stub -->
+<div class="bg-primary text-on-primary p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-dashed border-surface-container relative w-full md:w-1/3">
+<div class="font-document-mono text-[10px] tracking-widest opacity-70 mb-4">BOARDING PASS</div>
+<h3 class="font-headline-mobile text-[24px] font-bold leading-tight mb-8">BOOK A<br/>SESSION</h3>
+<div class="mt-auto">
+<div class="font-document-mono text-[10px] opacity-70">CLASS</div>
+<div class="font-document-mono font-bold">1ST // ADVISORY</div>
+</div>
+<!-- Decorative tear edge dots -->
+<div class="absolute right-[-4px] top-0 bottom-0 flex flex-col justify-between py-2 hidden md:flex">
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+<div class="w-2 h-2 rounded-full bg-surface"></div>
+</div>
+</div>
+<!-- Main Ticket -->
+<div class="p-8 w-full md:w-2/3 flex flex-col justify-center bg-counter-paper relative transition-colors duration-300">
+<div class="flex items-center gap-4 mb-6 font-document-mono text-faded-ink text-[12px]">
+<span>AS</span>
+<div class="flex-grow border-b border-dashed border-rule-line relative">
+<span class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[14px] bg-counter-paper px-2">flight_takeoff</span>
+</div>
+<span>YOU</span>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between border-b dotted-rule pb-1">
+<span class="font-document-mono text-[10px] text-faded-ink">DEPARTURE</span>
+<span class="font-document-mono font-bold text-document-ink">NEXT AVAILABLE</span>
+</div>
+<div class="flex justify-between border-b dotted-rule pb-1">
+<span class="font-document-mono text-[10px] text-faded-ink">TOPIC</span>
+<span class="font-document-mono font-bold text-document-ink">ARCHITECTURE / DESIGN</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="w-32 h-8 bg-[repeating-linear-gradient(90deg,#1C1B17_0,#1C1B17_2px,transparent_2px,transparent_4px)] opacity-50"></div>
+<button class="bg-primary text-on-primary font-document-mono text-[12px] px-6 py-3 rounded-[2px] hover:bg-primary-container transition-colors">
+                            RESERVE SLOT
+                        </button>
+</div>
+<!-- Calendar Reveal Overlay (Hidden by default, simplistic implementation for effect) -->
+<div class="absolute inset-0 bg-surface-container-lowest p-8 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+<span class="font-document-mono text-faded-ink">Calendar Integration Loading...</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="bg-surface-container-low dark:bg-surface-container-low font-document-mono text-document-mono uppercase tracking-widest fixed bottom-0 w-full z-50 h-20 border-t border-rule-line shadow-[0_-4px_32px_rgba(28,27,23,0.1)] flex justify-around items-center px-4 md:hidden">
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed border-t-2 border-primary pt-1 hover:text-primary dark:hover:text-primary-fixed transition-all active:translate-y-0.5 duration-75 w-1/4" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home_pin</span>
+<span class="text-[9px]">DESTINATION</span>
+</a>
+<a class="flex flex-col items-center justify-center text-faded-ink dark:text-outline p-2 hover:text-primary dark:hover:text-primary-fixed transition-all active:translate-y-0.5 duration-75 w-1/4" href="#">
+<span class="material-symbols-outlined mb-1">flight_takeoff</span>
+<span class="text-[9px]">DEPARTURE</span>
+</a>
+<a class="flex flex-col items-center justify-center text-faded-ink dark:text-outline p-2 hover:text-primary dark:hover:text-primary-fixed transition-all active:translate-y-0.5 duration-75 w-1/4" href="#">
+<span class="material-symbols-outlined mb-1">navigation</span>
+<span class="text-[9px]">TRANSIT</span>
+</a>
+<a class="flex flex-col items-center justify-center text-faded-ink dark:text-outline p-2 hover:text-primary dark:hover:text-primary-fixed transition-all active:translate-y-0.5 duration-75 w-1/4" href="#">
+<span class="material-symbols-outlined mb-1">fact_check</span>
+<span class="text-[9px]">CUSTOMS</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-counter-paper dark:bg-surface-dim font-document-mono text-document-mono relative w-full border-t border-dashed border-rule-line multiply flat flex flex-col md:flex-row justify-between items-center py-12 px-outer-gutter-mobile md:px-outer-gutter-desktop gap-8 pb-32 md:pb-12">
+<div class="font-document-mono text-primary hover:-rotate-1 transition-transform">
+            №2024 PORTFOLIO — FRANKED IN LONDON
+        </div>
+<div class="flex gap-6">
+<a class="text-faded-ink hover:text-primary hover:bg-airmail-sky/10 transition-colors px-2 py-1" href="#">ARCHIVE</a>
+<a class="text-faded-ink hover:text-primary hover:bg-airmail-sky/10 transition-colors px-2 py-1" href="#">CONTACT</a>
+<a class="text-faded-ink hover:text-primary hover:bg-airmail-sky/10 transition-colors px-2 py-1" href="#">LICENSE</a>
+</div>
+</footer>
+<script>
+        // Simple scroll sync for passport timeline dots could go here, 
+        // kept minimal to avoid cluttering the pure UI generation focus.
+        document.addEventListener('scroll', () => {
+            // Logic to highlight visa dots based on scroll position
+        });
+    </script>
+</body></html>

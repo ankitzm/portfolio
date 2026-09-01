@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AS Postal Service</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&amp;family=Caveat&amp;family=Courier+Prime:wght@400;700&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dee1ff",
+                        "on-background": "#1d1c14",
+                        "surface-dim": "#dedacd",
+                        "on-secondary-fixed-variant": "#8c1900",
+                        "surface-container-high": "#ede8db",
+                        "surface-container-highest": "#e7e2d5",
+                        "tertiary": "#344061",
+                        "newsprint": "#EDEAE3",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#ffb4a4",
+                        "on-secondary-container": "#600e00",
+                        "tertiary-fixed-dim": "#bac5ee",
+                        "surface-container": "#f3eee1",
+                        "surface-variant": "#e7e2d5",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#fef9ec",
+                        "primary-container": "#2b4acb",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "inverse-on-surface": "#f5f0e3",
+                        "tertiary-container": "#4b577a",
+                        "background": "#fef9ec",
+                        "surface": "#fef9ec",
+                        "on-primary-fixed-variant": "#0f36ba",
+                        "on-tertiary-fixed": "#0d1a39",
+                        "on-secondary-fixed": "#3d0600",
+                        "counter-paper": "#F1ECDF",
+                        "inverse-primary": "#b9c3ff",
+                        "outline-variant": "#c5c5d6",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#c4ccff",
+                        "secondary-fixed": "#ffdad2",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1d1c14",
+                        "outline": "#757686",
+                        "secondary-container": "#fd6442",
+                        "on-primary-fixed": "#001257",
+                        "primary": "#002eb3",
+                        "tertiary-fixed": "#dae2ff",
+                        "document-ink": "#1C1B17",
+                        "on-tertiary-container": "#c2cdf6",
+                        "kraft-envelope": "#D9B98A",
+                        "surface-tint": "#3351d2",
+                        "surface-container-low": "#f8f3e6",
+                        "on-surface-variant": "#444654",
+                        "secondary": "#b12d10",
+                        "faded-ink": "#6E6A5E",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#323028",
+                        "rule-line": "rgba(28, 27, 23, 0.16)",
+                        "on-tertiary-fixed-variant": "#3a4667",
+                        "airmail-sky": "#A9D6EC",
+                        "passport-navy": "#0B162C"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stripe-thickness": "6px",
+                        "outer-gutter-mobile": "20px",
+                        "outer-gutter-desktop": "56px",
+                        "stamp-gap": "40px",
+                        "max-width": "1400px",
+                        "page-margin": "10px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Hanken Grotesk"],
+                        "annotation": ["Caveat"],
+                        "headline-mobile": ["Bricolage Grotesque"],
+                        "headline": ["Bricolage Grotesque"],
+                        "display-mobile": ["Bricolage Grotesque"],
+                        "body": ["Hanken Grotesk"],
+                        "display": ["Bricolage Grotesque"],
+                        "document-mono": ["Courier Prime"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["15px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "annotation": ["18px", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "headline-mobile": ["32px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "headline": ["56px", { "lineHeight": "1.0", "fontWeight": "700" }],
+                        "display-mobile": ["44px", { "lineHeight": "0.95", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display": ["96px", { "lineHeight": "0.95", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "document-mono": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        "paper": "0 8px 32px rgba(28,27,23,0.14)",
+                        "paper-hover": "0 12px 48px rgba(28,27,23,0.2)"
+                    },
+                    "backgroundImage": {
+                        "airmail-stripe": "repeating-linear-gradient(45deg, #b12d10, #b12d10 10px, transparent 10px, transparent 20px, #002eb3 20px, #002eb3 30px, transparent 30px, transparent 40px)",
+                        "perforation": "radial-gradient(circle, transparent 4px, white 4.5px)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fef9ec; /* background */
+            color: #1C1B17; /* document-ink */
+            padding: 10px; /* page-margin */
+        }
+        
+        /* The Envelope Border */
+        .viewport-frame {
+            position: fixed;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            pointer-events: none;
+            z-index: 9999;
+            border: 3px solid transparent;
+            background: repeating-linear-gradient(135deg, #b12d10, #b12d10 15px, transparent 15px, transparent 30px, #002eb3 30px, #002eb3 45px, transparent 45px, transparent 60px) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0.5;
+        }
+
+        .paper-texture {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .torn-edge {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%231C1B17'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%231C1B17'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%231C1B17'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .stamp-edge {
+            mask-image: radial-gradient(circle at 10px 10px, transparent 10px, black 11px);
+            mask-size: 24px 24px;
+            mask-position: -5px -5px;
+            padding: 12px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .rubber-stamp {
+            mix-blend-mode: multiply;
+            border: 3px solid #b12d10;
+            color: #b12d10;
+            padding: 4px 12px;
+            display: inline-block;
+            transform: rotate(-4deg);
+            opacity: 0.85;
+            font-family: "Courier Prime", monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+    </style>
+</head>
+<body class="font-body-sm text-body-sm relative min-h-screen overflow-x-hidden antialiased">
+<div class="viewport-frame"></div>
+<div class="paper-texture fixed inset-0 pointer-events-none z-[-1]"></div>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 border-b border-rule-line bg-background dark:bg-background flex justify-between items-center h-16 px-outer-gutter-mobile" style="margin-top: 10px; padding-left: 20px; padding-right: 20px; width: calc(100% - 20px);">
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:translate-y-[1px] transition-transform">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<div class="font-headline-mobile text-headline-mobile text-on-surface dark:text-on-surface-variant font-bold tracking-tight">AS</div>
+<button class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:translate-y-[1px] transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="pt-24 pb-32">
+<!-- Hero Section -->
+<section class="bg-counter-paper min-h-[80vh] px-outer-gutter-mobile flex flex-col justify-center items-start relative border-b border-rule-line pb-12">
+<h1 class="font-display-mobile text-display-mobile text-document-ink mb-12 transform rotate-1 uppercase leading-tight w-[90%]">
+                Ships Software,<br/>End to End
+            </h1>
+<div class="relative w-full max-w-sm self-end transform -rotate-2 mt-4 z-10 shadow-paper bg-white p-2 stamp-edge">
+<img alt="ASCII Portrait" class="w-full h-auto aspect-square object-cover grayscale mix-blend-multiply opacity-90" data-alt="ASCII art portrait styled as a vintage postal stamp on textured paper background, monochrome ink." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzAuJ2KARWYANwMhxf1UmNKrjh7z0IMxvXjluGpPrBWq-P-zuKQmhie0hBSLlUAcT7TspCni09PJMukxK4Vw2rc1sVuekWWIs_rd6y3Vg9e5XEFwZA-XFo0jCYs8udVB30U8FXrrdx_CcO2vgcgyTQN5nUxwzBq9Is-nNt5Dfv-PSLcjl05JmiKRtKV_eQZ8b-KNRgHB-m3A4mGb7xFSL24lvBUECekK2rYQ7mpHKe-y226k0yhWi0PG_dfFTkch8CHQ"/>
+<div class="absolute -bottom-8 -right-4 rubber-stamp transform rotate-6 scale-110 shadow-sm z-20 bg-counter-paper/50 backdrop-blur-sm">
+                    OPEN FOR WORK
+                </div>
+<div class="absolute top-2 left-2 font-document-mono text-document-mono text-faded-ink">№01</div>
+</div>
+<div class="mt-20 font-document-mono text-document-mono text-faded-ink tracking-widest border-t border-dotted border-rule-line pt-4 w-full flex justify-between">
+<span>INTL. POST</span>
+<span>FR-001</span>
+</div>
+</section>
+<!-- Projects Section (Airmail Sky) -->
+<section class="bg-airmail-sky min-h-[100dvh] px-outer-gutter-mobile py-20 relative border-b border-rule-line">
+<!-- Torn Paper Transition (Top) -->
+<div class="absolute top-0 left-0 w-full h-8 bg-counter-paper torn-edge transform rotate-180 -translate-y-full" style="mask-image: linear-gradient(to bottom, black, transparent);"></div>
+<div class="flex items-center gap-4 mb-12">
+<h2 class="font-headline-mobile text-headline-mobile text-document-ink uppercase tracking-tighter">Recent Shipments</h2>
+<div class="flex-grow border-t-2 border-document-ink"></div>
+</div>
+<div class="flex flex-col gap-12">
+<!-- Stamp 1 -->
+<article class="bg-white stamp-edge shadow-paper hover:shadow-paper-hover transition-all duration-300 transform -rotate-1 hover:rotate-0 hover:-translate-y-2 cursor-pointer group">
+<div class="p-1 border border-rule-line border-dotted">
+<img alt="Clarity UI" class="w-full aspect-[4/3] object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 transition-opacity" data-alt="A vintage postal aesthetic UI dashboard named CLARITY with line graphs and analytics in blue and cream colors, printed on aged paper." src="https://lh3.googleusercontent.com/aida/AEtjO1V88jjjk2aQEOaT4hePHYfprPDfjbRfE4KTq-ERjiJAinuCW7qUISnENPT-kS93ofQrDdPZjRHGouYRJhk48si9n6eEsb6wFho3du3A3L3t8HBlHp6_y3PvOTQ3M7n94esrUjVwPNrylepinZNdeBrDEz-qMBr0j3ASu2peW24_Le9LhYFVGZyrtNy4gAoNWDM5E6cBufqd1kBDDAjA233-L8Wbipuh5aC49fFktyBRbpemGZCZn6MUACo"/>
+<div class="mt-4 flex justify-between items-start font-document-mono text-document-mono p-2">
+<div>
+<h3 class="font-bold text-document-ink uppercase text-sm">Clarity UI</h3>
+<p class="text-faded-ink mt-1">DASHBOARD // ANALYTICS</p>
+</div>
+<span class="text-secondary font-bold">№02</span>
+</div>
+</div>
+</article>
+<!-- Stamp 2 -->
+<article class="bg-white stamp-edge shadow-paper hover:shadow-paper-hover transition-all duration-300 transform rotate-2 hover:rotate-0 hover:-translate-y-2 cursor-pointer group">
+<div class="p-1 border border-rule-line border-dotted">
+<img alt="Jerico Fashion" class="w-full aspect-square object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 transition-opacity" data-alt="A fashion editorial layout named JERICO styled like a sheet of perforated stamps, featuring models in autumnal clothing on a cream background." src="https://lh3.googleusercontent.com/aida/AEtjO1Ww28Legro81-pg6yLQ-l8EuRO3IdXDH7nASzHl3ypynX5CrhpdtFhVkoY0I0DWU3SmxeIyGysxHJNiCxwu086qGUOp2HJ3WBY7GSSpFR9ooAOvL6UlxOBcsFuJCqnlTfsOY_sWwsGYr-4Q9YJqbfnNUjZ484NIohvkcJUzxVtt2S3IxQ7TuE3ZPy7l3VKQqR_HCRDg8ynuHSs5pSGwBF3zymHkx5KsCAp0mgsWhe5rd7ulP3IwNvQYZ_E"/>
+<div class="mt-4 flex justify-between items-start font-document-mono text-document-mono p-2">
+<div>
+<h3 class="font-bold text-document-ink uppercase text-sm">Jerico</h3>
+<p class="text-faded-ink mt-1">E-COM // FASHION</p>
+</div>
+<span class="text-secondary font-bold">№03</span>
+</div>
+</div>
+</article>
+<!-- Stamp 3 -->
+<article class="bg-white stamp-edge shadow-paper hover:shadow-paper-hover transition-all duration-300 transform -rotate-2 hover:rotate-0 hover:-translate-y-2 cursor-pointer group">
+<div class="p-1 border border-rule-line border-dotted">
+<img alt="Sollens Fintech" class="w-full aspect-[4/3] object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 transition-opacity" data-alt="A dark mode fintech app dashboard named SOLLENS with a glowing green upward trending line graph, styled as a physical card." src="https://lh3.googleusercontent.com/aida/AEtjO1U_3uZO-U0RlTfjmb96prkXGEayQ637-VzXhkAjLeefVMy3pfMVoBcVZhUoZSSHcWtc_jLexqsFtD2dvNqowhoygVjhe5nkFvST75ed0enlq6fyYCjOnnUtzWOIN0-cOYuGFbzlNKLQT05rYbwIsPZjI-5LjeTuCNrvzC3ye6v0LenE8DWmDuF3mdmGLmkj5nIMd5tvT0WOPrp2kg41VmcWGB597EiUh2sZBcxFppQsePYSbuvNU9TxEw"/>
+<div class="mt-4 flex justify-between items-start font-document-mono text-document-mono p-2">
+<div>
+<h3 class="font-bold text-document-ink uppercase text-sm">Sollens LTS</h3>
+<p class="text-faded-ink mt-1">FINTECH // MOBILE APP</p>
+</div>
+<span class="text-secondary font-bold">№04</span>
+</div>
+</div>
+</article>
+</div>
+<div class="mt-16 flex justify-center">
+<button class="bg-primary text-on-primary font-document-mono text-document-mono uppercase px-6 py-3 rounded-DEFAULT hover:opacity-90 shadow-paper active:translate-y-1 transition-all flex items-center gap-2">
+                    View Archive <span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</button>
+</div>
+</section>
+<!-- Experience Section (Passport Navy) -->
+<section class="bg-passport-navy text-counter-paper min-h-screen px-outer-gutter-mobile py-20 relative border-b border-rule-line overflow-hidden">
+<!-- Subtle grid background -->
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(#F1ECDF 1px, transparent 1px), linear-gradient(90deg, #F1ECDF 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10 flex items-center gap-4 mb-16">
+<h2 class="font-headline-mobile text-headline-mobile uppercase tracking-tighter">Visa Log</h2>
+<div class="flex-grow border-t border-counter-paper opacity-30"></div>
+</div>
+<div class="relative z-10 border-l border-dotted border-counter-paper/40 ml-4 pl-6 space-y-12 pb-12">
+<!-- Timeline Marker 1 -->
+<div class="absolute left-[-5px] top-[100px] w-3 h-3 rounded-full bg-airmail-sky shadow-[0_0_10px_#A9D6EC]"></div>
+<!-- Visa Block 1 -->
+<div class="bg-counter-paper text-document-ink p-1 rounded-sm transform rotate-1 shadow-paper relative">
+<div class="border border-rule-line p-4 h-full relative overflow-hidden">
+<!-- Passport Stamp Watermark -->
+<div class="absolute -right-8 -top-8 w-32 h-32 border-4 border-faded-ink/20 rounded-full flex items-center justify-center transform -rotate-12 z-0">
+<div class="font-document-mono text-document-mono text-faded-ink/20 uppercase tracking-widest text-center leading-none">DEPART<br/>2023</div>
+</div>
+<div class="relative z-10 flex justify-between items-start mb-2 border-b border-dotted border-rule-line pb-2">
+<h3 class="font-headline-mobile text-[24px] uppercase font-bold tracking-tight">Stripe</h3>
+<span class="font-document-mono text-document-mono text-secondary">23-24</span>
+</div>
+<p class="font-body-sm text-body-sm text-faded-ink relative z-10">Sr. Product Designer. Led the overhaul of the merchant dashboard, increasing conversion by 14%.</p>
+<div class="mt-4 flex gap-2 flex-wrap relative z-10">
+<span class="font-document-mono text-[10px] border border-faded-ink/30 px-2 py-1 uppercase bg-white/50">Systems</span>
+<span class="font-document-mono text-[10px] border border-faded-ink/30 px-2 py-1 uppercase bg-white/50">Fintech</span>
+</div>
+</div>
+</div>
+<!-- Timeline Marker 2 -->
+<div class="absolute left-[-5px] top-[320px] w-3 h-3 rounded-full bg-counter-paper/50"></div>
+<!-- Visa Block 2 -->
+<div class="bg-counter-paper text-document-ink p-1 rounded-sm transform -rotate-1 shadow-paper relative">
+<div class="border border-rule-line p-4 h-full relative overflow-hidden">
+<!-- Passport Stamp Watermark -->
+<div class="absolute -left-4 -bottom-4 w-24 h-24 border-2 border-faded-ink/10 rounded-full flex items-center justify-center transform rotate-45 z-0">
+<div class="font-document-mono text-document-mono text-faded-ink/10 uppercase tracking-widest text-center leading-none text-[8px]">ENTRY<br/>2020</div>
+</div>
+<div class="relative z-10 flex justify-between items-start mb-2 border-b border-dotted border-rule-line pb-2">
+<h3 class="font-headline-mobile text-[24px] uppercase font-bold tracking-tight">Shopify</h3>
+<span class="font-document-mono text-document-mono text-secondary">20-23</span>
+</div>
+<p class="font-body-sm text-body-sm text-faded-ink relative z-10">Product Designer. Contributed to core admin experiences and merchant onboarding flows.</p>
+<div class="mt-4 flex gap-2 flex-wrap relative z-10">
+<span class="font-document-mono text-[10px] border border-faded-ink/30 px-2 py-1 uppercase bg-white/50">E-Com</span>
+<span class="font-document-mono text-[10px] border border-faded-ink/30 px-2 py-1 uppercase bg-white/50">Growth</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Booking Section (Kraft Envelope) -->
+<section class="bg-kraft-envelope min-h-[60vh] px-outer-gutter-mobile py-20 relative flex flex-col items-center justify-center">
+<div class="w-full max-w-sm bg-counter-paper rounded-sm shadow-paper relative overflow-hidden transform rotate-1">
+<!-- The Ticket Stub layout -->
+<div class="flex flex-col border border-rule-line m-2 relative">
+<div class="p-6 border-b border-dotted border-rule-line relative">
+<h3 class="font-headline-mobile text-[28px] uppercase font-bold tracking-tight text-document-ink mb-1">Book Passage</h3>
+<p class="font-document-mono text-document-mono text-faded-ink uppercase">Consultation // 30 Min</p>
+<div class="mt-6 flex justify-between items-center font-document-mono text-document-mono">
+<div class="text-left">
+<div class="text-faded-ink text-[10px]">FROM</div>
+<div class="font-bold text-document-ink text-sm">YOU</div>
+</div>
+<div class="flex-grow flex items-center justify-center px-2">
+<div class="h-[1px] bg-document-ink w-full relative">
+<span class="material-symbols-outlined absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-counter-paper px-1 text-[16px] text-faded-ink">flight_takeoff</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-faded-ink text-[10px]">TO</div>
+<div class="font-bold text-document-ink text-sm">AS</div>
+</div>
+</div>
+</div>
+<!-- Interactive Tear Area -->
+<div class="p-6 bg-[#EBE5D5] flex justify-between items-center cursor-pointer hover:bg-[#E5DFCD] transition-colors group relative border-t-2 border-dashed border-rule-line" onclick="alert('Booking modal would open here.')">
+<!-- Perforated Edge Visual -->
+<div class="absolute -top-[5px] left-0 w-full h-[10px] bg-[radial-gradient(circle,transparent_4px,#EBE5D5_4.5px)] bg-[length:12px_10px] group-hover:bg-[radial-gradient(circle,transparent_4px,#E5DFCD_4.5px)] transition-colors"></div>
+<div class="font-document-mono text-document-mono uppercase font-bold text-secondary group-hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">content_cut</span> Tear to Book
+                        </div>
+<!-- Fake Barcode -->
+<div class="flex gap-[2px] h-8 opacity-70">
+<div class="w-1 bg-document-ink h-full"></div>
+<div class="w-0.5 bg-document-ink h-full"></div>
+<div class="w-2 bg-document-ink h-full"></div>
+<div class="w-0.5 bg-document-ink h-full"></div>
+<div class="w-1 bg-document-ink h-full"></div>
+<div class="w-1.5 bg-document-ink h-full"></div>
+<div class="w-0.5 bg-document-ink h-full"></div>
+<div class="w-2 bg-document-ink h-full"></div>
+<div class="w-1 bg-document-ink h-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative stamp bottom right -->
+<div class="absolute bottom-8 right-8 text-faded-ink/30 transform rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-[64px]">local_post_office</span>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 border-t border-rule-line bg-surface/95 backdrop-blur-sm flex justify-around items-center h-20 pb-safe px-4" style="margin-bottom: 10px; width: calc(100% - 20px); left: 10px;">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold scale-110 active:scale-95 transition-all duration-150 hover:opacity-100 group" href="#">
+<span class="material-symbols-outlined text-[28px] mb-1 group-hover:transform group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-document-mono text-document-mono uppercase text-[10px]">Home</span>
+</a>
+<!-- Projects (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline opacity-70 hover:opacity-100 transition-all duration-150 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1 group-hover:transform group-hover:-translate-y-1 transition-transform">inbox</span>
+<span class="font-document-mono text-document-mono uppercase text-[10px]">Projects</span>
+</a>
+<!-- Experience (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline opacity-70 hover:opacity-100 transition-all duration-150 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1 group-hover:transform group-hover:-translate-y-1 transition-transform">terminal</span>
+<span class="font-document-mono text-document-mono uppercase text-[10px]">Experience</span>
+</a>
+<!-- Contact (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline opacity-70 hover:opacity-100 transition-all duration-150 active:scale-95 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-1 group-hover:transform group-hover:-translate-y-1 transition-transform">business_center</span>
+<span class="font-document-mono text-document-mono uppercase text-[10px]">Contact</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full min-h-[120px] border-t border-dotted border-rule-line mt-stamp-gap bg-newsprint dark:bg-surface-container-highest flex flex-col items-center justify-center gap-4 py-8 px-outer-gutter-mobile pb-32">
+<div class="font-headline-mobile text-headline-mobile text-document-ink dark:text-on-surface mb-2 tracking-tight opacity-50">AS</div>
+<ul class="flex gap-6 font-document-mono text-document-mono uppercase">
+<li><a class="text-faded-ink dark:text-outline-variant hover:text-primary transition-colors" href="#">Privacy</a></li>
+<li><a class="text-faded-ink dark:text-outline-variant hover:text-primary transition-colors" href="#">Terms</a></li>
+<li><a class="text-faded-ink dark:text-outline-variant hover:text-primary transition-colors" href="#">Archive</a></li>
+</ul>
+<p class="font-document-mono text-document-mono text-faded-ink mt-4 text-[10px]">© 2024 AS POSTAL SERVICE</p>
+</footer>
+</body></html>

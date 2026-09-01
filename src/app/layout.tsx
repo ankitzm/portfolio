@@ -1,32 +1,65 @@
-import type { Metadata } from "next";
-import { Archivo, DM_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import {
+  Bricolage_Grotesque,
+  Caveat,
+  Courier_Prime,
+  Hanken_Grotesk,
+} from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { MotionProvider } from "@/components/reveal";
+import { TabNav } from "@/components/tab-nav";
 
-const archivo = Archivo({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-archivo",
+  axes: ["opsz", "wdth"],
+  variable: "--font-bricolage",
 });
 
-const dmMono = DM_Mono({
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-dm-mono",
+  variable: "--font-hanken",
+});
+
+const courier = Courier_Prime({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-courier",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
 });
 
 export const metadata: Metadata = {
-  title: "Ankit Singh | Software Developer",
+  title: "Ankit Singh — Ships Software",
   description:
-    "Web3 products, SDKs and interfaces with character. Four years of shipping, from Router Protocol to freelance.",
+    "Software developer shipping web3 products, SDKs and interfaces since 2021.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#fef9ec",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${dmMono.variable} antialiased`}
+      className={`${bricolage.variable} ${hanken.variable} ${courier.variable} ${caveat.variable} antialiased`}
     >
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <div className="airmail-frame" aria-hidden="true" />
+        <MotionProvider>
+          <Header />
+          {children}
+          <Footer />
+          <TabNav />
+        </MotionProvider>
+        <Analytics />
+      </body>
     </html>
   );
 }

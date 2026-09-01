@@ -45,30 +45,54 @@ body {
   overflow-x: clip;
 }
 
-/* Fixed airmail-stripe frame around the viewport; decoration only. */
+/*
+ * Airmail-stripe frame: fixed ring on all four sides of the viewport, with
+ * the page inset by the same amount so nothing ever scrolls under it.
+ * Mobile: no frame, full bleed.
+ */
 .airmail-frame {
-  position: fixed;
-  inset: 10px;
-  border: 3px solid transparent;
-  background: repeating-linear-gradient(
-      45deg,
-      var(--color-stamp) 0,
-      var(--color-stamp) 10px,
-      transparent 10px,
-      transparent 20px,
-      var(--color-accent) 20px,
-      var(--color-accent) 30px,
-      transparent 30px,
-      transparent 40px
-    )
-    border-box;
-  mask:
-    linear-gradient(#fff 0 0) padding-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  opacity: 0.5;
-  z-index: 100;
-  pointer-events: none;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  body {
+    --frame: 13px; /* 10px gutter + 3px stripe */
+    height: 100vh;
+    overflow: hidden;
+  }
+  /* The frame IS the scroll container, so content can never escape it. */
+  .airmail-frame {
+    position: absolute;
+    inset: var(--frame);
+    min-height: 0;
+    overflow-y: auto;
+    border-radius: 20px;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 10px;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--color-stamp) 0,
+        var(--color-stamp) 10px,
+        transparent 10px,
+        transparent 20px,
+        var(--color-accent) 20px,
+        var(--color-accent) 30px,
+        transparent 30px,
+        transparent 40px
+      )
+      border-box;
+    mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    z-index: 100;
+    pointer-events: none;
+  }
 }
 
 .soft-shadow-paper {

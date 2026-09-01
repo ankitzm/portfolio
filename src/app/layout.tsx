@@ -51,11 +51,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${bricolage.variable} ${hanken.variable} ${courier.variable} ${caveat.variable} antialiased`}
     >
       <body className="font-sans">
-        <div className="airmail-frame" aria-hidden="true" />
         <MotionProvider>
-          <Header />
-          {children}
-          <Footer />
+          <div className="airmail-frame">
+            <Header />
+            {children}
+            <Footer />
+          </div>
           <TabNav />
         </MotionProvider>
         <Analytics />

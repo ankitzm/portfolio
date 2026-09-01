@@ -44,10 +44,12 @@ export function Hero() {
 
         {/* Polaroid postmark — desktop only; mobile hero carries no photo */}
         <div className="soft-shadow-paper bg-surface absolute -top-6 right-0 z-10 hidden w-56 rotate-6 p-2 mix-blend-multiply lg:block">
-          <div className="bg-paper border-rule relative aspect-square border">
-            <span className="text-ink-faded absolute inset-0 grid place-items-center font-mono text-[10px] tracking-widest uppercase">
-              Portrait in transit
-            </span>
+          <div className="deckle bg-ink/10">
+            <div className="bg-paper relative aspect-square">
+              <span className="text-ink-faded absolute inset-0 grid place-items-center font-mono text-[10px] tracking-widest uppercase">
+                Portrait in transit
+              </span>
+            </div>
           </div>
           <p className="text-ink-faded px-1 pt-2 pb-1 text-right font-mono text-[10px] uppercase">
             Reg. №01

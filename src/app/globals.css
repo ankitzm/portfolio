@@ -93,19 +93,39 @@ body {
   transform: translateY(1px) scale(0.99);
 }
 
-/* Postage-stamp card: white matte + offset dashed perforation ring. */
-.stamp-edge {
+/*
+ * Postage-stamp matte with a true scalloped perforation: a hole grid is
+ * masked out along the edge ring only (the content-box layer keeps the
+ * interior solid). Box-shadow dies under mask, so the parent carries a
+ * drop-shadow that follows the scalloped silhouette.
+ */
+.stamp-scallop {
+  --hole: 4.5px;
+  --pitch: 13px;
   background: var(--color-surface);
-  padding: 4px;
-  position: relative;
-  box-shadow: 0 4px 32px rgba(28, 27, 23, 0.14);
+  padding: 9px;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    radial-gradient(circle var(--hole), transparent 98%, #000)
+      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch)
+      var(--pitch) round;
 }
-.stamp-edge::before {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border: 2px dashed var(--color-rule);
-  pointer-events: none;
+
+/* Finer serration for the polaroid photo window ("deckle cut"). */
+.deckle {
+  --hole: 2.5px;
+  --pitch: 8px;
+  padding: 5px;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    radial-gradient(circle var(--hole), transparent 98%, #000)
+      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch)
+      var(--pitch) round;
+}
+
+/* Shadow that hugs a masked silhouette (scallops included). */
+.drop-shadow-paper {
+  filter: drop-shadow(0 10px 20px rgba(28, 27, 23, 0.18));
 }
 
 /* Decorative ink imprint. Never interactive — red is not a UI accent. */

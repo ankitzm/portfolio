@@ -74,7 +74,7 @@ export function ExperienceLog({ entries }: { entries: Experience[] }) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className={`border-2 p-5 md:p-6 ${inkClass[entry.color] ?? inkClass.black}`}
+              className={`bg-paper/5 border-2 p-5 shadow-xl shadow-black/25 md:p-6 ${inkClass[entry.color] ?? inkClass.black}`}
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="font-display text-lg font-bold tracking-tight uppercase">

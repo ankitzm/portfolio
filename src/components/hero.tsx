@@ -13,7 +13,7 @@ export function Hero() {
           <p className="load-fade text-ink-faded mb-6 font-mono text-xs tracking-widest uppercase [animation-delay:.1s]">
             ( Software developer, est. 2021 )
           </p>
-          <h1 className="font-display text-ink text-[13vw] leading-[0.95] font-extrabold tracking-tight uppercase [font-stretch:75%] md:text-9xl">
+          <h1 className="font-display text-ink text-[13vw] leading-[0.95] font-extrabold tracking-tight uppercase font-stretch-75% md:text-9xl">
             <span className="block overflow-hidden">
               <span className="load-mask block [animation-delay:.2s]">
                 Ships

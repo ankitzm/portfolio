@@ -17,9 +17,9 @@ export default async function Home() {
     <main>
       <Hero />
 
-      <section id="projects" className="bg-ground-sky text-ground-sky">
+      <section id="projects" className="bg-ground-sky text-ground-sky relative">
         <TornEdge />
-        <div className="text-ink mx-auto max-w-350 px-5 pt-4 pb-20 md:px-14 md:pb-28">
+        <div className="text-ink mx-auto max-w-350 px-5 pt-20 pb-20 md:px-14 md:pt-28 md:pb-28">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="font-display text-3xl font-bold tracking-tight uppercase font-stretch-75% md:text-5xl">
               Recent shipments
@@ -41,9 +41,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="experience" className="bg-ground-navy text-ground-navy">
+      <section id="experience" className="bg-ground-navy text-ground-navy relative">
         <TornEdge />
-        <div className="text-paper mx-auto max-w-350 px-5 pt-4 pb-20 md:px-14 md:pb-28">
+        <div className="text-paper mx-auto max-w-350 px-5 pt-20 pb-20 md:px-14 md:pt-28 md:pb-28">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="font-display text-3xl font-bold tracking-tight uppercase font-stretch-75% md:text-5xl">
               Transit log
@@ -59,9 +59,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="booking" className="bg-ground-kraft text-ground-kraft">
+      <section id="booking" className="bg-ground-kraft text-ground-kraft relative">
         <TornEdge />
-        <div className="text-ink mx-auto max-w-350 px-5 pt-4 pb-24 md:px-14 md:pb-32">
+        <div className="text-ink mx-auto max-w-350 px-5 pt-24 pb-24 md:px-14 md:pt-32 md:pb-32">
           <div className="mb-10 text-center">
             <p className="rubber-stamp mb-6 text-[11px]">Final destination</p>
             <h2 className="font-display text-3xl font-bold tracking-tight uppercase font-stretch-75% md:text-5xl">

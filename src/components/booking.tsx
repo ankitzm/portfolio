@@ -1,46 +1,138 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import { useState } from "react";
+import Cal, { getCalApi } from "@calcom/embed-react";
+import { motion, useReducedMotion, type Transition } from "motion/react";
+import { useEffect, useState } from "react";
+import { preconnect } from "react-dom";
 
-const CALENDLY = "https://calendly.com/ankitzm/meet";
+const CAL_NAMESPACE = "15min";
+const CAL_LINK = "ankitzm/15min";
 
 const spring = { type: "spring", stiffness: 90, damping: 15 } as const;
 
+/*
+ * Two-phase tear: keyframe 1 is the fibers giving way — a small, decelerating
+ * shift — then the halves accelerate apart on a hard ease-in. `times` holds
+ * the break at the first third so the pause reads before the whoosh.
+ */
+const tearTransition: Transition = {
+  duration: 0.9,
+  times: [0, 0.35, 1],
+  ease: ["easeOut", [0.6, 0, 0.9, 0.3]],
+};
+
+/** Break + fly-apart keyframes along one axis. */
+const tear = (axis: "x" | "y", dir: 1 | -1) => ({
+  [axis]: [0, 14 * dir, (axis === "x" ? 560 : 440) * dir],
+  rotate: [0, 0.6 * dir, 2.5 * dir],
+  opacity: [1, 1, 0],
+});
+
+const details = [
+  ["Duration", "15 min"],
+  ["Desk", "cal.com"],
+  ["Departure", "Next available"],
+] as const;
+
 /**
- * Boarding-pass booking ticket. Tearing the stub is the interaction:
- * the stub tumbles away, the sheet recoils from the rip, and the
- * reserve link surfaces through a blur. Press is deliberate, release
- * is physics.
+ * Boarding-pass booking ticket sitting face-down over the Cal.com scheduler.
+ * Tearing the stub is the interaction: the stub tumbles away, the sheet
+ * recoils from the rip, and the calendar underneath is uncovered. Press is
+ * deliberate, release is physics.
  */
 export function Booking() {
+  // SSR-hoisted into <head>: the browser opens the cal.com connection while
+  // the JS bundle is still parsing, so the embed (which mounts eagerly under
+  // the pass) has its data before anyone can reach the tear button.
+  preconnect("https://app.cal.com");
+
   const [torn, setTorn] = useState(false);
   const reduced = useReducedMotion();
+  // Stacked ticket (below md) tears along a horizontal seam, so the halves
+  // part vertically; side-by-side parts horizontally.
+  const [stacked, setStacked] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(width < 48rem)");
+    const update = () => setStacked(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const cal = await getCalApi({ namespace: CAL_NAMESPACE });
+      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    })();
+  }, []);
 
   return (
-    <div className="relative mx-auto max-w-2xl">
-      <div className="flex">
+    // Pass state: fixed ticket height. Torn: height comes from the embed —
+    // Cal's script sets a px height on its iframe as content changes, so the
+    // container hugs the calendar instead of framing it in dead space.
+    <div
+      className={`relative mx-auto max-w-4xl ${torn ? "" : "h-95 md:h-105"}`}
+    >
+      {/*
+       * The scheduler stays mounted under the pass so it is warm the moment
+       * the stub tears. `inert` keeps it off the tab order until then —
+       * otherwise keyboard focus lands on a calendar nobody can see.
+       */}
+      {/* No frame: the embed's iframe is transparent around the widget, so any
+          backing box reads as a random color slab once the pass tears away. */}
+      <div inert={!torn} className={torn ? "" : "h-full"}>
+        <Cal
+          namespace={CAL_NAMESPACE}
+          calLink={CAL_LINK}
+          style={{ width: "100%", height: "100%", overflow: "scroll" }}
+          config={{ layout: "month_view", useSlotsViewOnSmallScreen: "true" }}
+        />
+      </div>
+
+      {/* Whole pass is the hit area; the stub button stays the accessible
+          control (keyboard, label), this just lets clicks land anywhere. */}
+      <div
+        aria-hidden={torn}
+        onClick={() => setTorn(true)}
+        className={`absolute inset-0 flex flex-col md:flex-row ${torn ? "pointer-events-none" : "cursor-pointer"}`}
+      >
+        {/*
+         * Opaque backing. The two ripped edges interlock but do not seal
+         * perfectly, and every pinhole would leak calendar through the seam.
+         */}
+        {/* Fades out during the break phase, while the halves still cover it —
+            lingering longer would read as a third sheet left behind. */}
+        <motion.div
+          animate={{ opacity: torn ? 0 : 1 }}
+          transition={torn ? { duration: 0.25, delay: 0.1 } : spring}
+          className="bg-paper drop-shadow-paper absolute inset-0"
+        />
+
         <motion.div
           animate={
             torn
-              ? { x: -10, rotate: -1.2, opacity: 0.25, filter: "blur(1px)" }
-              : { x: 0, rotate: 0, opacity: 1, filter: "blur(0px)" }
+              ? reduced
+                ? { opacity: 0 }
+                : tear(stacked ? "y" : "x", -1)
+              : { x: 0, y: 0, rotate: 0, opacity: 1 }
           }
-          transition={spring}
-          className="tear-main soft-shadow-paper bg-paper text-ink min-w-0 flex-1 p-5 md:p-7"
+          transition={torn ? tearTransition : spring}
+          className="tear-main paper-grain bg-paper text-ink relative -mb-3 flex min-w-0 flex-1 flex-col p-7 pb-10 md:-mr-3 md:mb-0 md:p-12 md:pr-14"
         >
-          <p className="text-ink-faded font-mono text-[10px] tracking-widest uppercase">
+          <p className="text-ink-faded font-mono text-[11px] tracking-widest uppercase md:text-xs">
             Boarding pass · class: 1st / advisory
           </p>
-          <p className="font-display mt-2 text-2xl font-bold tracking-tight uppercase font-stretch-75% md:text-3xl">
+          <p className="font-display mt-3 text-4xl font-bold tracking-tight uppercase font-stretch-75% md:text-6xl">
             Book a session
           </p>
-          <div className="text-ink-faded mt-3 flex items-center gap-3 font-mono text-xs uppercase">
+
+          <div className="text-ink-faded flex flex-1 items-center gap-4 font-mono text-xs uppercase md:text-sm">
             <span className="font-bold">AS</span>
             <span className="border-ink-faded/60 h-px flex-1 border-t border-dashed" />
             <svg
               viewBox="0 0 24 24"
-              className="size-4"
+              className="size-5 md:size-6"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
@@ -53,9 +145,19 @@ export function Booking() {
             <span className="border-ink-faded/60 h-px flex-1 border-t border-dashed" />
             <span className="font-bold">You</span>
           </div>
-          <p className="text-ink-faded mt-3 font-mono text-[10px] uppercase">
-            30 min · calendly · departure: next available
-          </p>
+
+          <dl className="border-ink-faded/40 grid grid-cols-3 gap-4 border-t border-dashed pt-5">
+            {details.map(([label, value]) => (
+              <div key={label}>
+                <dt className="text-ink-faded font-mono text-[10px] tracking-widest uppercase">
+                  {label}
+                </dt>
+                <dd className="font-mono text-xs font-bold uppercase md:text-sm">
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </motion.div>
 
         <motion.button
@@ -64,43 +166,19 @@ export function Booking() {
           disabled={torn}
           animate={
             torn
-              ? {
-                  x: reduced ? 0 : 140,
-                  y: reduced ? 0 : 90,
-                  rotate: reduced ? 0 : 24,
-                  opacity: 0,
-                }
+              ? reduced
+                ? { opacity: 0 }
+                : tear(stacked ? "y" : "x", 1)
               : { x: 0, y: 0, rotate: 0, opacity: 1 }
           }
-          transition={{ type: "spring", stiffness: 70, damping: 12 }}
+          transition={torn ? tearTransition : spring}
           whileTap={{ scale: 0.97 }}
-          className="tear-stub bg-accent text-paper w-28 cursor-pointer p-4 text-left font-mono text-[10px] font-bold tracking-widest uppercase md:w-32"
+          className="tear-stub paper-grain bg-accent text-paper relative flex w-full cursor-pointer flex-row items-center justify-between gap-6 p-5 pt-8 text-left font-mono text-[11px] font-bold tracking-widest uppercase md:w-48 md:flex-col md:items-stretch md:p-7 md:pt-7 md:pl-9"
         >
-          <span className="barcode mb-3 block h-8 w-full opacity-40" />
+          <span className="barcode block h-10 w-28 opacity-40 md:h-14 md:w-full" />
           Tear here to book ✂
         </motion.button>
       </div>
-
-      <motion.div
-        initial={false}
-        animate={
-          torn
-            ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
-            : { opacity: 0, y: 18, scale: 0.94, filter: "blur(6px)" }
-        }
-        transition={{ ...spring, delay: torn ? 0.18 : 0 }}
-        className={`absolute inset-0 grid place-items-center ${torn ? "" : "pointer-events-none"}`}
-      >
-        <a
-          href={CALENDLY}
-          target="_blank"
-          rel="noreferrer"
-          tabIndex={torn ? 0 : -1}
-          className="hover-lift bg-accent text-paper soft-shadow-paper inline-block -rotate-1 px-8 py-4 font-mono text-sm font-bold tracking-widest uppercase"
-        >
-          Reserve slot →
-        </a>
-      </motion.div>
     </div>
   );
 }

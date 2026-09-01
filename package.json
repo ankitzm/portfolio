@@ -11,6 +11,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "@vercel/analytics": "^2.0.1",
     "motion": "^13.1.1",
     "next": "16.3.3",

@@ -135,6 +135,26 @@ body {
       var(--pitch) round;
 }
 
+/*
+ * Paper fiber. feTurbulence is a real random field, so the grain never tiles
+ * into a visible weave the way a gradient fake does. Sits above the fill and
+ * below the text via a negative-z pseudo-element, so it grains the paper
+ * without dulling the ink.
+ */
+.paper-grain {
+  isolation: isolate;
+}
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="180" height="180" filter="url(%23f)" opacity="0.3"/></svg>');
+}
+
 /* Finer serration for the polaroid photo window ("deckle cut"). */
 .deckle {
   --hole: 2.5px;
@@ -178,14 +198,82 @@ body {
   );
 }
 
-/* Zig-zag tear edges for the booking ticket halves. */
-.tear-main {
-  mask-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 100,0 95,5 98,15 94,25 99,35 95,45 98,55 94,65 99,75 95,85 98,95 95,100 0,100" fill="black"/></svg>');
-  mask-size: 100% 100%;
+/*
+ * Torn-paper edge: a hand-drawn rip profile that tiles at a fixed 438px, so
+ * the fibers keep their scale on any viewport instead of stretching. The
+ * ::after layer is the pale fiber lip that sells the tear as paper, not a cut.
+ *
+ * Absolute, not a negative top margin: as an in-flow first child the margin
+ * collapses into the section, which drags the section's own background box up
+ * with it and paints straight over the rip.
+ */
+.torn-edge {
+  --rip: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438 31" preserveAspectRatio="none"><path d="M0 21.1C2.0 21.1 5.3 19.8 10.3 18.8C14.3 18.0 23.4 20.0 27.5 21.1C32.9 19.3 48.6 20.3 55.8 21.1C61.5 19.1 57.5 18.6 71.5 21.8C85.5 25.1 82.5 20.8 87.5 22.6C91.5 24.0 99.2 23.5 102.6 23.1C103.5 23.7 105.7 25.1 107.3 25.3C108.9 25.5 110.3 24.9 110.8 24.6C110.8 25.6 113.0 27.1 114.1 27.8C126.8 30.1 137.8 26.1 138.3 26.1C138.8 26.1 138.3 25.3 142.1 27.1C145.8 28.8 148.1 24.6 148.3 24.6C155.8 28.3 157.8 23.6 159.3 22.3C160.8 21.1 168.1 19.6 171.3 18.1C174.6 16.6 179.3 11.3 182.1 10.3C184.3 9.5 195.9 10.1 201.4 10.6C203.6 7.8 218.6 9.1 221.4 9.8C224.1 10.6 227.1 8.1 227.9 8.8C228.6 9.6 239.4 9.1 250.9 12.6C260.1 15.4 272.4 13.7 277.4 12.6C284.4 4.6 292.4 10.8 295.2 13.1C297.4 14.9 300.1 14.6 301.2 14.3C302.6 13.7 305.7 12.6 306.7 12.6C307.9 12.6 312.7 8.3 314.2 8.1C315.4 7.9 316.5 8.5 316.9 8.8C320.2 4.3 322.2 4.1 327.2 1.8C331.2 0.0 341.2 5.7 345.7 8.8C350.2 6.3 355.2 8.6 359.7 9.3C363.3 9.9 365.5 9.6 366.2 9.3C369.8 10.9 379.2 13.4 388.5 11.1C397.7 8.7 405.0 11.6 407.5 13.3C416.2 13.3 426.0 19.8 428.7 20.8C431.5 21.8 438.0 21.3 438.0 21.1V31H0Z" fill="black"/></svg>');
+  position: absolute;
+  top: -30px;
+  right: 0;
+  left: 0;
+  height: 31px;
+  mask: var(--rip) bottom left / 438px 31px repeat-x;
 }
+/*
+ * Fiber lip: the rip minus itself nudged up 3px, bleached — the paper's white
+ * core. --rip-lip carries the nudge in its own viewBox rather than a mask
+ * position, so the shape still reaches the bottom of the tile; offsetting the
+ * mask layer instead would starve those last 3px and leave a straight seam.
+ */
+.torn-edge::after {
+  --rip-lip: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 3 438 31" preserveAspectRatio="none"><path d="M0 21.1C2.0 21.1 5.3 19.8 10.3 18.8C14.3 18.0 23.4 20.0 27.5 21.1C32.9 19.3 48.6 20.3 55.8 21.1C61.5 19.1 57.5 18.6 71.5 21.8C85.5 25.1 82.5 20.8 87.5 22.6C91.5 24.0 99.2 23.5 102.6 23.1C103.5 23.7 105.7 25.1 107.3 25.3C108.9 25.5 110.3 24.9 110.8 24.6C110.8 25.6 113.0 27.1 114.1 27.8C126.8 30.1 137.8 26.1 138.3 26.1C138.8 26.1 138.3 25.3 142.1 27.1C145.8 28.8 148.1 24.6 148.3 24.6C155.8 28.3 157.8 23.6 159.3 22.3C160.8 21.1 168.1 19.6 171.3 18.1C174.6 16.6 179.3 11.3 182.1 10.3C184.3 9.5 195.9 10.1 201.4 10.6C203.6 7.8 218.6 9.1 221.4 9.8C224.1 10.6 227.1 8.1 227.9 8.8C228.6 9.6 239.4 9.1 250.9 12.6C260.1 15.4 272.4 13.7 277.4 12.6C284.4 4.6 292.4 10.8 295.2 13.1C297.4 14.9 300.1 14.6 301.2 14.3C302.6 13.7 305.7 12.6 306.7 12.6C307.9 12.6 312.7 8.3 314.2 8.1C315.4 7.9 316.5 8.5 316.9 8.8C320.2 4.3 322.2 4.1 327.2 1.8C331.2 0.0 341.2 5.7 345.7 8.8C350.2 6.3 355.2 8.6 359.7 9.3C363.3 9.9 365.5 9.6 366.2 9.3C369.8 10.9 379.2 13.4 388.5 11.1C397.7 8.7 405.0 11.6 407.5 13.3C416.2 13.3 426.0 19.8 428.7 20.8C431.5 21.8 438.0 21.3 438.0 21.1V40H0Z" fill="black"/></svg>');
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-surface);
+  mask:
+    var(--rip) bottom left / 438px 31px repeat-x,
+    var(--rip-lip) bottom left / 438px 31px repeat-x;
+  mask-composite: subtract;
+  opacity: 0.55;
+}
+
+/*
+ * Vertical rip between the ticket halves. Same fixed-scale approach as
+ * .torn-edge: the fiber profile tiles down the seam at 160px so a taller
+ * ticket gets more fibers, not stretched ones.
+ */
+.tear-main {
+  --seam: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 160" preserveAspectRatio="none"><path d="M0 0h8.1l1.4 2.6-2.2 2.1 2.9 3.4-1.6 2.3 2.4 2.8-2.8 2.2 1.9 3.1-2.1 2.4 2.6 2.9-1.7 2.6 2.3 2.2-2.6 3.1 1.8 2.4-2.2 2.7 2.7 2.3-1.9 2.9 2.4 2.2-2.7 2.6 1.6 3.1-2.3 2.2 2.8 2.7-1.8 2.4 2.2 2.9-2.6 2.3 1.9 2.6-2.4 2.8 2.7 2.2-1.6 3.1 2.3 2.4-2.8 2.6 1.8 2.3 -2.2 2.9 2.6 2.2-1.9 2.7 2.4 2.4-2.7 2.8 1.7 2.3-2.3 2.6 2.8 3.1-1.8 2.2 2.2 2.4-2.6 2.9 1.9 2.3-2.4 2.6 2.7 2.8-1.6 2.2 2.3 3.1-2.8 2.4 1.8 2.6-2.2 2.3 2.6 2.9-1.9 2.2 2.4 2.7-2.7 2.4 1.7 2.8-2.3 2.3 2.8 2.6-1.8 3.1 2.2 2.2-2.6 2.4 1.9 2.9-2.4 2.3 2.7 2.6-1.7 2.8 2.3 2.2-2.8 3.1 1.8 2.4-2.2 2.6 2.6 2.3-1.9 2.9 2.4 2.2-2.7 2.7 1.6 2.4H0Z" fill="black"/></svg>');
+  mask:
+    linear-gradient(#000 0 0) 0 0 / calc(100% - 13px) 100% no-repeat,
+    var(--seam) top right / 14px 160px repeat-y;
+}
+/* Mirrored seam (rip faces left) — same profile, flipped in the SVG so the
+   stub's own content is never transformed. */
 .tear-stub {
-  mask-image: url('data:image/svg+xml;utf8,<svg preserveAspectRatio="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="5,0 100,0 100,100 5,100 8,95 4,85 9,75 5,65 8,55 4,45 9,35 5,25 8,15 4,5" fill="black"/></svg>');
-  mask-size: 100% 100%;
+  --seam: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 160" preserveAspectRatio="none"><g transform="translate(14,0) scale(-1,1)"><path d="M0 0h8.1l1.4 2.6-2.2 2.1 2.9 3.4-1.6 2.3 2.4 2.8-2.8 2.2 1.9 3.1-2.1 2.4 2.6 2.9-1.7 2.6 2.3 2.2-2.6 3.1 1.8 2.4-2.2 2.7 2.7 2.3-1.9 2.9 2.4 2.2-2.7 2.6 1.6 3.1-2.3 2.2 2.8 2.7-1.8 2.4 2.2 2.9-2.6 2.3 1.9 2.6-2.4 2.8 2.7 2.2-1.6 3.1 2.3 2.4-2.8 2.6 1.8 2.3 -2.2 2.9 2.6 2.2-1.9 2.7 2.4 2.4-2.7 2.8 1.7 2.3-2.3 2.6 2.8 3.1-1.8 2.2 2.2 2.4-2.6 2.9 1.9 2.3-2.4 2.6 2.7 2.8-1.6 2.2 2.3 3.1-2.8 2.4 1.8 2.6-2.2 2.3 2.6 2.9-1.9 2.2 2.4 2.7-2.7 2.4 1.7 2.8-2.3 2.3 2.8 2.6-1.8 3.1 2.2 2.2-2.6 2.4 1.9 2.9-2.4 2.3 2.7 2.6-1.7 2.8 2.3 2.2-2.8 3.1 1.8 2.4-2.2 2.6 2.6 2.3-1.9 2.9 2.4 2.2-2.7 2.7 1.6 2.4H0Z" fill="black"/></g></svg>');
+  mask:
+    linear-gradient(#000 0 0) 100% 0 / calc(100% - 13px) 100% no-repeat,
+    var(--seam) top left / 14px 160px repeat-y;
+}
+
+/*
+ * Below md the ticket stacks and the seam runs horizontally: the sheet rips
+ * along its bottom edge, the stub along its top. Profile borrowed from
+ * .torn-edge at half scale; flipped copy baked into the SVG, same reasoning
+ * as .tear-stub.
+ */
+@media (width < 48rem) {
+  .tear-main {
+    --seam-h: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438 31" preserveAspectRatio="none"><g transform="translate(0,31) scale(1,-1)"><path d="M0 21.1C2.0 21.1 5.3 19.8 10.3 18.8C14.3 18.0 23.4 20.0 27.5 21.1C32.9 19.3 48.6 20.3 55.8 21.1C61.5 19.1 57.5 18.6 71.5 21.8C85.5 25.1 82.5 20.8 87.5 22.6C91.5 24.0 99.2 23.5 102.6 23.1C103.5 23.7 105.7 25.1 107.3 25.3C108.9 25.5 110.3 24.9 110.8 24.6C110.8 25.6 113.0 27.1 114.1 27.8C126.8 30.1 137.8 26.1 138.3 26.1C138.8 26.1 138.3 25.3 142.1 27.1C145.8 28.8 148.1 24.6 148.3 24.6C155.8 28.3 157.8 23.6 159.3 22.3C160.8 21.1 168.1 19.6 171.3 18.1C174.6 16.6 179.3 11.3 182.1 10.3C184.3 9.5 195.9 10.1 201.4 10.6C203.6 7.8 218.6 9.1 221.4 9.8C224.1 10.6 227.1 8.1 227.9 8.8C228.6 9.6 239.4 9.1 250.9 12.6C260.1 15.4 272.4 13.7 277.4 12.6C284.4 4.6 292.4 10.8 295.2 13.1C297.4 14.9 300.1 14.6 301.2 14.3C302.6 13.7 305.7 12.6 306.7 12.6C307.9 12.6 312.7 8.3 314.2 8.1C315.4 7.9 316.5 8.5 316.9 8.8C320.2 4.3 322.2 4.1 327.2 1.8C331.2 0.0 341.2 5.7 345.7 8.8C350.2 6.3 355.2 8.6 359.7 9.3C363.3 9.9 365.5 9.6 366.2 9.3C369.8 10.9 379.2 13.4 388.5 11.1C397.7 8.7 405.0 11.6 407.5 13.3C416.2 13.3 426.0 19.8 428.7 20.8C431.5 21.8 438.0 21.3 438.0 21.1V31H0Z" fill="black"/></g></svg>');
+    mask:
+      linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 15px) no-repeat,
+      var(--seam-h) bottom left / 219px 16px repeat-x;
+  }
+  .tear-stub {
+    --seam-h: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438 31" preserveAspectRatio="none"><path d="M0 21.1C2.0 21.1 5.3 19.8 10.3 18.8C14.3 18.0 23.4 20.0 27.5 21.1C32.9 19.3 48.6 20.3 55.8 21.1C61.5 19.1 57.5 18.6 71.5 21.8C85.5 25.1 82.5 20.8 87.5 22.6C91.5 24.0 99.2 23.5 102.6 23.1C103.5 23.7 105.7 25.1 107.3 25.3C108.9 25.5 110.3 24.9 110.8 24.6C110.8 25.6 113.0 27.1 114.1 27.8C126.8 30.1 137.8 26.1 138.3 26.1C138.8 26.1 138.3 25.3 142.1 27.1C145.8 28.8 148.1 24.6 148.3 24.6C155.8 28.3 157.8 23.6 159.3 22.3C160.8 21.1 168.1 19.6 171.3 18.1C174.6 16.6 179.3 11.3 182.1 10.3C184.3 9.5 195.9 10.1 201.4 10.6C203.6 7.8 218.6 9.1 221.4 9.8C224.1 10.6 227.1 8.1 227.9 8.8C228.6 9.6 239.4 9.1 250.9 12.6C260.1 15.4 272.4 13.7 277.4 12.6C284.4 4.6 292.4 10.8 295.2 13.1C297.4 14.9 300.1 14.6 301.2 14.3C302.6 13.7 305.7 12.6 306.7 12.6C307.9 12.6 312.7 8.3 314.2 8.1C315.4 7.9 316.5 8.5 316.9 8.8C320.2 4.3 322.2 4.1 327.2 1.8C331.2 0.0 341.2 5.7 345.7 8.8C350.2 6.3 355.2 8.6 359.7 9.3C363.3 9.9 365.5 9.6 366.2 9.3C369.8 10.9 379.2 13.4 388.5 11.1C397.7 8.7 405.0 11.6 407.5 13.3C416.2 13.3 426.0 19.8 428.7 20.8C431.5 21.8 438.0 21.3 438.0 21.1V31H0Z" fill="black"/></svg>');
+    mask:
+      linear-gradient(#000 0 0) 0 100% / 100% calc(100% - 15px) no-repeat,
+      var(--seam-h) top left / 219px 16px repeat-x;
+  }
 }
 
 /* Hero load choreography. */

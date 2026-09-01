@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Booking } from "@/components/booking";
 import { ExperienceLog } from "@/components/experience-log";
 import { Hero } from "@/components/hero";
 import { StampGrid } from "@/components/stamp-grid";
@@ -55,6 +56,23 @@ export default async function Home() {
             </Link>
           </div>
           <ExperienceLog entries={experience.slice(0, 3)} />
+        </div>
+      </section>
+
+      <section id="booking" className="bg-ground-kraft text-ground-kraft">
+        <TornEdge />
+        <div className="text-ink mx-auto max-w-350 px-5 pt-4 pb-24 md:px-14 md:pb-32">
+          <div className="mb-10 text-center">
+            <p className="rubber-stamp mb-6 text-[11px]">Final destination</p>
+            <h2 className="font-display text-3xl font-bold tracking-tight uppercase font-stretch-75% md:text-5xl">
+              Send something back
+            </h2>
+            <p className="text-ink/70 mx-auto mt-3 max-w-md text-sm leading-relaxed">
+              Available for new projects. Tear the stub, pick a slot, and
+              let&apos;s talk shipping.
+            </p>
+          </div>
+          <Booking />
         </div>
       </section>
     </main>

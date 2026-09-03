@@ -66,6 +66,9 @@ body {
     inset: var(--frame);
     min-height: 0;
     overflow-y: auto;
+    /* Never scroll sideways: off-screen animations (tear fly-out) would
+       otherwise widen the scrollable area. */
+    overflow-x: clip;
     border-radius: 20px;
   }
   body::before {

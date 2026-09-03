@@ -9,7 +9,7 @@ export function Hero() {
     <section className="mx-auto max-w-350 px-5 pt-10 pb-20 md:px-14 md:pt-16 md:pb-28">
       <div className="relative">
         {/* Postcard */}
-        <div className="soft-shadow-paper hover-lift bg-surface border-rule relative -rotate-1 border p-7 md:p-12">
+        <div className="soft-shadow-paper hover-lift bg-green-100 border-rule relative -rotate-1 border p-7 md:p-12">
           <p className="load-fade text-ink-faded mb-6 font-mono text-xs tracking-widest uppercase [animation-delay:.1s]">
             ( Software developer, est. 2021 )
           </p>

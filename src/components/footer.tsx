@@ -1,3 +1,5 @@
+import { TornEdge } from "@/components/torn-edge";
+
 const socials = [
   { href: "https://github.com/ankitzm", label: "GITHUB/ANKITZM" },
   { href: "https://x.com/ankitzm", label: "X @ANKITZM" },
@@ -6,7 +8,10 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-ink bg-surface border-t-2 pb-24 md:pb-0">
+    <footer className="paper-grain bg-surface text-surface relative pb-24 md:pb-0">
+      {/* Grained like the footer body, or the rip reads brighter than the
+          paper it belongs to. */}
+      <TornEdge className="paper-grain" />
       <div className="text-ink-faded mx-auto flex max-w-350 flex-col gap-4 px-5 py-10 font-mono text-[11px] tracking-wider md:flex-row md:items-baseline md:justify-between md:px-14">
         <div className="flex flex-col gap-3 md:flex-row md:gap-8">
           {socials.map((social) => (

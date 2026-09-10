@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { MotionProvider } from "@/components/reveal";
+import { ConsoleEgg } from "@/components/console-egg";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
 const bricolage = Bricolage_Grotesque({
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="font-sans">
         <MotionProvider>
           <SmoothScroll />
+          <ConsoleEgg />
           <Header />
           {children}
           <Footer />

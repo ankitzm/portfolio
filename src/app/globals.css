@@ -617,3 +617,22 @@ dialog.customs::backdrop {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 60%);
   }
 }
+
+/* Airmail stripe as an edge border (envelopes, the 404 letter). */
+.airmail-edge {
+  border: 6px solid transparent;
+  background:
+    linear-gradient(var(--color-surface) 0 0) padding-box,
+    repeating-linear-gradient(
+        45deg,
+        var(--color-stamp) 0,
+        var(--color-stamp) 10px,
+        var(--color-surface) 10px,
+        var(--color-surface) 20px,
+        var(--color-accent) 20px,
+        var(--color-accent) 30px,
+        var(--color-surface) 30px,
+        var(--color-surface) 40px
+      )
+      border-box;
+}

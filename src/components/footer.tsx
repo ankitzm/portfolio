@@ -8,7 +8,10 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="paper-grain bg-surface text-surface relative pb-24 md:pb-0">
+    <footer
+      data-ground="paper"
+      className="paper-grain bg-surface text-surface relative"
+    >
       {/* Grained like the footer body, or the rip reads brighter than the
           paper it belongs to. */}
       <TornEdge className="paper-grain" />

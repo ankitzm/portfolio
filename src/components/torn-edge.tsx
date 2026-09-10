@@ -8,5 +8,7 @@
  * `relative` — otherwise the rip anchors to the page and vanishes.
  */
 export function TornEdge({ className = "" }: { className?: string }) {
-  return <div aria-hidden="true" className={`torn-edge bg-current ${className}`} />;
+  return (
+    <div aria-hidden="true" className={`torn-edge bg-current ${className}`} />
+  );
 }

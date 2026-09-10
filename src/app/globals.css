@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 /*
  * "Everything Ships" tokens. THE ONLY FILE ALLOWED TO CONTAIN COLOR
@@ -39,44 +40,65 @@
   color: var(--color-paper);
 }
 
+html {
+  scroll-padding-top: calc(var(--frame) + 72px);
+}
 body {
-  background: var(--color-surface);
   color: var(--color-ink);
   overflow-x: clip;
 }
 
 /*
- * Airmail-stripe frame: fixed ring on all four sides of the viewport, with
- * the page inset by the same amount so nothing ever scrolls under it.
- * Mobile: no frame, full bleed.
+ * Ground: the "country" the viewport is currently in. Set on <html> by the
+ * header's scroll watcher from each section's data-ground; body, frame and
+ * header all crossfade off these three vars.
  */
-.airmail-frame {
-  min-height: 100vh;
+:root {
+  --frame: 0px;
+  --ground: var(--color-surface);
+  --ground-ink: var(--color-ink);
+  --ground-brand: var(--color-accent);
+}
+html[data-ground="sky"] {
+  --ground: var(--color-ground-sky);
+}
+html[data-ground="navy"] {
+  --ground: var(--color-ground-navy);
+  --ground-ink: var(--color-paper);
+  --ground-brand: var(--color-paper);
+}
+html[data-ground="kraft"] {
+  --ground: var(--color-ground-kraft);
+}
+body {
+  background: var(--ground);
+  transition: background-color 0.6s var(--ease-paper);
 }
 
+/*
+ * Airmail-stripe frame: the window scrolls normally; the frame is a fixed
+ * overlay. ::before is the gutter (a huge box-shadow around a rounded hole,
+ * so corners stay masked), ::after is the stripe ring. Mobile: no frame.
+ */
 @media (min-width: 768px) {
-  body {
+  :root {
     --frame: 13px; /* 10px gutter + 3px stripe */
-    height: 100vh;
-    overflow: hidden;
   }
-  /* The frame IS the scroll container, so content can never escape it. */
-  .airmail-frame {
-    position: absolute;
-    inset: var(--frame);
-    min-height: 0;
-    overflow-y: auto;
-    /* Never scroll sideways: off-screen animations (tear fly-out) would
-       otherwise widen the scrollable area. */
-    overflow-x: clip;
-    border-radius: 20px;
-  }
-  body::before {
+  body::before,
+  body::after {
     content: "";
     position: fixed;
     inset: 10px;
-    border: 3px solid transparent;
     border-radius: 20px;
+    pointer-events: none;
+    z-index: 100;
+  }
+  body::before {
+    box-shadow: 0 0 0 100vmax var(--ground);
+    transition: box-shadow 0.6s var(--ease-paper);
+  }
+  body::after {
+    border: 3px solid transparent;
     background: repeating-linear-gradient(
         45deg,
         var(--color-stamp) 0,
@@ -93,8 +115,67 @@ body {
       linear-gradient(#fff 0 0) padding-box,
       linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    z-index: 100;
-    pointer-events: none;
+  }
+}
+
+/* Header + frame share the ground; ink flips to paper on navy. */
+.ground-bar {
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  color: var(--ground-ink);
+  border-color: color-mix(in srgb, var(--ground-ink) 14%, transparent);
+  transition:
+    background-color 0.6s var(--ease-paper),
+    color 0.6s var(--ease-paper),
+    border-color 0.6s var(--ease-paper);
+}
+.ground-brand {
+  color: var(--ground-brand);
+  transition: color 0.6s var(--ease-paper);
+}
+
+/*
+ * Customs declaration: the mobile menu is a native <dialog>, dropped onto the
+ * desk from above. Open/close is pure CSS via @starting-style; the browser
+ * handles focus trap, Esc and inert.
+ */
+dialog.customs {
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overscroll-behavior: contain;
+  opacity: 0;
+  translate: 0 -6%;
+  transition:
+    opacity 0.45s var(--ease-paper),
+    translate 0.45s var(--ease-paper),
+    display 0.45s allow-discrete,
+    overlay 0.45s allow-discrete;
+}
+dialog.customs[open] {
+  opacity: 1;
+  translate: 0 0;
+  @starting-style {
+    opacity: 0;
+    translate: 0 -6%;
+  }
+}
+dialog.customs::backdrop {
+  background: transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog.customs,
+  body,
+  body::before,
+  .ground-bar,
+  .ground-brand {
+    transition-duration: 0s;
   }
 }
 
@@ -134,8 +215,8 @@ body {
   mask:
     linear-gradient(#000 0 0) content-box,
     radial-gradient(circle var(--hole), transparent 98%, #000)
-      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch)
-      var(--pitch) round;
+      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch) var(--pitch)
+      round;
 }
 
 /*
@@ -166,8 +247,8 @@ body {
   mask:
     linear-gradient(#000 0 0) content-box,
     radial-gradient(circle var(--hole), transparent 98%, #000)
-      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch)
-      var(--pitch) round;
+      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch) var(--pitch)
+      round;
 }
 
 /* Shadow that hugs a masked silhouette (scallops included). */
@@ -189,6 +270,46 @@ body {
   transform: rotate(-4deg);
   opacity: 0.85;
   mix-blend-mode: multiply;
+}
+
+/*
+ * Stamp CTA: the one interactive imprint. Hover inks the stamp solid and
+ * swaps the label in place — grid-stacked spans crossfade on the same
+ * transition as the fill, and reverse together. Sits after .rubber-stamp:
+ * both set display, and the later rule must be the grid.
+ */
+.stamp-cta {
+  display: inline-grid;
+  justify-items: center;
+  padding: 12px 22px;
+  font-size: 15px;
+  transform: none; /* CTA sits straight; only decorative imprints tilt */
+}
+.stamp-cta,
+.stamp-cta > span {
+  transition:
+    background-color 0.3s var(--ease-paper),
+    color 0.3s var(--ease-paper),
+    opacity 0.3s var(--ease-paper);
+}
+.stamp-cta > span {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+.stamp-cta > span:last-child {
+  opacity: 0;
+}
+.stamp-cta:hover {
+  background: var(--color-stamp);
+  color: var(--color-paper);
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+.stamp-cta:hover > span:first-child {
+  opacity: 0;
+}
+.stamp-cta:hover > span:last-child {
+  opacity: 1;
 }
 
 .barcode {

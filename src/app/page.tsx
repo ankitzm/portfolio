@@ -14,10 +14,14 @@ export default async function Home() {
   ]);
 
   return (
-    <main>
+    <main data-ground="paper">
       <Hero />
 
-      <section id="projects" className="bg-ground-sky text-ground-sky relative">
+      <section
+        id="projects"
+        data-ground="sky"
+        className="bg-ground-sky text-ground-sky relative"
+      >
         <TornEdge />
         <div className="text-ink mx-auto max-w-350 px-5 pt-20 pb-20 md:px-14 md:pt-28 md:pb-28">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2">
@@ -41,7 +45,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="experience" className="bg-ground-navy text-ground-navy relative">
+      <section
+        id="experience"
+        data-ground="navy"
+        className="bg-ground-navy text-ground-navy relative"
+      >
         <TornEdge />
         <div className="text-paper mx-auto max-w-350 px-5 pt-20 pb-20 md:px-14 md:pt-28 md:pb-28">
           <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2">
@@ -59,7 +67,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="booking" className="bg-ground-kraft text-ground-kraft relative">
+      <section
+        id="booking"
+        data-ground="kraft"
+        className="bg-ground-kraft text-ground-kraft relative"
+      >
         <TornEdge />
         <div className="text-ink mx-auto max-w-350 px-5 pt-24 pb-24 md:px-14 md:pt-32 md:pb-32">
           <div className="mb-10 text-center">

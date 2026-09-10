@@ -11,7 +11,7 @@ export default async function DispatchesPage() {
   const posts = await getPosts();
 
   return (
-    <main className="bg-ground-news">
+    <main data-ground="paper" className="bg-ground-news">
       <div className="text-ink mx-auto max-w-3xl px-5 py-14 md:py-20">
         <div className="mb-12 flex flex-wrap items-baseline justify-between gap-2">
           <h1 className="font-display text-4xl font-bold tracking-tight uppercase font-stretch-75% md:text-6xl">

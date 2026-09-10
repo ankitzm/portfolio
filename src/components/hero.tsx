@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /**
  * The franking desk: postcard headline, OPEN FOR WORK imprint, and on
  * desktop a polaroid postmark pinned to the postcard's corner. The
@@ -7,9 +9,17 @@
 export function Hero() {
   return (
     <section className="mx-auto max-w-350 px-5 pt-10 pb-20 md:px-14 md:pt-16 md:pb-28">
-      <div className="relative">
-        {/* Postcard */}
-        <div className="soft-shadow-paper hover-lift bg-green-100 border-rule relative -rotate-1 border p-7 md:p-12">
+      {/* pb reserves the strip the mobile corner stamp overhangs into */}
+      <div className="relative pb-16 md:pb-0">
+        {/* Postcard — surface stock with paper grain, per the token scheme */}
+        <div className="soft-shadow-paper hover-lift paper-grain bg-surface border-rule relative -rotate-1 border p-7 md:p-12">
+          {/* Handwritten franking note filling the card's empty right half */}
+          <p
+            aria-hidden="true"
+            className="load-fade font-annotation text-accent/70 absolute top-2/5 right-16 hidden -rotate-6 text-3xl [animation-delay:1.2s] lg:block"
+          >
+            par avion ✈
+          </p>
           <p className="load-fade text-ink-faded mb-6 font-mono text-xs tracking-widest uppercase [animation-delay:.1s]">
             ( Software developer, est. 2021 )
           </p>
@@ -56,9 +66,16 @@ export function Hero() {
           </p>
         </div>
 
-        {/* OPEN FOR WORK — decorative imprint, deliberately not a control */}
-        <div className="load-slam mt-8 [animation-delay:1.3s] md:absolute md:-right-4 md:-bottom-10 md:mt-0">
-          <span className="rubber-stamp text-sm">Open for work</span>
+        {/* OPEN FOR WORK — stamped boarding call. Absolute at every size so it
+            never collides with the headline/tagline. Mobile: bottom-right
+            corner stamp. md (tablet): top-right, clear of the polaroid which is
+            lg-only. lg: back down the right edge under the polaroid. Hover inks
+            it solid and rolls the label to "Book a session". */}
+        <div className="load-slam absolute right-2 bottom-0 [animation-delay:1.3s] md:top-6 md:right-6 md:bottom-auto lg:top-auto lg:right-14 lg:bottom-36">
+          <Link href="/#booking" className="rubber-stamp stamp-cta">
+            <span>Open for work</span>
+            <span aria-hidden="true">Book a session</span>
+          </Link>
         </div>
       </div>
     </section>

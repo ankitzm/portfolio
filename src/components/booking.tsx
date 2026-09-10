@@ -93,10 +93,7 @@ export function Booking() {
           watermark included — Cal reports the same px height at every
           viewport). Pass and calendar share this exact footprint; if Cal ever
           wants more, the iframe scrolls inside rather than moving the page. */}
-      <div
-        inert={!torn}
-        className="h-156.5 overflow-y-auto md:h-134.5"
-      >
+      <div inert={!torn} className="h-156.5 overflow-y-auto md:h-134.5">
         <Cal
           namespace={CAL_NAMESPACE}
           calLink={CAL_LINK}

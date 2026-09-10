@@ -19,7 +19,7 @@ export default async function ExperiencePage() {
   const entries = await getExperience();
 
   return (
-    <main className="bg-ground-navy text-paper">
+    <main data-ground="navy" className="bg-ground-navy text-paper">
       <div className="mx-auto max-w-350 px-5 py-14 md:px-14 md:py-20">
         <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2">
           <h1 className="font-display text-4xl font-bold tracking-tight uppercase font-stretch-75% md:text-6xl">

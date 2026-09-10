@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { MotionProvider } from "@/components/reveal";
-import { TabNav } from "@/components/tab-nav";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -52,12 +52,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="font-sans">
         <MotionProvider>
-          <div className="airmail-frame">
-            <Header />
-            {children}
-            <Footer />
-          </div>
-          <TabNav />
+          <SmoothScroll />
+          <Header />
+          {children}
+          <Footer />
         </MotionProvider>
         <Analytics />
       </body>

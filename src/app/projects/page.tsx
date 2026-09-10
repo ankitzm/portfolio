@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { StampGrid } from "@/components/stamp-grid";
+import { PassGrid } from "@/components/boarding-pass";
 import { getProjects } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
           </p>
         </div>
         <p className="rubber-stamp mb-12 text-[11px]">Entering: shipped work</p>
-        <StampGrid projects={projects} />
+        <PassGrid projects={projects} />
       </div>
     </main>
   );

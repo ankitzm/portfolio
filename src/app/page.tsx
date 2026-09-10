@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Booking } from "@/components/booking";
 import { ExperienceLog } from "@/components/experience-log";
 import { Hero } from "@/components/hero";
-import { StampGrid } from "@/components/stamp-grid";
+import { PassGrid } from "@/components/boarding-pass";
 import { TornEdge } from "@/components/torn-edge";
 import { getExperience, getProjects, hasPortrait } from "@/lib/data";
 
@@ -32,7 +32,7 @@ export default async function Home() {
               Parcels: 04 of {String(projects.length).padStart(2, "0")}
             </p>
           </div>
-          <StampGrid projects={projects.slice(0, 4)} />
+          <PassGrid projects={projects.slice(0, 4)} />
           <div className="mt-12 flex justify-center">
             <Link
               href="/projects"

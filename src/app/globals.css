@@ -442,3 +442,43 @@ dialog.customs::backdrop {
     animation: stamp-slam 0.45s var(--ease-paper) both;
   }
 }
+
+/*
+ * Boarding pass: two semicircle notches cut where the stub seam meets the
+ * edge. Mask kills box-shadow, so the pass carries .drop-shadow-paper.
+ * Seam is horizontal (stub below) until md, vertical after.
+ */
+.pass-notch {
+  --notch: 9px;
+  --seam: calc(100% - 4.75rem);
+  border-radius: 2px;
+  mask:
+    radial-gradient(
+      circle var(--notch) at 0 var(--seam),
+      transparent 98%,
+      #000
+    ),
+    radial-gradient(
+      circle var(--notch) at 100% var(--seam),
+      transparent 98%,
+      #000
+    );
+  mask-composite: intersect;
+}
+@media (min-width: 768px) {
+  .pass-notch {
+    --seam: calc(100% - 11rem);
+    mask:
+      radial-gradient(
+        circle var(--notch) at var(--seam) 0,
+        transparent 98%,
+        #000
+      ),
+      radial-gradient(
+        circle var(--notch) at var(--seam) 100%,
+        transparent 98%,
+        #000
+      );
+    mask-composite: intersect;
+  }
+}

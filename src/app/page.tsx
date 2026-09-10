@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Booking } from "@/components/booking";
-import { ExperienceLog } from "@/components/experience-log";
+import { Passport } from "@/components/passport";
 import { Hero } from "@/components/hero";
 import { PassGrid } from "@/components/boarding-pass";
 import { TornEdge } from "@/components/torn-edge";
@@ -12,10 +12,11 @@ export default async function Home() {
     getProjects(),
     getExperience(),
   ]);
+  const portrait = hasPortrait();
 
   return (
     <main data-ground="paper">
-      <Hero hasPortrait={hasPortrait()} />
+      <Hero hasPortrait={portrait} />
 
       <section
         id="projects"
@@ -51,8 +52,8 @@ export default async function Home() {
         className="bg-ground-navy text-ground-navy relative"
       >
         <TornEdge />
-        <div className="text-paper mx-auto max-w-350 px-5 pt-20 pb-20 md:px-14 md:pt-28 md:pb-28">
-          <div className="mb-10 flex flex-wrap items-baseline justify-between gap-2">
+        <div className="text-paper mx-auto max-w-350 px-5 pt-20 md:px-14 md:pt-28">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="font-display text-3xl font-bold tracking-tight uppercase font-stretch-75% md:text-5xl">
               Transit log
             </h2>
@@ -63,7 +64,13 @@ export default async function Home() {
               Full passport →
             </Link>
           </div>
-          <ExperienceLog entries={experience.slice(0, 3)} />
+        </div>
+        <div className="text-paper -mt-16 pb-10 md:-mt-24">
+          <Passport
+            entries={experience.slice(0, 3)}
+            hasPortrait={portrait}
+            home
+          />
         </div>
       </section>
 

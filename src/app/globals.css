@@ -24,6 +24,10 @@
   --color-visa-red: #e86a50;
   --color-visa-orange: #e8a050;
   --color-visa-purple: #a78bdb;
+  /* the same inks on cream passport pages */
+  --color-ink-red: #b8412c;
+  --color-ink-purple: #5b47a8;
+  --color-ink-orange: #b9661c;
 
   --ease-paper: cubic-bezier(0.2, 0, 0, 1);
 }
@@ -480,5 +484,136 @@ dialog.customs::backdrop {
         #000
       );
     mask-composite: intersect;
+  }
+}
+
+/*
+ * Passport book. Two page slots (a = left/top base, b = right/bottom base)
+ * and leaves that rotate about the spine. Desktop: spine vertical, leaves
+ * rotateY. Below md (.pp-stacked): spine horizontal, leaves rotateX.
+ */
+.pp-book {
+  --pw: clamp(16rem, 34vw, 29rem);
+  --ph: min(calc(var(--pw) * 1.18), calc(100dvh - 10rem));
+  position: relative;
+  width: calc(var(--pw) * 2);
+  height: var(--ph);
+  perspective: 2400px;
+}
+.pp-cover {
+  position: absolute;
+  inset: -10px;
+  border-radius: 14px;
+  background: #141c33;
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 179, 122, 0.35),
+    0 30px 60px rgba(0, 0, 0, 0.35);
+}
+.pp-page,
+.pp-leaf {
+  position: absolute;
+  width: var(--pw);
+  height: var(--ph);
+}
+.pp-page,
+.pp-side {
+  background:
+    repeating-radial-gradient(
+      circle at 50% 130%,
+      transparent 0 7px,
+      rgba(28, 27, 23, 0.035) 7px 8px
+    ),
+    var(--color-surface);
+  color: var(--color-ink);
+  overflow: hidden;
+}
+.pp-base-a {
+  left: 0;
+  top: 0;
+  border-radius: 6px 0 0 6px;
+  box-shadow: inset -24px 0 28px -24px rgba(28, 27, 23, 0.45);
+}
+.pp-base-b {
+  right: 0;
+  top: 0;
+  border-radius: 0 6px 6px 0;
+  box-shadow: inset 24px 0 28px -24px rgba(28, 27, 23, 0.45);
+}
+.pp-leaf {
+  right: 0;
+  top: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.pp-side {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+.pp-front {
+  border-radius: 0 6px 6px 0;
+  box-shadow: inset 24px 0 28px -24px rgba(28, 27, 23, 0.45);
+}
+.pp-back {
+  transform: rotateY(180deg);
+  border-radius: 6px 0 0 6px;
+  box-shadow: inset -24px 0 28px -24px rgba(28, 27, 23, 0.45);
+}
+.pp-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent 60%);
+}
+.pp-face {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(0.9rem, 2.4vw, 2.25rem);
+}
+.pp-flat .pp-page {
+  position: static;
+  width: auto;
+  height: auto;
+  min-height: 20rem;
+  border-radius: 6px;
+}
+
+@media (width < 48rem) {
+  .pp-book,
+  .pp-stacked {
+    --pw: min(calc(100vw - 2.5rem), 24rem);
+    --ph: min(calc(var(--pw) * 1.02), calc((100dvh - 9rem) / 2));
+    width: var(--pw);
+    height: calc(var(--ph) * 2);
+  }
+  .pp-base-a {
+    border-radius: 6px 6px 0 0;
+    box-shadow: inset 0 -24px 28px -24px rgba(28, 27, 23, 0.45);
+  }
+  .pp-base-b {
+    top: auto;
+    bottom: 0;
+    border-radius: 0 0 6px 6px;
+    box-shadow: inset 0 24px 28px -24px rgba(28, 27, 23, 0.45);
+  }
+  .pp-leaf {
+    top: auto;
+    bottom: 0;
+    transform-origin: center top;
+  }
+  .pp-front {
+    border-radius: 0 0 6px 6px;
+    box-shadow: inset 0 24px 28px -24px rgba(28, 27, 23, 0.45);
+  }
+  .pp-back {
+    transform: rotateX(180deg);
+    border-radius: 6px 6px 0 0;
+    box-shadow: inset 0 -24px 28px -24px rgba(28, 27, 23, 0.45);
+  }
+  .pp-shade {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 60%);
   }
 }

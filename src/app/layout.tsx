@@ -16,22 +16,26 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   axes: ["opsz", "wdth"],
+  display: "swap",
   variable: "--font-bricolage",
 });
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-hanken",
 });
 
 const courier = Courier_Prime({
   weight: ["400", "700"],
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-courier",
 });
 
 const caveat = Caveat({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-caveat",
 });
 

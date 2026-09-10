@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Booking } from "@/components/booking";
+import { BookingLazy } from "@/components/booking-lazy";
 import { Passport } from "@/components/passport";
 import { Hero } from "@/components/hero";
 import { PassGrid } from "@/components/boarding-pass";
@@ -91,7 +91,7 @@ export default async function Home() {
               let&apos;s talk shipping.
             </p>
           </div>
-          <Booking />
+          <BookingLazy />
         </div>
       </section>
     </main>

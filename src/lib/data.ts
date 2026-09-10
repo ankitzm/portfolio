@@ -1,5 +1,6 @@
 import "server-only";
 
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -20,3 +21,7 @@ export const projectImage = (image: string) => `/projects/webp/${image}.webp`;
 export const projectHref = ({ links }: Project) =>
   links.website || links.github;
 export const getPosts = () => read<Post[]>("posts.json");
+
+/** True once a portrait has been dropped at public/portrait.jpg. */
+export const hasPortrait = () =>
+  existsSync(path.join(process.cwd(), "public", "portrait.jpg"));

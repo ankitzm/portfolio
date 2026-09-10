@@ -5,7 +5,7 @@ import { ExperienceLog } from "@/components/experience-log";
 import { Hero } from "@/components/hero";
 import { StampGrid } from "@/components/stamp-grid";
 import { TornEdge } from "@/components/torn-edge";
-import { getExperience, getProjects } from "@/lib/data";
+import { getExperience, getProjects, hasPortrait } from "@/lib/data";
 
 export default async function Home() {
   const [projects, experience] = await Promise.all([
@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <main data-ground="paper">
-      <Hero />
+      <Hero hasPortrait={hasPortrait()} />
 
       <section
         id="projects"

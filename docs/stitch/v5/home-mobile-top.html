@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Home — Everything Ships (Mobile v5 Top)</title>
+  <!-- Google Fonts: Bricolage Grotesque, Hanken Grotesk, Courier Prime -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --counter-paper: #F1ECDF;
+      --airmail-sky: #A9D6EC;
+      --document-ink: #1C1B17;
+      --faded-ink: #6E6A5E;
+      --airmail-blue: #2B4ACB;
+      --stamp-red: #D94A2B;
+      --rule-line: rgba(28, 27, 23, 0.16);
+      --cream-card: #FAF6ED;
+    }
+
+    body {
+      background-color: #E2DDD0;
+      color: var(--document-ink);
+      font-family: 'Hanken Grotesk', sans-serif;
+      margin: 0;
+      padding: 8px;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-bricolage {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-stretch: 75%;
+    }
+
+    .font-mono-postal {
+      font-family: 'Courier Prime', monospace;
+    }
+
+    /* Outer airmail diagonal striped border envelope */
+    .airmail-frame {
+      position: relative;
+      background: var(--counter-paper);
+      box-sizing: border-box;
+      border: 6px solid transparent;
+      border-image: repeating-linear-gradient(
+        -45deg,
+        #D94A2B 0,
+        #D94A2B 12px,
+        #FAF6ED 12px,
+        #FAF6ED 18px,
+        #2B4ACB 18px,
+        #2B4ACB 30px,
+        #FAF6ED 30px,
+        #FAF6ED 36px
+      ) 6;
+      box-shadow: 0 10px 30px rgba(28, 27, 23, 0.12);
+      overflow: hidden;
+    }
+
+    /* Perforated scalloped edges for postage stamps */
+    .stamp-perforated {
+      position: relative;
+      background-color: #FAF6ED;
+      filter: drop-shadow(0 6px 14px rgba(28, 27, 23, 0.18));
+      background-image:
+        radial-gradient(circle, transparent 0, transparent 3px, #FAF6ED 3.5px),
+        radial-gradient(circle, transparent 0, transparent 3px, #FAF6ED 3.5px),
+        radial-gradient(circle, transparent 0, transparent 3px, #FAF6ED 3.5px),
+        radial-gradient(circle, transparent 0, transparent 3px, #FAF6ED 3.5px);
+      background-position:
+        top center,
+        bottom center,
+        left center,
+        right center;
+      background-repeat:
+        repeat-x,
+        repeat-x,
+        repeat-y,
+        repeat-y;
+      background-size:
+        9px 5px,
+        9px 5px,
+        5px 9px,
+        5px 9px;
+      padding: 5px;
+    }
+
+    /* Torn paper divider edge SVG */
+    .torn-edge {
+      width: 100%;
+      height: 14px;
+      display: block;
+      margin-bottom: -1px;
+    }
+
+    /* Rubber stamp texture */
+    .rubber-stamp {
+      border: 1.5px solid var(--stamp-red);
+      color: var(--stamp-red);
+      font-family: 'Courier Prime', monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      display: inline-block;
+      position: relative;
+      background: rgba(217, 74, 43, 0.03);
+      mix-blend-mode: multiply;
+      outline: 1px dashed rgba(217, 74, 43, 0.4);
+      outline-offset: -3px;
+    }
+
+    /* Barcode styling */
+    .barcode-strip {
+      height: 28px;
+      background: repeating-linear-gradient(
+        90deg,
+        #1C1B17 0,
+        #1C1B17 1.5px,
+        transparent 1.5px,
+        transparent 3px,
+        #1C1B17 3px,
+        #1C1B17 5px,
+        transparent 5px,
+        transparent 6.5px,
+        #1C1B17 6.5px,
+        #1C1B17 9px,
+        transparent 9px,
+        transparent 12px
+      );
+      width: 78px;
+      opacity: 0.85;
+    }
+
+    /* Dotted rule */
+    .dotted-rule {
+      border-bottom: 1px dotted rgba(28, 27, 23, 0.28);
+    }
+  </style>
+</head>
+<body class="w-[390px] mx-auto p-2 bg-[#E7E2D6] select-none text-[15px]">
+
+  <div class="airmail-frame w-full max-w-[374px] mx-auto">
+
+    <!-- HEADER: Cream bar, left 'AS' monogram Bricolage condensed 800, right Courier 11px 'MENU' with tiny three-line glyph, hairline below -->
+    <header class="h-14 px-5 flex items-center justify-between bg-[#F7F3EA] border-b border-[rgba(28,27,23,0.16)]">
+      <div class="flex items-center gap-2">
+        <span class="font-bricolage font-extrabold text-2xl tracking-tighter text-[#1C1B17] leading-none">AS</span>
+        <span class="font-mono-postal text-[10px] text-[#6E6A5E] tracking-widest uppercase ml-1 opacity-75">№ 2026</span>
+      </div>
+      <button class="flex items-center gap-1.5 py-1.5 px-2.5 rounded border border-[rgba(28,27,23,0.14)] bg-[#FAF6ED] active:translate-y-[1px] transition-transform" aria-label="Menu">
+        <span class="font-mono-postal text-[11px] font-bold text-[#1C1B17] tracking-wider">MENU</span>
+        <svg class="w-3 h-2.5 text-[#1C1B17]" viewBox="0 0 12 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="1" y1="1.5" x2="11" y2="1.5"></line>
+          <line x1="1" y1="5" x2="11" y2="5"></line>
+          <line x1="1" y1="8.5" x2="11" y2="8.5"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- HERO SECTION on Counter Paper #F1ECDF -->
+    <section class="bg-[#F1ECDF] px-5 pt-6 pb-7 relative">
+
+      <!-- Postcard Container: 0deg rotation, hairline border, soft shadow -->
+      <div class="relative bg-[#FAF6ED] border border-[rgba(28,27,23,0.16)] rounded-[2px] p-5 shadow-[0_10px_28px_rgba(28,27,23,0.08)]">
+
+        <!-- Label: ( SOFTWARE DEVELOPER, EST. 2021 ) -->
+        <p class="font-mono-postal text-[11px] text-[#6E6A5E] tracking-wider uppercase mb-3">
+          ( SOFTWARE DEVELOPER, EST. 2021 )
+        </p>
+
+        <!-- Headline: three lines heavy condensed Bricolage uppercase 52px (scaled for 390px viewport: 44px-48px line tight) -->
+        <h1 class="font-bricolage font-extrabold uppercase text-[46px] leading-[0.92] tracking-[-0.03em] text-[#1C1B17] mb-4">
+          SHIPS<br>
+          <span class="text-[#2B4ACB]">SOFTWARE,</span><br>
+          END TO<br>
+          END
+        </h1>
+
+        <!-- Lower subline -->
+        <p class="font-mono-postal text-[11.5px] text-[#1C1B17] leading-[1.45] tracking-normal mb-4 opacity-90">
+          web3 products, sdks &amp; interfaces · from router protocol to freelance
+        </p>
+
+        <!-- Dotted rule and postal legend -->
+        <div class="dotted-rule pt-2.5 flex items-center justify-between text-[8.5px] font-mono-postal text-[#6E6A5E] tracking-wider uppercase">
+          <span>(01) POSTCARD</span>
+          <span>(02) PORTRAIT</span>
+          <span>(03) POSTMARK</span>
+          <span>(04) STAMP</span>
+        </div>
+
+        <!-- Small PORTRAIT POSTAGE STAMP (86px) with perforated edges and monochrome portrait photo overlapping top-right corner, rotated +6°, denomination 'EST. 2021' -->
+        <div class="absolute -top-4 -right-3 w-[86px] stamp-perforated rotate-[6deg] z-10 shadow-md">
+          <div class="bg-white p-1 border border-[rgba(28,27,23,0.12)]">
+            <div class="w-full h-[88px] overflow-hidden bg-[#1C1B17] relative">
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB97U2zSQq-JTgPRAhX46qLJ6c_p3-iSQdoV0AC_gbtxpM46bhabtdFFUbfsoUhPvYBw2cKgkDfD_vciov212Vvgr24QFQ4q8AZnFpMnlkPUb7VtOZBBl9I1umfY1bTHaMrq7KCKEvhF_KEOYvOAPB38JX3UNx9kIK4-K6QDrudvchA-5NHJo311efKpafqBDhyH9lLSbyGXk7bOYfUrriylJoGmAGKnoybmKUmvrH472gjHQjepPgsjp7pA3FWvA6Hd7qpZE9XppU" 
+                alt="Ankit Singh Portrait" 
+                class="w-full h-full object-cover grayscale contrast-125 brightness-95 filter"
+              >
+            </div>
+            <div class="mt-1 flex items-center justify-between px-0.5">
+              <span class="font-mono-postal text-[8px] font-bold text-[#D94A2B] tracking-tight">EST. 2021</span>
+              <span class="font-mono-postal text-[7.5px] text-[#1C1B17] font-semibold tracking-tighter uppercase">AIRMAIL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Below the postcard row: Postmark Clock (left 120px) + Courier note & OPEN FOR WORK stamp (right) -->
+      <div class="mt-6 flex items-center justify-between gap-3">
+
+        <!-- Left: Circular Postmark Clock (120px) -->
+        <div class="w-[120px] h-[120px] flex-shrink-0 relative rounded-full border border-dashed border-[rgba(28,27,23,0.35)] flex items-center justify-center p-1 bg-[#F5F0E4]/60 shadow-[inset_0_0_12px_rgba(28,27,23,0.03)]">
+          <!-- Inner ring -->
+          <div class="w-[106px] h-[106px] rounded-full border border-[rgba(28,27,23,0.22)] flex flex-col items-center justify-center text-center relative">
+            <span class="font-mono-postal text-[7.5px] uppercase tracking-widest text-[#6E6A5E] font-semibold mb-0.5">
+              NEW DELHI · IST
+            </span>
+            <!-- Two tiny pupils above the time -->
+            <div class="flex items-center gap-1.5 my-0.5">
+              <span class="w-1 h-1 rounded-full bg-[#1C1B17]"></span>
+              <span class="w-1 h-1 rounded-full bg-[#1C1B17]"></span>
+            </div>
+            <span class="font-mono-postal font-bold text-[19px] leading-none text-[#1C1B17] tracking-tight">
+              14:32
+            </span>
+            <span class="font-mono-postal text-[7px] tracking-wider text-[#6E6A5E] uppercase mt-1">
+              10 SEP 2026
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Two-line Courier note & Red rubber stamp 'OPEN FOR WORK' rotated -4deg -->
+        <div class="flex-1 flex flex-col items-start pl-1">
+          <p class="font-mono-postal text-[10px] text-[#6E6A5E] leading-[1.3] uppercase tracking-wider mb-2">
+            YOU · 10:02 GMT<br>
+            <span class="text-[#2B4ACB] font-bold">+4H 30M AHEAD</span>
+          </p>
+
+          <div class="rubber-stamp rotate-[-4deg] mt-1 shadow-sm">
+            <span class="text-[11px] leading-tight font-bold tracking-wider">★ OPEN FOR WORK ★</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TORN EDGE SEPARATOR TO AIRMAIL SKY -->
+    <div class="w-full overflow-hidden bg-[#F1ECDF]">
+      <svg class="torn-edge fill-[#A9D6EC]" viewBox="0 0 390 14" preserveAspectRatio="none">
+        <polygon points="0,14 0,9 15,3 30,8 45,2 60,7 75,3 90,8 105,4 120,9 135,3 150,8 165,2 180,7 195,3 210,9 225,4 240,8 255,2 270,7 285,3 300,8 315,4 330,8 345,3 360,7 375,2 390,8 390,14"></polygon>
+      </svg>
+    </div>
+
+    <!-- RECENT SHIPMENTS SECTION on Airmail Sky #A9D6EC -->
+    <section class="bg-[#A9D6EC] px-5 pt-3 pb-8">
+
+      <!-- Section Title & Counter Row -->
+      <div class="flex items-baseline justify-between mb-4 border-b border-[rgba(28,27,23,0.14)] pb-2">
+        <h2 class="font-bricolage font-extrabold uppercase text-[30px] leading-none tracking-[-0.02em] text-[#1C1B17]">
+          RECENT SHIPMENTS
+        </h2>
+        <span class="font-mono-postal text-[9.5px] font-bold tracking-wider text-[#1C1B17] uppercase opacity-80">
+          PARCELS: 04 OF 12
+        </span>
+      </div>
+
+      <!-- BOARDING PASS №01: CLARITY -->
+      <article class="bg-[#FAF6ED] rounded-[2px] border border-[rgba(28,27,23,0.18)] mb-5 shadow-[0_8px_20px_rgba(28,27,23,0.08)] overflow-hidden">
+        <div class="p-4 relative">
+          <!-- Top row: Courier Boarding Pass №01 & small 52px stamp top-right -->
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-mono-postal text-[10px] font-bold text-[#2B4ACB] tracking-widest uppercase">
+              BOARDING PASS · №01
+            </span>
+            <span class="font-mono-postal text-[9px] text-[#6E6A5E] tracking-wider uppercase">
+              AS ✈ YOU
+            </span>
+          </div>
+
+          <div class="flex justify-between items-start gap-2">
+            <div class="flex-1">
+              <!-- Project Name -->
+              <h3 class="font-bricolage font-extrabold text-[24px] uppercase leading-tight tracking-tight text-[#1C1B17]">
+                CLARITY
+              </h3>
+              <!-- Italic one-line subtitle -->
+              <p class="font-mono-postal text-[11px] italic text-[#6E6A5E] mb-2">
+                Interactive AI Knowledge &amp; Workflow Node
+              </p>
+              <!-- Two-line Hanken description -->
+              <p class="text-[13px] text-[#1C1B17] leading-[1.4] mb-3">
+                Turn ChatGPT conversations into structured insights and interactive mind maps.
+              </p>
+              <!-- Tag chips -->
+              <div class="flex flex-wrap gap-1.5 font-mono-postal text-[9px] uppercase">
+                <span class="px-2 py-0.5 bg-[#EFE9DA] border border-[rgba(28,27,23,0.15)] text-[#1C1B17]">REACT</span>
+                <span class="px-2 py-0.5 bg-[#EFE9DA] border border-[rgba(28,27,23,0.15)] text-[#1C1B17]">TYPESCRIPT</span>
+                <span class="px-2 py-0.5 bg-[#EFE9DA] border border-[rgba(28,27,23,0.15)] text-[#1C1B17]">AI</span>
+              </div>
+            </div>
+
+            <!-- 52px perforated stamp with project preview thumbnail -->
+            <div class="w-[52px] h-[52px] flex-shrink-0 stamp-perforated rotate-[-2deg] shadow-sm ml-2">
+              <div class="w-full h-full bg-white border border-[rgba(28,27,23,0.12)] p-0.5 overflow-hidden">
+                <img 
+                  src="https://lh3.googleusercontent.com/aida/AEtjO1VGi9VdUr0HQI5ocJJQ46nvkzIrGST48tT-8cPwy640gPhdoHTSX0YisNr5PNhuUWy9RW0SfGwBp7r3SxPLNIvu-nhmko3ICtbtTkCNtjGyhUKXgP8cwCIg2__FFSPDp3gyAuzJTn2_u1LymycK0fb19M-hc_10XTUzFmTkxdiQFQwqcSK7KxQBZJro0sW-iX_9zU3hC_VAQpMG97cacylwMH48S3h3zuYSf8f0sXX-oTFFYQEBnAnEcZM" 
+                  alt="Clarity project preview" 
+                  class="w-full h-full object-cover"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal perforated tear line -->
+        <div class="relative py-1 border-t border-dashed border-[rgba(28,27,23,0.25)] bg-[#F5EFE0] px-4 flex items-center justify-between">
+          <div class="absolute -left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#A9D6EC] rounded-full"></div>
+          <div class="absolute -right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#A9D6EC] rounded-full"></div>
+          <span class="font-mono-postal text-[7.5px] uppercase tracking-widest text-[#6E6A5E]">TEAR STUB // VALID DISPATCH</span>
+          <span class="font-mono-postal text-[7.5px] uppercase tracking-widest text-[#D94A2B] font-bold">SHIPPED</span>
+        </div>
+
+        <!-- Bottom stub row with short barcode and Courier links -->
+        <div class="p-3 bg-[#FAF6ED] flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="barcode-strip"></div>
+            <span class="font-mono-postal text-[8px] text-[#6E6A5E]">9405 5102</span>
+          </div>
+
+          <div class="flex items-center gap-3 font-mono-postal text-[10.5px]">
+            <a href="#" class="text-[#2B4ACB] font-bold hover:underline active:translate-y-[1px] tracking-wider">
+              VISIT SITE ↗
+            </a>
+            <span class="text-[rgba(28,27,23,0.2)]">|</span>
+            <a href="#" class="text-[#6E6A5E] hover:text-[#1C1B17] active:translate-y-[1px] tracking-wider">
+              SOURCE
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- BOARDING PASS №02: JERICO -->
+      <article class="bg-[#FAF6ED] rounded-[2px] border border-[rgba(28,27,23,0.18)] shadow-[0_8px_20px_rgba(28,27,23,0.08)] overflow-hidden">
+        <div class="p-4 relative">
+          <!-- Top row: Courier Boarding Pass №02 & small 52px stamp top-right -->
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-mono-postal text-[10px] font-bold text-[#2B4ACB] tracking-widest uppercase">
+              BOARDING PASS · №02
+            </span>
+            <span class="font-mono-postal text-[9px] text-[#6E6A5E] tracking-wider uppercase">
+              AS ✈ YOU
+            </span>
+          </div>
+
+          <div class="flex justify-between items-start gap-2">
+            <div class="flex-1">
+              <!-- Project Name -->
+              <h3 class="font-bricolage font-extrabold text-[24px] uppercase leading-tight tracking-tight text-[#1C1B17]">
+                JERICO
+              </h3>
+              <!-- Italic one-line subtitle -->
+              <p class="font-mono-postal text-[11px] italic text-[#6E6A5E] mb-2">
+                Settlement Layer for Commercial Invoices
+              </p>
+              <!-- Two-line Hanken description -->
+              <p class="text-[13px] text-[#1C1B17] leading-[1.4] mb-3">
+                Blockchain-native invoicing with instant PYUSD payments.
+              </p>
+              <!-- Tag chips -->
+              <div class="flex flex-wrap gap-1.5 font-mono-postal text-[9px] uppercase">
+                <span class="px-2 py-0.5 bg-[#EFE9DA] border border-[rgba(28,27,23,0.15)] text-[#1C1B17]">WEB3</span>
+                <span class="px-2 py-0.5 bg-[#EFE9DA] border border-[rgba(28,27,23,0.15)] text-[#1C1B17]">ETHEREUM</span>
+                <span class="px-2 py-0.5 bg-[#EFE9DA] border border-[rgba(28,27,23,0.15)] text-[#1C1B17]">PYUSD</span>
+              </div>
+            </div>
+
+            <!-- 52px perforated stamp with project preview thumbnail -->
+            <div class="w-[52px] h-[52px] flex-shrink-0 stamp-perforated rotate-[2deg] shadow-sm ml-2">
+              <div class="w-full h-full bg-white border border-[rgba(28,27,23,0.12)] p-0.5 overflow-hidden">
+                <img 
+                  src="https://lh3.googleusercontent.com/aida/AEtjO1U4vX2ZEYdXzvCFpwt8qRZFRrmgKKZCPiEuU1qA3xjSZtY9m5lVMOBHuVYR9esIySUsI8vq0m9rfoWEZSa8KqiURK_De0SJMcggCQImzE29GlBhX2GanVgUi6XDstMyqfG3lRzzUlxEugminQiGqiKdFE-3GqU4mYxHMNbvb3Dr2mGhHnwI5qsJ0N6NqlS0U6kS2kaVBhUMGf23Hw1K-SA56m6XDodoH8EtGMQB2ZBs41lCT8C4tZ1rPJg" 
+                  alt="Jerico project preview" 
+                  class="w-full h-full object-cover"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal perforated tear line -->
+        <div class="relative py-1 border-t border-dashed border-[rgba(28,27,23,0.25)] bg-[#F5EFE0] px-4 flex items-center justify-between">
+          <div class="absolute -left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#A9D6EC] rounded-full"></div>
+          <div class="absolute -right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-[#A9D6EC] rounded-full"></div>
+          <span class="font-mono-postal text-[7.5px] uppercase tracking-widest text-[#6E6A5E]">TEAR STUB // REGISTERED POST</span>
+          <span class="font-mono-postal text-[7.5px] uppercase tracking-widest text-[#D94A2B] font-bold">SHIPPED</span>
+        </div>
+
+        <!-- Bottom stub row with short barcode and Courier links -->
+        <div class="p-3 bg-[#FAF6ED] flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="barcode-strip"></div>
+            <span class="font-mono-postal text-[8px] text-[#6E6A5E]">1183 9942</span>
+          </div>
+
+          <div class="flex items-center gap-3 font-mono-postal text-[10.5px]">
+            <a href="#" class="text-[#2B4ACB] font-bold hover:underline active:translate-y-[1px] tracking-wider">
+              VISIT SITE ↗
+            </a>
+            <span class="text-[rgba(28,27,23,0.2)]">|</span>
+            <a href="#" class="text-[#6E6A5E] hover:text-[#1C1B17] active:translate-y-[1px] tracking-wider">
+              SOURCE
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home — The Franking Desk (Desktop v5 Single Viewport)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700..800&family=Caveat:wght@400..600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'counter-paper': '#F1ECDF',
+            'postcard-cream': '#FEF9EC',
+            'airmail-sky': '#A9D6EC',
+            'passport-navy': '#1E2A4A',
+            'document-ink': '#1C1B17',
+            'faded-ink': '#6E6A5E',
+            'airmail-blue': '#2B4ACB',
+            'stamp-red': '#D94A2B',
+            'rule-line': 'rgba(28,27,23,0.16)'
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'sans-serif'],
+            body: ['"Hanken Grotesk"', 'sans-serif'],
+            mono: ['"Courier Prime"', 'monospace'],
+            hand: ['"Caveat"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Airmail diagonal border framing */
+    .airmail-frame {
+      background: repeating-linear-gradient(
+        -45deg,
+        #D94A2B 0px,
+        #D94A2B 14px,
+        #FEF9EC 14px,
+        #FEF9EC 22px,
+        #2B4ACB 22px,
+        #2B4ACB 36px,
+        #FEF9EC 36px,
+        #FEF9EC 44px
+      );
+    }
+
+    /* Perforated scalloped edges for the portrait postage stamp */
+    .stamp-scallop {
+      position: relative;
+      background: #FFFFFF;
+      padding: 10px;
+      filter: drop-shadow(0 14px 28px rgba(28, 27, 23, 0.18));
+      mask-image: radial-gradient(circle at 6px 6px, transparent 4.5px, black 5px);
+      mask-size: 12px 12px;
+      mask-repeat: repeat;
+      -webkit-mask-image: radial-gradient(circle, transparent 4px, black 4.5px);
+      -webkit-mask-size: 14px 14px;
+      -webkit-mask-position: -7px -7px;
+    }
+
+    /* Precise stamp scalloped cut for edges */
+    .perforated-border {
+      background: #ffffff;
+      box-shadow: 0 16px 36px rgba(28, 27, 23, 0.16);
+      position: relative;
+      border: 8px solid transparent;
+      outline: 1px solid rgba(28,27,23,0.08);
+      background-clip: padding-box;
+    }
+
+    .perforated-stamp {
+      background: #fbfbf9;
+      position: relative;
+      filter: drop-shadow(0 14px 28px rgba(28,27,23,0.15));
+      /* CSS Perforations */
+      background:
+        radial-gradient(circle, transparent 4.5px, #fff 5px) -7px -7px/14px 14px repeat;
+    }
+
+    /* Tactile Paper Texture and Shadows */
+    .paper-shadow {
+      box-shadow: 0 16px 40px -10px rgba(28, 27, 23, 0.13), 0 2px 6px rgba(28, 27, 23, 0.05);
+    }
+    
+    .stamp-shadow {
+      box-shadow: 0 12px 28px -4px rgba(28, 27, 23, 0.16), 0 2px 6px rgba(28, 27, 23, 0.08);
+    }
+
+    .rubber-stamp {
+      mix-blend-mode: multiply;
+      border: 2px solid #D94A2B;
+      color: #D94A2B;
+      box-shadow: inset 0 0 0 1px rgba(217, 74, 43, 0.2);
+    }
+
+    /* Realistic jagged/torn paper edge at bottom */
+    .torn-edge {
+      clip-path: polygon(
+        0% 100%,
+        0% 28px,
+        2% 16px, 4% 30px, 6% 12px, 8% 26px, 10% 10px, 12% 28px, 14% 14px, 16% 32px, 18% 18px, 20% 30px,
+        22% 12px, 24% 28px, 26% 14px, 28% 32px, 30% 16px, 32% 28px, 34% 10px, 36% 26px, 38% 14px, 40% 32px,
+        42% 18px, 44% 30px, 46% 12px, 48% 26px, 50% 14px, 52% 30px, 54% 16px, 56% 28px, 58% 10px, 60% 26px,
+        62% 14px, 64% 32px, 66% 16px, 68% 30px, 70% 12px, 72% 28px, 74% 14px, 76% 32px, 78% 16px, 80% 28px,
+        82% 10px, 84% 28px, 86% 14px, 88% 32px, 90% 18px, 92% 30px, 94% 12px, 96% 28px, 98% 14px, 100% 26px,
+        100% 100%
+      );
+    }
+  </style>
+</head>
+<body class="bg-counter-paper text-document-ink font-body min-h-screen p-2.5 antialiased select-none flex flex-col justify-between overflow-x-hidden">
+
+  <!-- OUTER INSET ENVELOPE PANEL WITH 3PX AIRMAIL STRIPE EDGE -->
+  <div class="relative w-full h-[calc(100vh-20px)] bg-counter-paper rounded-sm p-[3px] airmail-frame flex flex-col justify-between shadow-2xl overflow-hidden">
+    
+    <!-- MAIN INNER ENVELOPE SURFACE -->
+    <div class="relative w-full h-full bg-counter-paper flex flex-col justify-between overflow-hidden">
+      
+      <!-- STICKY CREAM HEADER BAR -->
+      <header class="w-full bg-postcard-cream/90 backdrop-blur-sm border-b border-rule-line px-10 py-4 flex items-center justify-between z-40">
+        <a href="#" class="font-display font-[800] text-[22px] tracking-tight uppercase text-document-ink hover:text-airmail-blue transition-colors">
+          ANKIT SINGH
+        </a>
+        
+        <nav class="flex items-center space-x-8 font-mono text-[12px] tracking-[0.16em] uppercase text-document-ink">
+          <a href="#projects" class="hover:text-airmail-blue transition-colors relative py-1 hover:underline underline-offset-4 decoration-airmail-blue">
+            PROJECTS
+          </a>
+          <span class="text-faded-ink/40">·</span>
+          <a href="#experience" class="hover:text-airmail-blue transition-colors relative py-1 hover:underline underline-offset-4 decoration-airmail-blue">
+            EXPERIENCE
+          </a>
+          <span class="text-faded-ink/40">·</span>
+          <a href="#contact" class="hover:text-airmail-blue transition-colors relative py-1 hover:underline underline-offset-4 decoration-airmail-blue">
+            LET'S TALK
+          </a>
+        </nav>
+      </header>
+
+      <!-- HERO SECTION: SINGLE VIEWPORT ASYMMETRIC FRANKING DESK (LEFT 62%, RIGHT 38%) -->
+      <main class="flex-1 w-full max-w-[1400px] mx-auto px-10 py-6 flex items-center justify-between gap-8 relative z-20">
+        
+        <!-- LEFT 62%: LARGE CREAM POSTCARD (#FEF9EC) TILTED -1 DEGREE -->
+        <div class="w-[62%] relative">
+          
+          <div class="relative bg-postcard-cream border border-rule-line rounded-[2px] p-10 md:p-12 paper-shadow transform -rotate-1 transition-transform hover:-rotate-[0.5deg] duration-300">
+            
+            <!-- AIRMAIL EXPRESS / FORM CAPTION TOP-RIGHT OF POSTCARD -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="font-mono text-[11px] tracking-widest text-faded-ink uppercase">
+                ( SOFTWARE DEVELOPER, EST. 2021 )
+              </div>
+              <div class="border border-rule-line px-2.5 py-0.5 font-mono text-[10px] tracking-wider text-airmail-blue uppercase bg-white/50">
+                AIRMAIL / EXPRESS
+              </div>
+            </div>
+
+            <!-- THREE-LINE STACKED DISPLAY HEADLINE: 128PX CONDENSED HEAVY BRICOLAGE -->
+            <h1 class="font-display font-[800] uppercase text-[112px] xl:text-[124px] 2xl:text-[128px] leading-[0.93] tracking-[-0.03em] text-document-ink mb-8">
+              <span class="block text-document-ink">SHIPS</span>
+              <span class="block text-airmail-blue">SOFTWARE,</span>
+              <span class="block text-document-ink">END TO END</span>
+            </h1>
+
+            <!-- COURIER LOWERCASE SUBLINE -->
+            <p class="font-mono text-[13px] md:text-[14px] text-document-ink tracking-tight mb-8 max-w-xl leading-relaxed pl-1 border-l-2 border-rule-line">
+              web3 products, sdks &amp; interfaces · from router protocol to freelance
+            </p>
+
+            <!-- DOTTED RULE SEPARATOR -->
+            <div class="w-full border-b border-dotted border-rule-line mb-4"></div>
+
+            <!-- TINY COURIER LEGEND -->
+            <div class="font-mono text-[10.5px] tracking-wider text-faded-ink uppercase flex items-center justify-between">
+              <span>(01) POSTCARD</span>
+              <span>(02) PORTRAIT</span>
+              <span>(03) POSTMARK</span>
+              <span>(04) STAMP</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT 38%: THREE PHYSICAL OBJECTS STACKED WITH BREATHING ROOM -->
+        <div class="w-[38%] h-full flex flex-col justify-center items-center relative pl-4">
+          
+          <!-- (A) PORTRAIT POSTAGE STAMP OVERLAPPING POSTCARD TOP-RIGHT, ROTATED +5° -->
+          <div class="relative self-end mr-6 -mb-6 z-30 transform rotate-[5deg] hover:rotate-[3deg] transition-transform duration-300">
+            
+            <!-- Real scalloped perforation wrapper -->
+            <div class="bg-white p-2.5 pb-2 stamp-shadow relative" style="
+              background-image: 
+                radial-gradient(circle, transparent 3px, #ffffff 3.5px),
+                radial-gradient(circle, transparent 3px, #ffffff 3.5px),
+                radial-gradient(circle, transparent 3px, #ffffff 3.5px),
+                radial-gradient(circle, transparent 3px, #ffffff 3.5px);
+              background-position: 0 0, 0 100%, 0 0, 100% 0;
+              background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+              background-size: 10px 10px;
+              border: 5px solid #ffffff;
+            ">
+              <!-- Inner 2px White Margin Around Monochrome Photo -->
+              <div class="bg-white p-1 border border-rule-line/40">
+                <div class="w-[145px] h-[170px] bg-document-ink overflow-hidden relative">
+                  <img 
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyyx3MCyTS2C2igOvqYEuzonlmpPxI77dNQvJrJAKm-HuKxnblyVqdsB3NK5X340sFvPYnshMsVmGWn_5eNh6pdBS4jNuIHbiwpemiAAA5DV0x6e4eR023rB1l9J22UIIWP2kDUWe0h8gVSIudKYPbkpZnFiAnO3T2m8SZzXBmjo__bRSpn18g4N5kS3BvRKxf4tPXbqh-gYSw_DfNhwitk2oAVxRVDr8Wbup-O2GjIPmUtXVQluHlChTutexYRQ3TMSgm5McvEz4" 
+                    alt="Ankit Singh Monochrome Portrait"
+                    class="w-full h-full object-cover grayscale contrast-125 filter"
+                  />
+                  <!-- Subtle print screentone overlay -->
+                  <div class="absolute inset-0 bg-document-ink/10 mix-blend-multiply pointer-events-none"></div>
+                </div>
+              </div>
+
+              <!-- Stamp Caption & Denomination -->
+              <div class="mt-2 px-1 flex items-center justify-between font-mono text-[10px] tracking-widest text-document-ink uppercase">
+                <span class="font-bold">INDIA</span>
+                <span class="text-stamp-red font-bold">EST. 2021</span>
+              </div>
+            </div>
+
+            <!-- Faded handwritten note near portrait stamp -->
+            <div class="absolute -top-5 -right-6 font-hand text-[20px] text-faded-ink transform rotate-[-8deg] pointer-events-none select-none">
+              № 01 airmail
+            </div>
+          </div>
+
+          <!-- (B) CIRCULAR POSTMARK CLOCK 180PX WITH CAVEAT 'par avion' -->
+          <div class="relative my-4 flex items-center justify-center">
+            
+            <!-- Handwritten Caveat note in faded blue near postmark -->
+            <div class="absolute -top-4 -right-16 font-hand text-[23px] text-airmail-blue/85 transform rotate-[7deg] tracking-wide pointer-events-none whitespace-nowrap">
+              par avion ~
+            </div>
+
+            <!-- 180px Postmark Outer & Inner Thin Rings -->
+            <div class="w-[180px] h-[180px] rounded-full border border-document-ink/60 p-2 flex items-center justify-center relative transform -rotate-6 hover:rotate-0 transition-transform duration-500">
+              
+              <!-- Inner ring -->
+              <div class="w-full h-full rounded-full border border-dashed border-document-ink/40 flex flex-col items-center justify-center text-center p-3 relative bg-counter-paper/40">
+                
+                <!-- Circular/Arc text representation: NEW DELHI · INDIA · IST · -->
+                <div class="font-mono text-[8.5px] uppercase tracking-[0.22em] text-document-ink/80 mb-0.5">
+                  NEW DELHI · INDIA · IST
+                </div>
+                
+                <!-- Two small round eyes (pupils) inside ring above time -->
+                <div class="flex items-center space-x-2 my-1">
+                  <div class="w-1.5 h-1.5 rounded-full bg-document-ink"></div>
+                  <div class="w-1.5 h-1.5 rounded-full bg-document-ink"></div>
+                </div>
+
+                <!-- Center Large Courier Bold Time -->
+                <div class="font-mono font-bold text-[28px] tracking-tight text-document-ink leading-none my-0.5">
+                  14:32
+                </div>
+
+                <!-- Under it: Date -->
+                <div class="font-mono text-[10px] tracking-widest text-faded-ink uppercase">
+                  10 SEP 2026
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Beneath postmark: Two-line Courier note in faded ink -->
+            <div class="absolute -bottom-8 text-center font-mono text-[10.5px] uppercase tracking-wider text-faded-ink leading-tight whitespace-nowrap">
+              <div>YOU · 10:02 GMT</div>
+              <div class="text-airmail-blue font-bold tracking-tight text-[10px]">+4H 30M AHEAD OF YOU</div>
+            </div>
+
+          </div>
+
+          <!-- (C) RED RUBBER STAMP 'OPEN FOR WORK', BOXED, COURIER BOLD CAPS, ROTATED -4° -->
+          <div class="mt-12 self-center transform -rotate-4 hover:-rotate-2 transition-transform duration-200 cursor-default">
+            <div class="rubber-stamp px-6 py-2 rounded-[2px] bg-stamp-red/5 flex items-center justify-center border-dashed">
+              <span class="font-mono font-bold text-[14px] md:text-[15px] tracking-[0.24em] uppercase text-stamp-red flex items-center gap-2">
+                <span>★</span>
+                <span>OPEN FOR WORK</span>
+                <span>★</span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+      <!-- BOTTOM VIEWPORT TRANSITION: TORN-PAPER EDGE IN AIRMAIL SKY (#A9D6EC) BITING UP INTO CREAM -->
+      <footer class="relative w-full z-30">
+        
+        <!-- Torn Paper Edge SVG/Polygon biting up into cream counter paper -->
+        <div class="relative w-full h-[36px] bg-airmail-sky torn-edge shadow-inner flex items-center justify-between px-10">
+          
+          <!-- Subtle route indicator line peek at bottom -->
+          <div class="w-full flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-document-ink/70 pt-2">
+            <span class="flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-document-ink transform rotate-45 inline" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+              </svg>
+              <span>AIRMAIL ROUTE № 01 — DESK TERMINAL</span>
+            </span>
+            <span>NEXT DISPATCH: RECENT SHIPMENTS ↓</span>
+          </div>
+
+        </div>
+
+      </footer>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience — Passport (v5 Desktop)</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'passport-navy': '#1E2A4A',
+            'passport-dark': '#131B30',
+            'passport-leather': '#162038',
+            'counter-paper': '#F1ECDF',
+            'paper-cream': '#FAF6EC',
+            'document-ink': '#1C1B17',
+            'airmail-blue': '#2B4ACB',
+            'stamp-red': '#D94A2B',
+            'soft-red': '#E86A50',
+            'faded-ink': '#6E6A5E',
+          },
+          fontFamily: {
+            bricolage: ['"Bricolage Grotesque"', 'sans-serif'],
+            hanken: ['"Hanken Grotesk"', 'sans-serif'],
+            courier: ['"Courier Prime"', 'monospace'],
+            caveat: ['"Caveat"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Airmail diagonal barber-pole border */
+    .airmail-frame {
+      background: repeating-linear-gradient(
+        -45deg,
+        #D94A2B 0px,
+        #D94A2B 12px,
+        #F1ECDF 12px,
+        #F1ECDF 18px,
+        #2B4ACB 18px,
+        #2B4ACB 30px,
+        #F1ECDF 30px,
+        #F1ECDF 36px
+      );
+    }
+
+    /* Guilloche passport pattern */
+    .guilloche-bg {
+      background-color: #FAF6ED;
+      background-image: 
+        radial-gradient(circle at 50% 50%, transparent 8px, rgba(30, 42, 74, 0.035) 9px, transparent 10px),
+        radial-gradient(circle at 0% 0%, transparent 14px, rgba(30, 42, 74, 0.025) 15px, transparent 16px),
+        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(30, 42, 74, 0.02) 20px),
+        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(30, 42, 74, 0.02) 20px);
+      background-size: 20px 20px, 30px 30px, 20px 20px, 20px 20px;
+    }
+
+    /* Subtle paper texture */
+    .paper-texture {
+      box-shadow: 
+        inset 0 0 40px rgba(190, 175, 140, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    /* Gutter shadow */
+    .gutter-spine {
+      background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.06) 40%,
+        rgba(0,0,0,0) 100%
+      );
+    }
+    .gutter-spine-left {
+      background: linear-gradient(
+        to left,
+        rgba(0,0,0,0.22) 0%,
+        rgba(0,0,0,0.06) 50%,
+        rgba(0,0,0,0) 100%
+      );
+    }
+
+    /* Stamped rubber seal effect */
+    .rubber-stamp {
+      mix-blend-mode: multiply;
+      mask-image: radial-gradient(circle, black 70%, rgba(0,0,0,0.8) 100%);
+    }
+
+    /* Perforated torn paper edge */
+    .torn-edge {
+      --mask: radial-gradient(10px at 50% 0%, #0000 98%, #000 100%) 50% -10px/24px 100% repeat-x,
+              radial-gradient(10px at 50% 100%, #000 98%, #0000 100%) 50% calc(100% - 10px)/24px 100% repeat-x;
+      -webkit-mask: var(--mask);
+      mask: var(--mask);
+    }
+    .torn-top {
+      background-image: radial-gradient(circle at 12px -2px, transparent 8px, #F1ECDF 8.5px);
+      background-size: 24px 20px;
+      background-repeat: repeat-x;
+    }
+
+    /* 3D Perspective setup for passport */
+    .passport-perspective {
+      perspective: 1600px;
+      perspective-origin: 50% 45%;
+    }
+
+    /* Flipping Page mid-turn */
+    .mid-turn-page {
+      transform-origin: left center;
+      transform: rotateY(-62deg) skewY(-1.5deg);
+      box-shadow: -15px 10px 30px rgba(10, 15, 25, 0.35);
+    }
+
+    .shadow-under-page {
+      background: linear-gradient(to right, rgba(15, 22, 38, 0.35) 0%, rgba(15, 22, 38, 0.12) 45%, rgba(15, 22, 38, 0) 100%);
+    }
+  </style>
+</head>
+<body class="bg-passport-navy text-counter-paper font-hanken min-h-screen p-2.5 antialiased selection:bg-soft-red selection:text-white overflow-x-hidden">
+
+  <!-- Outer Airmail Inset Frame Wrapper -->
+  <div class="airmail-frame p-[3px] rounded-lg shadow-2xl min-h-[calc(100vh-20px)] flex flex-col justify-between">
+    <div class="bg-passport-navy rounded-[5px] flex-1 flex flex-col justify-between relative overflow-hidden">
+
+      <!-- Header Navigation Bar (Matches Home with EXPERIENCE active) -->
+      <header class="w-full border-b border-[#F1ECDF]/10 px-8 py-5 flex items-center justify-between z-30">
+        <!-- Brand Logo / Monogram -->
+        <div class="flex items-center space-x-3">
+          <a href="#" class="font-bricolage text-2xl font-extrabold tracking-tight text-counter-paper uppercase hover:opacity-90 transition">
+            ANKIT SINGH
+          </a>
+          <span class="text-xs font-courier text-[#F1ECDF]/40">/ EXP·№05</span>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex items-center space-x-10 text-xs font-courier tracking-wider uppercase">
+          <a href="#" class="text-counter-paper/70 hover:text-counter-paper transition-colors">
+            PROJECTS
+          </a>
+          <!-- Active tab -->
+          <a href="#" class="text-soft-red font-bold relative py-1">
+            EXPERIENCE
+            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-soft-red"></span>
+          </a>
+          <a href="#" class="text-counter-paper/70 hover:text-counter-paper transition-colors">
+            DISPATCHES
+          </a>
+          <a href="#" class="text-counter-paper/70 hover:text-counter-paper transition-colors">
+            LET'S TALK
+          </a>
+        </nav>
+      </header>
+
+      <!-- Main Content Zone: Experience Passport Viewport -->
+      <main class="flex-1 flex flex-col items-center justify-center px-6 py-6 relative z-10 max-w-[1400px] mx-auto w-full">
+        
+        <!-- Page Headline & Header Meta -->
+        <div class="w-[1200px] max-w-full flex items-baseline justify-between mb-6 px-3">
+          <h1 class="font-bricolage font-extrabold text-[72px] leading-[0.9] tracking-[-0.03em] uppercase text-counter-paper">
+            PASSPORT
+          </h1>
+          <div class="text-right flex flex-col items-end">
+            <span class="font-courier text-[11px] uppercase tracking-[0.2em] text-[#F1ECDF]/70">
+              REPUBLIC OF SHIPPED SOFTWARE
+            </span>
+            <span class="font-courier text-[10px] text-[#F1ECDF]/40 mt-1">
+              OFFICIAL TRAVEL & SERVICE RECORD · DOC REF №882-90
+            </span>
+          </div>
+        </div>
+
+        <!-- HERO OBJECT: Open Passport (1200px wide, 3D mid-turn) -->
+        <div class="w-[1200px] max-w-full relative passport-perspective mb-6">
+          
+          <!-- Outer Leather Cover (Deep Navy with thin gold-cream embossed perimeter rule) -->
+          <div class="relative bg-passport-leather rounded-2xl p-[14px] shadow-[0_25px_60px_rgba(0,0,0,0.65),0_4px_12px_rgba(0,0,0,0.5)] border border-[#F1ECDF]/15">
+            <!-- Gold-cream thin emboss inset line on leather -->
+            <div class="absolute inset-[6px] rounded-xl border border-[#D9B98A]/35 pointer-events-none"></div>
+
+            <!-- Page Stack Background Simulation (4-5 page edges visible behind right page) -->
+            <div class="absolute right-[5px] top-[18px] bottom-[18px] w-[18px] flex flex-col justify-center space-y-[2px] opacity-75 pointer-events-none z-0">
+              <div class="h-full w-[2px] bg-[#DED6C4] rounded-r border-r border-[#B8AF98] ml-auto"></div>
+              <div class="h-full w-[2px] bg-[#E5DEC9] rounded-r border-r border-[#C2B9A2] ml-auto"></div>
+              <div class="h-full w-[2px] bg-[#ECE5D2] rounded-r border-r border-[#CDC4AD] ml-auto"></div>
+              <div class="h-full w-[3px] bg-[#F4EDDA] rounded-r border-r border-[#D5CCB5] ml-auto"></div>
+            </div>
+
+            <!-- Stack on left side too for symmetrical physical heft -->
+            <div class="absolute left-[5px] top-[18px] bottom-[18px] w-[14px] flex flex-col justify-center space-y-[2px] opacity-60 pointer-events-none z-0">
+              <div class="h-full w-[2px] bg-[#DED6C4] rounded-l border-l border-[#B8AF98]"></div>
+              <div class="h-full w-[2px] bg-[#ECE5D2] rounded-l border-l border-[#CDC4AD]"></div>
+              <div class="h-full w-[3px] bg-[#F4EDDA] rounded-l border-l border-[#D5CCB5]"></div>
+            </div>
+
+            <!-- The Two Open Passport Pages (Flat) -->
+            <div class="relative grid grid-cols-2 rounded-lg overflow-hidden border border-[#D0C7B2] shadow-inner min-h-[580px] z-10">
+              
+              <!-- Center Gutter Spine & Shadow Line -->
+              <div class="absolute inset-y-0 left-1/2 -ml-[1px] w-[2px] bg-[#C5BBA4] z-20"></div>
+              <!-- Deep gutter shadows cast left and right -->
+              <div class="absolute inset-y-0 right-1/2 w-16 gutter-spine-left pointer-events-none z-20"></div>
+              <div class="absolute inset-y-0 left-1/2 w-16 gutter-spine pointer-events-none z-20"></div>
+
+              <!-- ================= LEFT PAGE: VISA №02 ================= -->
+              <div class="guilloche-bg paper-texture text-document-ink p-8 flex flex-col justify-between relative border-r border-[#DDD5C0]/60 select-none">
+                
+                <!-- Corner Page Denomination / Number in perforated style -->
+                <div class="absolute top-3 left-4 font-courier text-[10px] text-faded-ink/80 tracking-widest border border-dashed border-faded-ink/30 px-1.5 py-0.5 rounded">
+                  P.04
+                </div>
+
+                <!-- Page Header (Courier) -->
+                <div class="flex items-center justify-between border-b border-document-ink/15 pb-2.5 mt-2">
+                  <span class="font-courier text-xs font-bold uppercase tracking-wider text-document-ink">
+                    VISA №02
+                  </span>
+                  <span class="font-courier text-[11px] font-semibold tracking-wider text-faded-ink">
+                    MAY '24 — OCTOBER '25
+                  </span>
+                </div>
+
+                <!-- Main Company & Role Block -->
+                <div class="mt-4 relative">
+                  <h2 class="font-bricolage font-extrabold text-[28px] uppercase tracking-tight text-document-ink leading-tight">
+                    STEALTH COMPANY · WEB3 GAME
+                  </h2>
+                  <p class="font-caveat italic text-xl text-faded-ink -mt-0.5 mb-4">
+                    full stack developer
+                  </p>
+
+                  <!-- 4 Bullets (Hanken 14px) -->
+                  <ul class="space-y-2.5 font-hanken text-[14px] leading-relaxed text-document-ink/90 pr-2">
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-document-ink/60 mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Developed a web3 game from scratch using React, Tailwind CSS, and TypeScript.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-document-ink/60 mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Helped in building the game's backend using Node.js and Express.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-document-ink/60 mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Integrated the game with the Solana blockchain for tx handling.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-document-ink/60 mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Built the game's logic and animation for quick bet experience with Privy Wallet.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Footer of Left Page: Tech Chips & Entry Stamp -->
+                <div class="mt-6 pt-4 border-t border-document-ink/10 flex items-end justify-between relative">
+                  <!-- Skills Chips -->
+                  <div class="flex flex-wrap gap-1.5 max-w-[320px]">
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-document-ink/25 text-document-ink rounded-sm">
+                      REACT
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-document-ink/25 text-document-ink rounded-sm">
+                      TAILWIND CSS
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-document-ink/25 text-document-ink rounded-sm">
+                      TYPESCRIPT
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-document-ink/25 text-document-ink rounded-sm">
+                      NODE.JS
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-document-ink/25 text-document-ink rounded-sm">
+                      EXPRESS
+                    </span>
+                  </div>
+
+                  <!-- Round rubber ENTRY stamp rotated −6° -->
+                  <div class="w-24 h-24 rounded-full border-2 border-dashed border-[#5C5346] flex flex-col items-center justify-center text-center transform -rotate-6 rubber-stamp opacity-85 shadow-sm p-1">
+                    <span class="font-courier text-[8px] uppercase tracking-widest text-[#5C5346] font-bold">IMMIGRATION</span>
+                    <span class="font-courier text-[11px] font-extrabold uppercase text-[#443D32] my-0.5 tracking-wider">ENTRY</span>
+                    <span class="font-courier text-[9px] font-bold text-[#5C5346]">MAY 24</span>
+                    <div class="w-12 h-[1px] bg-[#5C5346]/50 my-0.5"></div>
+                    <span class="font-courier text-[7px] text-[#5C5346] tracking-tighter">PORT NO. 0102</span>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- ================= RIGHT PAGE: VISA №03 ================= -->
+              <div class="guilloche-bg paper-texture text-document-ink p-8 flex flex-col justify-between relative select-none">
+                
+                <!-- Dynamic Shadow cast by the mid-flipping page standing up from gutter -->
+                <div class="absolute inset-y-0 left-0 w-36 shadow-under-page pointer-events-none z-10"></div>
+
+                <!-- Corner Page Denomination / Number -->
+                <div class="absolute top-3 right-4 font-courier text-[10px] text-faded-ink/80 tracking-widest border border-dashed border-faded-ink/30 px-1.5 py-0.5 rounded">
+                  P.05
+                </div>
+
+                <!-- Page Header (Courier) -->
+                <div class="flex items-center justify-between border-b border-document-ink/15 pb-2.5 mt-2 relative z-0">
+                  <span class="font-courier text-xs font-bold uppercase tracking-wider text-document-ink">
+                    VISA №03
+                  </span>
+                  <span class="font-courier text-[11px] font-semibold tracking-wider text-faded-ink">
+                    APRIL '24 — MARCH '25
+                  </span>
+                </div>
+
+                <!-- Main Company & Role Block -->
+                <div class="mt-4 relative z-0">
+                  <h2 class="font-bricolage font-extrabold text-[28px] uppercase tracking-tight text-soft-red leading-tight">
+                    ROUTER PROTOCOL
+                  </h2>
+                  <p class="font-caveat italic text-xl text-faded-ink -mt-0.5 mb-4">
+                    full stack developer
+                  </p>
+
+                  <!-- 4 Bullets (Hanken 14px) -->
+                  <ul class="space-y-2.5 font-hanken text-[14px] leading-relaxed text-document-ink/90 pr-2">
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-soft-red mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Developed Router Nitro v2, improving overall cross-chain swap UX.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-soft-red mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Built the full CEX withdrawal flow, attracting 60+ users on day one.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-soft-red mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Managed and optimized the rewards backend with NestJS + PostgreSQL, improving query performance by ~40%.</span>
+                    </li>
+                    <li class="flex items-start">
+                      <span class="inline-block w-1.5 h-1.5 rounded-full bg-soft-red mt-2 mr-2.5 flex-shrink-0"></span>
+                      <span>Co-developed the Tangled SDK, simplifying multichain integrations.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Footer of Right Page: Tech Chips & Large Red Rubber Stamp -->
+                <div class="mt-6 pt-4 border-t border-document-ink/10 flex items-end justify-between relative z-0">
+                  <!-- Skills Chips -->
+                  <div class="flex flex-wrap gap-1.5 max-w-[310px]">
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-soft-red/35 text-document-ink rounded-sm">
+                      NODEJS/NESTJS
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-soft-red/35 text-document-ink rounded-sm">
+                      REACT/NEXTJS
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-soft-red/35 text-document-ink rounded-sm">
+                      WALLETS
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-soft-red/35 text-document-ink rounded-sm">
+                      WEB3 UX
+                    </span>
+                    <span class="font-courier text-[10px] uppercase font-bold px-2 py-0.5 bg-counter-paper border border-soft-red/35 text-document-ink rounded-sm">
+                      POSTGRES
+                    </span>
+                  </div>
+
+                  <!-- Large Round Red Rubber Stamp "ENTRY · APR 24 · SHIPPED" Rotated 8° with slight ink bleed -->
+                  <div class="w-28 h-28 rounded-full border-[3px] border-stamp-red flex flex-col items-center justify-center text-center transform rotate-8 rubber-stamp shadow-sm p-1.5 relative overflow-hidden bg-transparent">
+                    <div class="absolute inset-1 rounded-full border border-stamp-red/70 border-dashed"></div>
+                    <span class="font-courier text-[8px] uppercase tracking-widest text-stamp-red font-bold">REPUBLIC OF CODE</span>
+                    <span class="font-bricolage text-[13px] font-black uppercase text-stamp-red my-0.5 tracking-wider">
+                      ENTRY · APR 24
+                    </span>
+                    <span class="font-courier text-[10px] font-black uppercase tracking-[0.18em] text-stamp-red bg-stamp-red/10 px-1 py-0.5 rounded">
+                      SHIPPED
+                    </span>
+                    <span class="font-courier text-[7px] text-stamp-red/80 mt-0.5">AUTH BORDER CLERK</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- ================= THIRD PAGE: CAUGHT MID-FLIP (Standing up at 60°) ================= -->
+            <!-- Anchored at the center gutter, standing up in perspective -->
+            <div class="absolute top-[14px] bottom-[14px] left-1/2 w-[585px] pointer-events-none z-30 mid-turn-page overflow-hidden rounded-r-lg border-y border-r border-[#D2C8B0] bg-[#ECE5D4]">
+              <!-- Guilloche back texture with strong physical lighting gradient across curvature -->
+              <div class="w-full h-full guilloche-bg relative paper-texture opacity-95">
+                <!-- Curve lighting: dark shadow near spine turning to highlight near edge -->
+                <div class="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-white/20"></div>
+                
+                <!-- Reverse faint visa watermark visible through paper translucency -->
+                <div class="p-8 opacity-25 flex flex-col justify-between h-full filter blur-[0.5px]">
+                  <div class="flex justify-between font-courier text-[10px] border-b border-black/20 pb-2">
+                    <span>VISA №04 (IN TRANSIT)</span>
+                    <span>OCTOBER '25</span>
+                  </div>
+                  <div class="font-bricolage text-2xl font-bold uppercase text-black/40">
+                    FREELANCING DISPATCH
+                  </div>
+                  <div class="flex justify-end">
+                    <div class="w-20 h-20 rounded-full border border-black/40"></div>
+                  </div>
+                </div>
+
+                <!-- Page corner turn curl highlight -->
+                <div class="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-white/30 to-transparent"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Pagination Controls Under the Passport -->
+        <div class="flex flex-col items-center justify-center space-y-2.5 mt-2">
+          <!-- Courier Page Counter -->
+          <div class="font-courier text-xs font-bold tracking-[0.25em] text-counter-paper/85 uppercase">
+            03 / 08
+          </div>
+          
+          <!-- Thin row of eight small dots with the third filled -->
+          <div class="flex items-center space-x-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-counter-paper/25"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-counter-paper/25"></span>
+            <!-- Third dot filled -->
+            <span class="w-2 h-2 rounded-full bg-counter-paper shadow-sm"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-counter-paper/25"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-counter-paper/25"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-counter-paper/25"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-counter-paper/25"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-counter-paper/25"></span>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Tactical Cream Footer with Perforated Torn Top Edge -->
+      <footer class="relative w-full bg-counter-paper text-document-ink mt-8 z-20">
+        <!-- Physical torn perforated top divider -->
+        <div class="absolute -top-[14px] left-0 right-0 h-[14px] torn-top pointer-events-none"></div>
+
+        <div class="max-w-[1400px] mx-auto px-10 py-7 flex items-center justify-between font-courier text-xs">
+          <!-- Socials and outward links -->
+          <div class="flex items-center space-x-8 uppercase tracking-wider">
+            <a href="https://github.com/ankitzm" target="_blank" class="hover:text-airmail-blue transition flex items-center">
+              GITHUB/ANKITZM <span class="ml-1 text-[10px]">↗</span>
+            </a>
+            <a href="https://twitter.com/ankitzm" target="_blank" class="hover:text-airmail-blue transition flex items-center">
+              X @ANKITZM <span class="ml-1 text-[10px]">↗</span>
+            </a>
+            <a href="https://medium.com/@0xblocktrain" target="_blank" class="hover:text-airmail-blue transition flex items-center">
+              MEDIUM/@0XBLOCKTRAIN <span class="ml-1 text-[10px]">↗</span>
+            </a>
+          </div>
+
+          <!-- Copyright and stamp desk mark -->
+          <div class="text-right text-faded-ink tracking-widest uppercase font-bold text-[11px]">
+            © 2026 · EVERYTHING SHIPS
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+</html>

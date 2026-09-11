@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440, initial-scale=1.0">
+  <title>Home — Transit Log (Desktop v5 Single Viewport)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@500;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'navy-ground': '#1E2A4A',
+            'navy-leather': '#121A30',
+            'leather-edge': '#0D1426',
+            'cream-paper': '#F1ECDF',
+            'paper-bright': '#FAF6EE',
+            'doc-ink': '#1C1B17',
+            'faded-ink': '#6E6A5E',
+            'airmail-blue': '#2B4ACB',
+            'stamp-red': '#D94A2B',
+            'rule-line': 'rgba(28,27,23,0.16)',
+            'paper-rule': 'rgba(28,27,23,0.12)',
+            'cream-glow': 'rgba(241,236,223,0.08)'
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'sans-serif'],
+            body: ['"Hanken Grotesk"', 'sans-serif'],
+            mono: ['"Courier Prime"', 'monospace'],
+            hand: ['"Caveat"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Airmail Stripe Framing */
+    .airmail-stripe-border {
+      background: repeating-linear-gradient(
+        -45deg,
+        #D94A2B 0px,
+        #D94A2B 8px,
+        #F1ECDF 8px,
+        #F1ECDF 14px,
+        #2B4ACB 14px,
+        #2B4ACB 22px,
+        #F1ECDF 22px,
+        #F1ECDF 28px
+      );
+    }
+
+    /* Torn Paper Top Edge */
+    .torn-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 18px;
+      background: #F1ECDF;
+      --mask: repeating-linear-gradient(
+        90deg,
+        #000 0px,
+        #000 12px,
+        transparent 12px,
+        transparent 16px
+      );
+      clip-path: polygon(
+        0% 0%,
+        1% 55%, 2% 10%, 3% 85%, 4% 20%, 5% 70%, 6% 15%, 7% 90%, 8% 30%, 9% 65%, 10% 20%,
+        11% 80%, 12% 25%, 13% 75%, 14% 15%, 15% 95%, 16% 35%, 17% 70%, 18% 20%, 19% 85%,
+        20% 30%, 21% 65%, 22% 15%, 23% 90%, 24% 25%, 25% 75%, 26% 35%, 27% 85%, 28% 20%,
+        29% 70%, 30% 15%, 31% 95%, 32% 30%, 33% 80%, 34% 20%, 35% 75%, 36% 25%, 37% 90%,
+        38% 35%, 39% 65%, 40% 15%, 41% 85%, 42% 30%, 43% 70%, 44% 20%, 45% 95%, 46% 25%,
+        47% 80%, 48% 35%, 49% 65%, 50% 15%, 51% 90%, 52% 30%, 53% 75%, 54% 20%, 55% 85%,
+        56% 35%, 57% 70%, 58% 15%, 59% 95%, 60% 25%, 61% 80%, 62% 30%, 63% 65%, 64% 20%,
+        65% 90%, 66% 35%, 67% 75%, 68% 15%, 69% 85%, 70% 30%, 71% 70%, 72% 20%, 73% 95%,
+        74% 25%, 75% 80%, 76% 35%, 77% 65%, 78% 15%, 79% 90%, 80% 30%, 81% 75%, 82% 20%,
+        83% 85%, 84% 35%, 85% 70%, 86% 15%, 87% 95%, 88% 25%, 89% 80%, 90% 30%, 91% 65%,
+        92% 20%, 93% 90%, 94% 35%, 95% 75%, 96% 15%, 97% 85%, 98% 30%, 99% 70%, 100% 0%
+      );
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
+    }
+
+    /* Guilloche Pattern for Passport Security Paper */
+    .guilloche-bg {
+      background-color: #F4EFE2;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(43,74,203,0.035) 0%, transparent 65%),
+        radial-gradient(circle at 100% 0%, rgba(217,74,43,0.025) 0%, transparent 45%),
+        radial-gradient(circle at 0% 100%, rgba(43,74,203,0.025) 0%, transparent 45%),
+        repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 8px, rgba(28,27,23,0.015) 9px, transparent 10px);
+    }
+
+    /* Subtle Paper Texture */
+    .paper-shadow {
+      box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 14px 28px rgba(0, 0, 0, 0.45),
+        0 30px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    /* Gutter fold shadow between pages */
+    .gutter-fold {
+      background: linear-gradient(
+        90deg, 
+        rgba(18,26,48,0.22) 0%, 
+        rgba(18,26,48,0.06) 6%, 
+        transparent 15%, 
+        transparent 85%, 
+        rgba(18,26,48,0.06) 94%, 
+        rgba(18,26,48,0.22) 100%
+      );
+    }
+
+    /* Rubber stamp ink multiply texture */
+    .stamp-imprint {
+      mix-blend-mode: multiply;
+    }
+  </style>
+</head>
+<body class="bg-[#1E2A4A] text-cream-paper min-h-screen w-[1440px] h-[900px] overflow-hidden flex flex-col justify-between p-[10px] select-none box-border relative">
+
+  <!-- Outer Viewport Airmail Frame -->
+  <div class="absolute inset-[10px] pointer-events-none z-50 rounded-[4px] border border-rule-line" style="box-shadow: inset 0 0 0 3px rgba(241,236,223,0.06);"></div>
+  <div class="absolute inset-[10px] pointer-events-none z-50 airmail-stripe-border opacity-35" style="mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; padding: 3px;"></div>
+
+  <!-- Torn Paper Top Edge Transition from preceding section -->
+  <div class="torn-top z-40"></div>
+
+  <!-- Main Container: 1440px viewport centered -->
+  <main class="w-full h-full flex flex-col justify-between pt-9 pb-7 px-[56px] relative z-20">
+
+    <!-- Section Header Row -->
+    <header class="w-full flex items-baseline justify-between border-b border-cream-paper/15 pb-4">
+      <div class="flex items-baseline gap-4">
+        <h1 class="font-display font-extrabold text-[56px] leading-none tracking-[-0.02em] uppercase text-cream-paper">
+          TRANSIT LOG
+        </h1>
+        <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-cream-paper/50">
+          DOCUMENT REF. № 882-90 · OFFICIAL SERVICE RECORD
+        </span>
+      </div>
+
+      <a href="#passport" class="group flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-cream-paper hover:text-airmail-blue transition-colors duration-150 py-1 px-2">
+        <span class="border-b border-cream-paper/40 group-hover:border-airmail-blue pb-0.5">FULL PASSPORT</span>
+        <span class="text-[14px] leading-none transition-transform duration-150 group-hover:translate-x-1">→</span>
+      </a>
+    </header>
+
+    <!-- Centerpiece Object: OPEN PASSPORT (1100px wide flat lying desk artifact) -->
+    <div class="w-full flex items-center justify-center my-auto">
+      <div class="relative w-[1100px] h-[550px] flex items-stretch">
+
+        <!-- Stacked Back Pages Rim & Dark Navy Leather Cover Overflow -->
+        <div class="absolute -inset-[12px] rounded-[10px] bg-leather-edge border border-cream-paper/10 paper-shadow">
+          <!-- Subtle embossed gold/blind hairline frame on leather border -->
+          <div class="absolute inset-[5px] rounded-[7px] border border-cream-paper/15 pointer-events-none"></div>
+        </div>
+
+        <!-- Right Stacked Page Edge Depth Effect -->
+        <div class="absolute -right-[6px] top-[14px] bottom-[14px] w-[18px] rounded-r-[5px] bg-[#E8E2D2] border-r border-[#C7BEA8] shadow-sm z-0"></div>
+        <div class="absolute -right-[3px] top-[18px] bottom-[18px] w-[14px] rounded-r-[4px] bg-[#DDD6C4] border-r border-[#B8AE96] shadow-sm z-0"></div>
+
+        <!-- Left Cover Rim Depth -->
+        <div class="absolute -left-[5px] top-[14px] bottom-[14px] w-[12px] rounded-l-[5px] bg-[#162039] border-l border-cream-paper/10 z-0"></div>
+
+        <!-- Two Open Pages Layout -->
+        <div class="relative z-10 w-full h-full flex rounded-[6px] overflow-hidden guilloche-bg shadow-2xl border border-rule-line text-doc-ink">
+
+          <!-- ================= LEFT PAGE: ID PAGE ================= -->
+          <section class="w-1/2 h-full p-8 flex flex-col justify-between border-r border-rule-line/60 relative">
+            <!-- Guilloche decorative fine border -->
+            <div class="absolute inset-4 border border-paper-rule pointer-events-none rounded-[2px]"></div>
+
+            <!-- Page Number Outer Corner -->
+            <div class="absolute top-5 left-5 font-mono text-[10px] text-faded-ink">
+              P. 04
+            </div>
+
+            <!-- Header Document Title -->
+            <div class="pt-2 text-center">
+              <p class="font-mono text-[10px] tracking-[0.24em] uppercase text-faded-ink">
+                REPUBLIC OF SHIPPED SOFTWARE · PASSPORT
+              </p>
+              <div class="w-32 h-[1px] bg-doc-ink/20 mx-auto mt-2"></div>
+            </div>
+
+            <!-- Photo and Primary Identity Fields -->
+            <div class="flex gap-5 items-start mt-2">
+              <!-- Portrait Photo Stamp / ID Block -->
+              <div class="relative flex-shrink-0 w-[114px] h-[134px] bg-[#DFD9C9] p-1 border border-doc-ink/30 shadow-sm">
+                <div class="w-full h-full overflow-hidden bg-doc-ink/10 relative grayscale contrast-125">
+                  <img 
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAenOxknM0uNYc6v67CdCOfypbZIs8Xo2y6P7bOYxzyylQr-WWxIIVcTBb_E8RPJsZUYOa2gVikonhs_lCOpsKQ8AG_zoBHxkDBEoBUIWEzKUpH4J1ieK7xRWnwiifDwxnssIDDn7PNMoEqk20F9j__TqeRovQ8CzICybm5DjkQI7vNd6V2-3W_5PC-DnmbwDK0qkQdQxa5JrznJuiDH6e6TjiMM_GDx7MMdBbcpCM0fLQKniwjBx4g1YDXoWP41cyTuxc2MPeIQsk" 
+                    alt="Ankit Singh ID Photograph" 
+                    class="w-full h-full object-cover filter contrast-125"
+                  />
+                  <!-- Monochromatic Postal Holographic Seal Overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-tr from-doc-ink/20 to-transparent pointer-events-none"></div>
+                </div>
+                <div class="absolute -bottom-2 -right-2 font-mono text-[8px] bg-cream-paper px-1 border border-doc-ink/40 text-doc-ink">
+                  № 882-90
+                </div>
+              </div>
+
+              <!-- Form Lines with Dotted Rules -->
+              <div class="flex-1 flex flex-col justify-between h-[134px] text-left">
+                <!-- Field 1 -->
+                <div class="border-b border-dotted border-doc-ink/30 pb-1">
+                  <span class="font-mono text-[9px] uppercase tracking-wider text-faded-ink block">1. FORENAME</span>
+                  <span class="font-mono font-bold text-[14px] uppercase text-doc-ink tracking-wide">ANKIT</span>
+                </div>
+                <!-- Field 2 -->
+                <div class="border-b border-dotted border-doc-ink/30 pb-1">
+                  <span class="font-mono text-[9px] uppercase tracking-wider text-faded-ink block">2. SURNAME</span>
+                  <span class="font-mono font-bold text-[14px] uppercase text-doc-ink tracking-wide">SINGH</span>
+                </div>
+                <!-- Field 3 -->
+                <div class="border-b border-dotted border-doc-ink/30 pb-1">
+                  <span class="font-mono text-[9px] uppercase tracking-wider text-faded-ink block">3. TRADE</span>
+                  <span class="font-mono font-bold text-[13px] uppercase text-doc-ink tracking-wide">SOFTWARE DEVELOPER</span>
+                </div>
+                <!-- Field 4 -->
+                <div class="border-b border-dotted border-doc-ink/30 pb-1">
+                  <span class="font-mono text-[9px] uppercase tracking-wider text-faded-ink block">4. ISSUED</span>
+                  <span class="font-mono text-[11px] font-bold text-doc-ink tracking-normal">2021 · VALID INDEFINITELY</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Declared Skills Strip -->
+            <div class="mt-4 pt-3 border-t border-doc-ink/20">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-mono text-[9px] uppercase tracking-[0.16em] text-faded-ink">
+                  DECLARED SKILLS // VERIFIED STACK
+                </span>
+                <span class="font-mono text-[8px] text-faded-ink">CLASS: PRODUCTION</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">NEXT.JS</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">REACT</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">NESTJS</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">TYPESCRIPT</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">SOLANA</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">POSTGRES</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">RUST</span>
+              </div>
+            </div>
+
+            <!-- Machine Readable Postal MRZ Strip at Bottom -->
+            <div class="mt-4 pt-2 border-t border-dashed border-doc-ink/25 font-mono text-[10px] leading-[14px] tracking-[0.18em] text-doc-ink/75 uppercase select-all">
+              <div>P&lt;SHP&lt;SINGH&lt;&lt;ANKIT&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+              <div>8829044M2109105IND&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;06</div>
+            </div>
+
+            <!-- Blue Rubber Stamp Overlapping Bottom-Right: 'CERTIFIED · FULL-STACK' -->
+            <div class="absolute bottom-5 right-6 w-32 h-32 rounded-full border-[2px] border-airmail-blue/85 flex flex-col items-center justify-center p-1 pointer-events-none rotate-[-11deg] stamp-imprint" style="box-shadow: 0 0 0 1.5px rgba(43,74,203,0.3) inset;">
+              <div class="w-full h-full rounded-full border border-dashed border-airmail-blue/70 flex flex-col items-center justify-center text-center p-2">
+                <span class="font-mono text-[8px] tracking-[0.2em] uppercase text-airmail-blue font-bold">REPUBLIC RECORD</span>
+                <span class="font-mono text-[12px] leading-tight font-extrabold text-airmail-blue tracking-[0.08em] my-1">
+                  CERTIFIED<br>FULL-STACK
+                </span>
+                <span class="font-mono text-[7.5px] uppercase tracking-wider text-airmail-blue/80">★ PROD VERIFIED ★</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= CENTER GUTTER SHADOW & STITCHING ================= -->
+          <div class="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-12 gutter-fold pointer-events-none z-30 flex flex-col items-center justify-between py-6">
+            <!-- Subtle Passport Spine Sewing Thread Holes -->
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+            <div class="w-[2px] h-2 bg-doc-ink/30 rounded-full my-1"></div>
+          </div>
+
+          <!-- ================= RIGHT PAGE: VISA PAGE ================= -->
+          <section class="w-1/2 h-full p-8 flex flex-col justify-between relative pl-10">
+            <!-- Guilloche decorative fine border -->
+            <div class="absolute inset-4 border border-paper-rule pointer-events-none rounded-[2px]"></div>
+
+            <!-- Page Number Outer Corner -->
+            <div class="absolute top-5 right-5 font-mono text-[10px] text-faded-ink">
+              P. 05
+            </div>
+
+            <!-- Header Row: VISA №01 left, DATES right -->
+            <div class="pt-2 flex items-baseline justify-between border-b border-doc-ink/20 pb-2">
+              <span class="font-mono text-[11px] font-bold tracking-[0.14em] uppercase text-doc-ink">
+                VISA №01
+              </span>
+              <span class="font-mono text-[10px] tracking-[0.12em] text-faded-ink uppercase">
+                OCTOBER '25 — PRESENT
+              </span>
+            </div>
+
+            <!-- Headline + handwritten note -->
+            <div class="mt-4">
+              <div class="flex items-baseline gap-3">
+                <h2 class="font-display font-extrabold text-[28px] uppercase tracking-[-0.01em] text-doc-ink leading-none">
+                  FREELANCING
+                </h2>
+                <span class="font-hand text-[20px] text-airmail-blue font-bold tracking-wide -rotate-2">
+                  independent
+                </span>
+              </div>
+            </div>
+
+            <!-- Bullet Points (Hanken Grotesk 14px) -->
+            <ul class="space-y-3 mt-3 pr-8">
+              <li class="flex items-start gap-2.5">
+                <span class="font-mono text-[12px] text-stamp-red leading-none mt-1">—</span>
+                <p class="font-body text-[14px] leading-[1.5] text-doc-ink font-normal">
+                  Building websites and full-stack apps for clients using Next.js, Vue.js and Nestjs.
+                </p>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="font-mono text-[12px] text-stamp-red leading-none mt-1">—</span>
+                <p class="font-body text-[14px] leading-[1.5] text-doc-ink font-normal">
+                  Designed dashboards, landing pages, and tools with clean UI/UX.
+                </p>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="font-mono text-[12px] text-stamp-red leading-none mt-1">—</span>
+                <p class="font-body text-[14px] leading-[1.5] text-doc-ink font-normal">
+                  Learning Rust, automation, and better frontend architecture.
+                </p>
+              </li>
+            </ul>
+
+            <!-- Tech Chips -->
+            <div class="mt-4 pt-3 border-t border-dotted border-doc-ink/25">
+              <div class="font-mono text-[9px] uppercase tracking-[0.16em] text-faded-ink mb-1.5">
+                ACTIVE ENVIRONMENTS
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">NEXT.JS</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">REACT</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">VUE.JS</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 border border-doc-ink/25 bg-white/40 text-doc-ink rounded-[1px]">NESTJS</span>
+              </div>
+            </div>
+
+            <!-- Page Footer Signoff / Serial -->
+            <div class="pt-4 flex items-center justify-between text-faded-ink font-mono text-[9px] tracking-wider uppercase">
+              <span>SECURITY SEAL OK</span>
+              <span>PARCEL EXPEDITION #01</span>
+            </div>
+
+            <!-- Round Red Rubber ENTRY Stamp Rotated 8° Bottom-Right -->
+            <div class="absolute bottom-6 right-6 w-32 h-32 rounded-full border-[2.5px] border-stamp-red/85 p-1 flex items-center justify-center rotate-[8deg] pointer-events-none stamp-imprint" style="box-shadow: 0 0 0 1.5px rgba(217,74,43,0.3) inset;">
+              <div class="w-full h-full rounded-full border border-dashed border-stamp-red/70 flex flex-col items-center justify-center text-center p-1.5">
+                <span class="font-mono text-[8px] font-bold uppercase tracking-[0.2em] text-stamp-red">IMMIGRATION</span>
+                <span class="font-mono text-[13px] font-extrabold uppercase tracking-wide text-stamp-red my-0.5">
+                  ENTRY · OCT 25
+                </span>
+                <div class="h-[1px] w-12 bg-stamp-red/40 my-0.5"></div>
+                <span class="font-mono text-[9px] font-bold tracking-[0.14em] text-stamp-red uppercase">
+                  SHIPPED
+                </span>
+                <span class="font-mono text-[7px] text-stamp-red/75 uppercase tracking-widest mt-0.5">AIRMAIL DESK</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Below the Passport: Courier Page Counter & Three Dots Navigation -->
+    <footer class="w-full flex flex-col items-center justify-center gap-2 pt-2">
+      <!-- Courier Page Counter -->
+      <div class="font-mono text-[12px] tracking-[0.22em] text-cream-paper/85 uppercase">
+        [ 01 / 03 ]
+      </div>
+
+      <!-- Pagination Indicators: Three dots, first filled -->
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-cream-paper shadow-sm"></span>
+        <span class="w-2 h-2 rounded-full bg-cream-paper/30 hover:bg-cream-paper/50 cursor-pointer transition-colors"></span>
+        <span class="w-2 h-2 rounded-full bg-cream-paper/30 hover:bg-cream-paper/50 cursor-pointer transition-colors"></span>
+      </div>
+
+      <!-- Subtle Route Line & Paper Plane Motif at Bottom Center -->
+      <div class="flex items-center gap-3 mt-1 opacity-40">
+        <span class="w-12 h-[1px] border-b border-dashed border-cream-paper"></span>
+        <svg class="w-3.5 h-3.5 text-cream-paper" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+        <span class="w-12 h-[1px] border-b border-dashed border-cream-paper"></span>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

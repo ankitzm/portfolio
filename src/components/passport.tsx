@@ -200,7 +200,7 @@ function VisaPage({
   return (
     <div className={`pp-face ${color}`}>
       <div className="text-ink-faded flex justify-between gap-3 font-mono text-[9px] tracking-[0.2em] uppercase">
-        <span>Visa №{String(n).padStart(2, "0")}</span>
+        <span>Visa No. {String(n).padStart(2, "0")}</span>
         <span>{entry.date}</span>
       </div>
       <h3 className="font-display mt-3 text-2xl leading-none font-bold tracking-tight uppercase font-stretch-75% md:mt-4 md:text-4xl">

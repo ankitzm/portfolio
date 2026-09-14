@@ -1,7 +1,7 @@
 import Image from "next/image";
 
+import { Barcode } from "@/components/barcode";
 import { Reveal } from "@/components/reveal";
-import { projectImage } from "@/lib/data";
 import type { Project } from "@/types";
 
 /**
@@ -9,7 +9,7 @@ import type { Project } from "@/types";
  * Body carries name, one-liner, description and tags; the tear-off stub
  * carries the barcode and the links. Stacks (stub below) under md.
  */
-export function BoardingPass({
+export async function BoardingPass({
   project,
   index,
 }: {
@@ -18,33 +18,26 @@ export function BoardingPass({
 }) {
   const no = String(index + 1).padStart(2, "0");
   const { github, website } = project.links;
+  // Dynamic import (not projectImage's string path) so the stamp gets the
+  // screenshot's real width/height — each one has its own ratio, and only
+  // the width is set in CSS, so the stamp takes the shape of the image.
+  const { default: shot } = await import(
+    `../../public/projects/webp/${project.image}.webp`
+  );
 
   return (
     <article className="pass-notch hover-lift drop-shadow-paper bg-surface text-ink flex flex-col md:flex-row">
       <div className="paper-grain relative flex min-w-0 flex-1 flex-col p-6 md:p-8">
         <div className="text-ink-faded flex items-baseline justify-between gap-4 font-mono text-[10px] tracking-widest uppercase">
-          <span>Boarding pass · №{no}</span>
+          <span>Boarding pass · No. {no}</span>
           <span className="hidden sm:inline">AS ——— ✈ ——— You</span>
         </div>
 
-        <div className="mt-5 flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <h3 className="font-display text-2xl leading-none font-bold tracking-tight uppercase font-stretch-75% md:text-3xl">
-              {project.name}
-            </h3>
-            <p className="mt-2 text-sm italic md:text-base">{project.title}</p>
-          </div>
-          <div className="stamp-scallop drop-shadow-paper w-20 shrink-0 -rotate-3 md:w-24">
-            <div className="relative aspect-square overflow-hidden">
-              <Image
-                src={projectImage(project.image)}
-                alt=""
-                fill
-                sizes="96px"
-                className="object-cover object-top"
-              />
-            </div>
-          </div>
+        <div className="mt-5 min-w-0">
+          <h3 className="font-display text-2xl leading-none font-bold tracking-tight uppercase font-stretch-75% md:text-3xl">
+            {project.name}
+          </h3>
+          <p className="mt-2 text-sm italic md:text-base">{project.title}</p>
         </div>
 
         <p className="text-ink-faded mt-4 line-clamp-3 max-w-prose text-sm leading-relaxed">
@@ -63,15 +56,33 @@ export function BoardingPass({
         </ul>
       </div>
 
-      <div className="pass-stub border-rule flex shrink-0 items-center justify-between gap-4 border-t border-dashed px-6 py-4 md:w-44 md:flex-col md:items-stretch md:border-t-0 md:border-l md:p-6">
-        <span className="text-ink-faded hidden font-mono text-[10px] tracking-widest uppercase md:block md:[writing-mode:vertical-rl]">
-          Shipped · №{no}
-        </span>
-        <span
-          aria-hidden="true"
-          className="barcode h-8 w-20 md:h-12 md:w-full"
+      <div className="pass-stub border-rule flex shrink-0 flex-col justify-between gap-6 border-t border-dashed px-6 py-6 md:w-48 md:border-t-0 md:border-l md:p-6">
+        {/* Perforation bitten straight out of the screenshot's own edge: no
+            matte, no caption, just the die-cut. */}
+        <div className="perf-bare drop-shadow-paper relative aspect-4/3 w-36 self-center md:w-full md:self-auto">
+          <Image
+            src={shot}
+            alt=""
+            fill
+            sizes="(min-width: 768px) 160px, 144px"
+            className="object-cover object-top-left"
+          />
+        </div>
+
+        <Barcode
+          value={`${project.name.toUpperCase()}-${no}`}
+          className="text-ink h-10 w-full md:h-12"
         />
-        <div className="flex gap-4 font-mono text-[11px] font-bold tracking-widest uppercase md:flex-col md:gap-2">
+
+        <div className="flex justify-between gap-4 font-mono text-[11px] font-bold tracking-widest md:gap-3">
+          <a
+            href={github}
+            target="_blank"
+            rel="noreferrer"
+            className="flex min-h-11 items-center hover:underline md:min-h-0"
+          >
+            source
+          </a>
           {website && (
             <a
               href={website}
@@ -79,17 +90,9 @@ export function BoardingPass({
               rel="noreferrer"
               className="text-accent flex min-h-11 items-center hover:underline md:min-h-0"
             >
-              Visit site ↗
+              demo
             </a>
           )}
-          <a
-            href={github}
-            target="_blank"
-            rel="noreferrer"
-            className="flex min-h-11 items-center hover:underline md:min-h-0"
-          >
-            Source
-          </a>
         </div>
       </div>
     </article>

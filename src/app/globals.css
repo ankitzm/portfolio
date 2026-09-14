@@ -18,6 +18,8 @@
   --color-ground-navy: #1e2a4a;
   --color-ground-kraft: #d9b98a;
   --color-ground-news: #edeae3;
+  /* postage yellow: the portrait stamp */
+  --color-postage: #f5e08c;
   --color-rule: rgba(28, 27, 23, 0.16);
   /* experience visa ink tints, mapped from the data color field */
   --color-visa-paper: #f1ecdf;
@@ -635,4 +637,25 @@ dialog.customs::backdrop {
         var(--color-surface) 40px
       )
       border-box;
+}
+
+/*
+ * Perforated card edge: scalloped die-cut all around, like a postage stamp,
+ * applied to a content container (the hero postcard). Mask kills box-shadow,
+ * so pair with .drop-shadow-paper on the element for depth.
+ */
+.perf-edge {
+  --hole: 6px;
+  --pitch: 17px;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    radial-gradient(circle var(--hole), transparent 98%, #000)
+      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch) var(--pitch)
+      round;
+  padding: 10px;
+}
+
+/* Yellow postage variant of the stamp matte (hero portrait). */
+.stamp-scallop.is-postage {
+  background: var(--color-postage);
 }

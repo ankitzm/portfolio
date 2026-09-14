@@ -24,4 +24,4 @@ export const getPosts = () => read<Post[]>("posts.json");
 
 /** True once a portrait has been dropped at public/portrait.jpg. */
 export const hasPortrait = () =>
-  existsSync(path.join(process.cwd(), "public", "portrait.jpg"));
+  existsSync(path.join(process.cwd(), "public", "portrait.webp"));

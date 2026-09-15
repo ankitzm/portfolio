@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { SectionHead } from "@/components/section-head";
 import { getPosts } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -12,15 +13,13 @@ export default async function DispatchesPage() {
 
   return (
     <main data-ground="paper" className="bg-ground-news">
-      <div className="text-ink mx-auto max-w-3xl px-5 py-14 md:py-20">
-        <div className="mb-12 flex flex-wrap items-baseline justify-between gap-2">
-          <h1 className="font-display text-4xl font-bold tracking-tight uppercase font-stretch-75% md:text-6xl">
-            Dispatches
-          </h1>
-          <p className="text-ink-faded font-mono text-[11px] tracking-widest uppercase">
-            Letters sent outward
-          </p>
-        </div>
+      <div className="section-band text-ink mx-auto max-w-3xl px-5">
+        <SectionHead
+          as="h1"
+          title="Dispatches"
+          meta="Letters sent outward"
+          className="mb-12"
+        />
 
         {posts.length === 0 ? (
           <div className="border-rule grid place-items-center gap-4 border-2 border-dashed px-6 py-20 text-center">

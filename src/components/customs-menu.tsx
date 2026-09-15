@@ -4,17 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const items = [
-  { href: "/projects", label: "Projects", note: "12 items to declare" },
-  { href: "/experience", label: "Experience", note: "passport on file" },
-  { href: "/#booking", label: "Let's talk", note: "postage paid" },
-];
-
-const socials = [
-  ["GitHub", "https://github.com/ankitzm"],
-  ["X", "https://x.com/ankitzm"],
-  ["Medium", "https://medium.com/@0xblocktrain"],
-] as const;
+import { nav, socials } from "@/lib/site";
 
 /**
  * Mobile menu as a customs declaration form. Native <dialog>: focus trap,
@@ -64,7 +54,7 @@ export function CustomsMenu({
           <button
             type="button"
             onClick={onClose}
-            className="text-ink-faded min-h-11 font-mono text-xs tracking-widest uppercase"
+            className="text-ink-faded font-display min-h-11 text-sm font-bold tracking-wide"
           >
             Close ×
           </button>
@@ -78,7 +68,7 @@ export function CustomsMenu({
         </p>
 
         <ol className="border-rule mt-8 border-t">
-          {items.map((item, i) => {
+          {nav.map((item, i) => {
             const on = ticked === item.href;
             return (
               <li key={item.href} className="border-rule border-b">
@@ -115,8 +105,8 @@ export function CustomsMenu({
         </ol>
 
         <div className="mt-auto flex items-end justify-between pt-10">
-          <div className="flex flex-col gap-2 font-mono text-[11px] tracking-widest uppercase">
-            {socials.map(([label, href]) => (
+          <div className="font-display flex flex-col gap-2 text-sm font-bold tracking-wide">
+            {socials.map(({ href, label }) => (
               <a key={href} href={href} target="_blank" rel="noreferrer">
                 {label}
               </a>

@@ -1,10 +1,5 @@
 import { TornEdge } from "@/components/torn-edge";
-
-const socials = [
-  { href: "https://github.com/ankitzm", label: "GITHUB/ANKITZM" },
-  { href: "https://x.com/ankitzm", label: "X @ANKITZM" },
-  { href: "https://medium.com/@0xblocktrain", label: "MEDIUM/@0XBLOCKTRAIN" },
-];
+import { socials } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -15,21 +10,23 @@ export function Footer() {
       {/* Grained like the footer body, or the rip reads brighter than the
           paper it belongs to. */}
       <TornEdge className="paper-grain" />
-      <div className="text-ink-faded mx-auto flex max-w-350 flex-col gap-4 px-5 py-10 font-mono text-[11px] tracking-wider md:flex-row md:items-baseline md:justify-between md:px-14">
-        <div className="flex flex-col gap-3 md:flex-row md:gap-8">
+      <div className="text-ink mx-auto flex max-w-350 flex-col gap-6 px-5 py-12 md:flex-row md:items-baseline md:justify-between md:px-14 md:py-14">
+        <div className="font-display flex flex-col gap-1 text-sm font-bold tracking-wide md:flex-row md:gap-1">
           {socials.map((social) => (
             <a
               key={social.href}
               href={social.href}
               target="_blank"
               rel="noreferrer"
-              className="hover:text-accent transition-colors"
+              className="nav-link"
             >
-              {social.label}
+              {social.handle}
             </a>
           ))}
         </div>
-        <span>© {new Date().getFullYear()} · EVERYTHING SHIPS</span>
+        <span className="text-ink-faded px-1 font-mono text-[11px] tracking-wider">
+          © {new Date().getFullYear()} · EVERYTHING SHIPS
+        </span>
       </div>
     </footer>
   );

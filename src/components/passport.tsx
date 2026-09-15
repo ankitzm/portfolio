@@ -11,8 +11,10 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useRef, useState } from "react";
 
+import { PORTRAIT } from "@/lib/site";
+import { useStacked } from "@/lib/use-media";
 import type { Experience } from "@/types";
 
 /* ------------------------------------------------------------------ data */
@@ -148,7 +150,7 @@ function IdPage({
         <div className="bg-paper border-rule relative size-20 shrink-0 overflow-hidden border md:size-24">
           {hasPortrait ? (
             <Image
-              src="/portrait.jpg"
+              src={PORTRAIT}
               alt=""
               fill
               sizes="96px"
@@ -206,7 +208,7 @@ function VisaPage({
       <h3 className="font-display mt-3 text-2xl leading-none font-bold tracking-tight uppercase font-stretch-75% md:mt-4 md:text-4xl">
         {heading}
       </h3>
-      <p className="font-annotation text-ink-faded mt-1.5 text-lg leading-none md:text-2xl">
+      <p className="text-ink-faded mt-2 font-mono text-xs tracking-wider italic md:text-sm">
         {role}
       </p>
       <ul className="text-ink mt-4 space-y-1.5 text-[12px] leading-snug md:mt-6 md:space-y-2.5 md:text-sm md:leading-relaxed">
@@ -314,16 +316,8 @@ export function Passport({
 }) {
   const reduced = useReducedMotion();
   const wrap = useRef<HTMLDivElement>(null);
-  const [stacked, setStacked] = useState(false);
+  const stacked = useStacked();
   const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const mq = matchMedia("(width < 48rem)");
-    const update = () => setStacked(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
 
   // Faces in reading order: ID, visas…, and on the home teaser a closing
   // note. Leaves pair faces up (front, back). With an odd face count the

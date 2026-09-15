@@ -14,6 +14,13 @@
   --color-accent: #2b4acb;
   /* stamp = rubber-stamp red: imprints only, never interactive */
   --color-stamp: #d94a2b;
+  /*
+   * Frame: the one surface that never crossfades. Warm cream gutter, near-white
+   * between the stripes — together with accent + stamp this is the
+   * blue-red-white airmail edge.
+   */
+  --color-frame: #ece5d4;
+  --color-frame-white: #fdfbf4;
   --color-ground-sky: #a9d6ec;
   --color-ground-navy: #1e2a4a;
   --color-ground-kraft: #d9b98a;
@@ -21,12 +28,7 @@
   /* postage yellow: the portrait stamp */
   --color-postage: #f5e08c;
   --color-rule: rgba(28, 27, 23, 0.16);
-  /* experience visa ink tints, mapped from the data color field */
-  --color-visa-paper: #f1ecdf;
-  --color-visa-red: #e86a50;
-  --color-visa-orange: #e8a050;
-  --color-visa-purple: #a78bdb;
-  /* the same inks on cream passport pages */
+  /* experience visa inks, mapped from the data color field */
   --color-ink-red: #b8412c;
   --color-ink-purple: #5b47a8;
   --color-ink-orange: #b9661c;
@@ -38,7 +40,6 @@
   --font-display: var(--font-bricolage);
   --font-sans: var(--font-hanken);
   --font-mono: var(--font-courier);
-  --font-annotation: var(--font-caveat);
 }
 
 ::selection {
@@ -89,47 +90,63 @@ body {
 /*
  * Airmail-stripe frame: the window scrolls normally; the frame is a fixed
  * overlay. ::before is the gutter (a huge box-shadow around a rounded hole,
- * so corners stay masked), ::after is the stripe ring. Mobile: no frame.
+ * so corners stay masked), ::after is the stripe ring.
+ *
+ * The gutter is --color-frame, NOT --ground: the frame is the one fixed
+ * surface on the page, so it stays put while the sections crossfade inside
+ * it. White between the stripes completes the blue-red-white edge.
+ *
+ * Mobile runs the stripe flush to the viewport edge (--gutter: 0, no radius)
+ * so the identity survives without eating width on a 360px phone.
  */
+:root {
+  --gutter: 0px;
+  --stripe: 5px;
+  --stripe-pitch: 9px;
+  --frame-radius: 0px;
+  --frame: calc(var(--gutter) + var(--stripe));
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: var(--gutter);
+  border-radius: var(--frame-radius);
+  pointer-events: none;
+  z-index: 100;
+}
+
+body::before {
+  box-shadow: 0 0 0 100vmax var(--color-frame);
+}
+
+body::after {
+  border: var(--stripe) solid transparent;
+  background: repeating-linear-gradient(
+      45deg,
+      var(--color-stamp) 0,
+      var(--color-stamp) var(--stripe-pitch),
+      var(--color-frame-white) var(--stripe-pitch),
+      var(--color-frame-white) calc(var(--stripe-pitch) * 2),
+      var(--color-accent) calc(var(--stripe-pitch) * 2),
+      var(--color-accent) calc(var(--stripe-pitch) * 3),
+      var(--color-frame-white) calc(var(--stripe-pitch) * 3),
+      var(--color-frame-white) calc(var(--stripe-pitch) * 4)
+    )
+    border-box;
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
 @media (min-width: 768px) {
   :root {
-    --frame: 13px;
-    /* 10px gutter + 3px stripe */
-  }
-
-  body::before,
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 10px;
-    border-radius: 20px;
-    pointer-events: none;
-    z-index: 100;
-  }
-
-  body::before {
-    box-shadow: 0 0 0 100vmax var(--ground);
-    transition: box-shadow 0.6s var(--ease-paper);
-  }
-
-  body::after {
-    border: 3px solid transparent;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--color-stamp) 0,
-        var(--color-stamp) 10px,
-        transparent 10px,
-        transparent 20px,
-        var(--color-accent) 20px,
-        var(--color-accent) 30px,
-        transparent 30px,
-        transparent 40px
-      )
-      border-box;
-    mask:
-      linear-gradient(#fff 0 0) padding-box,
-      linear-gradient(#fff 0 0);
-    mask-composite: exclude;
+    --gutter: 14px;
+    --stripe: 7px;
+    --stripe-pitch: 13px;
+    --frame-radius: 22px;
   }
 }
 
@@ -147,6 +164,64 @@ body {
 .ground-brand {
   color: var(--ground-brand);
   transition: color 0.6s var(--ease-paper);
+}
+
+/*
+ * Nav item: a postmark rule that wipes in from the left on hover and stays
+ * put on the current page. transform on a pseudo-element, so hovering never
+ * reflows the bar. Padding gives the 44px tap target without visible chrome.
+ */
+.nav-link {
+  position: relative;
+  padding: 0.85rem 0.9rem;
+  opacity: 0.65;
+  transition:
+    opacity 0.25s var(--ease-paper),
+    transform 0.25s var(--ease-paper);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.55rem;
+  left: 0.9rem;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-paper);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  opacity: 1;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav-link:active {
+  transform: translateY(1px);
+}
+
+/* Current route: rule stays inked, and the label sits at full strength. */
+.nav-link[aria-current="page"] {
+  opacity: 1;
+}
+
+.nav-link[aria-current="page"]::after {
+  background: var(--ground-brand);
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .nav-link::after {
+    transition-duration: 0s;
+  }
 }
 
 /*
@@ -192,7 +267,6 @@ dialog.customs::backdrop {
 @media (prefers-reduced-motion: reduce) {
   dialog.customs,
   body,
-  body::before,
   .ground-bar,
   .ground-brand {
     transition-duration: 0s;
@@ -247,6 +321,28 @@ dialog.customs::backdrop {
  * below the text via a negative-z pseudo-element, so it grains the paper
  * without dulling the ink.
  */
+/*
+ * Page-wide paper: the grain rides on <body> as a fixed layer so every
+ * section inside the frame shares one continuous sheet instead of each
+ * component graining itself at a different offset. Fixed, not scrolling —
+ * paper does not slide under its own ink.
+ */
+.paper-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="180" height="180" filter="url(%23f)" opacity="0.3"/></svg>');
+}
+
+/* Vertical rhythm between sections. One knob, not a per-section guess. */
+.section-band {
+  padding-block: clamp(4.5rem, 9vw, 8.5rem);
+}
+
 .paper-grain {
   isolation: isolate;
 }

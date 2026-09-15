@@ -5,6 +5,8 @@ import { motion, useReducedMotion, type Transition } from "motion/react";
 import { useEffect, useState } from "react";
 import { preconnect } from "react-dom";
 
+import { useStacked } from "@/lib/use-media";
+
 const CAL_NAMESPACE = "15min";
 const CAL_LINK = "ankitzm/15min";
 
@@ -59,15 +61,7 @@ export function Booking() {
   const reduced = useReducedMotion();
   // Stacked ticket (below md) tears along a horizontal seam, so the halves
   // part vertically; side-by-side parts horizontally.
-  const [stacked, setStacked] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(width < 48rem)");
-    const update = () => setStacked(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
+  const stacked = useStacked();
 
   useEffect(() => {
     (async () => {

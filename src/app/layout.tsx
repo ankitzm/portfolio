@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import {
   Bricolage_Grotesque,
-  Caveat,
   Courier_Prime,
   Hanken_Grotesk,
 } from "next/font/google";
@@ -33,12 +32,6 @@ const courier = Courier_Prime({
   variable: "--font-courier",
 });
 
-const caveat = Caveat({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-caveat",
-});
-
 export const metadata: Metadata = {
   title: "Ankit Singh — Ships Software",
   description:
@@ -53,9 +46,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${hanken.variable} ${courier.variable} ${caveat.variable} antialiased`}
+      className={`${bricolage.variable} ${hanken.variable} ${courier.variable} antialiased`}
     >
-      <body className="font-sans">
+      <body className="paper-page font-sans">
         <MotionProvider>
           <SmoothScroll />
           <ConsoleEgg />

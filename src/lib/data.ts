@@ -4,6 +4,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { PORTRAIT } from "@/lib/site";
 import type { Experience, Post, Project } from "@/types";
 
 async function read<T>(file: string): Promise<T> {
@@ -14,14 +15,8 @@ async function read<T>(file: string): Promise<T> {
 export const getProjects = () => read<Project[]>("projects.json");
 export const getExperience = () => read<Experience[]>("experience.json");
 
-/** Screenshot path for a project's `image` basename. */
-export const projectImage = (image: string) => `/projects/webp/${image}.webp`;
-
-/** Live site when there is one, else the repo. */
-export const projectHref = ({ links }: Project) =>
-  links.website || links.github;
 export const getPosts = () => read<Post[]>("posts.json");
 
-/** True once a portrait has been dropped at public/portrait.jpg. */
+/** True once a portrait has been dropped at public/portrait.jpeg. */
 export const hasPortrait = () =>
-  existsSync(path.join(process.cwd(), "public", "portrait.webp"));
+  existsSync(path.join(process.cwd(), "public", PORTRAIT.slice(1)));

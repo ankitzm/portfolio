@@ -1,15 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { CustomsMenu } from "@/components/customs-menu";
-
-const links = [
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/experience", label: "EXPERIENCE" },
-  { href: "/#booking", label: "LET'S TALK" },
-];
+import { nav } from "@/lib/site";
 
 /**
  * Sticky bar that takes the color of whichever section sits under it.
@@ -18,6 +14,7 @@ const links = [
  */
 export function Header() {
   const [menu, setMenu] = useState(false);
+  const path = usePathname();
 
   useEffect(() => {
     const sections = Array.from(
@@ -56,21 +53,28 @@ export function Header() {
           >
             Ankit Singh
           </Link>
-          <nav className="hidden items-center gap-8 font-mono text-xs tracking-widest md:flex">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="opacity-70 transition-opacity hover:opacity-100"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="font-display hidden items-center gap-1 text-sm font-bold tracking-wide md:flex">
+            {nav.map((link) => {
+              // "/#booking" is an in-page anchor, never a route match.
+              const active =
+                link.href.startsWith("/#") === false &&
+                (path === link.href || path.startsWith(`${link.href}/`));
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className="nav-link"
+                >
+                  {link.label.toUpperCase()}
+                </Link>
+              );
+            })}
           </nav>
           <button
             type="button"
             onClick={() => setMenu(true)}
-            className="-mr-2 flex min-h-11 items-center gap-2 px-2 font-mono text-xs tracking-widest md:hidden"
+            className="font-display -mr-2 flex min-h-11 items-center gap-2 px-2 text-sm font-bold tracking-wide md:hidden"
           >
             MENU
             <span aria-hidden="true" className="flex flex-col gap-1">

@@ -16,16 +16,29 @@ export function Header() {
   const [menu, setMenu] = useState(false);
   const path = usePathname();
 
+  // Re-runs on navigation: each route renders its own [data-ground] sections,
+  // so the list has to be re-read after the new page mounts or the bar keeps
+  // the previous route's colour.
   useEffect(() => {
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-ground]"),
-    );
     const root = document.documentElement;
     let raf = 0;
     const update = () => {
       raf = 0;
-      const line = 80;
-      let ground = sections[0]?.dataset.ground ?? "paper";
+      // Scope to the current page: during a route transition the outgoing
+      // <main> can still be in the DOM, and its ground would win the seed.
+      const main = document.querySelector<HTMLElement>("main");
+      const sections = (main ?? document).querySelectorAll<HTMLElement>(
+        "[data-ground]",
+      );
+      // The bar's own bottom edge, not a guess: --frame changes at md, so a
+      // hardcoded line leaves a section that starts just under the header
+      // still reading as the section above it.
+      const line =
+        document.querySelector("header")?.getBoundingClientRect().bottom ?? 80;
+      // Seed from the page's own <main> so a subpage with a single section
+      // (which starts level with the header, not above it) still counts.
+      let ground =
+        main?.dataset.ground ?? sections[0]?.dataset.ground ?? "paper";
       for (const s of sections) {
         if (s.getBoundingClientRect().top <= line) ground = s.dataset.ground!;
       }
@@ -39,9 +52,10 @@ export function Header() {
     return () => {
       removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
-      delete root.dataset.ground;
     };
-  }, []);
+    // Leaves data-ground in place on unmount: the next route's effect
+    // overwrites it, and clearing it here flashes the default mid-navigation.
+  }, [path]);
 
   return (
     <>

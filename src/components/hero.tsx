@@ -178,7 +178,7 @@ export function Hero({ hasPortrait }: { hasPortrait: boolean }) {
   return (
     <section
       ref={ref}
-      className="mx-auto flex min-h-[calc(100svh-var(--frame)-4.5rem)] max-w-7xl items-center px-4 py-8 sm:px-6 md:px-10 md:py-14"
+      className="mx-auto flex min-h-[calc(100svh-var(--frame))] max-w-7xl items-center px-4 py-8 sm:px-6 md:px-10 md:py-14"
     >
       {/* Unmasked wrapper so the stamp can overhang the card's die-cut edge:
           .perf-edge is a CSS mask, and a mask clips its own descendants. */}

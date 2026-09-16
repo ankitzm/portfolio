@@ -399,7 +399,7 @@ export function Passport({
 
   return (
     <div ref={wrap} style={{ height: `calc(100lvh + ${flips} * 85lvh)` }}>
-      <div className="sticky top-0 flex h-dvh flex-col items-center justify-center gap-4 pt-20">
+      <div className="pp-stage sticky top-0 flex h-dvh flex-col items-center justify-center gap-4 pt-20">
         <div className={`pp-book ${stacked ? "pp-stacked" : ""}`}>
           <div className="pp-cover" />
           <div className="pp-page pp-base-a">{faces[0]}</div>

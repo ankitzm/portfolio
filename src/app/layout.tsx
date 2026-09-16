@@ -46,9 +46,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${hanken.variable} ${courier.variable} antialiased`}
+      className={`paper-page ${bricolage.variable} ${hanken.variable} ${courier.variable} antialiased`}
     >
-      <body className="paper-page font-sans">
+      <body className="font-sans">
         <MotionProvider>
           <SmoothScroll />
           <ConsoleEgg />

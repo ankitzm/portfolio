@@ -85,7 +85,7 @@ export default async function Home() {
               Send something back
             </h2>
 
-            <p className="text-ink/70 mx-auto mt-3 max-w-md text-sm leading-relaxed">
+            <p className="text-ink-faded mx-auto mt-3 max-w-md text-sm leading-relaxed">
               Available for new projects. Tear the stub, pick a slot, and
               let&apos;s talk shipping.
             </p>

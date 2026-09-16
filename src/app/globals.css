@@ -9,21 +9,35 @@
   --color-surface: #fef9ec;
   --color-paper: #f1ecdf;
   --color-ink: #1c1b17;
-  --color-ink-faded: #6e6a5e;
+  /*
+   * Secondary ink. Dark enough to clear AA (4.5) on every ground it can land
+   * on — surface, paper, news, sky and kraft — since the grounds crossfade
+   * and any faded text may end up over any of them.
+   */
+  --color-ink-faded: #5f5b4f;
   /* accent = airmail blue: every interactive element */
   --color-accent: #2b4acb;
-  /* stamp = rubber-stamp red: imprints only, never interactive */
-  --color-stamp: #d94a2b;
   /*
-   * Frame: the one surface that never crossfades. Warm cream gutter, near-white
-   * between the stripes — together with accent + stamp this is the
-   * blue-red-white airmail edge.
+   * stamp = rubber-stamp red: imprints only, never interactive. Deeper than
+   * a pure vermilion because .rubber-stamp also multiplies at 0.85 opacity,
+   * which costs contrast on the warmer grounds.
    */
-  --color-frame: #ece5d4;
+  --color-stamp: #c23c1e;
+  /*
+   * Frame: the one surface that never crossfades. The gutter outside the
+   * stripe is --color-paper; this near-white sits between the stripes and,
+   * with accent + stamp, makes the blue-red-white airmail edge.
+   */
   --color-frame-white: #fdfbf4;
-  --color-ground-sky: #a9d6ec;
+  /*
+   * Section grounds. Sky and kraft sit directly behind cream cards, so both
+   * are held lighter than a "true" airmail blue or parcel tan would be: at
+   * full saturation they out-weigh the paper they carry and the stamp red
+   * loses contrast against them.
+   */
+  --color-ground-sky: #b6dcef;
   --color-ground-navy: #1e2a4a;
-  --color-ground-kraft: #d9b98a;
+  --color-ground-kraft: #e9d5b4;
   --color-ground-news: #edeae3;
   /* postage yellow: the portrait stamp */
   --color-postage: #f5e08c;
@@ -57,12 +71,21 @@ body {
 }
 
 /*
+ * The passport's leaves rotate in 3D and swing wider than the book while
+ * mid-turn, which gave the page horizontal scroll exactly when a spread was
+ * part-way open. Clip on the sticky stage, not on .pp-book: the leaf has to
+ * stay fully visible as it turns, so the cut has to happen further out.
+ */
+.pp-stage {
+  overflow-x: clip;
+}
+
+/*
  * Ground: the "country" the viewport is currently in. Set on <html> by the
  * header's scroll watcher from each section's data-ground; body, frame and
  * header all crossfade off these three vars.
  */
 :root {
-  --frame: 0px;
   --ground: var(--color-surface);
   --ground-ink: var(--color-ink);
   --ground-brand: var(--color-accent);
@@ -82,6 +105,15 @@ html[data-ground="kraft"] {
   --ground: var(--color-ground-kraft);
 }
 
+/*
+ * The frame colour is the page's true backdrop: <html> carries it so anything
+ * outside the stripe ring (overscroll, the gutter, the area a shifted passport
+ * spread would expose) is always the fixed paper, never the section ground.
+ */
+html {
+  background: var(--color-paper);
+}
+
 body {
   background: var(--ground);
   transition: background-color 0.6s var(--ease-paper);
@@ -92,7 +124,7 @@ body {
  * overlay. ::before is the gutter (a huge box-shadow around a rounded hole,
  * so corners stay masked), ::after is the stripe ring.
  *
- * The gutter is --color-frame, NOT --ground: the frame is the one fixed
+ * The gutter is --color-paper, NOT --ground: the frame is the one fixed
  * surface on the page, so it stays put while the sections crossfade inside
  * it. White between the stripes completes the blue-red-white edge.
  *
@@ -118,7 +150,7 @@ body::after {
 }
 
 body::before {
-  box-shadow: 0 0 0 100vmax var(--color-frame);
+  box-shadow: 0 0 0 100vmax var(--color-paper);
 }
 
 body::after {
@@ -322,15 +354,20 @@ dialog.customs::backdrop {
  * without dulling the ink.
  */
 /*
- * Page-wide paper: the grain rides on <body> as a fixed layer so every
+ * Page-wide paper: the grain rides on <html>::after as a fixed layer so every
  * section inside the frame shares one continuous sheet instead of each
  * component graining itself at a different offset. Fixed, not scrolling —
  * paper does not slide under its own ink.
+ *
+ * On <html>, NOT on the .paper-page body: body::before and body::after are
+ * both spoken for by the airmail frame, and a second rule targeting either
+ * one silently replaces the gutter fill and lets the page show through it.
+ * Inset by --frame so the grain stops at the stripe instead of crossing it.
  */
-.paper-page::before {
+html.paper-page::after {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: var(--frame);
   z-index: 0;
   pointer-events: none;
   mix-blend-mode: multiply;

@@ -6,7 +6,7 @@ import { getProjects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Shipped Work — Ankit Singh",
-  description: "Twelve shipped projects, collected as a stamp sheet.",
+  description: "Shipped projects, collected as a stamp sheet.",
 };
 
 export default async function ProjectsPage() {

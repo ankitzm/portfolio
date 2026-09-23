@@ -1,5 +1,27 @@
 [
   {
+    "name": "Spinneret",
+    "title": "A scraping pipeline that repairs itself in CI.",
+    "description": "A self-healing data pipeline that tells a broken scraper apart from a real-world change. A pure, unit-tested classifier splits BROKEN from CHANGED: broken scrapers trigger an automated heal and re-validation, real changes are recorded and never healed. Runs on GitHub Actions with Git as the datastore, so no broken rows ever reach the published data.",
+    "image": "clarity",
+    "links": {
+      "github": "https://github.com/ankitzm/spinneret",
+      "website": ""
+    },
+    "tags": ["TypeScript", "Node.js", "GitHub Actions", "NextJS", "Bright Data"]
+  },
+  {
+    "name": "Palladium",
+    "title": "An open-source chain explorer for every Avalanche L1.",
+    "description": "An explorer that indexes every Avalanche L1, tracks health metrics, and serves both a public dashboard and a REST API. A four-stage ingestion pipeline covers chain discovery, validator indexing, TVL aggregation, and EVM metrics, feeding a time-series data model with audit logging and 90-day historical trends.",
+    "image": "clarity",
+    "links": {
+      "github": "https://github.com/ankitzm/palladium",
+      "website": ""
+    },
+    "tags": ["TypeScript", "NextJS", "Hono", "Drizzle", "Postgres", "Recharts"]
+  },
+  {
     "name": "Clarity",
     "title": "Turn ChatGPT conversations into structured insights and interactive mind maps.",
     "description": "A high-performance analyzer that fetches data from ChatGPT share links, processes it through advanced LLMs via OpenRouter, and generates interactive visual representations of your discussions. Features AI multi-analysis for summaries, insights, action items, and sentiment analysis with real-time streaming and a premium glassmorphic UI.",
@@ -22,7 +44,7 @@
     "tags": ["Web3", "Ethereum", "PYUSD", "Smart Contracts", "React"]
   },
   {
-    "name": "SolLens",
+    "name": "ScanLens",
     "title": "Name, tag, and color Solana addresses directly on Solscan.",
     "description": "A privacy-first Chrome extension that allows users to assign friendly names, tags, and colors to Solana wallet addresses and see them inline on Solscan. All data is stored locally, links remain untouched, and the extension works seamlessly across Solscan’s dynamic pages.",
     "image": "sol-lens",
@@ -62,8 +84,8 @@
   },
   {
     "name": "Safe Deploy",
-    "title": "Browser-based smart contract deployment—no private keys exposed.",
-    "description": "A lightweight NPM package that enables developers to deploy locally compiled smart contracts directly from the browser using MetaMask—no CLI, private-key injection, or external dependencies required. Works seamlessly on localhost and supports secure, frictionless development workflows.",
+    "title": "CLI-driven contract deployment with browser-based signing—no private keys exposed.",
+    "description": "A lightweight NPM package that runs from the CLI against a locally compiled contract, then hands off to a browser step where MetaMask signs the deployment—so the private key never enters the dev environment. Works on localhost with no external dependencies for secure, frictionless workflows.",
     "image": "safe-deploy",
     "links": {
       "github": "https://github.com/ankitzm/safe-deploy",
@@ -102,7 +124,7 @@
   },
   {
     "name": "Name It",
-    "title": "AI-style name suggestions for startups, instantly domain-checkable.",
+    "title": "Creative name suggestions for startups, instantly domain-checkable.",
     "description": "A simple tool to generate creative name ideas for new startups or projects. Enter keywords and get related suggestions powered by an open-source word-association library. Each result links directly to Google Domains for quick domain availability checks.",
     "image": "name-it",
     "links": {

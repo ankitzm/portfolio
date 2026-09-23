@@ -1,12 +1,34 @@
 [
   {
     "color": "black",
+    "company": "Bytebell",
+    "role": "Software Developer",
+    "date": "April '26 - August '26",
+    "description": [
+      "Owned the code-ingestion engine for an AI context layer, rebuilding a scattered pipeline into clean, modular packages.",
+      "Built OAuth-based repo ingestion across GitHub, GitLab, and Bitbucket, plus an MCP server exposing search and retrieval over HTTP.",
+      "Cut ingestion cost by ~50% and retrieval latency by ~60% via token reduction and OpenRouter prompt caching.",
+      "Ran SWE-bench evals and a 14-model cost/quality comparison that set the model routing decision."
+    ],
+    "skills": [
+      "TypeScript",
+      "NestJS",
+      "Neo4j",
+      "OpenRouter",
+      "MCP",
+      "BullMQ",
+      "Docker"
+    ]
+  },
+  {
+    "color": "black",
     "company": "",
     "role": "Freelancing",
     "date": "October '25 - Present",
     "description": [
       "Building websites and full-stack apps for clients using Next.js, Vue.js and Nestjs.",
       "Desiged dashboards, landing pages, and tools with clean UI/UX.",
+      "Scoped and delivered work directly with clients, from first call to shipped product.",
       "Learning Rust, automation, and better frontend architecture and scalability."
     ],
     "skills": [
@@ -21,14 +43,15 @@
   },
   {
     "color": "black",
-    "company": "Stealth Company(web3 game)",
-    "role": "Full Stack Developer",
+    "company": "Meme Duels (Under Router Protocol)",
+    "role": "Full Stack Developer · Contract",
     "date": "May '24 - October '25",
     "description": [
-      "Developed a web3 game from scratch using React, Tailwind CSS, and TypeScript.",
-      "Helped in building the game's backend using Node.js and Express.",
-      "Integrated the game with the Solana blockchain for tx handling",
-      "Built the game's logics and animation for quick bet experience with Privy Wallet."
+      "Built Meme Duels, a real-time tap-trading web3 game, end to end in React, Tailwind CSS, and TypeScript.",
+      "Developed the game backend on Node.js and Express, handling match state and settlement.",
+      "Integrated Solana for on-chain transaction handling and Privy for wallet authentication.",
+      "Tuned the game logic and betting animations for a fast, low-latency bet experience.",
+      "Shipped the product to beta on Solana."
     ],
     "skills": [
       "React",
@@ -36,16 +59,15 @@
       "TypeScript",
       "Node.js",
       "Express",
-      "ThirdFi API",
-      "Thirdweb",
-      "NestJS"
+      "Solana",
+      "Privy"
     ]
   },
   {
     "color": "red",
     "company": "Router Protocol",
     "role": "Full Stack Developer",
-    "date": "April '24 - March '25",
+    "date": "March '24 - October '25",
     "description": [
       "Developed [Router Nitro v2](https://routernitro.com/swap), improving overall cross-chain swap UX.",
       "Designed a modular, reusable architecture to reduce code duplication and speed up new chain integrations.",
@@ -66,7 +88,7 @@
     "color": "purple",
     "company": "ThirdFi",
     "role": "Dev. Advocate/Developer",
-    "date": "April '23 - August '23",
+    "date": "April '23 - September '23",
     "description": [
       "Created [Product](https://docs.thirdfi.org/product/overview) and [API Docs](https://thirdfi.readme.io/reference/introduction) with sample applications.",
       "Wrote multiple [Getting Started](https://www.blog.thirdfi.org/) guides covering blockchain concepts and API usage.",
@@ -90,7 +112,7 @@
     "color": "orange",
     "company": "BlockTrain",
     "role": "Content Creator",
-    "date": "May '22 - Nov '22",
+    "date": "May '22 - September '22",
     "description": [
       "Published daily blogs on [Medium](https://medium.com/@0xblocktrain) and [Hashnode](https://blocktrain.hashnode.dev/).",
       "Created educational videos on BlockTrain’s [YouTube](https://www.youtube.com/c/Blocktrain).",

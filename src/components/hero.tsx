@@ -109,7 +109,7 @@ function PortraitStamp({ hasPortrait }: { hasPortrait: boolean }) {
             alt="Ankit Singh"
             fill
             priority
-            sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 224px"
+            sizes="(max-width: 640px) 176px, (max-width: 768px) 208px, 224px"
             className="object-cover object-top grayscale"
           />
         ) : (
@@ -121,12 +121,12 @@ function PortraitStamp({ hasPortrait }: { hasPortrait: boolean }) {
         )}
       </div>
       <div className="text-ink flex items-end justify-between gap-1 px-1 pt-2 pb-0.5 font-mono uppercase">
-        <span className="text-[8px] leading-tight tracking-wider md:text-[9px]">
+        <span className="text-[9px] leading-tight tracking-wider">
           India
           <br />
           (Remote)
         </span>
-        <span className="text-[11px] font-bold tabular-nums md:text-sm">
+        <span className="text-xs font-bold tabular-nums md:text-sm">
           {clock ?? "——"}
         </span>
       </div>
@@ -178,7 +178,7 @@ export function Hero({ hasPortrait }: { hasPortrait: boolean }) {
   return (
     <section
       ref={ref}
-      className="mx-auto flex min-h-[calc(100svh-var(--frame))] max-w-7xl items-center px-4 py-8 sm:px-6 md:px-10 md:py-14"
+      className="mx-auto flex min-h-[calc(100svh-var(--frame))] max-w-7xl items-start px-4 pt-24 pb-6 sm:px-6 sm:pt-28 sm:pb-8 md:items-center md:px-10 md:py-14"
     >
       {/* Unmasked wrapper so the stamp can overhang the card's die-cut edge:
           .perf-edge is a CSS mask, and a mask clips its own descendants. */}
@@ -190,21 +190,16 @@ export function Hero({ hasPortrait }: { hasPortrait: boolean }) {
         >
           {/* Inner gutter: .perf-edge's own 10px padding is the die-cut ring the
               mask draws its teeth into, so content spacing lives on this child. */}
-          <div className="flex flex-col gap-7 p-6 sm:gap-10 sm:px-12 md:gap-12 md:px-16 md:pt-14 lg:px-20">
+          <div className="flex flex-col gap-6 px-5 pt-44 pb-7 sm:gap-10 sm:px-12 sm:pt-52 md:gap-12 md:px-16 md:pt-14 md:pb-0 lg:px-20">
             {imprints.map(({ id, ...m }) => (
               <Postmark key={id} {...m} />
             ))}
 
-            {/* Below md the stamp rides in-flow beside the eyebrow: overhanging
-                the card would push it under the sticky header on a phone. */}
-            <div className="flex items-start justify-between gap-4">
-              <p className="load-fade text-ink-faded font-mono text-[11px] tracking-widest uppercase [animation-delay:.1s]">
-                ( Software developer, est. 2021 )
-              </p>
-              <div className="load-fade drop-shadow-paper w-24 shrink-0 rotate-3 [animation-delay:.7s] sm:w-28 md:hidden">
-                <PortraitStamp hasPortrait={hasPortrait} />
-              </div>
-            </div>
+            {/* Eyebrow: md and up only. On mobile the overhanging stamp leads
+                and the headline follows it directly (see mock). */}
+            <p className="load-fade text-ink-faded hidden font-mono text-[11px] tracking-widest uppercase [animation-delay:.1s] md:block">
+              ( Software developer, est. 2021 )
+            </p>
 
             <h1 className="font-display text-ink max-w-[14ch] text-[clamp(2.75rem,11vw,7.75rem)] leading-[0.9] font-extrabold tracking-tight uppercase font-stretch-75%">
               {["I turn", "specs", "into shipped"].map((line, i) => (
@@ -234,10 +229,11 @@ export function Hero({ hasPortrait }: { hasPortrait: boolean }) {
           </div>
         </motion.div>
 
-        {/* md and up: affixed over the card's die-cut corner, parallaxing. */}
+        {/* Affixed over the card's top edge, parallaxing. Mobile: larger and
+            leading the headline (see mock). md+: tucked into the corner. */}
         <motion.div
           style={{ y: stampY }}
-          className="load-fade drop-shadow-paper pointer-events-none absolute -top-10 right-6 z-20 hidden w-56 rotate-3 [animation-delay:.7s] md:block"
+          className="load-fade drop-shadow-paper pointer-events-none absolute -top-14 left-1/2 z-20 w-44 -translate-x-1/2 rotate-3 [animation-delay:.7s] sm:-top-16 sm:w-52 md:left-auto md:-top-10 md:right-6 md:w-56 md:translate-x-0"
         >
           <PortraitStamp hasPortrait={hasPortrait} />
         </motion.div>

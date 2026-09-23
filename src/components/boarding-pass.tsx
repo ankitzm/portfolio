@@ -79,30 +79,29 @@ export async function BoardingPass({
         </ul>
       </div>
 
-      {/* Below md the stub is a row: artwork column on the left, links stacked
-          down the right. From md it returns to one narrow column beside the
-          body, so the whole stub reads top-to-bottom. */}
-      <div className="pass-stub border-rule flex shrink-0 flex-row items-start gap-5 border-t border-dashed px-6 py-6 md:w-48 md:flex-col md:items-stretch md:justify-between md:gap-6 md:border-t-0 md:border-l md:p-6">
-        <div className="flex min-w-0 flex-1 flex-col gap-4 md:flex-none md:gap-6">
-          {/* Perforation bitten straight out of the screenshot's own edge: no
-              matte, no caption, just the die-cut. */}
-          <div className="perf-bare drop-shadow-paper relative aspect-4/3 w-full">
-            <Image
-              src={shot}
-              alt=""
-              fill
-              sizes="(min-width: 768px) 160px, 45vw"
-              className="object-cover object-top-left"
-            />
-          </div>
-
-          <Barcode
-            value={`${project.name.toUpperCase()}-${no}`}
-            className="text-ink h-10 w-full md:h-12"
+      {/* The tear-off stub reads top-to-bottom at every width: screenshot,
+          then barcode, then the source/demo links as a footer row. A full
+          column on mobile keeps the artwork wide and the links off to one
+          side; from md it narrows into the column beside the body. */}
+      <div className="pass-stub border-rule flex shrink-0 flex-col gap-4 border-t border-dashed px-6 py-6 md:w-60 md:justify-between md:gap-6 md:border-t-0 md:border-l md:p-6">
+        {/* Paper-matte die-cut: perf-edge's 10px padding is the matte ring the
+            teeth bite into. The box hugs the screenshot's own ratio (no fixed
+            aspect), so there's no letterbox border — only the die-cut edge. */}
+        <div className="perf-edge drop-shadow-paper bg-paper w-full">
+          <Image
+            src={shot}
+            alt=""
+            sizes="(min-width: 768px) 224px, 90vw"
+            className="h-auto w-full mix-blend-multiply [filter:grayscale(.4)_sepia(.35)_contrast(1.05)_brightness(1.02)]"
           />
         </div>
 
-        <div className="flex shrink-0 flex-col gap-1 font-mono text-[11px] font-bold tracking-widest md:flex-row md:justify-between md:gap-3">
+        <Barcode
+          value={`${project.name.toUpperCase()}-${no}`}
+          className="text-ink h-10 w-full md:h-12"
+        />
+
+        <div className="border-rule flex justify-between gap-3 border-t border-dashed pt-4 font-mono text-[11px] font-bold tracking-widest md:justify-between md:border-t-0 md:pt-0">
           <StubLink href={github} label="source" />
           {website && <StubLink href={website} label="demo" accent />}
         </div>

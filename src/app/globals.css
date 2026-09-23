@@ -653,7 +653,7 @@ html.paper-page::after {
 
 @media (min-width: 768px) {
   .pass-notch {
-    --seam: calc(100% - 11rem);
+    --seam: calc(100% - 14rem);
     mask:
       radial-gradient(
         circle var(--notch) at var(--seam) 0,

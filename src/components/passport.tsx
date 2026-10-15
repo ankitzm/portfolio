@@ -45,19 +45,12 @@ function withLinks(text: string): ReactNode[] {
   return out;
 }
 
-/** Data color field → ink class for the visa's title, border and stamp. */
+/** Data color field → ink class for the visa's title and border. */
 const ink: Record<string, string> = {
   black: "text-ink",
   red: "text-ink-red",
   purple: "text-ink-purple",
   orange: "text-ink-orange",
-};
-
-/** "October '25 - Present" → "OCT 25" for the entry stamp. */
-const entryDate = (date: string) => {
-  const [from] = date.split(/\s[-–]\s/);
-  const [month, year] = from.split(" ");
-  return `${month.slice(0, 3)} ${year?.replace("'", "") ?? ""}`.toUpperCase();
 };
 
 /** Most-used skills across the record, for the ID page. */
@@ -94,46 +87,12 @@ function Chips({
   );
 }
 
-/** Round rubber imprint; scales down onto the page when `landed`. */
-function RoundStamp({
-  lines,
-  landed,
-  className = "",
-}: {
-  lines: [string, string, string?];
-  landed: boolean;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      aria-hidden="true"
-      initial={false}
-      animate={
-        landed ? { scale: 1, opacity: 0.85 } : { scale: 1.35, opacity: 0 }
-      }
-      transition={{ type: "spring", stiffness: 260, damping: 18 }}
-      className={`pointer-events-none absolute grid size-24 place-content-center rounded-full border-[2.5px] border-current text-center font-mono uppercase mix-blend-multiply md:size-28 ${className}`}
-    >
-      <span className="absolute inset-1.5 rounded-full border border-dashed border-current" />
-      <span className="text-[8px] tracking-[0.2em]">{lines[0]}</span>
-      <span className="text-sm leading-tight font-bold md:text-base">
-        {lines[1]}
-      </span>
-      {lines[2] && (
-        <span className="text-[8px] tracking-[0.2em]">{lines[2]}</span>
-      )}
-    </motion.div>
-  );
-}
-
 function IdPage({
   entries,
   hasPortrait,
-  landed,
 }: {
   entries: Experience[];
   hasPortrait: boolean;
-  landed: boolean;
 }) {
   const fields = [
     ["1. Forename", "Ankit"],
@@ -178,11 +137,6 @@ function IdPage({
         Declared skills
       </p>
       <Chips items={topSkills(entries)} className="mt-2" />
-      <RoundStamp
-        lines={["Certified", "Full-stack", "since 2021"]}
-        landed={landed}
-        className="text-accent right-3 bottom-3 rotate-[-8deg]"
-      />
     </div>
   );
 }
@@ -190,11 +144,9 @@ function IdPage({
 function VisaPage({
   entry,
   n,
-  landed,
 }: {
   entry: Experience;
   n: number;
-  landed: boolean;
 }) {
   const heading = entry.company || entry.role;
   const role = entry.company ? entry.role : "independent";
@@ -225,12 +177,7 @@ function VisaPage({
       </ul>
       <Chips
         items={entry.skills.slice(0, 6)}
-        className="text-ink mt-auto pt-3 pr-28"
-      />
-      <RoundStamp
-        lines={["Entry", entryDate(entry.date), "shipped"]}
-        landed={landed}
-        className="right-2 bottom-2 rotate-[7deg]"
+        className="text-ink mt-auto pt-3"
       />
     </div>
   );
@@ -328,14 +275,12 @@ export function Passport({
       key="id"
       entries={entries}
       hasPortrait={hasPortrait}
-      landed={current === 0}
     />,
     ...entries.map((e, i) => (
       <VisaPage
         key={e.company + e.role}
         entry={e}
         n={i + 1}
-        landed={Math.abs(current * 2 - (i + 1)) <= 1}
       />
     )),
   ];

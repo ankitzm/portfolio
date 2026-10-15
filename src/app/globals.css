@@ -605,12 +605,12 @@ html.paper-page::after {
     }
 
     60% {
-      opacity: 0.85;
+      opacity: 1;
       transform: rotate(-5deg) scale(0.96);
     }
 
     100% {
-      opacity: 0.85;
+      opacity: 1;
       transform: rotate(-4deg) scale(1);
     }
   }

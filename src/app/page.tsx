@@ -6,18 +6,17 @@ import { Hero } from "@/components/hero";
 import { PassGrid } from "@/components/boarding-pass";
 import { SectionHead } from "@/components/section-head";
 import { TornEdge } from "@/components/torn-edge";
-import { getExperience, getProjects, hasPortrait } from "@/lib/data";
+import { getExperience, getProjects } from "@/lib/data";
 
 export default async function Home() {
   const [projects, experience] = await Promise.all([
     getProjects(),
     getExperience(),
   ]);
-  const portrait = hasPortrait();
 
   return (
     <main data-ground="paper">
-      <Hero hasPortrait={portrait} />
+      <Hero />
 
       <section
         id="projects"
@@ -64,11 +63,7 @@ export default async function Home() {
           />
         </div>
         <div className="text-paper -mt-16 pb-10 md:-mt-24">
-          <Passport
-            entries={experience.slice(0, 3)}
-            hasPortrait={portrait}
-            home
-          />
+          <Passport entries={experience.slice(0, 3)} home />
         </div>
       </section>
 

@@ -405,18 +405,6 @@ html.paper-page::after {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="180" height="180" filter="url(%23f)" opacity="0.3"/></svg>');
 }
 
-/* Finer serration for the polaroid photo window ("deckle cut"). */
-.deckle {
-  --hole: 2.5px;
-  --pitch: 8px;
-  padding: 5px;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    radial-gradient(circle var(--hole), transparent 98%, #000)
-      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch) var(--pitch)
-      round;
-}
-
 /* Shadow that hugs a masked silhouette (scallops included). */
 .drop-shadow-paper {
   filter: drop-shadow(0 10px 20px rgba(28, 27, 23, 0.18));
@@ -436,53 +424,6 @@ html.paper-page::after {
   transform: rotate(-4deg);
   opacity: 0.85;
   mix-blend-mode: multiply;
-}
-
-/*
- * Stamp CTA: the one interactive imprint. Hover inks the stamp solid and
- * swaps the label in place — grid-stacked spans crossfade on the same
- * transition as the fill, and reverse together. Sits after .rubber-stamp:
- * both set display, and the later rule must be the grid.
- */
-.stamp-cta {
-  display: inline-grid;
-  justify-items: center;
-  padding: 12px 22px;
-  font-size: 15px;
-  transform: none;
-  /* CTA sits straight; only decorative imprints tilt */
-}
-
-.stamp-cta,
-.stamp-cta > span {
-  transition:
-    background-color 0.3s var(--ease-paper),
-    color 0.3s var(--ease-paper),
-    opacity 0.3s var(--ease-paper);
-}
-
-.stamp-cta > span {
-  grid-area: 1 / 1;
-  white-space: nowrap;
-}
-
-.stamp-cta > span:last-child {
-  opacity: 0;
-}
-
-.stamp-cta:hover {
-  background: var(--color-stamp);
-  color: var(--color-paper);
-  opacity: 1;
-  mix-blend-mode: normal;
-}
-
-.stamp-cta:hover > span:first-child {
-  opacity: 0;
-}
-
-.stamp-cta:hover > span:last-child {
-  opacity: 1;
 }
 
 .barcode {
@@ -672,7 +613,7 @@ html.paper-page::after {
 /*
  * Passport book. Two page slots (a = left/top base, b = right/bottom base)
  * and leaves that rotate about the spine. Desktop: spine vertical, leaves
- * rotateY. Below md (.pp-stacked): spine horizontal, leaves rotateX.
+ * rotateY. Below md: spine horizontal, leaves rotateX.
  */
 .pp-book {
   --pw: clamp(16rem, 34vw, 29rem);
@@ -778,8 +719,7 @@ html.paper-page::after {
 }
 
 @media (width < 48rem) {
-  .pp-book,
-  .pp-stacked {
+  .pp-book {
     --pw: min(calc(100vw - 2.5rem), 24rem);
     --ph: min(calc(var(--pw) * 1.02), calc((100dvh - 9rem) / 2));
     width: var(--pw);
@@ -858,30 +798,4 @@ html.paper-page::after {
 /* Yellow postage variant of the stamp matte (hero portrait). */
 .stamp-scallop.is-postage {
   background: var(--color-postage);
-}
-
-/*
- * Bare perforation: the die-cut bitten straight out of the element's own edge,
- * with no paper matte around it. Same hole geometry as .stamp-scallop, minus
- * the padding that makes the border. For images that should read as a stamp
- * without a surround. Mask kills box-shadow, so pair with .drop-shadow-paper.
- */
-.perf-bare {
-  --hole: 4.5px;
-  --pitch: 13px;
-  /*
-   * Perforation bitten out of the element's own pixels, with no matte and no
-   * inset: the holes tile across the whole box, and an inset solid layer keeps
-   * the interior opaque so only the outermost ring of bites survives. The
-   * inset comes from the solid layer's own size/position (not padding or a
-   * border), so a `fill` image still paints edge to edge and the scallops cut
-   * the picture itself rather than blank space around it.
-   */
-  mask:
-    linear-gradient(#000 0 0) no-repeat calc(var(--pitch) / 2)
-      calc(var(--pitch) / 2) / calc(100% - var(--pitch))
-      calc(100% - var(--pitch)),
-    radial-gradient(circle var(--hole), transparent 98%, #000)
-      calc(var(--pitch) / 2) calc(var(--pitch) / 2) / var(--pitch) var(--pitch)
-      round;
 }

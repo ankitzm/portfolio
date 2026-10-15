@@ -15,20 +15,17 @@ export function MotionProvider({ children }: { children: ReactNode }) {
 export function Reveal({
   children,
   index = 0,
-  rotate = 0,
   className,
 }: {
   children: ReactNode;
   /** Position in a stagger group; delays 60ms per step. */
   index?: number;
-  /** Resting rotation in degrees. */
-  rotate?: number;
   className?: string;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24, rotate: rotate + 2 }}
-      whileInView={{ opacity: 1, y: 0, rotate }}
+      initial={{ opacity: 0, y: 24, rotate: 2 }}
+      whileInView={{ opacity: 1, y: 0, rotate: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{
         type: "spring",

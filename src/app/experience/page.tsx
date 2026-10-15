@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Passport } from "@/components/passport";
 import { SectionHead } from "@/components/section-head";
-import { getExperience, hasPortrait } from "@/lib/data";
+import { getExperience } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Passport — Ankit Singh",
@@ -22,7 +22,7 @@ export default async function ExperiencePage() {
         />
       </div>
       <div className="-mt-16 pb-10 md:-mt-24">
-        <Passport entries={entries} hasPortrait={hasPortrait()} />
+        <Passport entries={entries} />
       </div>
     </main>
   );

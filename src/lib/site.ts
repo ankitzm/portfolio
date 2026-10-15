@@ -4,7 +4,7 @@
 export const PORTRAIT = "/portrait.jpeg";
 
 export const nav = [
-  { href: "/projects", label: "Projects", note: "12 items to declare" },
+  { href: "/projects", label: "Projects", note: "14 items to declare" },
   { href: "/experience", label: "Experience", note: "passport on file" },
   { href: "/#booking", label: "Let's talk", note: "postage paid" },
 ] as const;

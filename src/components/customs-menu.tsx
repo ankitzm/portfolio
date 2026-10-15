@@ -21,6 +21,7 @@ export function CustomsMenu({
   const ref = useRef<HTMLDialogElement>(null);
   const router = useRouter();
   const [ticked, setTicked] = useState<string | null>(null);
+  const pending = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     const dialog = ref.current;
@@ -31,7 +32,7 @@ export function CustomsMenu({
 
   const declare = (href: string) => {
     setTicked(href);
-    setTimeout(() => {
+    pending.current = setTimeout(() => {
       router.push(href);
       onClose();
       setTicked(null);
@@ -41,7 +42,12 @@ export function CustomsMenu({
   return (
     <dialog
       ref={ref}
-      onClose={onClose}
+      onClose={() => {
+        // Esc mid-tick cancels the queued navigation.
+        clearTimeout(pending.current);
+        setTicked(null);
+        onClose();
+      }}
       data-lenis-prevent
       aria-label="Menu"
       className="customs paper-grain"
@@ -75,6 +81,9 @@ export function CustomsMenu({
                 <Link
                   href={item.href}
                   onClick={(e) => {
+                    // Let modified clicks open a new tab/window natively.
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+                      return;
                     e.preventDefault();
                     declare(item.href);
                   }}

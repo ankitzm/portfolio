@@ -2,8 +2,7 @@
 
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { motion, useReducedMotion, type Transition } from "motion/react";
-import { useEffect, useState } from "react";
-import { preconnect } from "react-dom";
+import { useEffect, useRef, useState } from "react";
 
 import { useStacked } from "@/lib/use-media";
 
@@ -43,12 +42,8 @@ const details = [
  * deliberate, release is physics.
  */
 export function Booking() {
-  // SSR-hoisted into <head>: the browser opens the cal.com connection while
-  // the JS bundle is still parsing, so the embed (which mounts eagerly under
-  // the pass) has its data before anyone can reach the tear button.
-  preconnect("https://app.cal.com");
-
   const [torn, setTorn] = useState(false);
+  const calRef = useRef<HTMLDivElement>(null);
   // Overlay unmounts after the tear finishes — a transformed, invisible pass
   // would otherwise keep stretching the scrollable area. Timer, not
   // onAnimationComplete: that callback also fires for the whileTap release,
@@ -70,6 +65,12 @@ export function Booking() {
     })();
   }, []);
 
+  // The stub had focus and is now disabled; hand focus to the calendar it
+  // uncovered (runs after `inert` lifts) instead of dropping it to <body>.
+  useEffect(() => {
+    if (torn) calRef.current?.focus();
+  }, [torn]);
+
   return (
     // The embed is the only in-flow child, so the container is always exactly
     // the calendar's box (Cal's script keeps a px height on its iframe) and
@@ -87,7 +88,12 @@ export function Booking() {
           watermark included — Cal reports the same px height at every
           viewport). Pass and calendar share this exact footprint; if Cal ever
           wants more, the iframe scrolls inside rather than moving the page. */}
-      <div inert={!torn} className="h-156.5 overflow-y-auto md:h-134.5">
+      <div
+        ref={calRef}
+        tabIndex={-1}
+        inert={!torn}
+        className="h-156.5 overflow-y-auto outline-none md:h-134.5"
+      >
         <Cal
           namespace={CAL_NAMESPACE}
           calLink={CAL_LINK}
@@ -167,9 +173,9 @@ export function Booking() {
             </dl>
           </motion.div>
 
+          {/* No onClick: clicks and Enter/Space bubble to the pass's handler. */}
           <motion.button
             type="button"
-            onClick={tearAway}
             disabled={torn}
             animate={
               torn

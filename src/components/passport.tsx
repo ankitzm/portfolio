@@ -3,7 +3,6 @@
 import {
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -14,7 +13,7 @@ import Link from "next/link";
 import { type ReactNode, useRef, useState } from "react";
 
 import { PORTRAIT } from "@/lib/site";
-import { useStacked } from "@/lib/use-media";
+import { useMedia, useStacked } from "@/lib/use-media";
 import type { Experience } from "@/types";
 
 /* ------------------------------------------------------------------ data */
@@ -87,13 +86,7 @@ function Chips({
   );
 }
 
-function IdPage({
-  entries,
-  hasPortrait,
-}: {
-  entries: Experience[];
-  hasPortrait: boolean;
-}) {
+function IdPage({ entries }: { entries: Experience[] }) {
   const fields = [
     ["1. Forename", "Ankit"],
     ["2. Surname", "Singh"],
@@ -107,19 +100,13 @@ function IdPage({
       </p>
       <div className="mt-4 flex gap-4">
         <div className="bg-paper border-rule relative size-20 shrink-0 overflow-hidden border md:size-24">
-          {hasPortrait ? (
-            <Image
-              src={PORTRAIT}
-              alt=""
-              fill
-              sizes="96px"
-              className="object-cover grayscale"
-            />
-          ) : (
-            <span className="text-ink-faded absolute inset-0 grid place-items-center font-mono text-[8px] tracking-widest uppercase">
-              Photo
-            </span>
-          )}
+          <Image
+            src={PORTRAIT}
+            alt=""
+            fill
+            sizes="96px"
+            className="object-cover grayscale"
+          />
         </div>
         <dl className="min-w-0 flex-1 font-mono text-[10px] tracking-wider uppercase md:text-[11px]">
           {fields.map(([k, v]) => (
@@ -141,13 +128,7 @@ function IdPage({
   );
 }
 
-function VisaPage({
-  entry,
-  n,
-}: {
-  entry: Experience;
-  n: number;
-}) {
+function VisaPage({ entry, n }: { entry: Experience; n: number }) {
   const heading = entry.company || entry.role;
   const role = entry.company ? entry.role : "independent";
   const color = ink[entry.color] ?? ink.black;
@@ -207,10 +188,9 @@ function NotePage({
 
 /* ------------------------------------------------------------------ book */
 
-type Face = ReactNode;
-
 function Leaf({
   k,
+  current,
   total,
   progress,
   stacked,
@@ -218,11 +198,12 @@ function Leaf({
   back,
 }: {
   k: number;
+  current: number;
   total: number;
   progress: MotionValue<number>;
   stacked: boolean;
-  front: Face;
-  back: Face;
+  front: ReactNode;
+  back: ReactNode;
 }) {
   const t = useTransform(progress, (v) => Math.min(1, Math.max(0, v - k)));
   const transform = useTransform(t, (v) =>
@@ -234,8 +215,13 @@ function Leaf({
   const shade = useTransform(t, [0, 0.5, 1], [0, 0.35, 0]);
   return (
     <motion.div style={{ transform, zIndex }} className="pp-leaf">
-      <div className="pp-side pp-front">{front}</div>
-      <div className="pp-side pp-back">{back}</div>
+      {/* Off-screen faces stay in the DOM; inert keeps their links untabbable. */}
+      <div inert={current !== k} className="pp-side pp-front">
+        {front}
+      </div>
+      <div inert={current !== k + 1} className="pp-side pp-back">
+        {back}
+      </div>
       <motion.div
         aria-hidden="true"
         style={{ opacity: shade }}
@@ -253,15 +239,15 @@ function Leaf({
  */
 export function Passport({
   entries,
-  hasPortrait,
   home = false,
 }: {
   entries: Experience[];
-  hasPortrait: boolean;
   /** Home teaser ends on a "continued" page linking to the full record. */
   home?: boolean;
 }) {
-  const reduced = useReducedMotion();
+  // useMedia, not useReducedMotion: false on server and first client render,
+  // so hydration matches; reduced users swap to the flat stack after mount.
+  const reduced = useMedia("(prefers-reduced-motion: reduce)");
   const wrap = useRef<HTMLDivElement>(null);
   const stacked = useStacked();
   const [current, setCurrent] = useState(0);
@@ -270,18 +256,10 @@ export function Passport({
   // note. Leaves pair faces up (front, back). With an odd face count the
   // last back is real and every leaf flips onto blank end paper; with an
   // even count the last leaf stays put and its front is the final page.
-  const faces: Face[] = [
-    <IdPage
-      key="id"
-      entries={entries}
-      hasPortrait={hasPortrait}
-    />,
+  const faces: ReactNode[] = [
+    <IdPage key="id" entries={entries} />,
     ...entries.map((e, i) => (
-      <VisaPage
-        key={e.company + e.role}
-        entry={e}
-        n={i + 1}
-      />
+      <VisaPage key={e.company + e.role} entry={e} n={i + 1} />
     )),
   ];
   if (home)
@@ -300,7 +278,7 @@ export function Passport({
         }
       />,
     );
-  const leaves: [Face, Face][] = [];
+  const leaves: [ReactNode, ReactNode][] = [];
   for (let i = 1; i < faces.length; i += 2)
     leaves.push([faces[i], faces[i + 1] ?? <div className="pp-face" />]);
   const allFlip = faces.length % 2 === 1;
@@ -345,14 +323,19 @@ export function Passport({
   return (
     <div ref={wrap} style={{ height: `calc(100lvh + ${flips} * 85lvh)` }}>
       <div className="pp-stage sticky top-0 flex h-dvh flex-col items-center justify-center gap-4 pt-20">
-        <div className={`pp-book ${stacked ? "pp-stacked" : ""}`}>
+        <div className="pp-book">
           <div className="pp-cover" />
-          <div className="pp-page pp-base-a">{faces[0]}</div>
-          <div className="pp-page pp-base-b">{baseB}</div>
+          <div inert={current !== 0} className="pp-page pp-base-a">
+            {faces[0]}
+          </div>
+          <div inert={current !== flips} className="pp-page pp-base-b">
+            {baseB}
+          </div>
           {moving.map(([front, back], k) => (
             <Leaf
               key={k}
               k={k}
+              current={current}
               total={flips}
               progress={progress}
               stacked={stacked}

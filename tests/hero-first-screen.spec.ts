@@ -24,8 +24,16 @@ for (const vp of DESKTOP) {
   }) => {
     await page.setViewportSize(vp);
     await page.goto("/");
-    // Entry animations translate the card a few px; settle before measuring.
-    await page.waitForTimeout(1500);
+    // Entry animations (CTA slam ends ~1.75s) scale and translate; wait for
+    // every finite one to finish before measuring.
+    await page.evaluate(() =>
+      Promise.all(
+        document
+          .getAnimations()
+          .filter((a) => a.effect?.getComputedTiming().iterations !== Infinity)
+          .map((a) => a.finished),
+      ),
+    );
 
     const m = await page.evaluate(() => {
       const box = (el: Element | null | undefined) => {

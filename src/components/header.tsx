@@ -88,6 +88,8 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMenu(true)}
+            aria-haspopup="dialog"
+            aria-expanded={menu}
             className="font-display -mr-2 flex min-h-11 items-center gap-2 px-2 text-sm font-bold tracking-wide md:hidden"
           >
             MENU

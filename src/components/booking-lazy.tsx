@@ -1,7 +1,9 @@
 "use client";
 
+import { useInView } from "motion/react";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { preconnect } from "react-dom";
 
 // Cal.com embed is ~400K; keep it out of the initial bundle. Load it only
 // once the booking section nears the viewport.
@@ -14,24 +16,12 @@ const Booking = dynamic(
 );
 
 export function BookingLazy() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [show, setShow] = useState(false);
+  // SSR-hoisted into <head> (this wrapper renders on the server; Booking does
+  // not), so the cal.com connection is warm before the embed mounts.
+  preconnect("https://app.cal.com");
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setShow(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "600px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const ref = useRef<HTMLDivElement>(null);
+  const show = useInView(ref, { once: true, margin: "600px" });
 
   return (
     <div ref={ref}>

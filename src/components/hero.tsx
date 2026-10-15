@@ -1,17 +1,12 @@
 "use client";
 
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { PORTRAIT } from "@/lib/site";
+import { useMedia } from "@/lib/use-media";
 
 type Imprint = { id: number; x: number; y: number; rot: number; t: string };
 
@@ -114,7 +109,7 @@ const ARROWS: [string, string, number][] = [
  * stamp lands, then nudging toward it. Every other one is mirrored so the
  * fan doesn't read as copies. Static under reduced motion.
  */
-function CtaArrows({ reduced }: { reduced: boolean | null }) {
+function CtaArrows({ reduced }: { reduced: boolean }) {
   return ARROWS.map(([left, top, deg], i) => (
     <span
       key={deg}
@@ -154,27 +149,19 @@ function CtaArrows({ reduced }: { reduced: boolean | null }) {
 }
 
 /** Yellow perforated portrait stamp; its denomination row is the live IST clock. */
-function PortraitStamp({ hasPortrait }: { hasPortrait: boolean }) {
+function PortraitStamp() {
   const clock = useIstClock();
   return (
     <div className="stamp-scallop is-postage">
       <div className="bg-paper/40 relative aspect-4/5 overflow-hidden">
-        {hasPortrait ? (
-          <Image
-            src={PORTRAIT}
-            alt="Ankit Singh"
-            fill
-            priority
-            sizes="(max-width: 640px) 176px, (max-width: 768px) 208px, 224px"
-            className="object-cover object-top grayscale"
-          />
-        ) : (
-          <span className="text-ink/50 absolute inset-0 grid place-items-center text-center font-mono text-[9px] tracking-widest uppercase">
-            Portrait
-            <br />
-            in transit
-          </span>
-        )}
+        <Image
+          src={PORTRAIT}
+          alt="Ankit Singh"
+          fill
+          loading="eager"
+          sizes="(max-width: 640px) 176px, (max-width: 768px) 208px, 224px"
+          className="object-cover object-top grayscale"
+        />
       </div>
       <div className="text-ink flex items-end justify-between gap-1 px-1 pt-2 pb-0.5 font-mono uppercase">
         <span className="text-[9px] leading-tight tracking-wider">
@@ -195,9 +182,10 @@ function PortraitStamp({ hasPortrait }: { hasPortrait: boolean }) {
  * a red "Open for work" CTA, with the portrait stamp affixed over its top-right
  * corner. Scroll parallax only (no pin). Clicking the paper leaves a postmark.
  */
-export function Hero({ hasPortrait }: { hasPortrait: boolean }) {
+export function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
+  // Hydration-safe (false on server + first paint), unlike useReducedMotion.
+  const reduced = useMedia("(prefers-reduced-motion: reduce)");
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -285,7 +273,7 @@ export function Hero({ hasPortrait }: { hasPortrait: boolean }) {
                 <div className="relative">
                   <Link
                     href="/#booking"
-                    className="load-slam border-stamp bg-stamp text-surface hover:text-stamp hover:bg-transparent inline-flex min-h-11 items-center rounded border-[2.5px] px-5 font-mono text-xs font-bold tracking-widest uppercase transition-colors [animation-delay:1.3s]"
+                    className="load-slam border-stamp bg-stamp text-surface hover:text-stamp inline-flex min-h-11 items-center rounded border-[2.5px] px-5 font-mono text-xs font-bold tracking-widest uppercase transition-colors [animation-delay:1.3s] hover:bg-transparent"
                   >
                     Open for work
                   </Link>
@@ -300,9 +288,9 @@ export function Hero({ hasPortrait }: { hasPortrait: boolean }) {
             leading the headline (see mock). md+: tucked into the corner. */}
         <motion.div
           style={{ y: stampY }}
-          className="load-fade drop-shadow-paper pointer-events-none absolute -top-14 left-1/2 z-20 w-44 -translate-x-1/2 rotate-3 [animation-delay:.7s] sm:-top-16 sm:w-52 md:left-auto md:-top-10 md:right-6 md:w-56 md:translate-x-0"
+          className="load-fade drop-shadow-paper pointer-events-none absolute -top-14 left-1/2 z-20 w-44 -translate-x-1/2 rotate-3 [animation-delay:.7s] sm:-top-16 sm:w-52 md:-top-10 md:right-6 md:left-auto md:w-56 md:translate-x-0"
         >
-          <PortraitStamp hasPortrait={hasPortrait} />
+          <PortraitStamp />
         </motion.div>
       </div>
     </section>

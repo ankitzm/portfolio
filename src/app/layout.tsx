@@ -21,6 +21,8 @@ const bricolage = Bricolage_Grotesque({
 
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
+  // Body text only, never above the fold: don't compete with the h1 font.
+  preload: false,
   display: "swap",
   variable: "--font-hanken",
 });

@@ -19,7 +19,7 @@ function StubLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className={`flex min-h-11 items-center hover:underline md:min-h-0 ${accent ? "text-accent" : ""}`}
+      className={`tap flex min-h-11 items-center hover:underline md:min-h-0 ${accent ? "text-accent" : ""}`}
     >
       {label}
     </a>

@@ -116,7 +116,13 @@ export function CustomsMenu({
         <div className="mt-auto flex items-end justify-between pt-10">
           <div className="font-display flex flex-col gap-2 text-sm font-bold tracking-wide">
             {socials.map(({ href, label }) => (
-              <a key={href} href={href} target="_blank" rel="noreferrer">
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="tap"
+              >
                 {label}
               </a>
             ))}

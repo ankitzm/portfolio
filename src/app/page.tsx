@@ -55,7 +55,7 @@ export default async function Home() {
             meta={
               <Link
                 href="/experience"
-                className="hover:text-paper transition-colors"
+                className="tap hover:text-paper transition-colors"
               >
                 Full passport →
               </Link>

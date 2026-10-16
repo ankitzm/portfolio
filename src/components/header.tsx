@@ -63,7 +63,7 @@ export function Header() {
         <div className="mx-auto flex max-w-350 items-center justify-between px-5 py-4 md:px-14">
           <Link
             href="/"
-            className="ground-brand font-display text-2xl font-extrabold tracking-tight uppercase"
+            className="tap ground-brand font-display text-2xl font-extrabold tracking-tight uppercase"
           >
             Ankit Singh
           </Link>

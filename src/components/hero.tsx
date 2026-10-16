@@ -159,6 +159,7 @@ function PortraitStamp() {
           alt="Ankit Singh"
           fill
           loading="eager"
+          fetchPriority="high"
           sizes="(max-width: 640px) 176px, (max-width: 768px) 208px, 224px"
           className="object-cover object-top grayscale"
         />
@@ -169,7 +170,7 @@ function PortraitStamp() {
           <br />
           (Remote)
         </span>
-        <span className="text-xs font-bold tabular-nums md:text-sm">
+        <span className="min-w-[8ch] text-right text-xs font-bold tabular-nums md:text-sm">
           {clock ?? "——"}
         </span>
       </div>

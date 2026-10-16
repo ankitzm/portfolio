@@ -405,6 +405,21 @@ html.paper-page::after {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="180" height="180" filter="url(%23f)" opacity="0.3"/></svg>');
 }
 
+/*
+ * Invisible 44px touch target around small links, without moving layout.
+ * Percent insets resolve per axis, so each side grows only as far as the
+ * link falls short of 44px.
+ */
+.tap {
+  position: relative;
+}
+
+.tap::after {
+  content: "";
+  position: absolute;
+  inset: min(0px, calc((100% - 44px) / 2));
+}
+
 /* Shadow that hugs a masked silhouette (scallops included). */
 .drop-shadow-paper {
   filter: drop-shadow(0 10px 20px rgba(28, 27, 23, 0.18));

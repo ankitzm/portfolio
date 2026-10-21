@@ -3,7 +3,7 @@
     "name": "Spinneret",
     "title": "A scraping pipeline that repairs itself in CI.",
     "description": "A self-healing data pipeline that tells a broken scraper apart from a real-world change. A pure, unit-tested classifier splits BROKEN from CHANGED: broken scrapers trigger an automated heal and re-validation, real changes are recorded and never healed. Runs on GitHub Actions with Git as the datastore, so no broken rows ever reach the published data.",
-    "image": "clarity",
+    "image": "spinneret",
     "links": {
       "github": "https://github.com/ankitzm/spinneret",
       "website": ""
@@ -14,7 +14,7 @@
     "name": "Palladium",
     "title": "An open-source chain explorer for every Avalanche L1.",
     "description": "An explorer that indexes every Avalanche L1, tracks health metrics, and serves both a public dashboard and a REST API. A four-stage ingestion pipeline covers chain discovery, validator indexing, TVL aggregation, and EVM metrics, feeding a time-series data model with audit logging and 90-day historical trends.",
-    "image": "clarity",
+    "image": "palladium",
     "links": {
       "github": "https://github.com/ankitzm/palladium",
       "website": ""

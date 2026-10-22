@@ -26,7 +26,7 @@ export default function NotFound() {
       </div>
       <div>
         <p className="font-mono text-sm lowercase">
-          this address doesn&apos;t exist on this route.
+          this page doesn&apos;t exist. check the address or head back.
         </p>
         <Link
           href="/"

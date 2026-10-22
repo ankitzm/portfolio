@@ -12,7 +12,7 @@ import { nav } from "@/lib/site";
  * Sections declare data-ground; on scroll the last one whose top has
  * passed the header wins and is written to <html data-ground>.
  */
-export function Header() {
+export function Header({ projectCount }: { projectCount: number }) {
   const [menu, setMenu] = useState(false);
   const path = usePathname();
 
@@ -101,7 +101,11 @@ export function Header() {
           </button>
         </div>
       </header>
-      <CustomsMenu open={menu} onClose={() => setMenu(false)} />
+      <CustomsMenu
+        open={menu}
+        onClose={() => setMenu(false)}
+        projectCount={projectCount}
+      />
     </>
   );
 }

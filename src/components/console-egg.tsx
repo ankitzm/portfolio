@@ -9,6 +9,7 @@ const STAMP = String.raw`
   │  hand-cancelled ✓       │
   └─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─┘
   source: github.com/ankitzm
+  say hi: linkedin.com/in/ankitzm
 `;
 
 /** Prints the stamp once per session. */

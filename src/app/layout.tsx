@@ -11,6 +11,7 @@ import { Header } from "@/components/header";
 import { MotionProvider } from "@/components/reveal";
 import { ConsoleEgg } from "@/components/console-egg";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { getProjects } from "@/lib/data";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -35,16 +36,17 @@ const courier = Courier_Prime({
 });
 
 export const metadata: Metadata = {
-  title: "Ankit Singh — Ships Software",
+  title: "Ankit Singh — Software Developer & DevRel",
   description:
-    "Software developer shipping web3 products, SDKs and interfaces since 2021.",
+    "Software developer and DevRel building web3 products, SDKs and interfaces since 2021. Open to freelance and full-time work.",
 };
 
 export const viewport: Viewport = {
   themeColor: "#f6edd6",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const projects = await getProjects();
   return (
     <html
       lang="en"
@@ -54,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <MotionProvider>
           <SmoothScroll />
           <ConsoleEgg />
-          <Header />
+          <Header projectCount={projects.length} />
           {children}
           <Footer />
         </MotionProvider>

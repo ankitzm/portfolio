@@ -4,10 +4,13 @@ import { PassGrid } from "@/components/boarding-pass";
 import { SectionHead } from "@/components/section-head";
 import { getProjects } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Shipped Work — Ankit Singh",
-  description: "Shipped projects, collected as a stamp sheet.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const projects = await getProjects();
+  return {
+    title: "Shipped Work — Ankit Singh",
+    description: `${projects.length} shipped projects across web3, AI and developer tools, collected as a stamp sheet.`,
+  };
+}
 
 export default async function ProjectsPage() {
   const projects = await getProjects();

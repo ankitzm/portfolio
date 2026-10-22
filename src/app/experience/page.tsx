@@ -6,7 +6,7 @@ import { getExperience } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Passport — Ankit Singh",
-  description: "Work history, stamped like visas.",
+  description: "Work history across Bytebell, Router Protocol, ThirdFi and more, stamped like visas.",
 };
 
 export default async function ExperiencePage() {

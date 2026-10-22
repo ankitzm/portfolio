@@ -1,8 +1,8 @@
 [
   {
     "name": "Spinneret",
-    "title": "A scraping pipeline that repairs itself in CI.",
-    "description": "A self-healing data pipeline that tells a broken scraper apart from a real-world change. A pure, unit-tested classifier splits BROKEN from CHANGED: broken scrapers trigger an automated heal and re-validation, real changes are recorded and never healed. Runs on GitHub Actions with Git as the datastore, so no broken rows ever reach the published data.",
+    "title": "A scraping pipeline that fixes itself in CI.",
+    "description": "When a scraper fails, Spinneret works out why. If the scraper itself broke, it repairs it automatically and re-checks the output. If the website genuinely changed, it records the change and leaves the scraper alone. It runs on GitHub Actions and stores data in Git, so broken rows never reach the published dataset.",
     "image": "spinneret",
     "links": {
       "github": "https://github.com/ankitzm/spinneret",
@@ -12,8 +12,8 @@
   },
   {
     "name": "Palladium",
-    "title": "An open-source chain explorer for every Avalanche L1.",
-    "description": "An explorer that indexes every Avalanche L1, tracks health metrics, and serves both a public dashboard and a REST API. A four-stage ingestion pipeline covers chain discovery, validator indexing, TVL aggregation, and EVM metrics, feeding a time-series data model with audit logging and 90-day historical trends.",
+    "title": "An open-source explorer for every Avalanche L1.",
+    "description": "Palladium finds every Avalanche L1, tracks its health, and shows it on a public dashboard and a REST API. A four-step pipeline discovers chains, indexes validators, adds up TVL, and collects EVM metrics, keeping 90 days of history for every chain.",
     "image": "palladium",
     "links": {
       "github": "https://github.com/ankitzm/palladium",
@@ -23,8 +23,8 @@
   },
   {
     "name": "Clarity",
-    "title": "Turn ChatGPT conversations into structured insights and interactive mind maps.",
-    "description": "A high-performance analyzer that fetches data from ChatGPT share links, processes it through advanced LLMs via OpenRouter, and generates interactive visual representations of your discussions. Features AI multi-analysis for summaries, insights, action items, and sentiment analysis with real-time streaming and a premium glassmorphic UI.",
+    "title": "Turn ChatGPT conversations into summaries and mind maps.",
+    "description": "Paste a ChatGPT share link and Clarity reads the whole conversation, then uses LLMs (via OpenRouter) to pull out a summary, key insights, action items, and overall tone. Results stream in live and the conversation is laid out as an interactive mind map.",
     "image": "clarity",
     "links": {
       "github": "https://github.com/ankitzm/clarity",
@@ -34,8 +34,8 @@
   },
   {
     "name": "Jerico",
-    "title": "Blockchain-native invoicing with instant PYUSD payments.",
-    "description": "A mobile-first invoicing and payments platform that lets freelancers and businesses create invoices and receive instant wallet-to-wallet payments using PYUSD on Ethereum. Invoices are generated on-chain, shared via links or QR codes, and settled directly with no custody or intermediaries.",
+    "title": "Crypto invoicing with instant PYUSD payments.",
+    "description": "A mobile-first app for freelancers and businesses to send invoices and get paid in PYUSD on Ethereum. Invoices are created on-chain and shared as a link or QR code, and payment goes straight from the client's wallet to yours, with no middleman holding the funds.",
     "image": "jerico",
     "links": {
       "github": "https://github.com/ankitzm/jerico",
@@ -45,8 +45,8 @@
   },
   {
     "name": "ScanLens",
-    "title": "Name, tag, and color Solana addresses directly on Solscan.",
-    "description": "A privacy-first Chrome extension that allows users to assign friendly names, tags, and colors to Solana wallet addresses and see them inline on Solscan. All data is stored locally, links remain untouched, and the extension works seamlessly across Solscan’s dynamic pages.",
+    "title": "Name, tag, and color Solana addresses right on Solscan.",
+    "description": "A Chrome extension that lets you give Solana wallet addresses a name, tags, and a color, and shows those labels inline wherever the address appears on Solscan. Everything is stored on your device and Solscan's links keep working as normal.",
     "image": "sol-lens",
     "links": {
       "github": "https://github.com/ankitzm/sollens",
@@ -56,8 +56,8 @@
   },
   {
     "name": "Terms-Simplified",
-    "title": "Understand risky Terms & Conditions before accepting them.",
-    "description": "A browser extension that analyzes a website’s Terms & Conditions using AI and highlights potentially harmful clauses such as unfair termination, data sharing, auto-renewals, and liability limits. Your API key and analysis stay local, with no tracking or data collection.",
+    "title": "Spot risky Terms & Conditions before you accept them.",
+    "description": "A browser extension that reads a website's Terms & Conditions with AI and flags the clauses worth worrying about: unfair account termination, data sharing, auto-renewals, and limits on liability. Your API key and results stay on your device, with no tracking.",
     "image": "terms-simplified",
     "links": {
       "github": "https://github.com/ankitzm/terms-simplified",
@@ -67,8 +67,8 @@
   },
   {
     "name": "Share-on-Network",
-    "title": "Access your local Next.js app on any device in the same network.",
-    "description": "A simple utility showing how a Next.js development server can be accessed over a local LAN using your device’s IP address. Useful for quickly previewing or testing pages on multiple devices without deployment.",
+    "title": "Open your local Next.js app on any device on the same Wi-Fi.",
+    "description": "A small utility that makes your Next.js dev server reachable from other devices on your local network using your machine's IP address. Handy for checking a page on your phone or tablet without deploying it.",
     "image": "share-on-network",
     "links": {
       "github": "https://github.com/ankitzm/share-on-network",
@@ -84,8 +84,8 @@
   },
   {
     "name": "Safe Deploy",
-    "title": "CLI-driven contract deployment with browser-based signing—no private keys exposed.",
-    "description": "A lightweight NPM package that runs from the CLI against a locally compiled contract, then hands off to a browser step where MetaMask signs the deployment—so the private key never enters the dev environment. Works on localhost with no external dependencies for secure, frictionless workflows.",
+    "title": "Deploy smart contracts from the CLI without exposing your private key.",
+    "description": "An npm package you run from the terminal against a locally compiled contract. It then opens a browser page where MetaMask signs the deployment, so your private key never touches your dev environment. Runs entirely on localhost with no external services.",
     "image": "safe-deploy",
     "links": {
       "github": "https://github.com/ankitzm/safe-deploy",
@@ -95,8 +95,8 @@
   },
   {
     "name": "Open Funds",
-    "title": "A decentralized alternative to OpenCollective on the NEAR blockchain.",
-    "description": "A crowdfunding platform built on the NEAR blockchain that allows creators and project teams to collect donations transparently. All project and contributor data is stored on-chain, ensuring trustless access, verifiable funding, and censorship-resistant project sustainability.",
+    "title": "An on-chain alternative to OpenCollective, built on NEAR.",
+    "description": "A crowdfunding platform on the NEAR blockchain where creators and project teams can collect donations in the open. Every project and contribution is stored on-chain, so anyone can verify where the money came from and no one can take a project down.",
     "image": "open-funds",
     "links": {
       "github": "https://github.com/ankitzm/near-funding-frontend",
@@ -106,8 +106,8 @@
   },
   {
     "name": "Type It All",
-    "title": "A fast, modern typing-speed tester with API-powered prompts.",
-    "description": "A clean and interactive typing test web-app offering a one-minute speed evaluation. It fetches random text via an external API and provides real-time accuracy/WPM metrics. Users can instantly share their results on Twitter for friendly competition.",
+    "title": "A fast, clean one-minute typing test.",
+    "description": "A typing-speed test that pulls fresh random text from an API and shows your words per minute and accuracy as you type. When you're done, share your score on Twitter and challenge your friends.",
     "image": "type-it-all",
     "links": {
       "github": "https://github.com/ankitzm/type-it-all",
@@ -118,14 +118,14 @@
       "ReactJS",
       "TailwindCSS",
       "NPM Packages",
-      "API's",
+      "APIs",
       "Twitter/Facebook share"
     ]
   },
   {
     "name": "Name It",
-    "title": "Creative name suggestions for startups, instantly domain-checkable.",
-    "description": "A simple tool to generate creative name ideas for new startups or projects. Enter keywords and get related suggestions powered by an open-source word-association library. Each result links directly to Google Domains for quick domain availability checks.",
+    "title": "Startup name ideas, with a one-click domain check.",
+    "description": "Type a few keywords and get related name ideas for your startup or project, generated with an open-source word-association library. Each suggestion links straight to a domain search so you can see if it's available.",
     "image": "name-it",
     "links": {
       "github": "https://github.com/ankitzm/nameit",
@@ -135,8 +135,8 @@
   },
   {
     "name": "Solana Wedding",
-    "title": "A blockchain-powered wedding registry built on Solana Devnet.",
-    "description": "A decentralized wedding registry using the Solana blockchain (Devnet). It stores minimal on-chain data to keep transactions fast and cost-effective. Couples can record moments and gifts with blockchain immutability ensured through lightweight Solana program integration.",
+    "title": "A wedding registry on the Solana blockchain.",
+    "description": "A wedding registry running on Solana Devnet where couples can record moments and gifts permanently on-chain. It stores only the essentials on-chain to keep transactions fast and cheap.",
     "image": "solana-wedding",
     "links": {
       "github": "https://github.com/ankitzm/solana-wedding",
@@ -153,8 +153,8 @@
   },
   {
     "name": "NFT Emporium",
-    "title": "Multi-chain NFT minting with a simple, fast, no-code UI.",
-    "description": "A multi-chain NFT minting platform supporting Polygon, Ethereum, BSC, and more. Powered by Moralis on the backend, the app provides a smooth and intuitive UI for creators to mint NFTs without needing blockchain expertise or complex setup.",
+    "title": "Mint NFTs on multiple chains without writing code.",
+    "description": "A simple app for minting NFTs on Polygon, Ethereum, BSC, and more. Moralis handles the backend, so creators can mint through a clean interface without any blockchain know-how or setup.",
     "image": "nft-emporium",
     "links": {
       "github": "https://github.com/Suvraneel/NFT-Emporium",
@@ -164,8 +164,8 @@
   },
   {
     "name": "NASA App",
-    "title": "A clean NASA viewer with weekly aggregation and lazy-loading.",
-    "description": "A frontend application that displays NASA’s Astronomy Picture of the Day, grouped weekly for better browsing. Uses custom fetch logic, lazy image loading, and efficient API chunking to deliver a seamless and optimized user experience.",
+    "title": "Browse NASA's Astronomy Picture of the Day, week by week.",
+    "description": "A viewer for NASA's Astronomy Picture of the Day that groups photos by week so they're easier to browse. Images load lazily and API requests are batched, so it stays fast even when scrolling far back.",
     "image": "nasa",
     "links": {
       "github": "https://github.com/ankitzm/nasa-api-frontend",

@@ -4,7 +4,8 @@
 export const PORTRAIT = "/portrait.jpeg";
 
 export const nav = [
-  { href: "/projects", label: "Projects", note: "14 items to declare" },
+  /** The customs menu prefixes the live project count. */
+  { href: "/projects", label: "Projects", note: "items to declare" },
   { href: "/experience", label: "Experience", note: "passport on file" },
   { href: "/#booking", label: "Let's talk", note: "postage paid" },
 ] as const;
@@ -17,8 +18,13 @@ export const socials = [
   },
   { href: "https://x.com/ankitzm", label: "X", handle: "X @ANKITZM" },
   {
-    href: "https://medium.com/@0xblocktrain",
+    href: "https://medium.com/@ankitzm",
     label: "Medium",
-    handle: "MEDIUM/@0XBLOCKTRAIN",
+    handle: "MEDIUM/@ANKITZM",
+  },
+  {
+    href: "https://www.linkedin.com/in/ankitzm",
+    label: "LinkedIn",
+    handle: "LINKEDIN/ANKITZM",
   },
 ] as const;

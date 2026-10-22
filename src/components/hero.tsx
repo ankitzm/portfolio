@@ -156,7 +156,7 @@ function PortraitStamp() {
       <div className="bg-paper/40 relative aspect-4/5 overflow-hidden">
         <Image
           src={PORTRAIT}
-          alt="Ankit Singh"
+          alt="Portrait of Ankit Singh"
           fill
           loading="eager"
           fetchPriority="high"
@@ -242,14 +242,14 @@ export function Hero() {
 
             {/* Eyebrow: md and up only. On mobile the overhanging stamp leads
                 and the headline follows it directly (see mock). */}
-            <p className="load-fade text-ink-faded hidden font-mono text-[11px] tracking-widest uppercase [animation-delay:.1s] md:block">
-              ( Software developer, est. 2021 )
+            <p className="load-fade text-ink-faded hidden font-mono text-[12px] tracking-widest uppercase [animation-delay:.1s] md:block">
+              ( Software developer / DevRel )
             </p>
 
             {/* Height-aware: 11vw alone makes the headline a fixed ~124px on any
                 laptop, which pushes the card past the fold on short viewports. */}
             <h1 className="font-display text-ink max-w-[14ch] text-[clamp(2.75rem,min(11vw,11.6svh),7.75rem)] leading-[0.9] font-extrabold tracking-tight uppercase font-stretch-75%">
-              {["I turn", "specs", "into shipped"].map((line, i) => (
+              {["I turn", "specs into", "shipped products"].map((line, i) => (
                 <span key={line} className="block overflow-hidden py-[0.06em]">
                   <span
                     className={`load-mask block ${i === 1 ? "text-accent" : ""}`}
@@ -264,9 +264,9 @@ export function Hero() {
             {/* Mobile: the card fills the viewport and the CTA sits centred in the
                 space below the tagline. md+: one row, CTA flush right. */}
             <div className="flex flex-1 flex-col gap-6 md:flex-none md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-x-8">
-              <p className="load-fade text-ink-faded border-rule max-w-md border-l-2 pl-3 font-mono text-xs leading-relaxed lowercase [animation-delay:.9s] md:text-sm">
-                5 years of web3 products, SDKs &amp; interfaces · from Router
-                Protocol to freelance
+              <p className="load-fade text-ink-faded border-rule max-w-md border-l-2 pl-3 font-mono text-base leading-relaxed lowercase [animation-delay:.9s] md:text-sm">
+                4+ years building web3 products, SDKs and interfaces people
+                actually enjoy using.
               </p>
               {/* Padding reserves the rows the arrows sit in; desktop shrinks it
                   with the viewport so the fan cannot push the card past the fold. */}

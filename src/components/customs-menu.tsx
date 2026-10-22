@@ -14,9 +14,11 @@ import { nav, socials } from "@/lib/site";
 export function CustomsMenu({
   open,
   onClose,
+  projectCount,
 }: {
   open: boolean;
   onClose: () => void;
+  projectCount: number;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const router = useRouter();
@@ -105,6 +107,7 @@ export function CustomsMenu({
                   </span>
                   <span className="border-rule mx-1 flex-1 border-b border-dotted" />
                   <span className="text-ink-faded font-mono text-[11px] lowercase">
+                    {item.href === "/projects" && `${projectCount} `}
                     {item.note}
                   </span>
                 </Link>

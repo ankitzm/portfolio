@@ -77,12 +77,12 @@ export default async function Home() {
           <div className="mb-10 text-center">
             <p className="rubber-stamp mb-6 text-[11px]">Final destination</p>
             <h2 className="font-display text-3xl font-bold tracking-tight uppercase font-stretch-75% md:text-5xl">
-              Send something back
+              Let&apos;s work together
             </h2>
 
             <p className="text-ink-faded mx-auto mt-3 max-w-md text-sm leading-relaxed">
-              Available for new projects. Tear the stub, pick a slot, and
-              let&apos;s talk shipping.
+              Open to freelance and full-time roles. Tear the stub, pick a
+              15-min slot, and tell me what you&apos;re building.
             </p>
           </div>
           <BookingLazy />

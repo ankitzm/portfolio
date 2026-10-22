@@ -137,7 +137,7 @@ export function Booking() {
               Boarding pass · Class: 1st / Discovery Call
             </p>
             <p className="font-display mt-3 text-4xl font-bold tracking-tight uppercase font-stretch-75% md:text-6xl">
-              Let&apos;s build something cool ! <br />
+              Let&apos;s build something great
             </p>
 
             <div className="text-ink-faded flex flex-1 items-center gap-4 font-mono text-xs uppercase md:text-sm">

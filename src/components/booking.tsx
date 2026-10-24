@@ -12,22 +12,81 @@ const CAL_LINK = "ankitzm/15min";
 const spring = { type: "spring", stiffness: 90, damping: 15 } as const;
 
 /*
- * Two-phase tear: keyframe 1 is the fibers giving way — a small, decelerating
- * shift — then the halves accelerate apart on a hard ease-in. `times` holds
- * the break at the first third so the pause reads before the whoosh.
+ * The tear, from the physics rather than hand-set keyframes. First the
+ * fibers stretch and the halves ease 6px apart. Then they let go: the stub
+ * is lifted a touch toward you and dropped, falling under gravity with a
+ * slow spin while air drag bleeds off its sideways speed; the sheet
+ * recoils the other way and slides off, slowed by friction. Each path is
+ * sampled into keyframes, so the motion follows the equations.
  */
-const tearTransition: Transition = {
-  duration: 0.9,
-  times: [0, 0.35, 1],
-  ease: ["easeOut", [0.6, 0, 0.9, 0.3]],
-};
+const TEAR_S = 1;
+const STRETCH_S = 0.12;
+const FRAMES = 32;
+const G = 2400; // px/s²
 
-/** Break + fly-apart keyframes along one axis. */
-const tear = (axis: "x" | "y", dir: 1 | -1) => ({
-  [axis]: [0, 14 * dir, (axis === "x" ? 560 : 440) * dir],
-  rotate: [0, 0.6 * dir, 2.5 * dir],
-  opacity: [1, 1, 0],
-});
+const times = Array.from({ length: FRAMES }, (_, i) => i / (FRAMES - 1));
+
+/** Sample f(t, free) over the tear; `free` is time since the fibers gave. */
+function simulate(f: (t: number, free: number) => Record<string, number>) {
+  const out: Record<string, number[]> = {};
+  for (const u of times) {
+    const t = u * TEAR_S;
+    const k = Math.min(1, t / STRETCH_S);
+    const frame = f(t, Math.max(0, t - STRETCH_S));
+    frame.gap = 6 * k * k * (3 - 2 * k);
+    for (const [key, v] of Object.entries(frame)) (out[key] ??= []).push(v);
+  }
+  return out;
+}
+
+/** Distance covered from speed v under linear drag k. */
+const drag = (v: number, k: number, t: number) =>
+  (v / k) * (1 - Math.exp(-k * t));
+
+/** 1 → 0 between two shares of the tear. */
+const fade = (t: number, from: number, to: number) =>
+  1 - Math.min(1, Math.max(0, (t / TEAR_S - from) / (to - from)));
+
+function stubFall(stacked: boolean) {
+  const f = simulate((t, s) => ({
+    along: drag(stacked ? 60 : 420, 1.5, s),
+    down: (stacked ? 60 : -120) * s + 0.5 * G * s * s,
+    rotate: (stacked ? -1 : 1) * 24 * (1 - Math.exp(-2 * s)),
+    // Picked up, then dropped: nearer the eye for a moment.
+    scale: 1 + 0.04 * Math.sin(Math.min(1, s / 0.35) * Math.PI),
+    opacity: fade(t, 0.55, 1),
+  }));
+  const pull = (a: number[]) => a.map((v, i) => v + f.gap[i]);
+  return stacked
+    ? {
+        x: f.along,
+        y: pull(f.down),
+        rotate: f.rotate,
+        scale: f.scale,
+        opacity: f.opacity,
+      }
+    : {
+        x: pull(f.along),
+        y: f.down,
+        rotate: f.rotate,
+        scale: f.scale,
+        opacity: f.opacity,
+      };
+}
+
+function sheetSlide(stacked: boolean) {
+  const f = simulate((t, s) => ({
+    slide: drag(stacked ? 800 : 1100, 3, s),
+    rotate: -1.5 * (1 - Math.exp(-3 * s)),
+    opacity: fade(t, 0.3, 0.85),
+  }));
+  const away = f.slide.map((v, i) => -(v + f.gap[i]));
+  return stacked
+    ? { y: away, rotate: f.rotate, opacity: f.opacity }
+    : { x: away, rotate: f.rotate, opacity: f.opacity };
+}
+
+const tearTransition: Transition = { duration: TEAR_S, times, ease: "linear" };
 
 const details = [
   ["Duration", "15 min"],
@@ -51,7 +110,7 @@ export function Booking() {
   const [gone, setGone] = useState(false);
   const tearAway = () => {
     setTorn(true);
-    setTimeout(() => setGone(true), 1000);
+    setTimeout(() => setGone(true), TEAR_S * 1000 + 100);
   };
   const reduced = useReducedMotion();
   // Stacked ticket (below md) tears along a horizontal seam, so the halves
@@ -127,7 +186,7 @@ export function Booking() {
               torn
                 ? reduced
                   ? { opacity: 0 }
-                  : tear(stacked ? "y" : "x", -1)
+                  : sheetSlide(stacked)
                 : { x: 0, y: 0, rotate: 0, opacity: 1 }
             }
             transition={torn ? tearTransition : spring}
@@ -181,8 +240,8 @@ export function Booking() {
               torn
                 ? reduced
                   ? { opacity: 0 }
-                  : tear(stacked ? "y" : "x", 1)
-                : { x: 0, y: 0, rotate: 0, opacity: 1 }
+                  : stubFall(stacked)
+                : { x: 0, y: 0, rotate: 0, scale: 1, opacity: 1 }
             }
             transition={torn ? tearTransition : spring}
             whileTap={{ scale: 0.97 }}

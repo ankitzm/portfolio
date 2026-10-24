@@ -741,7 +741,28 @@ html.paper-page::after {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent 60%);
+  background: #1c1b17;
+}
+
+/* Shadow the turning page casts on the page beneath it. */
+.pp-cast {
+  position: absolute;
+  top: 0;
+  width: var(--pw);
+  height: 100%;
+  pointer-events: none;
+}
+
+.pp-cast-b {
+  left: var(--pw);
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgb(28 18 10 / 0.9), transparent);
+}
+
+.pp-cast-a {
+  left: 0;
+  transform-origin: right center;
+  background: linear-gradient(270deg, rgb(28 18 10 / 0.9), transparent);
 }
 
 .pp-face {
@@ -797,8 +818,22 @@ html.paper-page::after {
     box-shadow: inset 0 -24px 28px -24px rgba(28, 27, 23, 0.45);
   }
 
-  .pp-shade {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 60%);
+  .pp-cast {
+    left: 0;
+    width: 100%;
+    height: var(--ph);
+  }
+
+  .pp-cast-a {
+    top: 0;
+    transform-origin: center bottom;
+    background: linear-gradient(0deg, rgb(28 18 10 / 0.9), transparent);
+  }
+
+  .pp-cast-b {
+    top: var(--ph);
+    transform-origin: center top;
+    background: linear-gradient(180deg, rgb(28 18 10 / 0.9), transparent);
   }
 }
 

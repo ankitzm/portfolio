@@ -212,7 +212,12 @@ function Leaf({
   const zIndex = useTransform(t, (v) =>
     v <= 0 ? total - k : v >= 1 ? k + 1 : total + 2,
   );
-  const shade = useTransform(t, [0, 0.5, 1], [0, 0.35, 0]);
+  // Lit by its angle to the viewer: full light face-on, darkening fastest
+  // as the page nears edge-on.
+  const shade = useTransform(
+    t,
+    (v) => 0.5 * (1 - Math.abs(Math.cos(v * Math.PI))),
+  );
   return (
     <motion.div style={{ transform, zIndex }} className="pp-leaf">
       {/* Off-screen faces stay in the DOM; inert keeps their links untabbable. */}
@@ -228,6 +233,44 @@ function Leaf({
         className="pp-shade"
       />
     </motion.div>
+  );
+}
+
+/*
+ * The turning page's shadow on whatever lies beneath it: the right page
+ * while it lifts, the left as it lands. It runs from the spine to a little
+ * past the page's projected edge and deepens as the page stands up.
+ */
+function TurnShadow({
+  progress,
+  stacked,
+  z,
+}: {
+  progress: MotionValue<number>;
+  stacked: boolean;
+  z: number;
+}) {
+  const a = useTransform(progress, (v) => (v - Math.floor(v)) * Math.PI);
+  const reach = useTransform(a, (r) =>
+    Math.min(1, Math.abs(Math.cos(r)) + 0.2),
+  );
+  const depth = useTransform(a, (r) => 0.35 * Math.sin(r));
+  const right = useTransform(() => (a.get() < Math.PI / 2 ? depth.get() : 0));
+  const left = useTransform(() => (a.get() < Math.PI / 2 ? 0 : depth.get()));
+  const size = stacked ? { scaleY: reach } : { scaleX: reach };
+  return (
+    <>
+      <motion.div
+        aria-hidden="true"
+        style={{ ...size, opacity: right, zIndex: z }}
+        className="pp-cast pp-cast-b"
+      />
+      <motion.div
+        aria-hidden="true"
+        style={{ ...size, opacity: left, zIndex: z }}
+        className="pp-cast pp-cast-a"
+      />
+    </>
   );
 }
 
@@ -343,6 +386,7 @@ export function Passport({
               back={back}
             />
           ))}
+          <TurnShadow progress={progress} stacked={stacked} z={flips + 1} />
         </div>
         <div className="flex items-center gap-3 font-mono text-[10px] tracking-widest opacity-70">
           <span>

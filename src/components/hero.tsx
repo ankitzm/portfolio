@@ -201,6 +201,11 @@ export function Hero() {
   const cardR = useTransform(p, [0, 1], [-1, reduced ? -1 : -2]);
   const stampY = useTransform(p, [0, 1], ["0%", reduced ? "0%" : "-18%"]);
   const fade = useTransform(p, [0, 0.8], [1, reduced ? 1 : 0.3]);
+  // The stamp parallaxes faster than the card, so it reads nearer the eye:
+  // its shadow on the card lengthens and fades to match that height.
+  const liftX = useTransform(p, [0, 1], [0, reduced ? 0 : 10]);
+  const liftY = useTransform(p, [0, 1], [0, reduced ? 0 : 22]);
+  const liftShade = useTransform(p, [0, 1], [0, reduced ? 0 : 0.2]);
 
   const [imprints, setImprints] = useState<Imprint[]>([]);
   const stampPaper = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -289,9 +294,16 @@ export function Hero() {
             leading the headline (see mock). md+: tucked into the corner. */}
         <motion.div
           style={{ y: stampY }}
-          className="load-fade drop-shadow-paper pointer-events-none absolute -top-14 left-1/2 z-20 w-44 -translate-x-1/2 rotate-3 [animation-delay:.7s] sm:-top-16 sm:w-52 md:-top-10 md:right-6 md:left-auto md:w-56 md:translate-x-0"
+          className="drop-shadow-paper pointer-events-none absolute -top-14 left-1/2 z-20 w-44 -translate-x-1/2 rotate-3 sm:-top-16 sm:w-52 md:-top-10 md:right-6 md:left-auto md:w-56 md:translate-x-0"
         >
-          <PortraitStamp />
+          <motion.div
+            aria-hidden="true"
+            style={{ x: liftX, y: liftY, opacity: liftShade }}
+            className="bg-ink absolute inset-3 blur-xl"
+          />
+          <div className="load-place relative [animation-delay:.7s]">
+            <PortraitStamp />
+          </div>
         </motion.div>
       </div>
     </section>

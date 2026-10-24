@@ -582,6 +582,33 @@ html.paper-page::after {
   .load-slam {
     animation: stamp-slam 0.45s var(--ease-paper) both;
   }
+
+  /* Set down by hand: comes in a little high and up-left of its spot,
+     larger for being nearer the eye, its shadow long and loose; lands
+     with the shadow tucked under it. */
+  @keyframes stamp-place {
+    from {
+      opacity: 0;
+      translate: -6px -14px;
+      scale: 1.07;
+      filter: drop-shadow(14px 26px 18px rgb(28 27 23 / 0.22));
+    }
+
+    40% {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+      filter: drop-shadow(0 0 0 rgb(28 27 23 / 0));
+    }
+  }
+
+  .load-place {
+    animation: stamp-place 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
 }
 
 /*

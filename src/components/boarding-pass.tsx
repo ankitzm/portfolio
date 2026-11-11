@@ -90,9 +90,9 @@ export async function BoardingPass({
         <div className="perf-edge drop-shadow-paper bg-paper w-full">
           <Image
             src={shot}
-            alt={`${project.name} screenshot`}
+            alt={`${project.name} stamp illustration`}
             sizes="(min-width: 768px) 224px, 90vw"
-            className="h-auto w-full mix-blend-multiply [filter:grayscale(.4)_sepia(.35)_contrast(1.05)_brightness(1.02)]"
+            className="h-auto w-full"
           />
         </div>
 

@@ -406,6 +406,29 @@ html.paper-page::after {
 }
 
 /*
+ * Crumpled sheet, baked by design/crumple.mjs from simulated folds lit from
+ * the top-left: a repeating tile of small crinkles under a few big folds
+ * stretched over the card (which hide the tile's repeat), multiplied.
+ * Pairs with .paper-grain (which supplies isolation) on lighter stock, so
+ * the card reads as its own sheet on a ground of the same cream.
+ */
+.paper-crumple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  /* Aged edges: the sheet yellows from the border in, like an old poster. */
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgb(120 72 24 / 0.4)),
+    center / cover url("/crumple.webp"),
+    0 0 / 480px 480px url("/crumple-fine.webp");
+  background-blend-mode: multiply;
+}
+
+/*
  * Invisible 44px touch target around small links, without moving layout.
  * Percent insets resolve per axis, so each side grows only as far as the
  * link falls short of 44px.

@@ -148,6 +148,53 @@ function CtaArrows({ reduced }: { reduced: boolean }) {
   ));
 }
 
+const BAR = " q7.5 -5 15 0" + " t15 0".repeat(9);
+
+/**
+ * Cancellation struck across the portrait stamp: a ring postmark with five
+ * wavy killer bars trailing off onto the card. Ink, so no shadow of its own.
+ */
+function Cancellation() {
+  return (
+    <svg
+      viewBox="0 0 240 90"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      className="text-stamp load-fade absolute right-[80%] bottom-[14%] w-24 -rotate-6 opacity-60 [animation-delay:1.1s] min-[375px]:w-28 sm:w-44 md:right-[68%] md:-bottom-[6%] md:w-60"
+    >
+      {[17, 31, 45, 59, 73].map((y) => (
+        <path key={y} d={`M0 ${y}${BAR}`} strokeWidth="2.4" />
+      ))}
+      <circle cx="195" cy="45" r="40" strokeWidth="2" />
+      <circle cx="195" cy="45" r="25" strokeWidth="1" />
+      <path id="pm-ring" d="M195 13a32 32 0 1 1 0 64a32 32 0 1 1 0-64" />
+      <text
+        fill="currentColor"
+        stroke="none"
+        fontFamily="var(--font-courier)"
+        fontWeight="700"
+        fontSize="8.4"
+        letterSpacing="1.2"
+      >
+        <textPath href="#pm-ring">READY TO SHIP · ANY TIMEZONE ·</textPath>
+      </text>
+      <text
+        x="195"
+        y="49"
+        textAnchor="middle"
+        fill="currentColor"
+        stroke="none"
+        fontFamily="var(--font-courier)"
+        fontWeight="700"
+        fontSize="12"
+      >
+        IST
+      </text>
+    </svg>
+  );
+}
+
 /** Yellow perforated portrait stamp; its denomination row is the live IST clock. */
 function PortraitStamp() {
   const clock = useIstClock();
@@ -177,6 +224,10 @@ function PortraitStamp() {
     </div>
   );
 }
+
+/** Where the portrait stamp is affixed; shared by the stamp and its ink. */
+const STAMP_SPOT =
+  "pointer-events-none absolute -top-14 left-1/2 z-20 w-40 -translate-x-1/2 rotate-3 sm:-top-16 sm:w-48 md:-top-10 md:right-6 md:left-auto md:w-56 md:translate-x-0";
 
 /**
  * The franking desk: a full-width perforated postcard carrying the headline and
@@ -225,10 +276,12 @@ export function Hero() {
     );
   };
 
+  // Mobile min-height subtracts the sticky header (4.0625rem) so the card
+  // ends on screen; on mobile everything sits on the stamp's centre line.
   return (
     <section
       ref={ref}
-      className="mx-auto flex min-h-[calc(100svh-var(--frame))] max-w-7xl items-stretch px-4 pt-24 pb-6 sm:px-6 sm:pt-28 sm:pb-8 md:min-h-[calc(100svh-3rem)] md:items-center md:px-10 md:pt-[clamp(4.5rem,8svh,5.5rem)] md:pb-[clamp(0.75rem,3svh,1.5rem)]"
+      className="mx-auto flex min-h-[calc(100svh-var(--frame)-4.0625rem)] max-w-7xl items-stretch px-4 pt-20 pb-6 sm:px-6 sm:pt-28 sm:pb-8 md:min-h-[calc(100svh-3rem)] md:items-center md:px-10 md:pt-[clamp(4.5rem,8svh,5.5rem)] md:pb-[clamp(0.75rem,3svh,1.5rem)]"
     >
       {/* Unmasked wrapper so the stamp can overhang the card's die-cut edge:
           .perf-edge is a CSS mask, and a mask clips its own descendants. */}
@@ -236,11 +289,22 @@ export function Hero() {
         <motion.div
           style={{ y: cardY, rotate: cardR, opacity: fade }}
           onClick={stampPaper}
-          className="perf-edge drop-shadow-paper paper-grain bg-surface relative flex w-full cursor-crosshair flex-col"
+          className="perf-edge drop-shadow-paper paper-grain paper-crumple bg-frame-white relative flex w-full cursor-crosshair flex-col"
         >
           {/* Inner gutter: .perf-edge's own 10px padding is the die-cut ring the
               mask draws its teeth into, so content spacing lives on this child. */}
-          <div className="flex flex-1 flex-col gap-6 px-5 pt-44 pb-12 sm:gap-10 sm:px-12 sm:pt-52 md:gap-[clamp(1rem,2.5svh,2rem)] md:px-16 md:pt-[clamp(1.5rem,4svh,3rem)] md:pb-0 lg:px-20">
+          <div className="flex flex-1 flex-col gap-6 px-5 pt-48 pb-6 sm:gap-10 sm:px-12 sm:pt-60 md:gap-[clamp(1rem,2.5svh,2rem)] md:px-16 md:pt-[clamp(1.5rem,4svh,3rem)] md:pb-0 lg:px-20">
+            {/* Airmail etiquette, stuck on by hand in the empty top band. */}
+            <span
+              aria-hidden="true"
+              className="airmail-edge load-fade text-ink absolute top-[9%] left-[46%] hidden rotate-[-4deg] px-3 py-1 text-center font-mono leading-tight uppercase [animation-delay:1s] lg:block"
+            >
+              <b className="block text-sm tracking-[0.2em]">Par avion</b>
+              <span className="block text-[9px] tracking-widest">
+                By air mail
+              </span>
+            </span>
+
             {imprints.map(({ id, ...m }) => (
               <Postmark key={id} {...m} />
             ))}
@@ -253,7 +317,7 @@ export function Hero() {
 
             {/* Height-aware: 11vw alone makes the headline a fixed ~124px on any
                 laptop, which pushes the card past the fold on short viewports. */}
-            <h1 className="font-display text-ink max-w-[14ch] text-[clamp(2.75rem,min(11vw,11.6svh),7.75rem)] leading-[0.9] font-extrabold tracking-tight uppercase font-stretch-75%">
+            <h1 className="font-display text-ink mx-auto max-w-[14ch] text-center text-[clamp(2.75rem,min(11vw,11.6svh),7.75rem)] leading-[0.9] font-extrabold tracking-tight uppercase font-stretch-75% md:mx-0 md:text-left">
               {["I turn", "specs into", "shipped products"].map((line, i) => (
                 <span key={line} className="block overflow-hidden py-[0.06em]">
                   <span
@@ -269,13 +333,13 @@ export function Hero() {
             {/* Mobile: the card fills the viewport and the CTA sits centred in the
                 space below the tagline. md+: one row, CTA flush right. */}
             <div className="flex flex-1 flex-col gap-6 md:flex-none md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-x-8">
-              <p className="load-fade text-ink-faded border-rule max-w-md border-l-2 pl-3 font-mono text-base leading-relaxed lowercase [animation-delay:.9s] md:text-sm">
+              <p className="load-fade text-ink md:text-ink-faded border-rule mx-auto max-w-md text-center font-mono text-base leading-relaxed text-balance lowercase [animation-delay:.9s] md:mx-0 md:border-l-2 md:pl-3 md:text-left md:text-sm">
                 4+ years building web3 products, SDKs and interfaces people
                 actually enjoy using.
               </p>
               {/* Padding reserves the rows the arrows sit in; desktop shrinks it
                   with the viewport so the fan cannot push the card past the fold. */}
-              <div className="my-auto self-center py-12 md:my-0 md:self-auto md:py-[clamp(2.75rem,7svh,3rem)]">
+              <div className="my-auto self-center py-11 md:my-0 md:self-auto md:py-[clamp(2.75rem,7svh,3rem)]">
                 <div className="relative">
                   <Link
                     href="/#booking"
@@ -290,11 +354,11 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Affixed over the card's top edge, parallaxing. Mobile: larger and
-            leading the headline (see mock). md+: tucked into the corner. */}
+        {/* Affixed over the card's top edge, parallaxing. Mobile: centred,
+            leading the headline. md+: tucked into the corner. */}
         <motion.div
           style={{ y: stampY }}
-          className="drop-shadow-paper pointer-events-none absolute -top-14 left-1/2 z-20 w-44 -translate-x-1/2 rotate-3 sm:-top-16 sm:w-52 md:-top-10 md:right-6 md:left-auto md:w-56 md:translate-x-0"
+          className={`drop-shadow-paper ${STAMP_SPOT}`}
         >
           <motion.div
             aria-hidden="true"
@@ -304,6 +368,11 @@ export function Hero() {
           <div className="load-place relative [animation-delay:.7s]">
             <PortraitStamp />
           </div>
+        </motion.div>
+        {/* Same spot, outside the drop-shadow: ink lies flat on the paper. */}
+        <motion.div style={{ y: stampY }} className={STAMP_SPOT}>
+          <div className="aspect-4/5" />
+          <Cancellation />
         </motion.div>
       </div>
     </section>

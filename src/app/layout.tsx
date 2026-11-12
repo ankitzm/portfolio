@@ -12,6 +12,7 @@ import { MotionProvider } from "@/components/reveal";
 import { ConsoleEgg } from "@/components/console-egg";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { getProjects } from "@/lib/data";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`paper-page ${bricolage.variable} ${hanken.variable} ${courier.variable} antialiased`}
     >
       <body className="font-sans">
+        <SpeedInsights />
         <MotionProvider>
           <SmoothScroll />
           <ConsoleEgg />
